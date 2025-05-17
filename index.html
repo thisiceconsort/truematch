@@ -435,7 +435,7 @@ If the code is incorrect, <br/>the user may not be genuine. Please be careful!.
         });
 
         if (response.ok) {
-          formResponse.textContent = 'Request sent successfully! We will contact you shortly via your email address with payment link for your card.';
+          formResponse.textContent = 'Request sent successfully! We will contact you shortly via your email address with payment link for your card. NOTE: Do Not Fill This Form Again!';
           form.reset();
         } else {
           const data = await response.json();
