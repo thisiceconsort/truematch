@@ -1,6 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <title>Boyhood TrueMatch Loader + Homepage</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f4eafa" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+
+  <style>
+    /* Splash styles */
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap');
+
+  
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Outfit', sans-serif;
+      background: #121212;
+    }
+
+    .splash-screen {
+      position: fixed;
+      inset: 0;
+      background: #121212;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.6s ease;
+    }
+
+    .splash-screen.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .splash-logo {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color: white;
+      margin-bottom: 20px;
+    }
+
+    .splash-icon {
+      font-size: 48px;
+      color: #d4af37;
+    }
+
+    .splash-text {
+      position: relative;
+    }
+
+    .scribble {
+      position: absolute;
+      top: 50%;
+      left: 8px;
+      width: 180px;
+      height: 48px;
+      transform: translateY(-50%) rotate(-8deg);
+      z-index: 0;
+      pointer-events: none;
+      filter: blur(0.7px);
+      opacity: 0.85;
+    }
+
+    .stroke {
+      position: absolute;
+      border-radius: 12px;
+      mix-blend-mode: screen;
+      opacity: 0.65;
+    }
+
+    .stroke1 { background: #ff3b3b; width: 60px; height: 14px; top: 10px; left: 0; transform: rotate(-12deg) skewX(-18deg); }
+    .stroke2 { background: #ff9a3b; width: 65px; height: 16px; top: 11px; left: 40px; transform: rotate(-8deg) skewX(-12deg); }
+    .stroke3 { background: #fffc3b; width: 70px; height: 18px; top: 9px; left: 80px; transform: rotate(-9deg) skewX(-14deg); }
+    .stroke4 { background: #48ff3b; width: 55px; height: 12px; top: 15px; left: 110px; transform: rotate(-13deg) skewX(-10deg); }
+    .stroke5 { background: #3bb5ff; width: 45px; height: 10px; top: 18px; left: 130px; transform: rotate(-9deg) skewX(-15deg); }
+    .stroke6 { background: #9b3bff; width: 75px; height: 14px; top: 13px; left: 90px; transform: rotate(-8deg) skewX(-7deg); }
+    .stroke7 { background: #ff3bf7; width: 55px; height: 14px; top: 16px; left: 30px; transform: rotate(-15deg) skewX(-13deg); }
+
+    .boyhood { font-size: 1rem; letter-spacing: 1px; color: #fff; z-index: 2; }
+    .truematch { font-size: 2.4rem; font-weight: bold; color: #fff; margin-top: -4px; letter-spacing: 2px; z-index: 2; }
+
+    .splash-footer {
+      position: absolute;
+      bottom: 10px;
+      font-size: 0.85rem;
+      color: #ccc;
+      letter-spacing: 0.5px;
+    }
+
+    #homepage {
+      display: none;
+      animation: fadeIn 0.6s ease 0.3s forwards;
+    }
+
+    @keyframes fadeIn {
+      to { display: block; opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Splash screen -->
+  <div class="splash-screen" id="splash">
+    <div class="splash-logo">
+      <i class="fas fa-mars splash-icon"></i>
+      <div class="splash-text">
+        <div class="scribble">
+          <div class="stroke stroke1"></div>
+          <div class="stroke stroke2"></div>
+          <div class="stroke stroke3"></div>
+          <div class="stroke stroke4"></div>
+          <div class="stroke stroke5"></div>
+          <div class="stroke stroke6"></div>
+          <div class="stroke stroke7"></div>
+        </div>
+        <div class="boyhood">Boyhood</div>
+        <div class="truematch">TrueMatch</div>
+      </div>
+    </div>
+    <div class="splash-footer">All Rights Reserved By This Ice Consort 2025</div>
+  </div>
+
+  <!-- Homepage starts -->
+  <div id="homepage" style="opacity: 0;">
+<!DOCTYPE html>
+<html lang="en">
+<head>
 <meta name="theme-color" content="#f4eafa" />  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Boyhood:TrueMatch</title>
@@ -10,7 +139,12 @@
   />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap');
-
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
     body {
       margin: 0;
       padding: 40px 20px;
@@ -37,14 +171,14 @@
     h1 {
       font-size: 28px;
       margin-bottom: 10px;
-      color: #333;
+      color: white;
     }
 
     p {
       max-width: 380px;
       font-size: 15px;
       margin-bottom: 30px;
-      color: #444;
+      color: white;
     }
 
     input,
@@ -222,9 +356,8 @@
 </head>
 <body>
   <h1>BoyHood:TrueMatch Card Verification</h1>
-  <p>
+  <p style="color:gray;">
   Enter the 4-digit code found at the top left of the card.
-If the code is incorrect, <br/>the user may not be genuine. Please be careful!.
   </p>
 
   <input
@@ -240,7 +373,7 @@ If the code is incorrect, <br/>the user may not be genuine. Please be careful!.
   <div id="result" class="result" style="display: none"></div>
 
   <div class="verify-reminder">
-    Become a verified member of the boyhood truematch club and commnuity, Get your own card Now? Fill the form below or contact <strong><a href="https://t.me/iceconsortpro">@IceConsortpro</a></strong> on Telegram.
+    Become a verified member of the boyhood truematch club and commnuity, Get your own card Now? Fill the form below or contact <strong><a href="mailto:iceconsort@gmail.com?subject=Card Request For Boyhood:TrueMatch">IceConsort</a></strong> on Email.
   </div>
 
   <form id="requestForm" enctype="multipart/form-data" method="POST" action="https://formspree.io/f/xovdrlby" >
@@ -308,8 +441,8 @@ If the code is incorrect, <br/>the user may not be genuine. Please be careful!.
     <div class="modal-content">
       <span class="close-btn" onclick="closeModal('aboutModal')">&times;</span>
       <h2>About Us</h2>
-      <p>
-        Boyhood TrueMatch is part of IceConsortPro and proudly owned by The Ice Consort.  
+      <p style="color:black;">
+        Boyhood TrueMatch is proudly owned by This Ice Consort.  
         This platform is designed to help gay individuals across Africa find genuine matches 
         in their local government area, state, or country.  
         <br><br>
@@ -328,7 +461,7 @@ If the code is incorrect, <br/>the user may not be genuine. Please be careful!.
     <div class="modal-content">
       <span class="close-btn" onclick="closeModal('privacyModal')">&times;</span>
       <h2>Privacy Policy</h2>
-      <p>
+      <p style="color:black;">
         We collect only the necessary details to help match you with compatible partners in your region.  
         Your information is private, never sold or exposed, and strictly used for match-making and group inclusion.  
         <br><br>
@@ -345,7 +478,7 @@ If the code is incorrect, <br/>the user may not be genuine. Please be careful!.
     <div class="modal-content">
       <span class="close-btn" onclick="closeModal('termsModal')">&times;</span>
       <h2>Terms of Use</h2>
-      <p>
+      <p style="color:black;">
         To use this platform, you must be 18 years or older. You agree to respect all members, avoid impersonation, and not misuse the community.
         <br><br>
         Boyhood TrueMatch is strictly for personal connection purposes. Any harassment, hate speech, or inappropriate behavior will lead to permanent removal.  
@@ -361,7 +494,7 @@ If the code is incorrect, <br/>the user may not be genuine. Please be careful!.
     <div class="modal-content">
       <span class="close-btn" onclick="closeModal('pricingModal')">&times;</span>
       <h2>Pricing</h2>
-      <p>
+     <p style="color:black;">
         The official price of the match card is ₦3,500, but it is currently discounted to <strong>₦1,800 (one-time payment)</strong>.
         <br><br>
         After purchasing the card, you are required to activate your monthly <strong>₦500 subscription</strong> to join the official group, 
@@ -382,7 +515,7 @@ If the code is incorrect, <br/>the user may not be genuine. Please be careful!.
   <script>
     // Map of valid codes and profile URLs
     const validUsers = {
-      '0001': 't.me/Ice_consort',
+      '0001': 'https://t.me/Ice_consort',
       '6609': 'https://example.com/profile/celi-bajami',
       '8421': 'https://example.com/profile/james-smith',
       '3098': 'https://example.com/profile/manuel-fernandez',
@@ -435,7 +568,7 @@ If the code is incorrect, <br/>the user may not be genuine. Please be careful!.
         });
 
         if (response.ok) {
-          formResponse.textContent = 'Request sent successfully! We will contact you shortly via your email address with payment link for your card. NOTE: Do Not Fill This Form Again!';
+          formResponse.textContent = 'Request sent successfully! We will contact you shortly via your email address with payment link for your card.';
           form.reset();
         } else {
           const data = await response.json();
@@ -470,5 +603,33 @@ If the code is incorrect, <br/>the user may not be genuine. Please be careful!.
       });
     }
   </script>
+</body>
+</html>  </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const splash = document.getElementById('splash');
+    const homepage = document.getElementById('homepage');
+
+    const splashShown = sessionStorage.getItem('splashShown');
+
+    if (!splashShown) {
+      // Show splash screen for 1.5s then fade out
+      setTimeout(() => {
+        splash.classList.add('fade-out');
+        setTimeout(() => {
+          splash.remove();
+          homepage.style.display = 'block';
+        }, 600); // Allow fade-out transition to complete
+      }, 2400);
+
+      sessionStorage.setItem('splashShown', 'true');
+    } else {
+      // Skip splash screen
+      splash.remove();
+      homepage.style.display = 'block';
+    }
+  });
+</script>
 </body>
 </html>
