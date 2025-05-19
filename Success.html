@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Submitting Your Form...</title>
+</head>
+<body>
+  <h2 id="status">Submitting your request...</h2>
+
+  <script>
+    const data = JSON.parse(sessionStorage.getItem('formData'));
+
+    if (data) {
+      const formData = new FormData();
+      for (const key in data) {
+        formData.append(key, data[key]);
+      }
+
+      fetch("https://formspree.io/f/xovdrlby", {
+        method: "POST",
+        headers: { "Accept": "application/json" },
+        body: formData,
+      }).then(res => {
+        if (res.ok) {
+          document.getElementById("status").textContent = "Request submitted successfully!";
+          sessionStorage.removeItem('formData');
+        } else {
+          document.getElementById("status").textContent = "Submission failed. Please contact support.";
+        }
+      }).catch(() => {
+        document.getElementById("status").textContent = "Network error. Please try again.";
+      });
+    } else {
+      document.getElementById("status").textContent = "No data found.";
+    }
+  </script>
+</body>
+</html>
