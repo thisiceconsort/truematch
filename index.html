@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Boyhood TrueMatch Loader + Homepage</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f4eafa" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+
+  <style>
+    /* Splash styles */
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap');
+
+  
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Outfit', sans-serif;
+      background: #121212;
+    }
+
+    .splash-screen {
+      position: fixed;
+      inset: 0;
+      background: #121212;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.6s ease;
+    }
+
+    .splash-screen.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .splash-logo {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color: white;
+      margin-bottom: 20px;
+    }
+
+    .splash-icon {
+      font-size: 48px;
+      color: #d4af37;
+    }
+
+    .splash-text {
+      position: relative;
+    }
+
+    .scribble {
+      position: absolute;
+      top: 50%;
+      left: 8px;
+      width: 180px;
+      height: 48px;
+      transform: translateY(-50%) rotate(-8deg);
+      z-index: 0;
+      pointer-events: none;
+      filter: blur(0.7px);
+      opacity: 0.85;
+    }
+
+    .stroke {
+      position: absolute;
+      border-radius: 12px;
+      mix-blend-mode: screen;
+      opacity: 0.65;
+    }
+
+    .stroke1 { background: #ff3b3b; width: 60px; height: 14px; top: 10px; left: 0; transform: rotate(-12deg) skewX(-18deg); }
+    .stroke2 { background: #ff9a3b; width: 65px; height: 16px; top: 11px; left: 40px; transform: rotate(-8deg) skewX(-12deg); }
+    .stroke3 { background: #fffc3b; width: 70px; height: 18px; top: 9px; left: 80px; transform: rotate(-9deg) skewX(-14deg); }
+    .stroke4 { background: #48ff3b; width: 55px; height: 12px; top: 15px; left: 110px; transform: rotate(-13deg) skewX(-10deg); }
+    .stroke5 { background: #3bb5ff; width: 45px; height: 10px; top: 18px; left: 130px; transform: rotate(-9deg) skewX(-15deg); }
+    .stroke6 { background: #9b3bff; width: 75px; height: 14px; top: 13px; left: 90px; transform: rotate(-8deg) skewX(-7deg); }
+    .stroke7 { background: #ff3bf7; width: 55px; height: 14px; top: 16px; left: 30px; transform: rotate(-15deg) skewX(-13deg); }
+
+    .boyhood { font-size: 1rem; letter-spacing: 1px; color: #fff; z-index: 2; }
+    .truematch { font-size: 2.4rem; font-weight: bold; color: #fff; margin-top: -4px; letter-spacing: 2px; z-index: 2; }
+
+    .splash-footer {
+      position: absolute;
+      bottom: 10px;
+      font-size: 0.85rem;
+      color: #ccc;
+      letter-spacing: 0.5px;
+    }
+
+    #homepage {
+      display: none;
+      animation: fadeIn 0.6s ease 0.3s forwards;
+    }
+
+    @keyframes fadeIn {
+      to { display: block; opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Splash screen -->
+  <div class="splash-screen" id="splash">
+    <div class="splash-logo">
+      <i class="fas fa-mars splash-icon"></i>
+      <div class="splash-text">
+        <div class="scribble">
+          <div class="stroke stroke1"></div>
+          <div class="stroke stroke2"></div>
+          <div class="stroke stroke3"></div>
+          <div class="stroke stroke4"></div>
+          <div class="stroke stroke5"></div>
+          <div class="stroke stroke6"></div>
+          <div class="stroke stroke7"></div>
+        </div>
+        <div class="boyhood">Boyhood</div>
+        <div class="truematch">TrueMatch</div>
+      </div>
+    </div>
+    <div class="splash-footer">All Rights Reserved By This Ice Consort 2025</div>
+  </div>
+
+  <!-- Homepage starts -->
+  <div id="homepage" style="opacity: 0;">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="theme-color" content="#f4eafa" />  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Boyhood:TrueMatch</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap');
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+    body {
+      margin: 0;
+      padding: 40px 20px;
+      font-family: 'Outfit', sans-serif;
+      background: radial-gradient(
+        circle at center,
+        rgba(255, 0, 0, 0.08),
+        rgba(255, 165, 0, 0.08),
+        rgba(255, 255, 0, 0.08),
+        rgba(0, 128, 0, 0.08),
+        rgba(0, 0, 255, 0.08),
+        rgba(75, 0, 130, 0.08),
+        rgba(148, 0, 211, 0.08)
+      );
+      color: #222;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      min-height: 100vh;
+      gap: 15px;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      color: white;
+    }
+
+    p {
+      max-width: 380px;
+      font-size: 15px;
+      margin-bottom: 30px;
+      color: white;
+    }
+
+    input,
+    textarea,
+    select {
+      padding: 12px;
+      font-size: 16px;
+      border: 1.5px solid #ccc;
+      border-radius: 8px;
+      width: 100%;
+      max-width: 360px;
+      margin: 8px 0;
+      outline: none;
+      transition: border-color 0.3s;
+      box-sizing: border-box;
+    }
+    input[type="file"] {
+      padding: 6px 8px;
+      font-size: 14px;
+      max-width: 360px;
+    }
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: #e50914;
+      box-shadow: 0 0 6px #e50914aa;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 14px 24px;
+      background: #e50914;
+      color: #fff;
+      border: none;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 17px;
+      transition: background 0.3s;
+      max-width: 360px;
+      width: 100%;
+    }
+    button:hover {
+      background: #b0060f;
+    }
+
+    .result {
+      margin-top: 25px;
+      padding: 18px;
+      border-radius: 8px;
+      max-width: 380px;
+      word-wrap: break-word;
+      font-weight: 600;
+    }
+
+    .success {
+      background: #d7f7e7;
+      border: 1.5px solid #00a86b;
+      color: #007a4d;
+    }
+
+    .fail {
+      background: #ffd6d6;
+      border: 1.5px solid #ff2e2e;
+      color: #a70000;
+    }
+
+    .verify-reminder {
+      margin-top: 15px;
+      font-size: 13px;
+      color: #555;
+      max-width: 380px;
+      line-height: 1.3;
+    }
+
+    form {
+      max-width: 420px;
+      width: 100%;
+      margin-top: 30px;
+      background: #fff;
+      padding: 20px 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+      color: #222;
+      text-align: left;
+    }
+
+    form h2 {
+      margin-top: 0;
+      color: #e50914;
+      font-weight: 700;
+      font-size: 22px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    /* Arrange file inputs side by side for pictures */
+    .file-group {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .file-group input[type="file"] {
+      flex: 1;
+      max-width: 120px;
+    }
+
+    /* Smaller note below file inputs */
+    .file-note {
+      font-size: 11px;
+      color: #777;
+      margin-top: -8px;
+      margin-bottom: 10px;
+    }
+
+    .info-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .info-links a {
+      text-decoration: none;
+      color: royalblue;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background: rgba(0,0,0,0.5);
+      padding-top: 60px;
+    }
+
+    .modal-content {
+      background: white;
+      margin: auto;
+      padding: 20px;
+      border-radius: 8px;
+      width: 85%;
+      max-width: 600px;
+      position: relative;
+    }
+
+    .close-btn {
+      color: red;
+      font-weight: bold;
+      position: absolute;
+      right: 20px;
+      top: 10px;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    .modal h2 {
+      margin-top: 0;
+    }
+
+  </style>
+</head>
+<body>
+  <h1>BoyHood:TrueMatch Card Verification</h1>
+  <p style="color:gray;">
+  Enter the 4-digit code found at the top left of the card.
+  </p>
+
+  <input
+    type="text"
+    maxlength="4"
+    placeholder="Enter 4-digit code"
+    id="codeInput"
+    aria-label="Verification Code"
+    inputmode="numeric"
+  />
+  <button onclick="verifyCode()">Verify</button>
+
+  <div id="result" class="result" style="display: none"></div>
+
+  <div class="verify-reminder">
+    Become a verified member of the boyhood truematch club and commnuity, Get your own card Now? Fill the form below or contact <strong><a href="mailto:iceconsort@gmail.com?subject=Card Request For Boyhood:TrueMatch">IceConsort</a></strong> on Email.
+  </div>
+
+  <form id="requestForm" enctype="multipart/form-data" method="POST" action="https://formspree.io/f/xovdrlby">
+    <h2>Request Your Verification Card</h2>
+
+    <label for="name">Full Name *</label>
+    <input type="text" id="name" name="name" required placeholder="Your full name" />
+
+    <label for="age">Age *</label>
+    <input type="number" id="age" name="age" required placeholder="Your age" min="18" max="100" />
+
+    <label for="boytype">Boytype *</label>
+    <select id="boytype" name="boytype" required>
+      <option value="" disabled selected>Select boytype</option>
+      <option value="twink">Twink</option>
+      <option value="bear">Bear</option>
+      <option value="otter">Otter</option>
+      <option value="jock">Jock</option>
+      <option value="daddy">Daddy</option>
+      <option value="other">Other</option>
+    </select>
+
+    <label for="height">Height (cm) *</label>
+    <input type="number" id="height" name="height" required placeholder="Your height in cm" min="100" max="250" />
+
+    <label for="role">Role *</label>
+    <select id="role" name="role" required>
+      <option value="" disabled selected>Select role</option>
+      <option value="top">Top</option>
+      <option value="bottom">Bottom</option>
+      <option value="versatile">Versatile</option>
+    </select>
+
+    <label for="country">Country *</label>
+    <input type="text" id="country" name="country" required placeholder="Your country" />
+
+    <label for="state">State/Region *</label>
+    <input type="text" id="state" name="state" required placeholder="Your state or region" />
+
+    <label for="city">Local Goverment Area *</label>
+    <input type="text" id="city" name="city" required placeholder="Your city" />
+
+    <label for="Email">Gmail Address*</label>
+    <input type="text" id="Email" name="Email" required placeholder="Yourmail@gmail.com" />
+
+    <label for="phone">Phone Number / WhatsApp *</label>
+    <input type="tel" id="phone" name="phone" required placeholder="+1234567890" />
+
+    <button type="submit">Request Card</button>
+    <div id="formResponse" style="margin-top:12px; font-weight: 600;"></div>
+  </form>
+
+<br/>
+<br/>
+
+<div class="info-links">
+    <a onclick="openModal('aboutModal')">About Us</a>
+    <a onclick="openModal('privacyModal')">Privacy Policy</a>
+    <a onclick="openModal('termsModal')">Terms of Use</a>
+    <a onclick="openModal('pricingModal')">Pricing</a>
+  </div>
+
+  <!-- About Modal -->
+  <div id="aboutModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal('aboutModal')">&times;</span>
+      <h2>About Us</h2>
+      <p style="color:black;">
+        Boyhood TrueMatch is proudly owned by This Ice Consort.  
+        This platform is designed to help gay individuals across Africa find genuine matches 
+        in their local government area, state, or country.  
+        <br><br>
+        It’s a safe, secure, and private community. Once you purchase your card for ₦1,800, you’ll be added to the matching system.  
+        To stay active and join the official group, you must subscribe to the ₦500 monthly plan, which gives you continued access 
+        to matches and encrypted chat features.
+        <br><br>
+        Your safety is our priority. However, we are not responsible for activities that take place outside this platform. 
+        Please be cautious when meeting new people. For any inquiries, reach out via <strong>iceconsort@gmail.com</strong>.
+      </p>
+    </div>
+  </div>
+
+  <!-- Privacy Modal -->
+  <div id="privacyModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal('privacyModal')">&times;</span>
+      <h2>Privacy Policy</h2>
+      <p style="color:black;">
+        We collect only the necessary details to help match you with compatible partners in your region.  
+        Your information is private, never sold or exposed, and strictly used for match-making and group inclusion.  
+        <br><br>
+        We will never reveal your location or identity without your permission.  
+        You may request your data to be updated or deleted at any time by contacting <strong>iceconsort@gmail.com</strong>.
+        <br><br>
+        We store your information securely for as long as your account remains active.
+      </p>
+    </div>
+  </div>
+
+  <!-- Terms Modal -->
+  <div id="termsModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal('termsModal')">&times;</span>
+      <h2>Terms of Use</h2>
+      <p style="color:black;">
+        To use this platform, you must be 18 years or older. You agree to respect all members, avoid impersonation, and not misuse the community.
+        <br><br>
+        Boyhood TrueMatch is strictly for personal connection purposes. Any harassment, hate speech, or inappropriate behavior will lead to permanent removal.  
+        We reserve the right to suspend or delete accounts that violate our terms.  
+        <br><br>
+        By proceeding, you agree to these terms and understand that matches are made based on the information you provide.
+      </p>
+    </div>
+  </div>
+
+  <!-- Pricing Modal -->
+  <div id="pricingModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal('pricingModal')">&times;</span>
+      <h2>Pricing</h2>
+     <p style="color:black;">
+        The official price of the match card is ₦3,500, but it is currently discounted to <strong>₦1,800 (one-time payment)</strong>.
+        <br><br>
+        After purchasing the card, you are required to activate your monthly <strong>₦500 subscription</strong> to join the official group, 
+        get match updates, and chat securely with potential partners.
+        <br><br>
+        This subscription ensures you're visible to others and continue receiving local match notifications.
+        <br><br>
+        <a href="https://selar.co/your-payment-link" target="_blank" style="color: green; font-weight: bold;">
+          Click here to pay via Selar
+        </a>
+        <br><br>
+        Payments are processed securely. There are no hidden charges. If you have issues or questions, email us at <strong>iceconsort@gmail.com</strong>.
+      </p>
+    </div>
+  </div>
+
+
+  <script>
+    // Map of valid codes and profile URLs
+    const validUsers = {
+      '0001': 'https://t.me/Ice_consort',
+      '6609': 'https://example.com/profile/celi-bajami',
+      '8421': 'https://example.com/profile/james-smith',
+      '3098': 'https://example.com/profile/manuel-fernandez',
+      '2745': 'https://example.com/profile/leo-williams'
+      // Add more code: profile link pairs here
+    };
+
+    function verifyCode() {
+      const input = document.getElementById('codeInput').value.trim();
+      const resultBox = document.getElementById('result');
+
+      if (input.length !== 4 || !/^\d{4}$/.test(input)) {
+        resultBox.style.display = 'block';
+        resultBox.className = 'result fail';
+        resultBox.innerHTML = 'Please enter a valid 4-digit code.';
+        return;
+      }
+
+      if (validUsers.hasOwnProperty(input)) {
+        const profileLink = validUsers[input];
+        resultBox.style.display = 'block';
+        resultBox.className = 'result success';
+        resultBox.innerHTML =
+          `<strong>Verified!</strong> This person is a member of the boyhood truematch community.<br/>` +
+        `<a href="${profileLink}" target="_blank" rel="noopener noreferrer">Chat with them now on telegram</a>`;
+      } else {
+        resultBox.style.display = 'block';
+        resultBox.className = 'result fail';
+        resultBox.textContent = 'Fake Account. This person is not part of the boyhood TrueMatch community.';
+      }
+    }
+
+    const form = document.getElementById('requestForm');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      const data = {};
+
+      formData.forEach((value, key) => {
+        data[key] = value;
+      });
+
+      sessionStorage.setItem('formData', JSON.stringify(data));
+
+      // Redirect to Selar payment page
+      window.location.href = "https://selar.com/53ea77";
+    });
+  </script>
+
+<script>
+    function openModal(id) {
+      document.getElementById(id).style.display = "block";
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).style.display = "none";
+    }
+
+    // Optional: Close modal when clicking outside of it
+    window.onclick = function(event) {
+      const modals = document.querySelectorAll('.modal');
+      modals.forEach(modal => {
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
+      });
+    }
+  </script>
+</body>
+</html>  </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const splash = document.getElementById('splash');
+    const homepage = document.getElementById('homepage');
+
+    const splashShown = sessionStorage.getItem('splashShown');
+
+    if (!splashShown) {
+      // Show splash screen for 1.5s then fade out
+      setTimeout(() => {
+        splash.classList.add('fade-out');
+        setTimeout(() => {
+          splash.remove();
+          homepage.style.display = 'block';
+        }, 600); // Allow fade-out transition to complete
+      }, 2400);
+
+      sessionStorage.setItem('splashShown', 'true');
+    } else {
+      // Skip splash screen
+      splash.remove();
+      homepage.style.display = 'block';
+    }
+  });
+</script>
+</body>
+</html>
