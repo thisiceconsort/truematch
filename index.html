@@ -1,142 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Boyhood TrueMatch</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#f4eafa" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://thisiceconsort.github.io/thisiceconsort/style.css"> </head>
-<body>
-
-  <div class="splash-screen" id="splash">
-    <div class="splash-logo">
-      <i class="fas fa-mars splash-icon"></i>
-      <div class="splash-text">
-        <div class="scribble">
-          <div class="stroke stroke1"></div>
-          <div class="stroke stroke2"></div>
-          <div class="stroke stroke3"></div>
-          <div class="stroke stroke4"></div>
-          <div class="stroke stroke5"></div>
-          <div class="stroke stroke6"></div>
-          <div class="stroke stroke7"></div>
-        </div>
-        <div class="boyhood">Boyhood</div>
-        <div class="truematch">TrueMatch</div>
-      </div>
-    </div>
-    <div class="splash-footer">All Rights Reserved By This Ice Consort 2025</div>
-  </div>
-
-  <div id="homepage" style="opacity: 0;">
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-    <meta name="theme-color" content="#f4eafa" />  
     <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <title>Boyhood:TrueMatch</title>
-      <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-      />
-    </head>
-    <body>
-      <h1>BoyHood:TrueMatch Card Verification</h1>
-      <p style="color:gray;">
-      Enter the 4-digit code found at the top left of the card.
-      </p>
-
-      <input
-        type="text"
-        maxlength="4"
-        placeholder="Enter 4-digit code"
-        id="codeInput"
-        aria-label="Verification Code"
-        inputmode="numeric"
-      />
-      <button onclick="verifyCode()">Verify</button>
-
-      <div id="result" class="result" style="display: none"></div>
-
-    <section class="cta-section">
-      <h3 style="color:white;">Don’t have a card?</h3>
-      <p>Your Gay ID card is your proof of being part of our trusted and safe community.<br>
-         Without it, you're not recognized—and could be seen as a scam or pontial treath .</p>
-      <a href="https://thisiceconsort.github.io/thisiceconsort/account.html" class="btn btn-primary">Create One Now</a>
-    </section>
-
-    <br/>
-    <br/>
-
-    <div class="info-links">
-        <a onclick="openModal('aboutModal')">About Us</a>
-        <a onclick="openModal('privacyModal')">Privacy Policy</a>
-        <a onclick="openModal('termsModal')">Terms of Use</a>
-        <a onclick="openModal('pricingModal')">Pricing</a>
-      </div>
-
-      <div id="aboutModal" class="modal">
-        <div class="modal-content">
-          <span class="close-btn" onclick="closeModal('aboutModal')">&times;</span>
-          <h2>About Us</h2>
-          <p style="color:black;">
-            Boyhood TrueMatch is proudly owned by This Ice Consort. This platform is designed to help gay individuals across Africa find genuine matches 
-            in their local government area, state, or country. <br><br>
-            It’s a safe, secure, and private community. Once you purchase your card for ₦1,800, you’ll be added to the matching system. To stay active and join the official group, you must subscribe to the ₦500 monthly plan, which gives you continued access 
-            to matches and encrypted chat features. <br><br>
-            Your safety is our priority. However, we are not responsible for activities that take place outside this platform. 
-            Please be cautious when meeting new people. For any inquiries, reach out via <strong>iceconsort@gmail.com</strong>. 
-          </p>
+    <title>Boyhood TrueMatch Loader + Homepage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#121212" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="splash-screen" id="splash">
+        <div class="splash-logo">
+            <i class="fas fa-mars splash-icon"></i>
+            <div class="splash-text">
+                <div class="scribble">
+                    <div class="stroke stroke1"></div>
+                    <div class="stroke stroke2"></div>
+                    <div class="stroke stroke3"></div>
+                    <div class="stroke stroke4"></div>
+                    <div class="stroke stroke5"></div>
+                    <div class="stroke stroke6"></div>
+                    <div class="stroke stroke7"></div>
+                </div>
+                <div class="boyhood">Boyhood</div>
+                <div class="truematch">TrueMatch</div>
+            </div>
         </div>
-      </div>
+        <div class="splash-footer">All Rights Reserved By This Ice Consort 2025</div>
+    </div>
 
-      <div id="privacyModal" class="modal">
-        <div class="modal-content">
-          <span class="close-btn" onclick="closeModal('privacyModal')">&times;</span>
-          <h2>Privacy Policy</h2>
-          <p style="color:black;">
-            We collect only the necessary details to help match you with compatible partners in your region. Your information is private, never sold or exposed, and strictly used for match-making and group inclusion. <br><br>
-            We will never reveal your location or identity without your permission. You may request your data to be updated or deleted at any time by contacting <strong>iceconsort@gmail.com</strong>. <br><br>
-            We store your information securely for as long as your account remains active. 
-          </p>
+    <div id="homepage">
+        <h1>BoyHood:TrueMatch Card Verification</h1>
+        <p> Enter the 4-digit code found at the top left of the card. </p>
+        <input type="text" maxlength="4" placeholder="Enter 4-digit code" id="codeInput" aria-label="Verification Code" inputmode="numeric" />
+        <button onclick="verifyCode()">Verify</button>
+        <div id="result" class="result" style="display: none"></div>
+
+        <section class="cta-section">
+            <h3>Don’t have a card?</h3>
+            <p>Your Gay ID card is your proof of being part of our trusted and safe community.<br> Without it, you're not recognized—and could be seen as a scam or potential threat.</p>
+            <a href="https://thisiceconsort.github.io/thisiceconsort/account.html" class="btn btn-primary">Create One Now</a>
+        </section>
+
+        <div class="info-links">
+            <a onclick="openModal('aboutModal')">About Us</a>
+            <a onclick="openModal('privacyModal')">Privacy Policy</a>
+            <a onclick="openModal('termsModal')">Terms of Use</a>
+            <a onclick="openModal('pricingModal')">Pricing</a>
         </div>
-      </div>
 
-      <div id="termsModal" class="modal">
-        <div class="modal-content">
-          <span class="close-btn" onclick="closeModal('termsModal')">&times;</span>
-          <h2>Terms of Use</h2>
-          <p style="color:black;">
-            To use this platform, you must be 18 years or older. You agree to respect all members, avoid impersonation, and not misuse the community. <br><br>
-            Boyhood TrueMatch is strictly for personal connection purposes. Any harassment, hate speech, or inappropriate behavior will lead to permanent removal. We reserve the right to suspend or delete accounts that violate our terms. <br><br>
-            By proceeding, you agree to these terms and understand that matches are made based on the information you provide. 
-          </p>
+        <div id="aboutModal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal('aboutModal')">&times;</span>
+                <h2>About Us</h2>
+                <h3>Boyhood TrueMatch: Fostering Genuine Connections Across Africa</h3>
+                <p><strong>Boyhood TrueMatch</strong>, proudly owned by <strong>This Ice Consort</strong>, is a pioneering platform dedicated to fostering genuine connections among gay individuals across Africa. This innovative initiative goes beyond typical dating apps by focusing on facilitating meaningful matches within users' specific <strong>local government areas, states, or countries</strong>, thereby nurturing relationships rooted in shared proximity and cultural understanding.</p>
+
+                <hr>
+
+                <h4>Key Features and Differentiators</h4>
+                <p>Boyhood TrueMatch distinguishes itself through several key features designed to enhance the user experience and promote authentic connections:</p>
+                <ul>
+                    <li>
+                        <p><strong>Hyper-Local Matching:</strong> Unlike global dating platforms, Boyhood TrueMatch prioritizes matching users within their immediate geographical vicinity. This focus on <strong>local government areas (LGAs)</strong>, <strong>states</strong>, and <strong>countries</strong> makes it easier for individuals to meet in person, build local communities, and form relationships with practical foundations. This also addresses challenges like long-distance relationships in areas with limited travel infrastructure.</p>
+                    </li>
+                    <li>
+                        <p><strong>Emphasis on Authenticity:</strong> The platform employs a robust verification process to ensure the authenticity of profiles, minimizing instances of catfishing or misrepresentation. This might include <strong>photo verification</strong>, <strong>social media linking</strong>, or even <strong>optional video introductions</strong> to help users feel more secure and confident in their interactions. We also implement a system to detect and flag suspicious activity or patterns indicative of fake profiles, using both AI-driven analysis and human moderation, further bolstering the integrity of our community.</p>
+                    </li>
+                    <li>
+                        <p><strong>Privacy and Security:</strong> Recognizing the unique societal contexts across Africa, Boyhood TrueMatch places a high premium on <strong>user privacy and data security</strong>. Features like <strong>discreet profile options</strong>, <strong>anonymous Browse capabilities</strong>, and <strong>encrypted messaging</strong> are integral to providing a safe space for users to explore connections without fear of exposure or discrimination. We employ industry-standard **SSL/TLS encryption** for all data transmission and enforce strong password policies. Our servers are secured with **multi-factor authentication (MFA)** and routinely audited for vulnerabilities to maintain the highest levels of digital security.</p>
+                    </li>
+                    <li>
+                        <p><strong>Community Building:</strong> Beyond just matching individuals, the platform aims to foster a sense of community. This could involve <strong>in-app forums or groups</strong> dedicated to specific interests or regions, <strong>virtual events</strong> like speed-dating or Q&A sessions, and <strong>resources for LGBTQ+ well-being and advocacy</strong> within various African nations. We plan to host regular moderated discussion groups and workshops on topics ranging from relationship advice to local LGBTQ+ rights movements, fostering a supportive ecosystem and empowering collective growth.</p>
+                    </li>
+                    <li>
+                        <p><strong>Cultural Sensitivity and Inclusivity:</strong> The platform is designed with a deep understanding of the diverse cultures and varying social landscapes across Africa. It aims to be inclusive of all gay men, irrespective of their specific background, and may offer <strong>customizable profile fields</strong> that allow users to express their cultural identity, languages spoken, and specific relationship preferences relevant to their local context. Our matching algorithms are also designed to consider these nuances, ensuring a more culturally resonant pairing and enhancing compatibility beyond superficial traits.</p>
+                    </li>
+                    <li>
+                        <p><strong>Educational Resources and Support:</strong> To further empower its users, Boyhood TrueMatch could integrate features offering <strong>educational content on LGBTQ+ rights and issues</strong> in different African countries, <strong>mental health resources</strong>, and <strong>safe meeting guidelines</strong>. This proactive approach not only helps users navigate their dating lives but also contributes to their overall well-being and awareness. We plan to partner with local LGBTQ+ organizations and mental health professionals to provide up-to-date information and direct support channels, ensuring a holistic user experience.</p>
+                    </li>
+                </ul>
+
+                <hr>
+
+                <h3>The Vision of This Ice Consort</h3>
+                <p>This Ice Consort's ownership signifies a commitment to creating a specialized and supportive environment for gay individuals in Africa. Their vision extends beyond mere matchmaking; it's about building a <strong>network of genuine connections</strong> that can lead to lasting relationships, friendships, and a stronger, more visible LGBTQ+ community across the continent. By focusing on the unique needs and challenges faced by gay men in Africa, Boyhood TrueMatch aims to be a catalyst for positive social change and personal fulfillment.</p>
+                <p>The platform's success will lie in its ability to adapt to the evolving needs of its user base, continually enhancing its features to ensure safety, authenticity, and effective connection in every local context. We believe that by empowering individuals to connect safely and genuinely, we contribute to a more accepting and understanding society.</p>
+            </div>
         </div>
-      </div>
 
-      <div id="pricingModal" class="modal">
-        <div class="modal-content">
-          <span class="close-btn" onclick="closeModal('pricingModal')">&times;</span>
-          <h2>Pricing</h2>
-         <p style="color:black;">
-            The official price of the match card is ₦3,500, but it is currently discounted to <strong>₦1,800 (one-time payment)</strong>. <br><br>
-            After purchasing the card, you are required to activate your monthly <strong>₦500 subscription</strong> to join the official group, 
-            get match updates, and chat securely with potential partners. <br><br>
-            This subscription ensures you're visible to others and continue receiving local match notifications. <br><br>
-            <a href="https://selar.co/your-payment-link" target="_blank" style="color: green; font-weight: bold;">
-              Click here to pay via Selar
-            </a>
-            <br><br>
-            Payments are processed securely. There are no hidden charges. If you have issues or questions, email us at <strong>iceconsort@gmail.com</strong>. 
-          </p>
+        <div id="privacyModal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal('privacyModal')">&times;</span>
+                <h2>Privacy Policy</h2>
+                <h3>Our Unwavering Commitment to Your Privacy</h3>
+                <div class="privacy-highlight">
+                    <p>At Boyhood TrueMatch, we understand that privacy isn't just a feature; it's a fundamental promise, especially within the diverse social landscapes of Africa. We collect only the absolutely **necessary details** to help match you with compatible partners in your specific region. This includes information like your age range, general location (state/LGA, not precise coordinates), interests, and relationship preferences.</p>
+                    <p>Your information is treated with the utmost confidentiality. It is **never sold or exposed** to third parties, advertisers, or any external entities. Your data is strictly used for the explicit purpose of **match-making and facilitating genuine group inclusion** within the platform's secure environment. We do not engage in behavioral advertising or data profiling.</p>
+                    <p>We leverage advanced **anonymization and pseudonymization techniques** where possible, particularly for analytical data, to ensure that individual user identities cannot be traced back from aggregated information. Our systems are built with a **"privacy-by-design"** approach, meaning security and user privacy are considered at every stage of development, from initial concept to ongoing maintenance.</p>
+                    <p>Crucially, we will **never reveal your precise location or identity without your explicit permission**. For instance, if you choose to disclose your exact location to a match after establishing a connection, that is entirely at your discretion. We employ geo-fencing and approximate location services to ensure regional matching without compromising your exact whereabouts, providing an added layer of safety.</p>
+                    <p>You remain in complete control of your data. You may request your data to be **updated or deleted at any time** by contacting our dedicated privacy support team at <a href="mailto:iceconsort@gmail.com">iceconsort@gmail.com</a>. We commit to processing such requests promptly and transparently, adhering to relevant data protection standards and local regulations.</p>
+                    <p>We store your information securely using **AES-256 encryption at rest** for as long as your account remains active. Upon account deactivation or deletion, your personal data is permanently removed from our active databases within a specified retention period, with only anonymized aggregate data potentially kept for analytical purposes to improve platform services and user experience.</p>
+                </div>
+            </div>
         </div>
-      </div>
 
-      <script src="https://thisiceconsort.github.io/thisiceconsort/script.js"></script> </body>
-    </html>
-  </div>
+        <div id="termsModal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal('termsModal')">&times;</span>
+                <h2>Terms of Use</h2>
+                <div class="terms-highlight">
+                    <p>To ensure a safe, respectful, and effective environment for all members, using Boyhood TrueMatch requires adherence to our core terms of service and community guidelines:</p>
+                    <ul>
+                        <li><strong>Age Requirement:</strong> You must be **18 years or older** to register and utilize this platform. By creating an account, you affirm that you meet this age requirement.</li>
+                        <li><strong>Respectful Conduct:</strong> All members are expected to conduct themselves with **courtesy, respect, and empathy** towards one another. We maintain a zero-tolerance policy for any form of disrespect, discrimination, or harassment.</li>
+                        <li><strong>Authenticity and Integrity:</strong> **Impersonation, misrepresentation, or the creation of fraudulent profiles is strictly prohibited.** Your profile should accurately reflect who you are. Any attempt to deceive or mislead other members or the platform itself will result in immediate action.</li>
+                        <li><strong>Appropriate Use:</strong> Boyhood TrueMatch is designed exclusively for **personal connection purposes** – finding genuine matches, fostering friendships, and building community. Any attempt to misuse the platform for commercial activities, illegal solicitations, or any other unauthorized purposes is forbidden.</li>
+                        <li><strong>Prohibited Content and Behavior:</strong> This includes, but is not limited to:
+                            <ul>
+                                <li><strong>Harassment:</strong> Persistent unwanted contact, intimidation, or malicious targeting of another user.</li>
+                                <li><strong>Hate Speech:</strong> Any language or content that promotes discrimination, bigotry, racism, hatred, or violence against individuals or groups based on characteristics such as sexual orientation, ethnicity, religion, or disability.</li>
+                                <li><strong>Inappropriate Behavior:</strong> This encompasses sharing explicit content without consent, soliciting illegal activities, or engaging in any conduct that violates local laws or generally accepted standards of decency.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <p>Boyhood TrueMatch reserves the unequivocal right to **suspend or permanently delete accounts** that are found to be in violation of these terms and guidelines, at our sole discretion, without prior notice. Our moderation team actively monitors the platform and investigates all reported violations to maintain a secure and positive environment for our community.</p>
+                    <p>By proceeding with the creation and use of your account, you explicitly **agree to these terms and conditions**. You also acknowledge and understand that the quality and relevance of your matches are directly contingent upon the accuracy and completeness of the information you provide in your profile. Your commitment to these terms helps us ensure a valuable experience for everyone on Boyhood TrueMatch.</p>
+                </div>
+            </div>
+        </div>
 
-  <script src="script.js"></script> </body>
+        <div id="pricingModal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal('pricingModal')">&times;</span>
+                <h2>Pricing</h2>
+                <p> The official price of the match card is ₦3,500, but it is currently discounted to <strong>₦600 (one-time payment)</strong>. <br><br> After purchasing the card, you are required to activate your monthly <strong>₦500 subscription</strong> to join the official club, get match updates, and chat securely on telegram with potential partners. <br><br> This subscription ensures you're visible to others and continue receiving local match notifications.<br><br> Payments are processed securely. There are no hidden charges. If you have issues or questions, email us at <strong>iceconsort@gmail.com</strong>. </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
 </html>
