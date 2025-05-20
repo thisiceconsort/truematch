@@ -207,3 +207,80 @@ html {
     .modal h2 {
       margin-top: 0;
     }
+form {
+    background: #5a2e8a;
+    padding: 25px 30px;
+    border-radius: 8px;
+    max-width: 400px;
+    width: 100%;
+    box-shadow: 0 0 15px #9c27b0;
+  }
+  h2 {
+    margin-bottom: 20px;
+    color: #ff4444;
+    text-align: center;
+  }
+  label {
+    display: block;
+    margin-top: 12px;
+    margin-bottom: 6px;
+    font-weight: bold;
+  }
+  input[type="text"],
+  input[type="number"],
+  input[type="tel"],
+  select {
+    width: 100%;
+    padding: 8px 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    background: #3f2a72;
+    color: #eee;
+  }
+  input::placeholder {
+    color: #c0a0f7;
+  }
+  select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23eee" height="10" viewBox="0 0 24 24" width="10" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 10px;
+  }
+  button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    background: #ff4444;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  button:hover {
+    background: #cc0000;
+  }
+  #formResponse {
+    margin-top: 15px;
+    font-weight: 600;
+    text-align: center;
+  }
+  a.join-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 25px;
+    background: #9c27b0;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  a.join-btn:hover {
+    background: #7a1f85;
+  }
