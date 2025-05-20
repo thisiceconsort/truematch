@@ -1,0 +1,113 @@
+    /* Splash styles */
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap');
+
+  
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Outfit', sans-serif;
+      background: #121212;
+    }
+
+    .splash-screen {
+      position: fixed;
+      inset: 0;
+      background: #121212;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.6s ease;
+    }
+
+    .splash-screen.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .splash-logo {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color: white;
+      margin-bottom: 20px;
+    }
+
+    .splash-icon {
+      font-size: 48px;
+      color: #d4af37;
+    }
+
+    .splash-text {
+      position: relative;
+    }
+
+    .scribble {
+      position: absolute;
+      top: 50%;
+      left: 8px;
+      width: 180px;
+      height: 48px;
+      transform: translateY(-50%) rotate(-8deg);
+      z-index: 0;
+      pointer-events: none;
+      filter: blur(0.7px);
+      opacity: 0.85;
+    }
+
+    .stroke {
+      position: absolute;
+      border-radius: 12px;
+      mix-blend-mode: screen;
+      opacity: 0.65;
+    }
+
+    .stroke1 { background: #ff3b3b; width: 60px; height: 14px; top: 10px; left: 0; transform: rotate(-12deg) skewX(-18deg); }
+    .stroke2 { background: #ff9a3b; width: 65px; height: 16px; top: 11px; left: 40px; transform: rotate(-8deg) skewX(-12deg); }
+    .stroke3 { background: #fffc3b; width: 70px; height: 18px; top: 9px; left: 80px; transform: rotate(-9deg) skewX(-14deg); }
+    .stroke4 { background: #48ff3b; width: 55px; height: 12px; top: 15px; left: 110px; transform: rotate(-13deg) skewX(-10deg); }
+    .stroke5 { background: #3bb5ff; width: 45px; height: 10px; top: 18px; left: 130px; transform: rotate(-9deg) skewX(-15deg); }
+    .stroke6 { background: #9b3bff; width: 75px; height: 14px; top: 13px; left: 90px; transform: rotate(-8deg) skewX(-7deg); }
+    .stroke7 { background: #ff3bf7; width: 55px; height: 14px; top: 16px; left: 30px; transform: rotate(-15deg) skewX(-13deg); }
+
+    .boyhood { font-size: 1rem; letter-spacing: 1px; color: #fff; z-index: 2; }
+    .truematch { font-size: 2.4rem; font-weight: bold; color: #fff; margin-top: -4px; letter-spacing: 2px; z-index: 2; }
+
+    .splash-footer {
+      position: absolute;
+      bottom: 10px;
+      font-size: 0.85rem;
+      color: #ccc;
+      letter-spacing: 0.5px;
+    }
+
+    #homepage {
+      display: none;
+      animation: fadeIn 0.6s ease 0.3s forwards;
+    }
+
+    @keyframes fadeIn {
+      to { display: block; opacity: 1; }
+    }
+
+.cta-section {
+background: var(--light-bg, #121212);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  margin-top: 30px;
+  color: var(--text-color, #333);
+}
+
+.cta-section .btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color:red;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
