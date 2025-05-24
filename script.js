@@ -111,32 +111,7 @@ function setupEventListeners() {
 
     // --- FAQ Accordion ---
     // --- FAQ Accordion Logic ---
-document.querySelectorAll('.faq-question').forEach(question => {
-    question.addEventListener('click', () => {
-        const faqItem = question.closest('.faq-item');
-        const answer = faqItem.querySelector('.faq-answer');
 
-        // Toggle active classes FIRST so that any active-specific CSS (like padding) applies
-        question.classList.toggle('active');
-        faqItem.classList.toggle('active');
-
-        if (answer.style.maxHeight && answer.style.maxHeight !== '0px') {
-            // It's currently open, so collapse it
-            answer.style.maxHeight = null; // Or '0px' for explicit collapse
-            // Ensure padding also collapses if it was expanded via JS
-            answer.style.paddingTop = '0';
-            answer.style.paddingBottom = '0';
-        } else {
-            // It's currently closed, so expand it
-            // First, ensure padding is applied for accurate scrollHeight calculation
-            answer.style.paddingTop = '20px'; // Match your CSS padding
-            answer.style.paddingBottom = '20px'; // Match your CSS padding
-
-            // Calculate scrollHeight *after* padding is applied
-            answer.style.maxHeight = answer.scrollHeight + "px";
-        }
-    });
-});
 }
 // =============================================================================
 // == SPLASH SCREEN LOGIC ==
