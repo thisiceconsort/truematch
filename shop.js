@@ -9,10 +9,10 @@ const products = [
     // Shoppable Products (BL Books, GL Books, BL Movies, GL Books - with 3-digit codes)
     {
         id: '001',
-        name: 'Whispers of Love (BL Book Vol. 1)',
+        name: 'Whispers of boyhood',
         category: 'BL Books',
-        price: 2500, // Price in kobo (NGN 25.00)
-        imageUrl: 'https://via.placeholder.com/200x200/483D8B/FFFFFF?text=BL+Book+001', /* Changed placeholder color to match theme */
+        price: 25000, // Price in kobo (NGN 25.00)
+        imageUrl: 'https://i.imgur.com/6P1OqYy.jpeg', /* Changed placeholder color to match theme */
         heroImageUrl: 'https://via.placeholder.com/600x400/483D8B/FFFFFF?text=Whispers+of+Love+Hero', /* Hero specific image, theme color */
         description: 'A captivating romance novel that explores the depths of connection and unspoken desires.',
         type: 'shoppable'
