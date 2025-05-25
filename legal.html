@@ -27,6 +27,25 @@
 }
 
 /* --- Global Styles --- */
+/* Fix: Explicitly define Material Icons font-family */
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px; /* Default size, can be overridden */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'liga';
+}
+
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
@@ -601,8 +620,7 @@ body {
         <div class="legal-section">
             <h2>Legal Information</h2>
 
-            <h3>Terms of Service</h3>
-            <p>Welcome to True Match. By accessing or using our website and services, you agree to be bound by these Terms of Service ("Terms"). Please read them carefully. If you do not agree to these Terms, you may not access or use the Service.</p>
+            <h3 id="terms-of-service">Terms of Service</h3> <p>Welcome to True Match. By accessing or using our website and services, you agree to be bound by these Terms of Service ("Terms"). Please read them carefully. If you do not agree to these Terms, you may not access or use the Service.</p>
             <p>True Match provides a platform for verified members of the legbtq+ community across Africa to connect. Our service requires a unique 4-digit code for verification, which is issued upon successful registration and payment of a membership fee.</p>
             <ul>
                 <li><strong>Eligibility:</strong> You must be at least 18 years old to use True Match. By using the Service, you represent and warrant that you are 18 years of age or older.</li>
@@ -629,8 +647,7 @@ body {
                 <li><strong>Changes to Terms:</strong> We reserve the right to modify or replace these Terms at any time. Your continued use of the Service after any such changes constitutes your acceptance of the new Terms.</li>
             </ul>
 
-            <h3>Privacy Policy</h3>
-            <p>Your privacy is important to us. This Privacy Policy explains how True Match collects, uses, and discloses information about you when you use our website and services.</p>
+            <h3 id="privacy-policy">Privacy Policy</h3> <p>Your privacy is important to us. This Privacy Policy explains how True Match collects, uses, and discloses information about you when you use our website and services.</p>
             <ul>
                 <li><strong>Information Collection:</strong> We collect information you provide directly to us, such as your name, age, state/province, city, sexuality, bio, and payment details (via Paystack).</li>
                 <li><strong>Use of Information:</strong> We use the collected information to provide, maintain, and improve our Service, process transactions, send you your True Match code, and communicate with you.</li>
@@ -640,23 +657,20 @@ body {
                 <li><strong>Cookies:</strong> We may use cookies and similar tracking technologies to track activity on our Service and hold certain information.</li>
             </ul>
 
-            <h3>Refund Policy</h3>
-            <p>All membership fees paid for a True Match code are non-refundable once your unique code has been generated and successfully sent to you. This is because the generation and delivery of the code signify access to our exclusive, verified community and the associated services.</p>
+            <h3 id="refund-policy">Refund Policy</h3> <p>All membership fees paid for a True Match code are non-refundable once your unique code has been generated and successfully sent to you. This is because the generation and delivery of the code signify access to our exclusive, verified community and the associated services.</p>
             <p>We do not offer refunds for change of mind or dissatisfaction with the connections made on the platform after your code has been issued. Our fee is for the verification and maintenance of a secure environment.</p>
             <p>In the event of a technical issue preventing the successful generation or delivery of your code after a payment has been processed, please contact our support team immediately. We will investigate the issue and, if a verifiable technical error on our part is confirmed, we will either ensure your code is delivered or process a refund at our discretion.</p>
             <p>Any requests for refunds due to payment processing errors or duplicate charges will be handled on a case-by-case basis. Proof of transaction and a detailed explanation will be required.</p>
             <p>By proceeding with payment, you acknowledge and agree to this Refund Policy.</p>
 
-            <h3>Pricing</h3>
-            <p>We believe in full transparency regarding our pricing, ensuring you understand exactly what you're paying for to be a part of the True Match community and utilize our services.</p>
+            <h3 id="pricing">Pricing</h3> <p>We believe in full transparency regarding our pricing, ensuring you understand exactly what you're paying for to be a part of the True Match community and utilize our services.</p>
             <ul>
                 <li><strong>Community Membership Fee:</strong> A one-time, fixed membership fee of <strong>₦600 (approximately $0.40 USD)</strong> is required to join the True Match community. This fee covers your initial verification and the generation of your unique True Match code, granting you access to our exclusive network. Please note that this fee is subject to change at any time, but will be clearly communicated before any payment.</li>
                 <li><strong>Monthly Club Subscription:</strong> After successfully joining, a monthly club subscription fee of <strong>₦500 (approximately $0.33 USD)</strong> is mandatory for all members. This subscription ensures the continuous maintenance of our secure platform, access to community features, and ongoing support. You have the flexibility to cancel this subscription at any time. However, if you choose to cancel, please be aware that to rejoin the community, you will be required to register again, which includes paying the initial Community Membership Fee and restarting your monthly club subscription.</li>
             </ul>
             <p><em>Note: Dollar equivalents are approximate and based on current exchange rates, which may fluctuate.</em></p>
 
-            <h3>Shop Policies</h3>
-            <p>Our shop operates on a unique payment and delivery system designed to give you control and ensure a seamless experience.</p>
+            <h3 id="shop-policies">Shop Policies</h3> <p>Our shop operates on a unique payment and delivery system designed to give you control and ensure a seamless experience.</p>
             <ul>
                 <li><strong>Non-AliExpress Products (Books, Movies, etc.):</strong> For items not sourced from AliExpress, such as specific books or movies available in our shop, here's how purchases work:
                     <ol>
@@ -677,8 +691,7 @@ body {
                 <li><strong>Donations to the Community:</strong> We welcome and appreciate any support you wish to offer to the True Match community. Donations are entirely at your discretion, and you can **input any amount you wish to contribute**. Your generosity helps us continue to grow and maintain a safe, vibrant space for queer individuals across Africa.</li>
             </ul>
 
-            <h3>Payment Distribution for Partners and Content Creators</h3>
-            <p>True Match utilizes **Afriex** for the secure and efficient distribution of payments to our valued partners and content creators. Afriex facilitates seamless international money transfers, ensuring you receive your earnings promptly.</p>
+            <h3 id="payment-distribution">Payment Distribution for Partners and Content Creators</h3> <p>True Match utilizes **Afriex** for the secure and efficient distribution of payments to our valued partners and content creators. Afriex facilitates seamless international money transfers, ensuring you receive your earnings promptly.</p>
             <p>Afriex currently supports sending money to the following countries:</p>
             <ul>
                 <li><strong>African Countries:</strong> Nigeria, Ghana, Cameroon, Ethiopia, Kenya, Uganda, Ivory Coast (Côte d'Ivoire), Egypt, Algeria, Angola, Benin, Botswana, Burkina Faso, Burundi, Cabo Verde, Central African Republic, Chad, Comoros, Congo (Republic of the Congo), Djibouti, DRC (Democratic Republic of the Congo), Equatorial Guinea, Eritrea, Eswatini, Gabon, Gambia, Guinea, Guinea-Bissau, Lesotho, Liberia, Libya, Madagascar, Malawi, Mali, Mauritania, Mauritius, Morocco, Mozambique, Namibia, Niger, Rwanda, Sao Tome and Principe, Senegal, Seychelles, Sierra Leone, Somalia, South Africa, South Sudan, Sudan, Tanzania, Togo, Tunisia.</li>
@@ -687,8 +700,7 @@ body {
             </ul>
             <p>For partners and content creators located in countries not currently supported by Afriex for direct payment distribution, we offer an alternative solution. You will have the option to open a **Payoneer** account. We will then process your payments directly into your Payoneer account, from where you can easily transfer the funds to your local bank account.</p>
 
-            <h3>Contact Us</h3>
-            <p>If you have any questions about these Legal Information, please contact us:</p>
+            <h3 id="contact-us">Contact Us</h3> <p>If you have any questions about these Legal Information, please contact us:</p>
             <p>Email: <a href="mailto:support@truematch.com" style="color:var(--accent-light-purple);">support@truematch.com</a></p>
             <p>Address: [Your Company Address Here, if applicable]</p>
             <p>Last updated: May 24, 2025</p>
@@ -708,8 +720,7 @@ body {
             <span class="material-icons">add_circle</span>
             <span>Add</span>
         </a>
-        <a href="#" class="nav-item active">
-            <span class="material-icons">policy</span>
+        <a href="#" class="nav-item active" id="openLegalInfoModalLink"> <span class="material-icons">policy</span>
             <span>Legal</span>
         </a>
         <a href="https://thisiceconsort.github.io/truematch/help.html" class="nav-item">
@@ -768,6 +779,39 @@ body {
     </div>
 </div>
 
+<div id="legalInfoModal" class="modal-overlay">
+    <div class="modal-content">
+        <span class="close-button material-icons">close</span>
+        <h2>TrueMatch Legal Summary / Contact</h2>
+        <p>This is a brief summary of our legal policies. For full details, please refer to the sections on this page.</p>
+        <p>If you have questions, please contact us at:</p>
+        <p>Email: <a href="mailto:support@truematch.com" style="color:var(--accent-light-purple);">support@truematch.com</a></p>
+        <div class="resources-menu-options" style="margin-top: 20px;">
+            <a href="#terms-of-service">
+                <span class="material-icons">gavel</span> Terms of Service
+            </a>
+            <a href="#privacy-policy">
+                <span class="material-icons">security</span> Privacy Policy
+            </a>
+            <a href="#refund-policy">
+                <span class="material-icons">receipt_long</span> Refund Policy
+            </a>
+            <a href="#pricing">
+                <span class="material-icons">payments</span> Pricing
+            </a>
+            <a href="#shop-policies">
+                <span class="material-icons">shopping_bag</span> Shop Policies
+            </a>
+            <a href="#payment-distribution">
+                <span class="material-icons">send</span> Payment Distribution
+            </a>
+            <a href="#contact-us">
+                <span class="material-icons">support_agent</span> Contact Us
+            </a>
+        </div>
+    </div>
+</div>
+
 <div id="registrationModal" class="modal-overlay">
     <div class="modal-content">
         <span class="close-button material-icons">close</span>
@@ -815,36 +859,50 @@ body {
     const registrationModal = document.getElementById('registrationModal');
     const registrationForm = document.getElementById('registrationForm');
     const registrationModalCloseButton = registrationModal.querySelector('.close-button');
-    const resourcesMenuModal = document.getElementById('resourcesMenuModal'); // NEW: Resources modal element
-    const resourcesMenuCloseButton = resourcesMenuModal.querySelector('.close-button'); // NEW: Resources close button
+    const resourcesMenuModal = document.getElementById('resourcesMenuModal');
+    const resourcesMenuCloseButton = resourcesMenuModal.querySelector('.close-button');
+
+    // NEW: Legal Info Modal Elements
+    const legalInfoModal = document.getElementById('legalInfoModal');
+    const legalInfoModalCloseButton = legalInfoModal ? legalInfoModal.querySelector('.close-button') : null; // Check for existence
 
     // Nav items
     const homeNavItem = document.getElementById('homeNavItem');
     const openAddCreateModalLink = document.getElementById('openAddCreateModalLink');
     const navItems = document.querySelectorAll('.bottom-nav .nav-item');
-    const openResourcesMenuModalLink = document.getElementById('openResourcesMenuModalLink'); // NEW: Resources header link
-    const openLiveLink = document.getElementById('openLiveLink'); // NEW: Live header link
+    const openResourcesMenuModalLink = document.getElementById('openResourcesMenuModalLink');
+    const openLiveLink = document.getElementById('openLiveLink');
+
+    // NEW: Legal Nav Item
+    const openLegalInfoModalLink = document.getElementById('openLegalInfoModalLink');
 
     // --- Initial Setup for Legal Page ---
     document.addEventListener('DOMContentLoaded', () => {
         // Header is always in "scrolled" state on legal page, based on original.
-        // If you want it to behave dynamically like the home page, additional JS would be needed.
-        mainHeader.classList.add('scrolled'); // Keeping this as per previous legal page behavior
+        mainHeader.classList.add('scrolled');
 
-        // Set the 'Legal' nav item as active
-        document.querySelector('.bottom-nav .nav-item[href="legal.html"]').classList.add('active');
+        // Set the 'Legal' nav item as active using its new ID
+        if (openLegalInfoModalLink) { // Check if the element exists
+            openLegalInfoModalLink.classList.add('active');
+        }
 
         // --- Modal Open/Close Logic ---
         function showModal(modalElement) {
-            modalElement.classList.add('show-modal');
-            document.body.style.overflow = 'hidden'; // Prevent scrolling background
+            if (modalElement) { // Safety check
+                modalElement.classList.add('show-modal');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling background
+            }
         }
 
         function hideModal(modalElement) {
-            modalElement.classList.remove('show-modal');
-            document.body.style.overflow = ''; // Restore scrolling background
-            // Re-activate 'Legal' nav item after modal closes (if any)
-            document.querySelector('.bottom-nav .nav-item[href="legal.html"]').classList.add('active');
+            if (modalElement) { // Safety check
+                modalElement.classList.remove('show-modal');
+                document.body.style.overflow = ''; // Restore scrolling background
+                // Re-activate 'Legal' nav item after modal closes (if any)
+                if (openLegalInfoModalLink) {
+                    openLegalInfoModalLink.classList.add('active');
+                }
+            }
         }
 
         // Open Add/Create Modal
@@ -860,6 +918,14 @@ body {
             openResourcesMenuModalLink.addEventListener('click', (e) => {
                 e.preventDefault();
                 showModal(resourcesMenuModal);
+            });
+        }
+
+        // NEW: Open Legal Info Modal
+        if (openLegalInfoModalLink) {
+            openLegalInfoModalLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                showModal(legalInfoModal);
             });
         }
 
@@ -910,6 +976,21 @@ body {
             resourcesMenuModal.addEventListener('click', (e) => {
                 if (e.target === resourcesMenuModal) {
                     hideModal(resourcesMenuModal);
+                }
+            });
+        }
+
+        // NEW: Close Legal Info Modal
+        if (legalInfoModalCloseButton) {
+            legalInfoModalCloseButton.addEventListener('click', () => {
+                hideModal(legalInfoModal);
+            });
+        }
+
+        if (legalInfoModal) {
+            legalInfoModal.addEventListener('click', (e) => {
+                if (e.target === legalInfoModal) {
+                    hideModal(legalInfoModal);
                 }
             });
         }
