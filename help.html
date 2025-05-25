@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help & Support - TrueMatch Creations</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Bebas+Neue&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        /* --- Color Variables (Matching your website's theme) --- */
+        :root {
+            --bg-darkest: #121212; /* Very dark background */
+            --bg-card: #1a1a1a; /* Slightly lighter for cards */
+            --text-light: #e0e0e0;
+            --text-muted: #888888; /* Darker muted text for descriptions */
+            --accent-dark-purple: #483D8B; /* Dark Slate Blue - main accent */
+            --accent-light-purple: #6A5ACD; /* Medium Slate Blue - hover/highlight */
+            --border-color: #333333;
+            --error-color: #FF0000; /* Red for errors (if needed) */
+            --live-red: #FF0000; /* For pulsing live indicator */
+        }
+
+        /* --- Global Styles --- */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-darkest);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px 80px; /* Space for fixed footer */
+            box-sizing: border-box;
+        }
+
+        /* --- Main Header --- */
+        #main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            background-color: rgba(0, 0, 0, 0.9);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            box-sizing: border-box;
+        }
+
+        #site-title {
+            font-family: 'Bebas Neue', sans-serif;
+            color: var(--accent-dark-purple);
+            font-size: 2em;
+            letter-spacing: 1px;
+            margin: 0;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        #header-spacer {
+            height: 60px; /* Matching header height */
+        }
+
+        /* --- Resources & Live Icons in Header --- */
+        .header-icons-group {
+            display: flex;
+            align-items: center;
+            gap: 15px; /* Spacing between the two icon groups */
+            margin-left: auto; /* Push to the right */
+        }
+
+        .header-icon-link {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.9em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .header-icon-link:hover {
+            color: var(--accent-light-purple);
+        }
+
+        .header-icon-link .material-icons {
+            font-size: 24px;
+            color: var(--text-light);
+            transition: color 0.3s ease;
+        }
+
+        .header-icon-link:hover .material-icons {
+            color: var(--accent-light-purple);
+        }
+
+        /* Live Indicator */
+        .live-indicator {
+            width: 8px;
+            height: 8px;
+            background-color: var(--live-red);
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 5px;
+            position: relative;
+            animation: pulse-red 1.5s infinite ease-out;
+        }
+
+        @keyframes pulse-red {
+            0% { transform: scale(0.8); opacity: 0.7; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(0.8); opacity: 0.7; }
+        }
+
+        /* --- Help Page Specific Content Styling --- */
+        .help-section {
+            background-color: var(--bg-card);
+            border-radius: 8px;
+            padding: 40px;
+            margin-top: 50px;
+            text-align: left; /* Align text to the left for readability */
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+            min-height: calc(100vh - 60px - 80px - 100px); /* Adjust height */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Align content to top */
+            align-items: flex-start; /* Align text to left */
+        }
+
+        .help-section h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3.5em;
+            color: var(--accent-light-purple);
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(106, 90, 205, 0.6);
+            align-self: center; /* Center the main title */
+        }
+
+        .help-section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8em;
+            color: var(--text-light);
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--accent-dark-purple);
+            padding-bottom: 5px;
+            width: 100%; /* Full width underline */
+        }
+
+        .help-section p {
+            font-size: 1.1em;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        .faq-item {
+            margin-bottom: 25px;
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 15px;
+            width: 100%;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none; /* No border for the last FAQ item */
+        }
+
+        .faq-item h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3em;
+            color: var(--accent-light-purple);
+            margin-top: 0;
+            margin-bottom: 10px;
+            cursor: pointer; /* Indicate it might be collapsible */
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .faq-item h3 .material-icons {
+            font-size: 24px;
+            color: var(--accent-light-purple);
+        }
+
+        .faq-item p {
+            font-size: 1em;
+            color: var(--text-muted);
+            padding-left: 34px; /* Align with text under icon */
+        }
+
+        .contact-info {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .contact-info li {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-info li .material-icons {
+            font-size: 24px;
+            color: var(--accent-dark-purple);
+        }
+
+        .contact-info a {
+            color: var(--accent-light-purple);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        /* Style for the "View Contact Form" button */
+        .open-contact-modal-btn {
+            display: inline-block;
+            background-color: var(--accent-dark-purple);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1em;
+            font-weight: 600;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            cursor: pointer;
+        }
+
+        .open-contact-modal-btn:hover {
+            background-color: var(--accent-light-purple);
+            transform: translateY(-2px);
+        }
+
+
+        /* --- Fixed Bottom Navigation --- */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #000000;
+            border-top: none;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            z-index: 100;
+            box-shadow: none;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            padding: 5px 0;
+            color: var(--text-muted); /* Default for all nav items */
+            text-decoration: none;
+            font-size: 0.75em;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-item .material-icons {
+            font-size: 28px;
+            margin-bottom: 4px;
+            color: var(--text-muted); /* Default for all nav icons */
+            transition: color 0.3s ease;
+        }
+
+        /* Hover states */
+        .nav-item:hover {
+            color: var(--text-light);
+        }
+
+        .nav-item:hover .material-icons {
+            color: var(--text-light);
+        }
+
+        /* --- CSS for "no matter what" highlighting based on unique body class --- */
+        /*
+           IMPORTANT: You need to copy and paste these blocks into the <style>
+           section of *every* HTML file in your project.
+           Each block should correspond to the 'body' class of that specific page.
+        */
+
+        /* Home Page - Only active when body has 'page-home' class */
+        body.page-home .bottom-nav .nav-item[href="index.html"] {
+            color: var(--accent-dark-purple);
+            font-weight: 600;
+        }
+        body.page-home .bottom-nav .nav-item[href="index.html"] .material-icons {
+            color: var(--accent-dark-purple);
+        }
+
+        /* Shop Page - Only active when body has 'page-shop' class */
+        body.page-shop .bottom-nav .nav-item[href="shop.html"] {
+            color: var(--accent-dark-purple);
+            font-weight: 600;
+        }
+        body.page-shop .bottom-nav .nav-item[href="shop.html"] .material-icons {
+            color: var(--accent-dark-purple);
+        }
+
+        /* Legal Page - Only active when body has 'page-legal' class */
+        body.page-legal .bottom-nav .nav-item[href="legal.html"] {
+            color: var(--accent-dark-purple);
+            font-weight: 600;
+        }
+        body.page-legal .bottom-nav .nav-item[href="legal.html"] .material-icons {
+            color: var(--accent-dark-purple);
+        }
+
+        /* Help Page - Only active when body has 'page-help' class */
+        body.page-help .bottom-nav .nav-item[href="help.html"] {
+            color: var(--accent-dark-purple);
+            font-weight: 600;
+        }
+        body.page-help .bottom-nav .nav-item[href="help.html"] .material-icons {
+            color: var(--accent-dark-purple);
+        }
+
+        /* Special styling for the plus icon (Add) */
+        /* Note: This is an action button, not a direct page link, so it won't be "active" like a page link. */
+        .bottom-nav .nav-item.register-nav-item .material-icons {
+            font-size: 36px;
+            color: var(--text-muted); /* Keeps its default muted color */
+        }
+
+        /* --- Modals (Copied directly to ensure consistency) --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-overlay.show-modal {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: var(--bg-card);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-overlay.show-modal .modal-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .modal-content h2 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-light);
+            font-size: 1.8em;
+            margin-top: 0;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .modal-content .close-button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: var(--text-muted);
+            font-size: 28px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .modal-content .close-button:hover {
+            color: var(--text-light);
+        }
+
+        /* --- Resources Menu Modal Specific Styles --- */
+        #resourcesMenuModal h2 {
+            color: var(--accent-light-purple);
+            text-shadow: 0 0 10px rgba(106, 90, 205, 0.4);
+            margin-bottom: 20px;
+        }
+
+        .resources-menu-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px; /* Spacing between menu items */
+        }
+
+        .resources-menu-options a {
+            display: block; /* Make the whole area clickable */
+            background-color: var(--bg-darkest);
+            color: var(--text-light);
+            padding: 15px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: 500;
+            transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .resources-menu-options a:hover {
+            background-color: var(--accent-dark-purple);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+
+        .resources-menu-options a .material-icons {
+            font-size: 24px;
+            color: var(--accent-light-purple); /* Icon color */
+            transition: color 0.2s ease;
+        }
+
+        .resources-menu-options a:hover .material-icons {
+            color: white; /* Icon color on hover */
+        }
+
+        /* Add/Create Modal specific styles */
+        #addCreateModal .add-create-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        #addCreateModal .add-create-options button {
+            background-color: var(--accent-dark-purple);
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        #addCreateModal .add-create-options button:hover {
+            background-color: var(--accent-light-purple);
+            transform: translateY(-2px);
+        }
+
+        /* --- New Contact Form Modal Styles --- */
+        #contactFormModal h2 {
+            color: var(--accent-light-purple);
+            text-shadow: 0 0 10px rgba(106, 90, 205, 0.4);
+            margin-bottom: 20px;
+        }
+        .contact-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9em;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea {
+            width: calc(100% - 20px); /* Adjust for padding */
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background-color: var(--bg-darkest);
+            color: var(--text-light);
+            font-family: 'Roboto', sans-serif;
+            font-size: 1em;
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+        }
+        /* Added focus styles */
+        .contact-form input[type="text"]:focus,
+        .contact-form input[type="email"]:focus,
+        .contact-form textarea:focus {
+            outline: none; /* Remove the default browser outline */
+            border-color: var(--accent-light-purple); /* Change border color to purple */
+            box-shadow: 0 0 0 3px rgba(106, 90, 205, 0.5); /* Add a purple shadow for better visibility */
+        }
+        .contact-form textarea {
+            resize: vertical; /* Allow vertical resizing */
+            min-height: 120px;
+        }
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: var(--text-muted);
+            opacity: 0.7;
+        }
+        .contact-form button[type="submit"] {
+            background-color: var(--accent-dark-purple);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            width: 100%;
+            box-sizing: border-box;
+            margin-top: 10px;
+        }
+        .contact-form button[type="submit"]:hover {
+            background-color: var(--accent-light-purple);
+            transform: translateY(-2px);
+        }
+        .contact-form .mail-note {
+            font-size: 0.85em;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 15px;
+        }
+
+
+        /* --- Responsive Adjustments --- */
+        @media (max-width: 768px) {
+            #header-spacer { height: 40px; }
+            #main-header { padding: 5px 10px; }
+            #site-title { font-size: 1.3em; letter-spacing: 0.5px; }
+            .header-icon-link { font-size: 0.8em; }
+            .header-icon-link .material-icons { font-size: 20px; }
+            .live-indicator { width: 6px; height: 6px; }
+
+            .help-section {
+                padding: 25px;
+                margin-top: 30px;
+                min-height: calc(100vh - 40px - 80px - 60px);
+            }
+            .help-section h1 { font-size: 2.8em; }
+            .help-section h2 { font-size: 1.5em; margin-top: 20px; }
+            .help-section p { font-size: 1em; }
+            .faq-item h3 { font-size: 1.1em; }
+            .faq-item p { font-size: 0.9em; padding-left: 30px; }
+            .contact-info li { font-size: 1em; }
+
+            .bottom-nav .material-icons { font-size: 24px; }
+            .nav-item { font-size: 0.65em; }
+            .modal-content { padding: 20px; max-width: 95%; }
+            .modal-content h2 { font-size: 1.5em; margin-bottom: 20px; }
+            .resources-menu-options a { padding: 12px 15px; font-size: 1em; }
+
+            .contact-form input[type="text"],
+            .contact-form input[type="email"],
+            .contact-form textarea {
+                width: calc(100% - 20px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            #header-spacer { height: 30px; }
+            #site-title { font-size: 1.0em; letter-spacing: 0px; }
+
+            .help-section {
+                padding: 20px 15px;
+                min-height: calc(100vh - 30px - 80px - 40px);
+            }
+            .help-section h1 { font-size: 2.2em; letter-spacing: 1px; }
+            .help-section p { font-size: 0.9em; }
+            .faq-item h3 { font-size: 1em; }
+            .faq-item p { font-size: 0.85em; padding-left: 25px; }
+            .contact-info li { font-size: 0.9em; }
+        }
+    </style>
+</head>
+<body class="page-help"> <div id="main-page-content">
+        <header id="main-header">
+            <h1 id="site-title">TRUE MATCH</h1>
+            <div class="header-icons-group">
+                <a href="#" class="header-icon-link" id="openLiveLink">
+                    <span style="display:none;" class="material-icons">sensors_waves</span>
+                    <span>Live</span>
+                    <span class="live-indicator"></span>
+                </a>
+                <a href="#" class="header-icon-link" id="openResourcesMenuModalLink">
+                    <span class="material-icons">menu_book</span>
+                    <span>Resources</span>
+                </a>
+            </div>
+        </header>
+
+        <div id="header-spacer"></div>
+
+        <div class="container">
+            <div class="help-section">
+                <h1>Help & Support</h1>
+                <p>Welcome to the TrueMatch Creations Help Center. Below you'll find answers to common questions and ways to contact us for further assistance.</p>
+
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-item">
+                    <h3><span class="material-icons">quiz</span> How do I create a profile or account?</h3>
+                    <p>To create an account, click on the "Home" button in the bottom navigation bar and click "Join Community"  (if applicable). Follow the prompts to set up your account.</p>
+                </div>
+                <div class="faq-item">
+                    <h3><span class="material-icons">shopping_cart</span> How do I purchase items from the shop?</h3>
+                    <p>Browse our "Shop" section. Once you find an item you like, click on it to view details and then follow the steps to add it to your cart and proceed with checkout.</p>
+                </div>
+                <div class="faq-item">
+                    <h3><span class="material-icons">article</span> Where can I find articles or news?</h3>
+                    <p>Our "Resources" section (accessible via the top right icon) contains articles, blogs, and news updates. Select "Article, Blog, News" from the menu.</p>
+                </div>
+                 <div class="faq-item">
+                    <h3><span class="material-icons">eco</span> Tell me more about the Agriculture Initiative.</h3>
+                    <p>Our Agriculture Initiative is currently under development. It's designed to help LGBTQ+ land owners utilize their land for livestock rearing or high-value crops. You can find more details on the "Agriculture" page or by emailing us directly for inquiries.</p>
+                </div>
+                <div class="faq-item">
+                    <h3><span class="material-icons">policy</span> Where can I find legal information or terms of service?</h3>
+                    <p>All legal information, including our privacy policy and terms of service, can be found by clicking on the "Legal" icon in the bottom navigation bar.</p>
+                </div>
+                <h2>Contact Us</h2>
+                <p>If your question isn't answered above, please feel free to reach out:</p>
+                <ul class="contact-info">
+                    <li><span class="material-icons">email</span <style="display:none;"></style> Email: <a href="mailto:iceconsort@gmail.com">iceconsort@gmail.com</a></li>
+                    <li><span class="material-icons">phone</span> Phone:<a href="#">Loading...</a></li>
+                    <li><span class="material-icons">location_on</span> Address:</li>
+                    <li><span class="material-icons">web</span> <button class="open-contact-modal-btn" id="openContactFormModalLink">View our Contact Form</button></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="bottom-nav">
+            <a href="index.html" class="nav-item">
+                <span class="material-icons">home</span>
+                <span>Home</span>
+            </a>
+            <a href="shop.html" class="nav-item">
+                <span class="material-icons">storefront</span>
+                <span>Shop</span>
+            </a>
+            <a href="#" class="nav-item register-nav-item" id="openAddCreateModalLink">
+                <span class="material-icons">add_circle</span>
+                <span>Add</span>
+            </a>
+            <a href="legal.html" class="nav-item">
+                <span class="material-icons">policy</span>
+                <span>Legal</span>
+            </a>
+            <a href="help.html" class="nav-item">
+                <span class="material-icons">help_outline</span>
+                <span>Help</span>
+            </a>
+        </div>
+    </div>
+
+    <div id="resourcesMenuModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-button material-icons">close</span>
+            <h2>Resources</h2>
+            <div class="resources-menu-options">
+                <a href="resources-all.html">
+                    <span class="material-icons">article</span> Article, Blog, News
+                </a>
+                <a href="coming-out-stories.html">
+                    <span class="material-icons">volunteer_activism</span> Coming Out Stories
+                </a>
+                <a href="courses-under-construction.html">
+                    <span class="material-icons">school</span> Courses
+                </a>
+                <a href="resources-fashion.html">
+                    <span class="material-icons">accessibility</span> Fashion Designing
+                </a>
+                <a href="resources-modeling.html">
+                    <span class="material-icons">person_add</span> Modelling
+                </a>
+                <a href="resources-content-creation.html">
+                    <span class="material-icons">video_library</span> Content Creation
+                </a>
+                <a href="resources-agriculture.html">
+                    <span class="material-icons">eco</span> Agriculture
+                </a>
+                <a href="resources-testimonials.html">
+                    <span class="material-icons">rate_review</span> Testimonials
+                </a>
+                <a href="resources-events.html">
+                    <span class="material-icons">event</span> LGBTQ+ Events World
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="addCreateModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-button material-icons">close</span>
+            <h2>Add</h2>
+            <div class="add-create-options">
+                <a href="add-product.html"><button>Add a Product</button></a>
+                <a href="submit-book.html"><button>Submit a Book</button></a>
+                <a href="submit-movie.html"><button>Submit a Movie</button></a>
+                <a href="volunteer.html"><button>Volunteer & Donate</button></a>
+                <a style="display: none;"href="create-card.html" id="createGayCardLink"><button>Create Your Gay Card</button></a>
+            </div>
+        </div>
+    </div>
+
+    <div id="contactFormModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-button material-icons">close</span>
+            <h2>Contact Us</h2>
+            <form id="contactForm" class="contact-form">
+                <label for="contactName">Your Name:</label>
+                <input type="text" id="contactName" placeholder="Enter your name" required>
+
+                <label for="contactEmail">Your Email:</label>
+                <input type="email" id="contactEmail" placeholder="Enter your email" required>
+
+                <label for="contactSubject">Subject:</label>
+                <input type="text" id="contactSubject" placeholder="Subject of your inquiry" required>
+
+                <label for="contactMessage">Message:</label>
+                <textarea id="contactMessage" placeholder="Type your message here..." required></textarea>
+
+                <button type="submit">Send Email</button>
+                <p class="mail-note">
+                    * Clicking 'Send Email' will open your default email client with your message pre-filled. You will need to click 'Send' again in your email client.
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // --- Modal & General UI Logic ---
+        function showModal(modalElement) {
+            modalElement.classList.add('show-modal');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling background
+        }
+
+        function hideModal(modalElement) {
+            modalElement.classList.remove('show-modal');
+            document.body.style.overflow = ''; // Restore scrolling background
+        }
+
+        // --- Event Listeners ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentPagePath = window.location.pathname;
+            const currentPageFileName = currentPagePath.split('/').pop(); // E.g., "help.html" or "index.html"
+
+            // --- Active state for bottom navigation (JavaScript-driven) ---
+            // This JavaScript primarily serves to *reinforce* the active state
+            // or handle cases where CSS might not be sufficient (e.g., dynamically loaded content).
+            // The CSS with body classes is the primary "no matter what" solution.
+            const bottomNavItems = document.querySelectorAll('.bottom-nav .nav-item');
+            bottomNavItems.forEach(item => {
+                // IMPORTANT: Always remove 'active' from ALL items first,
+                // so only the current page (determined by href matching filename) gets it.
+                item.classList.remove('active'); 
+
+                const itemHref = item.getAttribute('href');
+                
+                // Check if the item's href matches the current page's filename
+                if (itemHref === currentPageFileName) {
+                    item.classList.add('active');
+                }
+            });
+
+            // --- Modals and their buttons ---
+            const resourcesMenuModal = document.getElementById('resourcesMenuModal');
+            const resourcesMenuCloseButton = resourcesMenuModal.querySelector('.close-button');
+            const openResourcesMenuModalLink = document.getElementById('openResourcesMenuModalLink');
+
+            const addCreateModal = document.getElementById('addCreateModal');
+            const addCreateModalCloseButton = addCreateModal.querySelector('.close-button');
+            const openAddCreateModalLink = document.getElementById('openAddCreateModalLink'); // This is the "Add" button in bottom nav
+
+            const contactFormModal = document.getElementById('contactFormModal');
+            const contactFormCloseButton = contactFormModal.querySelector('.close-button');
+            const openContactFormModalLink = document.getElementById('openContactFormModalLink');
+
+            // Listeners for Resources Menu Modal (Header)
+            openResourcesMenuModalLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                showModal(resourcesMenuModal);
+            });
+
+            resourcesMenuCloseButton.addEventListener('click', () => {
+                hideModal(resourcesMenuModal);
+            });
+
+            resourcesMenuModal.addEventListener('click', (e) => {
+                if (e.target === resourcesMenuModal) {
+                    hideModal(resourcesMenuModal);
+                }
+            });
+
+            // Listeners for Add/Create Modal (Bottom Nav "Add" button)
+            openAddCreateModalLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                showModal(addCreateModal);
+            });
+
+            addCreateModalCloseButton.addEventListener('click', () => {
+                hideModal(addCreateModal);
+            });
+
+            addCreateModal.addEventListener('click', (e) => {
+                if (e.target === addCreateModal) {
+                    hideModal(addCreateModal);
+                }
+            });
+
+            // Listener for Contact Form Modal
+            openContactFormModalLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                showModal(contactFormModal);
+            });
+
+            contactFormCloseButton.addEventListener('click', () => {
+                hideModal(contactFormModal);
+            });
+
+            contactFormModal.addEventListener('click', (e) => {
+                if (e.target === contactFormModal) {
+                    hideModal(contactFormModal);
+                }
+            });
+
+            // "Live" link functionality (placeholder for now)
+            const openLiveLink = document.getElementById('openLiveLink');
+            if (openLiveLink) {
+                openLiveLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    alert('Navigating to Live Content! (This link is a placeholder)');
+                });
+            }
+
+            // Contact Form Submission (opens email client)
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const name = document.getElementById('contactName').value;
+                    const email = document.getElementById('contactEmail').value;
+                    const subject = document.getElementById('contactSubject').value;
+                    const message = document.getElementById('contactMessage').value;
+
+                    const mailtoLink = `mailto:iceconsort@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+                    window.location.href = mailtoLink;
+
+                    hideModal(contactFormModal); // Hide modal after initiating mailto
+                    contactForm.reset(); // Clear the form
+                });
+            }
+        });
+    </script>
+</body>
+</html>
