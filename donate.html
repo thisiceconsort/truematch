@@ -735,11 +735,11 @@
             <span class="close-button material-icons">close</span>
             <h2>Add or Create</h2>
             <div class="add-create-options">
-                <a href="add-product.html"><button>Add a Product</button></a>
+                <a style="display:none;" href="add-product.html"><button>Add a Product</button></a>
                 <a href="https://thisiceconsort.github.io/truematch/books.html"><button>Submit a Book</button></a>
                 <a href="https://thisiceconsort.github.io/truematch/movies.html"><button>Submit a Movie</button></a>
                 <a href="#"><button>Volunteer & Donate</button></a>
-                <a style="display: none;" href="create-card.html" id="createGayCardLink"><button>Create Your Gay Card</button></a>
+                <a style="display:none;" href="create-card.html" id="createGayCardLink"><button>Create Your Gay Card</button></a>
             </div>
         </div>
     </div>
@@ -769,28 +769,6 @@
         const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xzzrqzrl'; // YOUR FORMSPREE ENDPOINT
         const SUBMISSION_EMAIL = 'submissions@truematchcreations.com'; // Email for sending confirmation/support
 
-        // --- DOM Elements (Common & Specific) ---
-        const volunteerForm = document.getElementById('volunteerForm');
-        const volunteerSubmissionFormContent = document.getElementById('volunteerSubmissionFormContent');
-        const thankYouMessage = document.getElementById('thankYouMessage');
-        const thankYouEmailLink = thankYouMessage.querySelector('a');
-
-        // Modals & their triggers
-        const resourcesMenuModal = document.getElementById('resourcesMenuModal');
-        const resourcesMenuCloseButton = resourcesMenuModal ? resourcesMenuModal.querySelector('.close-button') : null;
-        const openResourcesMenuModalLink = document.getElementById('openResourcesMenuModalLink');
-
-        const addCreateModal = document.getElementById('addCreateModal');
-        const addCreateModalCloseButton = addCreateModal ? addCreateModal.querySelector('.close-button') : null;
-        const openAddCreateModalLink = document.getElementById('openAddCreateModalLink'); // This is the "Add" button in bottom nav
-
-        const contactFormModal = document.getElementById('contactFormModal');
-        const contactFormCloseButton = contactFormModal ? contactFormModal.querySelector('.close-button') : null;
-        const openContactFormModalLink = document.getElementById('openContactFormModalLink'); // This might not be on the current page, but good to have if added
-
-        // "Live" link
-        const openLiveLink = document.getElementById('openLiveLink');
-
         // --- Utility Functions ---
         function showModal(modalElement) {
             if (modalElement) {
@@ -806,6 +784,7 @@
             }
         }
 
+        // The resetForm function is specific to the volunteer form, kept as is.
         function resetForm(formElement) {
             formElement.reset(); // Clear form fields
             const formElements = formElement.elements;
@@ -814,12 +793,43 @@
             }
             formElement.querySelector('button[type="submit"]').textContent = 'Proceed to Payment & Donate'; // Reset button text
             // Hide thank you message and show form content
-            volunteerSubmissionFormContent.style.display = 'block';
-            thankYouMessage.style.display = 'none';
+            // These elements need to be defined within the DOMContentLoaded scope or globally if they are available.
+            // Assuming they are within the volunteerForm section.
+            const volunteerSubmissionFormContent = document.getElementById('volunteerSubmissionFormContent');
+            const thankYouMessage = document.getElementById('thankYouMessage');
+            if (volunteerSubmissionFormContent && thankYouMessage) {
+                volunteerSubmissionFormContent.style.display = 'block';
+                thankYouMessage.style.display = 'none';
+            }
         }
+
 
         // --- Event Listeners ---
         document.addEventListener('DOMContentLoaded', () => {
+            // --- DOM Elements (Common & Specific) ---
+            // Moved inside DOMContentLoaded to ensure elements are loaded
+            const volunteerForm = document.getElementById('volunteerForm');
+            const volunteerSubmissionFormContent = document.getElementById('volunteerSubmissionFormContent');
+            const thankYouMessage = document.getElementById('thankYouMessage');
+            const thankYouEmailLink = thankYouMessage ? thankYouMessage.querySelector('a') : null; // Check if thankYouMessage exists before querying
+
+            // Modals & their triggers - NOW CORRECTLY ASSIGNED WITHIN DOMContentLoaded
+            const resourcesMenuModal = document.getElementById('resourcesMenuModal');
+            const resourcesMenuCloseButton = resourcesMenuModal ? resourcesMenuModal.querySelector('.close-button') : null;
+            const openResourcesMenuModalLink = document.getElementById('openResourcesMenuModalLink');
+
+            const addCreateModal = document.getElementById('addCreateModal');
+            const addCreateModalCloseButton = addCreateModal ? addCreateModal.querySelector('.close-button') : null;
+            const openAddCreateModalLink = document.getElementById('openAddCreateModalLink'); // This is the "Add" button in bottom nav
+
+            const contactFormModal = document.getElementById('contactFormModal');
+            const contactFormCloseButton = contactFormModal ? contactFormModal.querySelector('.close-button') : null;
+            const openContactFormModalLink = document.getElementById('openContactFormModalLink'); // This might not be on the current page, but good to have if added
+
+            // "Live" link
+            const openLiveLink = document.getElementById('openLiveLink');
+
+
             const currentPagePath = window.location.pathname;
             const currentPageFileName = currentPagePath.split('/').pop();
 
@@ -828,12 +838,18 @@
             bottomNavItems.forEach(item => {
                 item.classList.remove('active'); // Remove 'active' from ALL items first
                 const itemHref = item.getAttribute('href');
-                if (itemHref === currentPageFileName) {
+                // Handle cases where itemHref might be a full URL
+                const itemHrefFileName = itemHref ? itemHref.split('/').pop() : '';
+                if (itemHrefFileName === currentPageFileName) {
                     item.classList.add('active');
                 }
             });
-            // Explicitly ensure "Add" button is active on this page since its href is 'volunteer.html'
-            document.querySelector('.bottom-nav .nav-item[href="volunteer.html"]').classList.add('active');
+            // Explicitly ensure "Add" button is active on this page since its href is '#' but represents volunteer.html
+            const volunteerNavItem = document.querySelector('.bottom-nav .nav-item[href="#"]'); // Use the actual href for the add button
+            if (volunteerNavItem && currentPageFileName === 'volunteer.html') { // Check if we are on the volunteer page
+                volunteerNavItem.classList.add('active');
+                volunteerNavItem.querySelector('.material-icons').style.color = 'var(--accent-dark-purple)'; // Ensure color matches
+            }
 
 
             // Update email links in thank you messages
@@ -844,7 +860,7 @@
 
             // --- Modal Open/Close Logic for all modals ---
             // Resources Menu Modal (Header)
-            if (openResourcesMenuModalLink) {
+            if (openResourcesMenuModalLink && resourcesMenuModal) {
                 openResourcesMenuModalLink.addEventListener('click', (e) => {
                     e.preventDefault();
                     showModal(resourcesMenuModal);
@@ -855,7 +871,7 @@
                     hideModal(resourcesMenuModal);
                 });
             }
-            if (resourcesMenuModal) {
+            if (resourcesMenuModal) { // Add this check to prevent errors if modal is not found
                 resourcesMenuModal.addEventListener('click', (e) => {
                     if (e.target === resourcesMenuModal) {
                         hideModal(resourcesMenuModal);
@@ -864,7 +880,7 @@
             }
 
             // Add/Create Modal (Bottom Nav "Add" button)
-            if (openAddCreateModalLink) {
+            if (openAddCreateModalLink && addCreateModal) { // Added check for addCreateModal
                 openAddCreateModalLink.addEventListener('click', (e) => {
                     e.preventDefault();
                     showModal(addCreateModal);
@@ -875,7 +891,7 @@
                     hideModal(addCreateModal);
                 });
             }
-            if (addCreateModal) {
+            if (addCreateModal) { // Add this check to prevent errors if modal is not found
                 addCreateModal.addEventListener('click', (e) => {
                     if (e.target === addCreateModal) {
                         hideModal(addCreateModal);
@@ -884,7 +900,7 @@
             }
 
             // Contact Form Modal (if added later, currently no trigger on this page)
-            if (openContactFormModalLink) {
+            if (openContactFormModalLink && contactFormModal) {
                 openContactFormModalLink.addEventListener('click', (e) => {
                     e.preventDefault();
                     showModal(contactFormModal);
