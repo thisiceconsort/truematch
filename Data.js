@@ -38,7 +38,7 @@ const products = [
         id: '002',
         name: 'Crimson Promise (BL Book Vol. 2)',
         category: 'BL Books',
-        price: 2800, // ₦28.00
+        price: 280000, // ₦28.00
         imageUrl: 'https://i.imgur.com/3gVgNH8.jpeg',
         description: 'The highly anticipated sequel, delving deeper into the interwoven destinies of its characters. New challenges and heart-wrenching moments await, pushing the protagonists to their limits.',
         type: 'shoppable'
