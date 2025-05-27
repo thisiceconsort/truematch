@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Submit Your Movie -Milaaje</title>
+    <title>Submit Your Movie - Milaaje</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Bebas+Neue&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://js.paystack.co/v1/inline.js"></script>
     <style>
-        /* --- Color Variables --- */
+        /* --- Color Variables (Combined) --- */
         :root {
             --bg-darkest: #121212; /* Very dark background */
             --bg-card: #1a1a1a; /* Slightly lighter for cards */
@@ -19,14 +19,12 @@
             --accent-dark-purple: #483D8B; /* Dark Slate Blue - main accent */
             --accent-light-purple: #6A5ACD; /* Medium Slate Blue - hover/highlight */
             --border-color: #333333;
+            --error-color: #FF0000; /* Red for errors (if needed) */
+            --live-red: #FF0000; /* For pulsing live indicator */
             --price-color: #00FF00; /* Bright Green for prices, for contrast (used for verified status) */
-            --error-color: #FF0000; /* Red for errors */
-            --button-color: #555555; /* Dark button background */
-            --button-hover-color: #777777; /* Lighter button on hover */
-            --live-red: #FF0000; /* For pulsing live indicator */ /* Added for header */
         }
 
-        /* --- Global Styles --- */
+        /* --- Global Styles (Combined and Prioritized) --- */
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
@@ -34,63 +32,48 @@
             background-color: var(--bg-darkest);
             color: var(--text-light);
             line-height: 1.6;
-            overflow-x: hidden; /* Prevent horizontal scrollbar on body */
-            scroll-behavior: smooth; /* Smooth scrolling for anchor links */
-        }
-
-        /* Main content wrapper to control fade-in */
-        #main-page-content {
-            opacity: 1; /* Always visible for legal page */
-            visibility: visible; /* Always visible for legal page */
+            overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
         .container {
-            max-width: 900px; /* Adjusted max-width for form content */
+            max-width: 900px;
             margin: 0 auto;
-            padding: 0 20px 80px; /* Padding for content, leaving space for fixed footer */
+            padding: 0 20px 80px; /* Space for fixed footer */
             box-sizing: border-box;
         }
 
-        /* --- Main Header --- */
+        /* --- Main Header (Updated for consistent look) --- */
         #main-header {
-            position: fixed; /* Always fixed at the top */
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 100; /* Ensure it's above content */
-            background-color: rgba(0, 0, 0, 0.9); /* Dark background */
-            box-shadow: 0 2px 10px rgba(0,0,0,0.5); /* Always show shadow */
-            display: flex; /* Added for header */
-            justify-content: space-between; /* Added for header */
-            align-items: center; /* Added for header */
-            padding: 10px 20px; /* Adjusted from 8px 15px for header */
+            z-index: 100;
+            background-color: rgba(0, 0, 0, 0.9);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            display: flex; /* Added flex for alignment */
+            justify-content: space-between; /* Space out title and icons */
+            align-items: center;
+            padding: 10px 20px;
             box-sizing: border-box;
-            transition: none; /* No transitions needed as it's always in "scrolled" state */
         }
 
         #site-title {
             font-family: 'Bebas Neue', sans-serif;
             color: var(--accent-dark-purple);
-            font-size: 2em; /* Always smaller size */
-            letter-spacing: 1px; /* Reduce letter spacing when small */
-            margin: 0; /* Remove default margins */
-            text-shadow: none; /* No glow when small */
-            transition: none; /* No transitions needed */
-            line-height: 1; /* For cleaner shrinking */
-            flex-shrink: 0; /* Prevent it from shrinking unwantedly */
+            font-size: 2em; /* Consistent size with other pages' scrolled header */
+            letter-spacing: 1px;
+            margin: 0;
+            line-height: 1;
+            flex-shrink: 0;
         }
 
-        /* Dummy div to push content down, equal to initial header height */
         #header-spacer {
-            height: 60px; /* Always matching scrolled header height */
-            transition: none;
+            height: 60px; /* Matching header height */
         }
 
-        .tagline {
-            display: none; /* Tagline is not needed on legal page */
-        }
-
-        /* --- Resources & Live Icons in Header --- */
+        /* --- Resources & Live Icons in Header (Copied) --- */
         .header-icons-group {
             display: flex;
             align-items: center;
@@ -124,7 +107,7 @@
             color: var(--accent-light-purple);
         }
 
-        /* Live Indicator */
+        /* Live Indicator (Copied) */
         .live-indicator {
             width: 8px;
             height: 8px;
@@ -142,13 +125,13 @@
             100% { transform: scale(0.8); opacity: 0.7; }
         }
 
-
-        /* --- Submission Section (Adapted from legal-section) --- */
+        /* --- Submission Section Styles (Existing, adjusted for consistency) --- */
         .submission-section {
             background-color: var(--bg-card);
             border-radius: 8px;
             padding: 40px;
-            margin-bottom: 80px;
+            margin-top: 50px; /* Align with help-section margin-top */
+            margin-bottom: 80px; /* Keep existing bottom margin */
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
         }
 
@@ -169,162 +152,7 @@
             text-align: center;
         }
 
-        /* --- Fixed Bottom Navigation --- */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: #000000; /* Solid black like Netflix/Vidflix */
-            border-top: none; /* Remove the border */
-            display: flex;
-            justify-content: space-around;
-            padding: 10px 0; /* Adjust padding for visual balance */
-            z-index: 100;
-            box-shadow: none; /* Remove the shadow */
-        }
-
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            flex: 1; /* Make items take equal space */
-            padding: 5px 0; /* Add some vertical padding */
-            color: var(--text-muted); /* Muted for inactive state */
-            text-decoration: none;
-            font-size: 0.75em;
-            transition: color 0.3s ease;
-            white-space: nowrap; /* Prevent text wrapping */
-        }
-
-        /* Home Nav Item - Default Purple */
-        .nav-item.home-nav-item .material-icons {
-            color: var(--accent-dark-purple); /* Default purple for home icon */
-        }
-
-        .nav-item.home-nav-item {
-            color: var(--accent-dark-purple); /* Default purple for home text */
-        }
-
-        /* Active state for bottom nav item - uses the purple accent color */
-        .nav-item.active {
-            color: var(--accent-dark-purple); /* Changed to purple */
-            font-weight: 600; /* Make text bolder for active item */
-        }
-
-        .nav-item.active .material-icons {
-            color: var(--accent-dark-purple); /* Icon also gets the active color */
-        }
-
-        /* Hover state for bottom nav item */
-        .nav-item:hover {
-            color: var(--text-light); /* Lighter on hover */
-        }
-
-        /* Ensure icon color changes on hover too */
-        .nav-item:hover .material-icons {
-            color: var(--text-light);
-        }
-
-        /* Material Icons specific for bottom nav */
-        .nav-item .material-icons {
-            font-size: 28px;
-            margin-bottom: 4px; /* Space between icon and text */
-            transition: color 0.3s ease; /* Smooth color transition for icon */
-        }
-
-        /* Special styling for the plus icon (now 'Add') */
-        .bottom-nav .nav-item.register-nav-item {
-            color: var(--text-muted); /* Default color when inactive */
-        }
-
-        .bottom-nav .nav-item.register-nav-item .material-icons {
-            font-size: 36px; /* Slightly larger */
-            color: var(--text-muted); /* Default icon color when inactive */
-        }
-
-        .bottom-nav .nav-item.register-nav-item.active {
-            color: var(--accent-dark-purple); /* Active text color */
-        }
-
-        .bottom-nav .nav-item.register-nav-item.active .material-icons {
-            color: var(--accent-dark-purple); /* Active icon color */
-        }
-
-        .bottom-nav .nav-item.register-nav-item:hover {
-            color: var(--accent-light-purple); /* Lighter purple on hover */
-        }
-
-        .bottom-nav .nav-item.register-nav-item:hover .material-icons {
-            color: var(--accent-light-purple); /* Lighter purple on hover */
-        }
-
-        /* --- Global Modal Styles --- */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent dark overlay */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000; /* Above everything else */
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-
-        .modal-overlay.show-modal {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .modal-content {
-            background-color: var(--bg-card);
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
-            width: 90%;
-            max-width: 500px;
-            position: relative;
-            transform: translateY(20px); /* Start slightly below center */
-            opacity: 0;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .modal-overlay.show-modal .modal-content {
-            transform: translateY(0); /* Slide up to center */
-            opacity: 1;
-        }
-
-        .modal-content h2 {
-            font-family: 'Montserrat', sans-serif;
-            color: var(--text-light);
-            font-size: 1.8em;
-            margin-top: 0;
-            margin-bottom: 25px;
-            text-align: center;
-        }
-
-        .modal-content .close-button {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            color: var(--text-muted);
-            font-size: 28px;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        .modal-content .close-button:hover {
-            color: var(--text-light);
-        }
-
-        /* Form Specific Styles */
+        /* Form Specific Styles (Existing) */
         .movie-submission-form label {
             display: block;
             font-size: 0.9em;
@@ -346,7 +174,7 @@
             border-radius: 4px;
             color: var(--text-light);
             font-size: 1em;
-            box-sizing: border-box; /* Include padding in width */
+            box-sizing: border-box;
         }
 
         .movie-submission-form input[type="text"]:focus,
@@ -383,16 +211,256 @@
             transform: translateY(-2px);
         }
 
-        /* Styles for Add/Create Modal Buttons */
-        #addCreateModal .add-create-options {
-            display: flex;
-            flex-direction: column; /* Stack buttons vertically */
-            gap: 15px; /* Space between buttons */
+        /* Thank You Message Styling (Existing) */
+        #thankYouMessage {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            color: var(--text-light);
+        }
+        #thankYouMessage h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3em;
+            color: var(--price-color);
+            margin-bottom: 20px;
+        }
+        #thankYouMessage p {
+            font-size: 1.1em;
+            color: var(--text-muted);
+            margin-bottom: 1.5em;
+        }
+        #thankYouMessage ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+            text-align: left;
+            display: inline-block;
+        }
+        #thankYouMessage li {
+            margin-bottom: 10px;
+            color: var(--text-light);
+            font-size: 1em;
+        }
+        #thankYouMessage li strong {
+            color: var(--accent-light-purple);
+        }
+        #thankYouMessage a {
+            color: var(--accent-light-purple);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        #thankYouMessage a:hover {
+            text-decoration: underline;
         }
 
+        /* --- Fixed Bottom Navigation (Copied and adjusted for consistency) --- */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #000000;
+            border-top: none;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            z-index: 100;
+            box-shadow: none;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            padding: 5px 0;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.75em;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-item .material-icons {
+            font-size: 28px;
+            margin-bottom: 4px;
+            color: var(--text-muted);
+            transition: color 0.3s ease;
+        }
+
+        /* Hover states */
+        .nav-item:hover {
+            color: var(--text-light);
+        }
+        .nav-item:hover .material-icons {
+            color: var(--text-light);
+        }
+
+        /* --- CSS for "no matter what" highlighting based on unique body class (Copied and extended) --- */
+        /* IMPORTANT: Ensure 'page-submit-movie' is added to the body class below */
+        body.page-home .bottom-nav .nav-item[href="index.html"] {
+            color: var(--accent-dark-purple);
+            font-weight: 600;
+        }
+        body.page-home .bottom-nav .nav-item[href="index.html"] .material-icons {
+            color: var(--accent-dark-purple);
+        }
+
+        body.page-shop .bottom-nav .nav-item[href="shop.html"] {
+            color: var(--accent-dark-purple);
+            font-weight: 600;
+        }
+        body.page-shop .bottom-nav .nav-item[href="shop.html"] .material-icons {
+            color: var(--accent-dark-purple);
+        }
+
+        body.page-legal .bottom-nav .nav-item[href="legal.html"] {
+            color: var(--accent-dark-purple);
+            font-weight: 600;
+        }
+        body.page-legal .bottom-nav .nav-item[href="legal.html"] .material-icons {
+            color: var(--accent-dark-purple);
+        }
+
+        body.page-help .bottom-nav .nav-item[href="help.html"] {
+            color: var(--accent-dark-purple);
+            font-weight: 600;
+        }
+        body.page-help .bottom-nav .nav-item[href="help.html"] .material-icons {
+            color: var(--accent-dark-purple);
+        }
+
+        /* NEW: Rule for Submit Movie Page */
+        body.page-submit-movie .bottom-nav .nav-item[href="#"] { /* Targeting the 'Add' link which is the active one */
+            color: var(--accent-dark-purple);
+            font-weight: 600;
+        }
+        body.page-submit-movie .bottom-nav .nav-item[href="#"] .material-icons { /* Targeting the 'Add' link which is the active one */
+            color: var(--accent-dark-purple);
+        }
+
+
+        /* Special styling for the plus icon (Add) */
+        .bottom-nav .nav-item.register-nav-item .material-icons {
+            font-size: 36px;
+            color: var(--text-muted);
+        }
+
+        /* --- Modals (Copied directly to ensure consistency) --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-overlay.show-modal {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: var(--bg-card);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-overlay.show-modal .modal-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .modal-content h2 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-light);
+            font-size: 1.8em;
+            margin-top: 0;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .modal-content .close-button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: var(--text-muted);
+            font-size: 28px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .modal-content .close-button:hover {
+            color: var(--text-light);
+        }
+
+        /* --- Resources Menu Modal Specific Styles (Copied) --- */
+        #resourcesMenuModal h2 {
+            color: var(--accent-light-purple);
+            text-shadow: 0 0 10px rgba(106, 90, 205, 0.4);
+            margin-bottom: 20px;
+        }
+        .resources-menu-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .resources-menu-options a {
+            display: block;
+            background-color: var(--bg-darkest);
+            color: var(--text-light);
+            padding: 15px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: 500;
+            transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .resources-menu-options a:hover {
+            background-color: var(--accent-dark-purple);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+        .resources-menu-options a .material-icons {
+            font-size: 24px;
+            color: var(--accent-light-purple);
+            transition: color 0.2s ease;
+        }
+        .resources-menu-options a:hover .material-icons {
+            color: white;
+        }
+
+        /* Add/Create Modal specific styles (Updated to match copied one) */
+        #addCreateModal .add-create-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
         #addCreateModal .add-create-options button {
-            background-color: var(--accent-dark-purple); /* Purple background */
-            color: white; /* White text */
+            background-color: var(--accent-dark-purple);
+            color: white;
             padding: 15px 25px;
             border: none;
             border-radius: 4px;
@@ -400,71 +468,24 @@
             font-weight: 600;
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease;
-            width: 100%; /* Full width */
-            box-sizing: border-box; /* Include padding in width */
+            width: 100%;
+            box-sizing: border-box;
         }
-
+        #addCreateModal .add-create-options a button { /* Target buttons inside 'a' tags */
+             width: 100%;
+             box-sizing: border-box; /* Ensures consistent width */
+        }
         #addCreateModal .add-create-options button:hover {
-            background-color: var(--accent-light-purple); /* Lighter purple on hover */
+            background-color: var(--accent-light-purple);
             transform: translateY(-2px);
         }
 
-        /* Thank You Message Styling */
-        #thankYouMessage {
-            display: none; /* Hidden by default */
-            text-align: center;
-            padding: 30px;
-            color: var(--text-light);
-        }
-
-        #thankYouMessage h2 {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 3em;
-            color: var(--price-color); /* Green for success */
-            margin-bottom: 20px;
-        }
-
-        #thankYouMessage p {
-            font-size: 1.1em;
-            color: var(--text-muted);
-            margin-bottom: 1.5em;
-        }
-
-        #thankYouMessage ul {
-            list-style: none; /* Remove default bullet points */
-            padding: 0;
-            margin: 20px 0;
-            text-align: left; /* Align list items to left */
-            display: inline-block; /* Allow centering of the block */
-        }
-
-        #thankYouMessage li {
-            margin-bottom: 10px;
-            color: var(--text-light);
-            font-size: 1em;
-        }
-
-        #thankYouMessage li strong {
-            color: var(--accent-light-purple);
-        }
-
-        #thankYouMessage a {
-            color: var(--accent-light-purple);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        #thankYouMessage a:hover {
-            text-decoration: underline;
-        }
-
-        /* --- New Contact Form Modal Styles --- */
+        /* --- New Contact Form Modal Styles (Copied) --- */
         #contactFormModal h2 {
             color: var(--accent-light-purple);
             text-shadow: 0 0 10px rgba(106, 90, 205, 0.4);
             margin-bottom: 20px;
         }
-
         .contact-form label {
             display: block;
             margin-bottom: 8px;
@@ -472,11 +493,10 @@
             color: var(--text-light);
             font-weight: 500;
         }
-
         .contact-form input[type="text"],
         .contact-form input[type="email"],
         .contact-form textarea {
-            width: calc(100% - 20px); /* Adjust for padding */
+            width: calc(100% - 20px);
             padding: 10px;
             margin-bottom: 15px;
             border: 1px solid var(--border-color);
@@ -485,29 +505,24 @@
             color: var(--text-light);
             font-family: 'Roboto', sans-serif;
             font-size: 1em;
-            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+            box-sizing: border-box;
         }
-
-        /* Added focus styles */
         .contact-form input[type="text"]:focus,
         .contact-form input[type="email"]:focus,
         .contact-form textarea:focus {
-            outline: none; /* Remove the default browser outline */
-            border-color: var(--accent-light-purple); /* Change border color to purple */
-            box-shadow: 0 0 0 3px rgba(106, 90, 205, 0.5); /* Add a purple shadow for better visibility */
+            outline: none;
+            border-color: var(--accent-light-purple);
+            box-shadow: 0 0 0 3px rgba(106, 90, 205, 0.5);
         }
-
         .contact-form textarea {
-            resize: vertical; /* Allow vertical resizing */
+            resize: vertical;
             min-height: 120px;
         }
-
         .contact-form input::placeholder,
         .contact-form textarea::placeholder {
             color: var(--text-muted);
             opacity: 0.7;
         }
-
         .contact-form button[type="submit"] {
             background-color: var(--accent-dark-purple);
             color: white;
@@ -522,162 +537,58 @@
             box-sizing: border-box;
             margin-top: 10px;
         }
-
         .contact-form button[type="submit"]:hover {
             background-color: var(--accent-light-purple);
             transform: translateY(-2px);
         }
-
-        /* --- Resources Menu Modal Specific Styles --- */
-        #resourcesMenuModal h2 {
-            color: var(--accent-light-purple);
-            text-shadow: 0 0 10px rgba(106, 90, 205, 0.4);
-            margin-bottom: 20px;
+        .contact-form .mail-note {
+            font-size: 0.85em;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 15px;
         }
 
-        .resources-menu-options {
-            display: flex;
-            flex-direction: column;
-            gap: 12px; /* Spacing between menu items */
-        }
-
-        .resources-menu-options a {
-            display: block; /* Make the whole area clickable */
-            background-color: var(--bg-darkest);
-            color: var(--text-light);
-            padding: 15px 20px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 1.1em;
-            font-weight: 500;
-            transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
-            border: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .resources-menu-options a:hover {
-            background-color: var(--accent-dark-purple);
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-        }
-
-        .resources-menu-options a .material-icons {
-            font-size: 24px;
-            color: var(--accent-light-purple); /* Icon color */
-            transition: color 0.2s ease;
-        }
-
-        .resources-menu-options a:hover .material-icons {
-            color: white; /* Icon color on hover */
-        }
-
-        /* --- Responsive Adjustments --- */
+        /* --- Responsive Adjustments (Combined and Adjusted) --- */
         @media (max-width: 992px) {
-            #header-spacer {
-                height: 50px;
-            }
-            #main-header {
-                padding: 8px 15px;
-            }
-            #site-title {
-                font-size: 1.8em;
-            }
-            .submission-section h2 {
-                font-size: 2.8em;
-            }
-            .submission-section p {
-                font-size: 1em;
-            }
+            /* Keep existing adjustments for submit-movie, ensure they don't conflict */
         }
 
         @media (max-width: 768px) {
-            #header-spacer {
-                height: 40px;
-            }
-            #main-header {
-                padding: 5px 10px;
-            }
-            #site-title {
-                font-size: 1.3em;
-                letter-spacing: 0.5px;
-            }
-            .submission-section {
-                padding: 25px;
-            }
-            .submission-section h2 {
-                font-size: 2.4em;
-            }
-            .submission-section p {
-                font-size: 0.9em;
-            }
-            .bottom-nav .material-icons {
-                font-size: 24px;
-            }
-            .nav-item {
-                font-size: 0.65em;
-            }
-            .modal-content {
-                padding: 20px;
-                max-width: 95%;
-            }
-            .modal-content h2 {
-                font-size: 1.5em;
-                margin-bottom: 20px;
-            }
-            .movie-submission-form label {
-                font-size: 0.85em;
-            }
-            .movie-submission-form input,
-            .movie-submission-form textarea,
-            .movie-submission-form select {
-                padding: 10px;
-                font-size: 0.9em;
-                margin-bottom: 15px;
-            }
-            .movie-submission-form button[type="submit"] {
-                padding: 12px 20px;
-                font-size: 1em;
-            }
+            #header-spacer { height: 40px; }
+            #main-header { padding: 5px 10px; } /* Adjust for smaller header */
+            #site-title { font-size: 1.3em; letter-spacing: 0.5px; } /* Adjust for smaller header */
+            .header-icon-link { font-size: 0.8em; } /* Adjust for smaller header */
+            .header-icon-link .material-icons { font-size: 20px; } /* Adjust for smaller header */
+            .live-indicator { width: 6px; height: 6px; } /* Adjust for smaller header */
+
+            .submission-section { padding: 25px; margin-top: 30px; } /* Consistent with help-section */
+            .submission-section h2 { font-size: 2.4em; }
+            .submission-section p { font-size: 0.9em; }
+
+            .bottom-nav .material-icons { font-size: 24px; }
+            .nav-item { font-size: 0.65em; }
+
+            .modal-content { padding: 20px; max-width: 95%; }
+            .modal-content h2 { font-size: 1.5em; margin-bottom: 20px; }
+            .movie-submission-form label { font-size: 0.85em; }
+            .movie-submission-form input, .movie-submission-form textarea, .movie-submission-form select { padding: 10px; font-size: 0.9em; margin-bottom: 15px; }
+            .movie-submission-form button[type="submit"] { padding: 12px 20px; font-size: 1em; }
+            .resources-menu-options a { padding: 12px 15px; font-size: 1em; } /* Added for consistency */
         }
 
         @media (max-width: 480px) {
-            #header-spacer {
-                height: 30px;
-            } /* Adjust for smaller header height */
-            #main-header {
-                padding: 5px 10px;
-            } /* Even smaller padding */
-            #site-title {
-                font-size: 1.0em; /* Smallest size for mobile */
-                letter-spacing: 0px;
-            }
-            .submission-section h2 {
-                font-size: 1.8em;
-            }
-            .submission-section p {
-                font-size: 0.8em;
-            }
-        }
+            #header-spacer { height: 30px; }
+            #main-header { padding: 5px 10px; }
+            #site-title { font-size: 1.0em; letter-spacing: 0px; }
 
-        /* Specific body class for this page to highlight active bottom nav item */
-        body.page-submit-movie .bottom-nav .nav-item[href="submit-movie.html"] {
-            color: var(--accent-dark-purple);
-            font-weight: 600;
-        }
-
-        body.page-submit-movie .bottom-nav .nav-item[href="submit-movie.html"] .material-icons {
-            color: var(--accent-dark-purple);
+            .submission-section h2 { font-size: 1.8em; }
+            .submission-section p { font-size: 0.8em; }
         }
     </style>
 </head>
-<body class="page-submit-movie">
-    <div id="main-page-content">
+<body class="page-submit-movie"> <div id="main-page-content">
         <header id="main-header">
-            <h1 id="site-title">Mìlàájé</h1>
-            <div class="header-icons-group">
+            <h1 id="site-title">Mìlàájé</h1> <div class="header-icons-group">
                 <a href="#" class="header-icon-link" id="openLiveLink">
                     <span style="display:none;" class="material-icons">sensors_waves</span>
                     <span>Live</span>
@@ -698,6 +609,7 @@
                     <p>Got a captivating film? Share your movie idea with us! If it aligns with our vision, we'll request more details and help you get it published.</p>
                     <form id="movieSubmissionForm" class="movie-submission-form">
                         <input type="hidden" name="_form_type" value="movie_submission">
+
                         <label for="movieTitle">Movie Title:</label>
                         <input type="text" id="movieTitle" name="movieTitle" required placeholder="Enter the full title of your movie">
 
@@ -730,7 +642,7 @@
 
                         <label for="moviePrice">Registration Fee (₦):</label>
                         <input type="number" id="moviePrice" name="moviePrice" min="1" required placeholder="Set your desired registration fee (e.g., 8000)">
-                        <p style="font-size: 0.9em; color: var(--accent-light-purple); text-align: left; margin-top: -10px; margin-bottom: 20px;">*The amount you set here is what you'll pay for the registration.</p>
+                        <p style="font-size: 0.9em; color: var(--accent-light-purple); text-align: left; margin-top: -10px; margin-bottom: 20px;">*The amount you set here will cover the movie registration fee and will also be the selling price for each copy of your movie.</p>
 
                         <button type="submit">Proceed to Payment & Submit</button>
                     </form>
@@ -760,8 +672,7 @@
                 <span class="material-icons">storefront</span>
                 <span>Shop</span>
             </a>
-            <a href="#" class="nav-item register-nav-item" id="openAddCreateModalLink">
-                <span class="material-icons">add_circle</span>
+            <a href="#" class="nav-item register-nav-item" id="openAddCreateModalLink"> <span class="material-icons">add_circle</span>
                 <span>Add</span>
             </a>
             <a href="legal.html" class="nav-item">
@@ -802,7 +713,7 @@
                     <span class="material-icons">eco</span> Agriculture
                 </a>
                 <a href="resources-testimonials.html">
-                    <span class="material-icons">rate_review</span> Feedbacks & Ratings
+                    <span class="material-icons">rate_review</span> Testimonials
                 </a>
                 <a href="resources-events.html">
                     <span class="material-icons">event</span> LGBTQ+ Events World
@@ -814,14 +725,10 @@
     <div id="addCreateModal" class="modal-overlay">
         <div class="modal-content">
             <span class="close-button material-icons">close</span>
-            <h2>Add</h2>
-            <div class="add-create-options">
-                <a href="add-product.html"><button>Add a Product</button></a>
-                <a href="submit-book.html"><button>Submit a Book</button></a>
-                <a href="#"><button>Submit a Movie</button></a>
-                <a href="volunteer.html"><button>Volunteer & Donate</button></a>
-                <a style="display: none;" href="create-card.html" id="createGayCardLink"><button>Create Your Gay Card</button></a>
-            </div>
+            <h2>Add</h2> <div class="add-create-options">
+                <a href="add-product.html"><button>Add a Product</button></a> <a href="submit-book.html"><button>Submit a Book</button></a>
+                <a href="submit-movie.html"><button>Submit a Movie</button></a>
+                <a style="display: none;"href="create-card.html" id="createGayCardLink"><button>Create Your Gay Card</button></a> </div>
         </div>
     </div>
 
@@ -849,6 +756,7 @@
         const PAYSTACK_PUBLIC_KEY = 'pk_live_6b671064b6a716c1ceffe82bf20a28c317a69584'; // YOUR PAYSTACK PUBLIC KEY
         const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xzzrqzrl'; // YOUR FORMSPREE ENDPOINT
         const SUBMISSION_EMAIL = 'submissions@truematchcreations.com'; // Email for sending movie files/links
+        const CONTACT_EMAIL = 'iceconsort@gmail.com'; // Contact email for contact form
 
         // --- DOM Elements ---
         const movieSubmissionForm = document.getElementById('movieSubmissionForm');
@@ -867,8 +775,8 @@
 
         const contactFormModal = document.getElementById('contactFormModal');
         const contactFormCloseButton = contactFormModal.querySelector('.close-button');
-        const openContactFormModalLink = document.getElementById('openContactFormModalLink');
-
+        // Note: The movie submission page does not have a direct "open contact form" button,
+        // so we don't need openContactFormModalLink here unless you add one to this page's content.
 
         // --- Utility Functions ---
         function showModal(modalElement) {
@@ -879,8 +787,6 @@
         function hideModal(modalElement) {
             modalElement.classList.remove('show-modal');
             document.body.style.overflow = ''; // Restore scrolling background
-            // Re-activate 'Add' nav item after modal closes
-            document.querySelector('.bottom-nav .nav-item[href="submit-movie.html"]').classList.add('active');
         }
 
         function resetForm(formElement) {
@@ -895,28 +801,31 @@
             thankYouMessage.style.display = 'none';
         }
 
-        // --- Handle Submission Logic ---
+        // --- Event Listeners ---
         document.addEventListener('DOMContentLoaded', () => {
-            // Set the 'Add' nav item as active based on current page
             const currentPagePath = window.location.pathname;
             const currentPageFileName = currentPagePath.split('/').pop();
 
+            // --- Active state for bottom navigation (JavaScript-driven) ---
             const bottomNavItems = document.querySelectorAll('.bottom-nav .nav-item');
             bottomNavItems.forEach(item => {
-                item.classList.remove('active'); // Remove active from all first
+                item.classList.remove('active'); // Remove 'active' from all items first
                 const itemHref = item.getAttribute('href');
-                if (itemHref === currentPageFileName) {
+
+                // Special handling for the 'Add' button, as it's the current page
+                if (item.classList.contains('register-nav-item') && currentPageFileName === 'submit-movie.html') {
+                     item.classList.add('active');
+                } else if (itemHref === currentPageFileName) {
                     item.classList.add('active');
                 }
             });
 
-
             thankYouEmailLink.href = `mailto:${SUBMISSION_EMAIL}`;
             thankYouEmailLink.textContent = SUBMISSION_EMAIL;
 
-            // --- Modal Open/Close Logic ---
-            // Resources Menu Modal (Header)
-            if (openResourcesMenuModalLink) {
+            // --- Modals and their buttons ---
+            // Listeners for Resources Menu Modal (Header)
+            if (openResourcesMenuModalLink) { // Ensure element exists before adding listener
                 openResourcesMenuModalLink.addEventListener('click', (e) => {
                     e.preventDefault();
                     showModal(resourcesMenuModal);
@@ -935,7 +844,7 @@
                 });
             }
 
-            // Add/Create Modal (Bottom Nav "Add" button)
+            // Listeners for Add/Create Modal (Bottom Nav "Add" button)
             if (openAddCreateModalLink) {
                 openAddCreateModalLink.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -955,17 +864,10 @@
                 });
             }
 
-            // Contact Form Modal
-            // Note: This modal is not directly opened from the header on this page
-            // but is included for consistency with other pages that might use it.
-            // If there's a button to open it on this page, ensure its ID is 'openContactFormModalLink'
-            const openContactFormModalLink = document.getElementById('openContactFormModalLink');
-            if (openContactFormModalLink) {
-                openContactFormModalLink.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    showModal(contactFormModal);
-                });
-            }
+            // Listener for Contact Form Modal (if needed on this page, otherwise remove from here)
+            // As this page doesn't have a direct "View Contact Form" button, this won't fire unless you add one.
+            // If you want the contact form modal to be accessible, you'll need to add a button for it in your HTML.
+            // For now, I'm assuming it's only linked from other pages.
             if (contactFormCloseButton) {
                 contactFormCloseButton.addEventListener('click', () => {
                     hideModal(contactFormModal);
@@ -988,10 +890,28 @@
                 });
             }
 
-            // --- Movie Submission Form Handling ---
+            // Contact Form Submission (opens email client) - from Help page
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const name = document.getElementById('contactName').value;
+                    const email = document.getElementById('contactEmail').value;
+                    const subject = document.getElementById('contactSubject').value;
+                    const message = document.getElementById('contactMessage').value;
+
+                    const mailtoLink = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+                    window.location.href = mailtoLink;
+
+                    hideModal(contactFormModal); // Hide modal after initiating mailto
+                    contactForm.reset(); // Clear the form
+                });
+            }
+
+            // --- Movie Submission Form Handling (Existing) ---
             if (movieSubmissionForm) {
                 movieSubmissionForm.addEventListener('submit', async function(event) {
-                    event.preventDefault(); // Prevent default form submission
+                    event.preventDefault();
 
                     const movieTitle = document.getElementById('movieTitle').value;
                     const directorName = document.getElementById('directorName').value;
@@ -1010,43 +930,25 @@
 
                     const handler = PaystackPop.setup({
                         key: PAYSTACK_PUBLIC_KEY,
-                        email: submitterEmail, // Use the submitter's email for Paystack
+                        email: submitterEmail,
                         amount: amountInKobo,
-                        currency: 'NGN', // Assuming Nigerian Naira
-                        ref: '' + Math.floor((Math.random() * 1000000000) + 1), // Unique reference
+                        currency: 'NGN',
+                        ref: '' + Math.floor((Math.random() * 1000000000) + 1),
                         metadata: {
                             custom_fields: [
-                                {
-                                    display_name: "Movie Title",
-                                    variable_name: "movie_title",
-                                    value: movieTitle
-                                },
-                                {
-                                    display_name: "Director Name",
-                                    variable_name: "director_name",
-                                    value: directorName
-                                },
-                                {
-                                    display_name: "Movie Genre",
-                                    variable_name: "movie_genre",
-                                    value: movieGenre
-                                },
-                                {
-                                    display_name: "Movie Idea",
-                                    variable_name: "movie_idea",
-                                    value: movieIdea
-                                }
+                                { display_name: "Movie Title", variable_name: "movie_title", value: movieTitle },
+                                { display_name: "Director Name", variable_name: "director_name", value: directorName },
+                                { display_name: "Movie Genre", variable_name: "movie_genre", value: movieGenre },
+                                { display_name: "Movie Idea", variable_name: "movie_idea", value: movieIdea }
                             ]
                         },
                         callback: function(response) {
-                            // Payment successful, now submit to Formspree
                             const paymentRef = response.reference;
                             const formData = new FormData(movieSubmissionForm);
                             formData.append('paystack_reference', paymentRef);
-                            formData.append('registration_amount', moviePrice); // Add actual amount paid
-                            formData.append('_form_type', 'movie_submission'); // Explicitly define type
+                            formData.append('registration_amount', moviePrice);
+                            formData.append('_form_type', 'movie_submission');
 
-                            // Disable form fields to prevent double submission
                             const formElements = movieSubmissionForm.elements;
                             for (let i = 0; i < formElements.length; i++) {
                                 formElements[i].disabled = true;
@@ -1062,32 +964,27 @@
                             })
                             .then(formspreeResponse => {
                                 if (formspreeResponse.ok) {
-                                    // Formspree submission successful
                                     movieSubmissionFormContent.style.display = 'none';
                                     thankYouMessage.style.display = 'block';
-                                    window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top
+                                    window.scrollTo({ top: 0, behavior: 'smooth' });
                                 } else {
-                                    // Formspree submission failed
                                     formspreeResponse.json().then(data => {
                                         alert('Oops! There was an issue submitting your form after payment. Please contact support. Error: ' + (data.errors ? JSON.stringify(data.errors) : 'Unknown error'));
                                     });
-                                    // Re-enable form fields on error
                                     resetForm(movieSubmissionForm);
                                 }
                             })
                             .catch(error => {
                                 alert('Oops! Network error during form submission after payment. Please check your connection and try again.');
                                 console.error('Formspree submission error:', error);
-                                // Re-enable form fields on error
                                 resetForm(movieSubmissionForm);
                             });
                         },
                         onClose: function() {
-                            // User closed the payment popup
                             alert('Payment window closed. Your movie submission was not completed.');
                         }
                     });
-                    handler.openIframe(); // Open the Paystack payment modal
+                    handler.openIframe();
                 });
             }
         });
