@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer & Donate - TrueMatch Creations</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Bebas+Neue:wght@400;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <style>
+        /* --- Color Variables --- */
+        :root {
+            --bg-darkest: #121212; /* Very dark background */
+            --bg-card: #1a1a1a; /* Slightly lighter for cards */
+            --text-light: #e0e0e0;
+            --text-muted: #888888; /* Darker muted text for descriptions */
+            --accent-dark-purple: #483D8B; /* Dark Slate Blue - main accent */
+            --accent-light-purple: #6A5ACD; /* Medium Slate Blue - hover/highlight */
+            --border-color: #333333;
+            --price-color: #00FF00; /* Bright Green for prices, for contrast */
+            --error-color: #FF0000; /* Red for errors */
+            --button-color: #555555; /* Dark button background */
+            --button-hover-color: #777777; /* Lighter button on hover */
+            --live-red: #FF0000; /* For pulsing live indicator - Added for consistency */
+        }
+
+        /* --- Global Styles --- */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-darkest);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scrollbar on body */
+            scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+        }
+
+        #main-page-content {
+            opacity: 1; /* Always visible */
+            visibility: visible; /* Always visible */
+        }
+
+        .container {
+            max-width: 900px; /* Adjusted max-width for form content */
+            margin: 0 auto;
+            padding: 0 20px 80px; /* Padding for content, leaving space for fixed footer */
+            box-sizing: border-box;
+        }
+
+        /* --- Main Header --- */
+        #main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            background-color: rgba(0, 0, 0, 0.9);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            /* Removed transition: none; to allow for future transitions if needed */
+            display: flex; /* Added for layout of title and icons */
+            justify-content: space-between; /* Space out title and icons */
+            align-items: center; /* Vertically align items */
+            padding: 10px 20px; /* Standard padding */
+            box-sizing: border-box;
+        }
+
+        #site-title {
+            font-family: 'Bebas Neue', sans-serif;
+            color: var(--accent-dark-purple);
+            font-size: 2em;
+            letter-spacing: 1px;
+            margin: 0;
+            /* Removed text-shadow: none; to allow for future shadows if needed */
+            /* Removed transition: none; */
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        #header-spacer {
+            height: 60px; /* Matching header height */
+            /* Removed transition: none; */
+        }
+
+        /* --- Resources & Live Icons in Header (Copied from Help Page) --- */
+        .header-icons-group {
+            display: flex;
+            align-items: center;
+            gap: 15px; /* Spacing between the two icon groups */
+            margin-left: auto; /* Push to the right */
+        }
+        .header-icon-link {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.9em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .header-icon-link:hover {
+            color: var(--accent-light-purple);
+        }
+        .header-icon-link .material-icons {
+            font-size: 24px;
+            color: var(--text-light);
+            transition: color 0.3s ease;
+        }
+        .header-icon-link:hover .material-icons {
+            color: var(--accent-light-purple);
+        }
+        /* Live Indicator */
+        .live-indicator {
+            width: 8px;
+            height: 8px;
+            background-color: var(--live-red);
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 5px;
+            position: relative;
+            animation: pulse-red 1.5s infinite ease-out;
+        }
+        @keyframes pulse-red {
+            0% { transform: scale(0.8); opacity: 0.7; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(0.8); opacity: 0.7; }
+        }
+
+
+        /* --- Submission Section Styles --- */
+        .submission-section {
+            background-color: var(--bg-card);
+            border-radius: 8px;
+            padding: 40px;
+            margin-bottom: 80px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .submission-section h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3.5em;
+            color: var(--accent-light-purple);
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+            text-align: center;
+            text-shadow: 0 0 15px rgba(106, 90, 205, 0.5);
+        }
+
+        .submission-section p {
+            font-size: 1.1em;
+            color: var(--text-muted);
+            margin-bottom: 1em;
+            text-align: center;
+        }
+
+        .purpose-description {
+            font-size: 1.05em;
+            color: var(--text-light);
+            margin-bottom: 30px;
+            padding: 0 20px;
+            text-align: left;
+            line-height: 1.8;
+            border-left: 4px solid var(--accent-light-purple);
+            padding-left: 15px;
+            background-color: #2a2a2a;
+            border-radius: 4px;
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.3);
+        }
+        .purpose-description strong {
+            color: var(--accent-light-purple);
+        }
+        .purpose-description ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 15px;
+        }
+        .purpose-description li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 25px;
+            color: var(--text-light);
+        }
+        .purpose-description li::before {
+            content: '•';
+            color: var(--price-color); /* Green bullet */
+            font-size: 1.2em;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        /* --- Fixed Bottom Navigation --- */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #000000;
+            border-top: none;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            z-index: 100;
+            box-shadow: none;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            padding: 5px 0;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.75em;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+        }
+
+        /* Active state for bottom navigation (CSS-driven by body class) */
+        body.page-home .bottom-nav .nav-item[href="index.html"] {
+            color: var(--accent-dark-purple);
+            font-weight: 600;
+        }
+        body.page-home .bottom-nav .nav-item[href="index.html"] .material-icons {
+            color: var(--accent-dark-purple);
+        }
+        body.page-shop .bottom-nav .nav-item[href="shop.html"] {
+            color: var(--accent-dark-purple);
+            font-weight: 600;
+        }
+        body.page-shop .bottom-nav .nav-item[href="shop.html"] .material-icons {
+            color: var(--accent-dark-purple);
+        }
+        body.page-legal .bottom-nav .nav-item[href="legal.html"] {
+            color: var(--accent-dark-purple);
+            font-weight: 600;
+        }
+        body.page-legal .bottom-nav .nav-item[href="legal.html"] .material-icons {
+            color: var(--accent-dark-purple);
+        }
+        body.page-help .bottom-nav .nav-item[href="help.html"] {
+            color: var(--accent-dark-purple);
+            font-weight: 600;
+        }
+        body.page-help .bottom-nav .nav-item[href="help.html"] .material-icons {
+            color: var(--accent-dark-purple);
+        }
+        /* Active state for the "Add/Volunteer" page */
+        body.page-add-volunteer .bottom-nav .nav-item[href="volunteer.html"] {
+            color: var(--accent-dark-purple);
+            font-weight: 600;
+        }
+        body.page-add-volunteer .bottom-nav .nav-item[href="volunteer.html"] .material-icons {
+            color: var(--accent-dark-purple);
+        }
+
+
+        .nav-item:hover {
+            color: var(--text-light);
+        }
+        .nav-item:hover .material-icons {
+            color: var(--text-light);
+        }
+
+        .nav-item .material-icons {
+            font-size: 28px;
+            margin-bottom: 4px;
+            transition: color 0.3s ease;
+        }
+
+        /* Special styling for the plus icon (Add) */
+        /* Note: This is an action button, not a direct page link, so it won't be "active" like a page link. */
+        .bottom-nav .nav-item.register-nav-item .material-icons {
+            font-size: 36px;
+            color: var(--accent-dark-purple); /* Force active color on this page */
+        }
+
+
+        /* --- Global Modal Styles --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-overlay.show-modal {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: var(--bg-card);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-overlay.show-modal .modal-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .modal-content h2 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-light);
+            font-size: 1.8em;
+            margin-top: 0;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .modal-content .close-button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: var(--text-muted);
+            font-size: 28px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .modal-content .close-button:hover {
+            color: var(--text-light);
+        }
+
+        /* Form Specific Styles */
+        .submission-form label {
+            display: block;
+            font-size: 0.9em;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            text-align: left;
+        }
+
+        .submission-form input[type="text"],
+        .submission-form input[type="number"],
+        .submission-form input[type="email"],
+        .submission-form textarea,
+        .submission-form select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            background-color: var(--bg-darkest);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            color: var(--text-light);
+            font-size: 1em;
+            box-sizing: border-box;
+        }
+
+        .submission-form input[type="text"]:focus,
+        .submission-form input[type="number"]:focus,
+        .submission-form input[type="email"]:focus,
+        .submission-form textarea:focus,
+        .submission-form select:focus {
+            border-color: var(--accent-light-purple);
+            outline: none;
+            box-shadow: 0 0 8px rgba(106, 90, 205, 0.4);
+        }
+
+        .submission-form textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .submission-form button[type="submit"] {
+            background-color: var(--accent-dark-purple);
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .submission-form button[type="submit"]:hover {
+            background-color: var(--accent-light-purple);
+            transform: translateY(-2px);
+        }
+
+        /* Styles for Add/Create Modal Buttons */
+        #addCreateModal .add-create-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        #addCreateModal .add-create-options button,
+        #addCreateModal .add-create-options a button { /* Added A for buttons wrapped in links */
+            background-color: var(--accent-dark-purple);
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center; /* Ensure text is centered for linked buttons */
+        }
+        #addCreateModal .add-create-options button:hover,
+        #addCreateModal .add-create-options a button:hover {
+            background-color: var(--accent-light-purple);
+            transform: translateY(-2px);
+        }
+
+        /* --- Resources Menu Modal Specific Styles (Copied from Help Page) --- */
+        #resourcesMenuModal h2 {
+            color: var(--accent-light-purple);
+            text-shadow: 0 0 10px rgba(106, 90, 205, 0.4);
+            margin-bottom: 20px;
+        }
+        .resources-menu-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px; /* Spacing between menu items */
+        }
+        .resources-menu-options a {
+            display: block; /* Make the whole area clickable */
+            background-color: var(--bg-darkest);
+            color: var(--text-light);
+            padding: 15px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: 500;
+            transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .resources-menu-options a:hover {
+            background-color: var(--accent-dark-purple);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+        .resources-menu-options a .material-icons {
+            font-size: 24px;
+            color: var(--accent-light-purple); /* Icon color */
+            transition: color 0.2s ease;
+        }
+        .resources-menu-options a:hover .material-icons {
+            color: white; /* Icon color on hover */
+        }
+
+        /* --- Contact Form Modal Specific Styles (Copied from Help Page) --- */
+        #contactFormModal h2 {
+            color: var(--accent-light-purple);
+            text-shadow: 0 0 10px rgba(106, 90, 205, 0.4);
+            margin-bottom: 20px;
+        }
+        .contact-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9em;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea {
+            width: calc(100% - 20px); /* Adjust for padding */
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background-color: var(--bg-darkest);
+            color: var(--text-light);
+            font-family: 'Roboto', sans-serif;
+            font-size: 1em;
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+        }
+        .contact-form input[type="text"]:focus,
+        .contact-form input[type="email"]:focus,
+        .contact-form textarea:focus {
+            outline: none; /* Remove the default browser outline */
+            border-color: var(--accent-light-purple); /* Change border color to purple */
+            box-shadow: 0 0 0 3px rgba(106, 90, 205, 0.5); /* Add a purple shadow for better visibility */
+        }
+        .contact-form textarea {
+            resize: vertical; /* Allow vertical resizing */
+            min-height: 120px;
+        }
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: var(--text-muted);
+            opacity: 0.7;
+        }
+        .contact-form button[type="submit"] {
+            background-color: var(--accent-dark-purple);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            width: 100%;
+            box-sizing: border-box;
+            margin-top: 10px;
+        }
+        .contact-form button[type="submit"]:hover {
+            background-color: var(--accent-light-purple);
+            transform: translateY(-2px);
+        }
+        .contact-form .mail-note {
+            font-size: 0.85em;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        /* Thank You Message Styling */
+        .thank-you-message {
+            display: none; /* Hidden by default */
+            text-align: center;
+            padding: 30px;
+            color: var(--text-light);
+        }
+        .thank-you-message h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3em;
+            color: var(--price-color); /* Green for success */
+            margin-bottom: 20px;
+        }
+        .thank-you-message p {
+            font-size: 1.1em;
+            color: var(--text-muted);
+            margin-bottom: 1.5em;
+        }
+        .thank-you-message ul {
+            list-style: none; /* Remove default bullet points */
+            padding: 0;
+            margin: 20px 0;
+            text-align: left; /* Align list items to left */
+            display: inline-block; /* Allow centering of the block */
+        }
+        .thank-you-message li {
+            margin-bottom: 10px;
+            color: var(--text-light);
+            font-size: 1em;
+        }
+        .thank-you-message li strong {
+            color: var(--accent-light-purple);
+        }
+        .thank-you-message a {
+            color: var(--accent-light-purple);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .thank-you-message a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- Responsive Adjustments --- */
+        @media (max-width: 992px) {
+            #header-spacer { height: 50px; }
+            #main-header { padding: 8px 15px; } /* Adjust header padding */
+            #site-title { font-size: 1.8em; }
+            .submission-section h2 { font-size: 2.8em; }
+            .submission-section p { font-size: 1em; }
+            .purpose-description { font-size: 1em; padding: 0 15px; }
+            .purpose-description li { padding-left: 20px; }
+        }
+
+        @media (max-width: 768px) {
+            #header-spacer { height: 40px; }
+            #main-header { padding: 5px 10px; } /* Adjust header padding */
+            #site-title { font-size: 1.3em; letter-spacing: 0.5px; }
+            .submission-section { padding: 25px; }
+            .submission-section h2 { font-size: 2.4em; }
+            .submission-section p { font-size: 0.9em; }
+            .bottom-nav .material-icons { font-size: 24px; }
+            .nav-item { font-size: 0.65em; }
+            .modal-content { padding: 20px; max-width: 95%; }
+            .modal-content h2 { font-size: 1.5em; margin-bottom: 20px; }
+            .submission-form label { font-size: 0.85em; }
+            .submission-form input, .submission-form textarea, .submission-form select { padding: 10px; font-size: 0.9em; margin-bottom: 15px; }
+            .submission-form button[type="submit"] { padding: 12px 20px; font-size: 1em; }
+            .purpose-description { font-size: 0.95em; padding: 0 10px; }
+            .purpose-description li { padding-left: 18px; }
+            .purpose-description li::before { font-size: 1em; }
+            /* Modal-specific responsive styles */
+            .resources-menu-options a { padding: 12px 15px; font-size: 1em; }
+            .contact-form input[type="text"], .contact-form input[type="email"], .contact-form textarea { width: calc(100% - 20px); }
+        }
+
+        @media (max-width: 480px) {
+            #header-spacer { height: 30px; }
+            #main-header { padding: 5px 10px; } /* Adjust header padding */
+            #site-title { font-size: 1.0em; letter-spacing: 0px; }
+            .submission-section h2 { font-size: 1.8em; }
+            .submission-section p { font-size: 0.8em; }
+            .purpose-description { font-size: 0.9em; padding: 0 5px; }
+            .purpose-description li { padding-left: 15px; }
+            .purpose-description li::before { font-size: 0.9em; }
+        }
+    </style>
+</head>
+<body class="page-add-volunteer"> <div id="main-page-content">
+        <header id="main-header">
+            <h1 id="site-title">TRUE MATCH</h1>
+            <div class="header-icons-group">
+                <a href="#" class="header-icon-link" id="openLiveLink">
+                    <span style="display:none;" class="material-icons">sensors_waves</span>
+                    <span>Live</span>
+                    <span class="live-indicator"></span>
+                </a>
+                <a href="#" class="header-icon-link" id="openResourcesMenuModalLink">
+                    <span class="material-icons">menu_book</span>
+                    <span>Resources</span>
+                </a>
+            </div>
+        </header>
+        <div id="header-spacer"></div>
+
+        <div class="container">
+            <div id="volunteerSubmissionSection" class="submission-section">
+                <div id="volunteerSubmissionFormContent">
+                    <h2>Volunteer & Donate</h2>
+                    <p>Your generosity empowers us to make a tangible difference. Every contribution, big or small, helps us build a safer and more inclusive future for LGBTQ+ individuals across Africa.</p>
+
+                    <div class="purpose-description">
+                        <p>Your generous contribution directly fuels our mission to create a safer, more inclusive environment for LGBTQ+ individuals across Africa. Specifically, your donation helps us provide:</p>
+                        <ul>
+                            <li><strong>Emergency Aid:</strong> Secure housing, food, and medical assistance for those facing immediate threats or displacement due to their sexual orientation or gender identity.</li>
+                            <li><strong>Advocacy and Awareness:</strong> Funding initiatives that educate communities, challenge discriminatory laws, and promote human rights through peaceful means.</li>
+                            <li><strong>Support Networks:</strong> Establishing and strengthening safe spaces and confidential support groups for LGBTQ+ Africans to connect, share experiences, and receive counseling.</li>
+                            <li><strong>Legal Assistance:</strong> Connecting individuals with legal aid to navigate unjust situations and fight for their fundamental rights.</li>
+                        </ul>
+                        <p>Thank you for partnering with us to uplift and protect vulnerable communities.</p>
+                    </div>
+
+                    <form id="volunteerForm" class="submission-form">
+                        <input type="hidden" name="_form_type" value="volunteer_submission">
+
+                        <label for="volunteerName">Your Full Name:</label>
+                        <input type="text" id="volunteerName" name="volunteerName" required placeholder="Enter your full name">
+
+                        <label for="volunteerEmail">Your Email:</label>
+                        <input type="email" id="volunteerEmail" name="volunteerEmail" required placeholder="Your email for communication">
+
+                        <label for="volunteerAmount">Donation Amount (₦):</label>
+                        <input type="number" id="volunteerAmount" name="volunteerAmount" min="1" required placeholder="Enter the amount you wish to donate (e.g., 5000)">
+                        <p style="font-size: 0.9em; color: var(--accent-light-purple); text-align: left; margin-top: -10px; margin-bottom: 20px;">*The amount you set here is your direct donation to our cause.</p>
+
+                        <button type="submit">Proceed to Payment & Donate</button>
+                    </form>
+                </div>
+
+                <div id="thankYouMessage" class="thank-you-message">
+                    <h2>Thank You for Your Generous Donation!</h2>
+                    <p>Your contribution means the world to us and the communities we serve. Your payment was successful!</p>
+                    <p>We deeply appreciate your commitment to bettering the community and helping LGBTQ+ individuals in danger across Africa.</p>
+                    <p>A confirmation email with details of your donation has been sent to your inbox. If you have any questions, feel free to contact us at <a href="mailto:submissions@truematchcreations.com" class="submission-email-link">submissions@truematchcreations.com</a>.</p>
+                    <p>Together, we are making a difference.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-nav">
+            <a href="index.html" class="nav-item">
+                <span class="material-icons">home</span>
+                <span>Home</span>
+            </a>
+            <a href="shop.html" class="nav-item">
+                <span class="material-icons">storefront</span>
+                <span>Shop</span>
+            </a>
+            <a href="volunteer.html" class="nav-item register-nav-item" id="openAddCreateModalLink"> <span class="material-icons">add_circle</span>
+                <span>Add</span>
+            </a>
+            <a href="legal.html" class="nav-item">
+                <span class="material-icons">policy</span>
+                <span>Legal</span>
+            </a>
+            <a href="help.html" class="nav-item">
+                <span class="material-icons">help_outline</span>
+                <span>Help</span>
+            </a>
+        </div>
+    </div>
+
+    <div id="resourcesMenuModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-button material-icons">close</span>
+            <h2>Resources</h2>
+            <div class="resources-menu-options">
+                <a href="resources-all.html"> <span class="material-icons">article</span> Article, Blog, News </a>
+                <a href="coming-out-stories.html"> <span class="material-icons">volunteer_activism</span> Coming Out Stories </a>
+                <a href="courses-under-construction.html"> <span class="material-icons">school</span> Courses </a>
+                <a href="resources-fashion.html"> <span class="material-icons">accessibility</span> Fashion Designing </a>
+                <a href="resources-modeling.html"> <span class="material-icons">person_add</span> Modelling </a>
+                <a href="resources-content-creation.html"> <span class="material-icons">video_library</span> Content Creation </a>
+                <a href="resources-agriculture.html"> <span class="material-icons">eco</span> Agriculture </a>
+                <a href="resources-testimonials.html"> <span class="material-icons">rate_review</span> Testimonials </a>
+                <a href="resources-events.html"> <span class="material-icons">event</span> LGBTQ+ Events World </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="addCreateModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-button material-icons">close</span>
+            <h2>Add or Create</h2>
+            <div class="add-create-options">
+                <a href="add-product.html"><button>Add a Product</button></a>
+                <a href="submit-book.html"><button>Submit a Book</button></a>
+                <a href="submit-movie.html"><button>Submit a Movie</button></a>
+                <a href="volunteer.html"><button>Volunteer & Donate</button></a>
+                <a style="display: none;" href="create-card.html" id="createGayCardLink"><button>Create Your Gay Card</button></a>
+            </div>
+        </div>
+    </div>
+
+    <div id="contactFormModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-button material-icons">close</span>
+            <h2>Contact Us</h2>
+            <form id="contactForm" class="contact-form">
+                <label for="contactName">Your Name:</label>
+                <input type="text" id="contactName" placeholder="Enter your name" required>
+                <label for="contactEmail">Your Email:</label>
+                <input type="email" id="contactEmail" placeholder="Enter your email" required>
+                <label for="contactSubject">Subject:</label>
+                <input type="text" id="contactSubject" placeholder="Subject of your inquiry" required>
+                <label for="contactMessage">Message:</label>
+                <textarea id="contactMessage" placeholder="Type your message here..." required></textarea>
+                <button type="submit">Send Email</button>
+                <p class="mail-note"> * Clicking 'Send Email' will open your default email client with your message pre-filled. You will need to click 'Send' again in your email client. </p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // --- CONFIGURATION ---
+        const PAYSTACK_PUBLIC_KEY = 'pk_live_6b671064b6a716c1ceffe82bf20a28c317a69584'; // YOUR PAYSTACK PUBLIC KEY
+        const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xzzrqzrl'; // YOUR FORMSPREE ENDPOINT
+        const SUBMISSION_EMAIL = 'submissions@truematchcreations.com'; // Email for sending confirmation/support
+
+        // --- DOM Elements (Common & Specific) ---
+        const volunteerForm = document.getElementById('volunteerForm');
+        const volunteerSubmissionFormContent = document.getElementById('volunteerSubmissionFormContent');
+        const thankYouMessage = document.getElementById('thankYouMessage');
+        const thankYouEmailLink = thankYouMessage.querySelector('a');
+
+        // Modals & their triggers
+        const resourcesMenuModal = document.getElementById('resourcesMenuModal');
+        const resourcesMenuCloseButton = resourcesMenuModal ? resourcesMenuModal.querySelector('.close-button') : null;
+        const openResourcesMenuModalLink = document.getElementById('openResourcesMenuModalLink');
+
+        const addCreateModal = document.getElementById('addCreateModal');
+        const addCreateModalCloseButton = addCreateModal ? addCreateModal.querySelector('.close-button') : null;
+        const openAddCreateModalLink = document.getElementById('openAddCreateModalLink'); // This is the "Add" button in bottom nav
+
+        const contactFormModal = document.getElementById('contactFormModal');
+        const contactFormCloseButton = contactFormModal ? contactFormModal.querySelector('.close-button') : null;
+        const openContactFormModalLink = document.getElementById('openContactFormModalLink'); // This might not be on the current page, but good to have if added
+
+        // "Live" link
+        const openLiveLink = document.getElementById('openLiveLink');
+
+        // --- Utility Functions ---
+        function showModal(modalElement) {
+            if (modalElement) {
+                modalElement.classList.add('show-modal');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling background
+            }
+        }
+
+        function hideModal(modalElement) {
+            if (modalElement) {
+                modalElement.classList.remove('show-modal');
+                document.body.style.overflow = ''; // Restore scrolling background
+            }
+        }
+
+        function resetForm(formElement) {
+            formElement.reset(); // Clear form fields
+            const formElements = formElement.elements;
+            for (let i = 0; i < formElements.length; i++) {
+                formElements[i].disabled = false; // Re-enable fields
+            }
+            formElement.querySelector('button[type="submit"]').textContent = 'Proceed to Payment & Donate'; // Reset button text
+            // Hide thank you message and show form content
+            volunteerSubmissionFormContent.style.display = 'block';
+            thankYouMessage.style.display = 'none';
+        }
+
+        // --- Event Listeners ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentPagePath = window.location.pathname;
+            const currentPageFileName = currentPagePath.split('/').pop();
+
+            // --- Active state for bottom navigation (JavaScript-driven) ---
+            const bottomNavItems = document.querySelectorAll('.bottom-nav .nav-item');
+            bottomNavItems.forEach(item => {
+                item.classList.remove('active'); // Remove 'active' from ALL items first
+                const itemHref = item.getAttribute('href');
+                if (itemHref === currentPageFileName) {
+                    item.classList.add('active');
+                }
+            });
+            // Explicitly ensure "Add" button is active on this page since its href is 'volunteer.html'
+            document.querySelector('.bottom-nav .nav-item[href="volunteer.html"]').classList.add('active');
+
+
+            // Update email links in thank you messages
+            if (thankYouEmailLink) {
+                thankYouEmailLink.href = `mailto:${SUBMISSION_EMAIL}`;
+                thankYouEmailLink.textContent = SUBMISSION_EMAIL;
+            }
+
+            // --- Modal Open/Close Logic for all modals ---
+            // Resources Menu Modal (Header)
+            if (openResourcesMenuModalLink) {
+                openResourcesMenuModalLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showModal(resourcesMenuModal);
+                });
+            }
+            if (resourcesMenuCloseButton) {
+                resourcesMenuCloseButton.addEventListener('click', () => {
+                    hideModal(resourcesMenuModal);
+                });
+            }
+            if (resourcesMenuModal) {
+                resourcesMenuModal.addEventListener('click', (e) => {
+                    if (e.target === resourcesMenuModal) {
+                        hideModal(resourcesMenuModal);
+                    }
+                });
+            }
+
+            // Add/Create Modal (Bottom Nav "Add" button)
+            if (openAddCreateModalLink) {
+                openAddCreateModalLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showModal(addCreateModal);
+                });
+            }
+            if (addCreateModalCloseButton) {
+                addCreateModalCloseButton.addEventListener('click', () => {
+                    hideModal(addCreateModal);
+                });
+            }
+            if (addCreateModal) {
+                addCreateModal.addEventListener('click', (e) => {
+                    if (e.target === addCreateModal) {
+                        hideModal(addCreateModal);
+                    }
+                });
+            }
+
+            // Contact Form Modal (if added later, currently no trigger on this page)
+            if (openContactFormModalLink) {
+                openContactFormModalLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showModal(contactFormModal);
+                });
+            }
+            if (contactFormCloseButton) {
+                contactFormCloseButton.addEventListener('click', () => {
+                    hideModal(contactFormModal);
+                });
+            }
+            if (contactFormModal) {
+                contactFormModal.addEventListener('click', (e) => {
+                    if (e.target === contactFormModal) {
+                        hideModal(contactFormModal);
+                    }
+                });
+            }
+
+            // "Live" link functionality (placeholder for now)
+            if (openLiveLink) {
+                openLiveLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    alert('Navigating to Live Content! (This link is a placeholder)');
+                });
+            }
+
+            // Contact Form Submission (opens email client) - Included for completeness
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const name = document.getElementById('contactName').value;
+                    const email = document.getElementById('contactEmail').value;
+                    const subject = document.getElementById('contactSubject').value;
+                    const message = document.getElementById('contactMessage').value;
+                    const mailtoLink = `mailto:iceconsort@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+                    window.location.href = mailtoLink;
+                    hideModal(contactFormModal); // Hide modal after initiating mailto
+                    contactForm.reset(); // Clear the form
+                });
+            }
+
+            // --- Volunteer Form Handling (Existing Logic) ---
+            if (volunteerForm) {
+                volunteerForm.addEventListener('submit', async function(event) {
+                    event.preventDefault(); // Prevent default form submission
+
+                    const volunteerName = document.getElementById('volunteerName').value;
+                    const volunteerEmail = document.getElementById('volunteerEmail').value;
+                    const volunteerAmountInput = document.getElementById('volunteerAmount');
+                    const volunteerAmount = parseFloat(volunteerAmountInput.value);
+
+                    if (isNaN(volunteerAmount) || volunteerAmount <= 0) {
+                        alert('Please enter a valid donation amount greater than 0.');
+                        return;
+                    }
+
+                    const amountInKobo = volunteerAmount * 100;
+
+                    const handler = PaystackPop.setup({
+                        key: PAYSTACK_PUBLIC_KEY,
+                        email: volunteerEmail, // Use the volunteer's email for Paystack
+                        amount: amountInKobo,
+                        currency: 'NGN', // Assuming Nigerian Naira
+                        ref: '' + Math.floor((Math.random() * 1000000000) + 1), // Unique reference
+                        metadata: {
+                            custom_fields: [
+                                { display_name: "Volunteer Name", variable_name: "volunteer_name", value: volunteerName },
+                                { display_name: "Donation Amount", variable_name: "donation_amount", value: volunteerAmount }
+                            ]
+                        },
+                        callback: function(response) {
+                            // Payment successful, now submit to Formspree
+                            const paymentRef = response.reference;
+                            const formData = new FormData(volunteerForm);
+                            formData.append('paystack_reference', paymentRef);
+                            formData.append('donation_amount', volunteerAmount); // Add actual amount paid
+                            formData.append('_form_type', 'volunteer_submission'); // Explicitly define type
+
+                            // Disable form fields to prevent double submission
+                            const formElements = volunteerForm.elements;
+                            for (let i = 0; i < formElements.length; i++) {
+                                formElements[i].disabled = true;
+                            }
+                            volunteerForm.querySelector('button[type="submit"]').textContent = 'Submitting...';
+
+                            fetch(FORMSPREE_ENDPOINT, {
+                                method: 'POST',
+                                body: formData,
+                                headers: {
+                                    'Accept': 'application/json'
+                                }
+                            })
+                            .then(formspreeResponse => {
+                                if (formspreeResponse.ok) {
+                                    // Formspree submission successful
+                                    volunteerSubmissionFormContent.style.display = 'none';
+                                    thankYouMessage.style.display = 'block';
+                                    window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top
+                                } else {
+                                    // Formspree submission failed
+                                    formspreeResponse.json().then(data => {
+                                        alert('Oops! There was an issue submitting your donation. Please contact support. Error: ' + (data.errors ? JSON.stringify(data.errors) : 'Unknown error'));
+                                    });
+                                    // Re-enable form fields on error
+                                    resetForm(volunteerForm);
+                                }
+                            })
+                            .catch(error => {
+                                alert('Oops! Network error during donation submission. Please check your connection and try again.');
+                                console.error('Formspree submission error:', error);
+                                // Re-enable form fields on error
+                                resetForm(volunteerForm);
+                            });
+                        },
+                        onClose: function() {
+                            // User closed the payment popup
+                            alert('Payment window closed. Your donation was not completed.');
+                        }
+                    });
+                    handler.openIframe(); // Open the Paystack payment modal
+                });
+            }
+        });
+    </script>
+</body>
+</html>
