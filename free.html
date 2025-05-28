@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrueMatch Creations - Coming Out Stories</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Bebas+Neue&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        /* --- Color Variables --- */
+        :root {
+            --bg-darkest: #121212; /* Very dark background */
+            --bg-card: #1a1a1a; /* Slightly lighter for cards */
+            --text-light: #e0e0e0;
+            --text-muted: #888888; /* Darker muted text for descriptions */
+            --accent-dark-purple: #483D8B; /* Dark Slate Blue - main accent */
+            --accent-light-purple: #6A5ACD; /* Medium Slate Blue - hover/highlight */
+            --border-color: #333333;
+            --price-color: #00FF00; /* Bright Green for prices */
+            --error-color: #FF0000; /* Red for errors */
+            --button-color: #555555; /* Dark button background */
+            --button-hover-color: #777777; /* Lighter button on hover */
+            --live-red: #FF0000; /* For pulsing live indicator */
+        }
+
+        /* --- Global Styles --- */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-darkest);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px 80px; /* Padding for content, leaving space for fixed footer */
+            box-sizing: border-box;
+        }
+
+        /* --- Main Header --- */
+        #main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            background-color: rgba(0, 0, 0, 0.9);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            box-sizing: border-box;
+        }
+
+        #site-title {
+            font-family: 'Bebas Neue', sans-serif;
+            color: var(--accent-dark-purple);
+            font-size: 2em;
+            letter-spacing: 1px;
+            margin: 0;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        #header-spacer {
+            height: 60px; /* Matching header height */
+        }
+
+        /* --- Resources & Live Icons in Header --- */
+        .header-icons-group {
+            display: flex;
+            align-items: center;
+            gap: 15px; /* Spacing between the two icon groups */
+            margin-left: auto; /* Push to the right */
+        }
+
+        .header-icon-link {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.9em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .header-icon-link:hover {
+            color: var(--accent-light-purple);
+        }
+
+        .header-icon-link .material-icons {
+            font-size: 24px;
+            color: var(--text-light);
+            transition: color 0.3s ease;
+        }
+
+        .header-icon-link:hover .material-icons {
+            color: var(--accent-light-purple);
+        }
+
+        /* Live Indicator */
+        .live-indicator {
+            width: 8px;
+            height: 8px;
+            background-color: var(--live-red);
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 5px;
+            position: relative;
+            animation: pulse-red 1.5s infinite ease-out;
+        }
+
+        @keyframes pulse-red {
+            0% { transform: scale(0.8); opacity: 0.7; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(0.8); opacity: 0.7; }
+        }
+
+        /* --- Fixed Bottom Navigation --- */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #000000;
+            border-top: none;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            z-index: 100;
+            box-shadow: none;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            padding: 5px 0;
+            color: var(--text-muted); /* Default for all nav items */
+            text-decoration: none;
+            font-size: 0.75em;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-item .material-icons {
+            font-size: 28px;
+            margin-bottom: 4px;
+            color: var(--text-muted); /* Default for all nav icons */
+            transition: color 0.3s ease;
+        }
+
+        /* Hover states */
+        .nav-item:hover {
+            color: var(--text-light);
+        }
+
+        .nav-item:hover .material-icons {
+            color: var(--text-light);
+        }
+
+        /* --- CSS for "no matter what" highlighting based on unique body class --- */
+        /* IMPORTANT: You need to copy and paste these blocks into the <style> section of *every* HTML file in your project.
+           Each block should correspond to the 'body' class of that specific page. */
+
+        /* Home Page - Only active when body has 'page-home' class */
+        body.page-home .bottom-nav .nav-item[href="index.html"] {
+            color: var(--accent-dark-purple);
+            font-weight: 600;
+        }
+        body.page-home .bottom-nav .nav-item[href="index.html"] .material-icons {
+            color: var(--accent-dark-purple);
+        }
+
+        /* Shop Page - Only active when body has 'page-shop' class */
+        body.page-shop .bottom-nav .nav-item[href="shop.html"] {
+            color: var(--accent-dark-purple);
+            font-weight: 600;
+        }
+        body.page-shop .bottom-nav .nav-item[href="shop.html"] .material-icons {
+            color: var(--accent-dark-purple);
+        }
+
+        /* Legal Page - Only active when body has 'page-legal' class */
+        body.page-legal .bottom-nav .nav-item[href="legal.html"] {
+            color: var(--accent-dark-purple);
+            font-weight: 600;
+        }
+        body.page-legal .bottom-nav .nav-item[href="legal.html"] .material-icons {
+            color: var(--accent-dark-purple);
+        }
+
+        /* Help Page - Only active when body has 'page-help' class */
+        body.page-help .bottom-nav .nav-item[href="help.html"] {
+            color: var(--accent-dark-purple);
+            font-weight: 600;
+        }
+        body.page-help .bottom-nav .nav-item[href="help.html"] .material-icons {
+            color: var(--accent-dark-purple);
+        }
+
+        /* Coming Out Stories Page - Only active when body has 'page-coming-out-stories' class */
+        /* IMPORTANT: The 'Coming Out Stories' link is usually found in the Resources modal.
+           If you want to highlight the 'Resources' icon in the header when on this page, you'd target it differently.
+           For now, none of the bottom nav items will be highlighted *by CSS* on this page. */
+        body.page-coming-out-stories .header-icon-link#openResourcesMenuModalLink {
+            color: var(--accent-dark-purple);
+        }
+        body.page-coming-out-stories .header-icon-link#openResourcesMenuModalLink .material-icons {
+            color: var(--accent-dark-purple);
+        }
+
+
+        /* Special styling for the plus icon (Add) */
+        /* Note: This is an action button, not a direct page link, so it won't be "active" like a page link. */
+        .bottom-nav .nav-item.register-nav-item .material-icons {
+            font-size: 36px;
+            color: var(--text-muted); /* Keeps its default muted color */
+        }
+
+        /* --- Global Modal Styles (reused for Resources Menu Modal, Add/Create, Contact Form) --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-overlay.show-modal {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: var(--bg-card);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
+            width: 90%;
+            max-width: 500px; /* Adjusted for menu and forms */
+            position: relative;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-overlay.show-modal .modal-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .modal-content h2 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-light);
+            font-size: 1.8em;
+            margin-top: 0;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .modal-content .close-button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: var(--text-muted);
+            font-size: 28px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .modal-content .close-button:hover {
+            color: var(--text-light);
+        }
+
+        /* --- Resources Menu Modal Specific Styles --- */
+        #resourcesMenuModal h2 {
+            color: var(--accent-light-purple);
+            text-shadow: 0 0 10px rgba(106, 90, 205, 0.4);
+            margin-bottom: 20px;
+        }
+
+        .resources-menu-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px; /* Spacing between menu items */
+        }
+
+        .resources-menu-options a {
+            display: block; /* Make the whole area clickable */
+            background-color: var(--bg-darkest);
+            color: var(--text-light);
+            padding: 15px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: 500;
+            transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .resources-menu-options a:hover {
+            background-color: var(--accent-dark-purple);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+
+        .resources-menu-options a .material-icons {
+            font-size: 24px;
+            color: var(--accent-light-purple); /* Icon color */
+            transition: color 0.2s ease;
+        }
+
+        .resources-menu-options a:hover .material-icons {
+            color: white; /* Icon color on hover */
+        }
+
+        /* Add/Create Modal specific styles */
+        #addCreateModal .add-create-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        #addCreateModal .add-create-options button {
+            background-color: var(--accent-dark-purple);
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        #addCreateModal .add-create-options button:hover {
+            background-color: var(--accent-light-purple);
+            transform: translateY(-2px);
+        }
+
+        /* Contact Form Modal Styles (copied from help page for consistency) */
+        #contactFormModal h2 {
+            color: var(--accent-light-purple);
+            text-shadow: 0 0 10px rgba(106, 90, 205, 0.4);
+            margin-bottom: 20px;
+        }
+        .contact-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9em;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea {
+            width: calc(100% - 20px); /* Adjust for padding */
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background-color: var(--bg-darkest);
+            color: var(--text-light);
+            font-family: 'Roboto', sans-serif;
+            font-size: 1em;
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+        }
+        /* Added focus styles */
+        .contact-form input[type="text"]:focus,
+        .contact-form input[type="email"]:focus,
+        .contact-form textarea:focus {
+            outline: none; /* Remove the default browser outline */
+            border-color: var(--accent-light-purple); /* Change border color to purple */
+            box-shadow: 0 0 0 3px rgba(106, 90, 205, 0.5); /* Add a purple shadow for better visibility */
+        }
+        .contact-form textarea {
+            resize: vertical; /* Allow vertical resizing */
+            min-height: 120px;
+        }
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: var(--text-muted);
+            opacity: 0.7;
+        }
+        .contact-form button[type="submit"] {
+            background-color: var(--accent-dark-purple);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            width: 100%;
+            box-sizing: border-box;
+            margin-top: 10px;
+        }
+        .contact-form button[type="submit"]:hover {
+            background-color: var(--accent-light-purple);
+            transform: translateY(-2px);
+        }
+        .contact-form .mail-note {
+            font-size: 0.85em;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 15px;
+        }
+
+
+        /* --- Coming Out Story Specific Styles --- */
+        .page-title {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-light);
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 40px;
+            font-size: 2.5em;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 1.1em;
+            margin-bottom: 50px;
+        }
+
+        .story-section {
+            background-color: var(--bg-card);
+            padding: 40px;
+            border-radius: 8px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+        }
+
+        .story-section h2 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--accent-light-purple);
+            font-size: 2em;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(106, 90, 205, 0.3);
+            text-align: center;
+        }
+
+        .story-author-date {
+            font-size: 0.9em;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        .story-content {
+            font-size: 1.05em;
+            line-height: 1.8;
+        }
+
+        .story-content p {
+            margin-bottom: 1.5em;
+        }
+
+        .story-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 20px auto; /* Centered image */
+            display: block;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+        }
+
+        .story-intro {
+            font-style: italic;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.1em;
+        }
+
+        /* Separation between stories if more than one */
+        .story-section + .story-section {
+            margin-top: 60px; /* More space between distinct stories */
+            border-top: 1px dashed var(--border-color); /* Visual separator */
+            padding-top: 60px;
+        }
+
+        /* --- Responsive Adjustments --- */
+        @media (max-width: 768px) {
+            #header-spacer {
+                height: 40px;
+            }
+            #main-header {
+                padding: 5px 10px;
+            }
+            #site-title {
+                font-size: 1.3em;
+                letter-spacing: 0.5px;
+            }
+            .header-icon-link {
+                font-size: 0.8em;
+            }
+            .header-icon-link .material-icons {
+                font-size: 20px;
+            }
+            .live-indicator {
+                width: 6px;
+                height: 6px;
+            }
+            .modal-content {
+                padding: 20px;
+                max-width: 95%;
+            }
+            .modal-content h2 {
+                font-size: 1.5em;
+                margin-bottom: 20px;
+            }
+            .resources-menu-options a {
+                padding: 12px 15px;
+                font-size: 1em;
+            }
+            .page-title {
+                font-size: 2em;
+            }
+            .page-subtitle {
+                font-size: 1em;
+            }
+            .story-section {
+                padding: 20px;
+                margin-top: 20px;
+            }
+            .story-section h2 {
+                font-size: 1.6em;
+            }
+            .story-author-date {
+                font-size: 0.8em;
+            }
+            .story-content {
+                font-size: 1em;
+            }
+            .story-section + .story-section {
+                margin-top: 40px;
+                padding-top: 40px;
+            }
+            .bottom-nav .material-icons {
+                font-size: 24px;
+            }
+            .nav-item {
+                font-size: 0.65em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #header-spacer {
+                height: 30px;
+            }
+            #site-title {
+                font-size: 1.0em;
+                letter-spacing: 0px;
+            }
+            .page-title {
+                font-size: 1.8em;
+            }
+            .story-section {
+                padding: 15px;
+            }
+            .story-section h2 {
+                font-size: 1.3em;
+            }
+        }
+    </style>
+</head>
+<body class="page-coming-out-stories"> <div id="main-page-content">
+        <header id="main-header">
+            <h1 id="site-title">Mìlàájé</h1> <div class="header-icons-group">
+                <a href="#" class="header-icon-link" id="openLiveLink">
+                    <span style="display:none;" class="material-icons">sensors_waves</span>
+                    <span>Live</span>
+                    <span class="live-indicator"></span>
+                </a>
+                <a href="#" class="header-icon-link" id="openResourcesMenuModalLink">
+                    <span class="material-icons">menu_book</span>
+                    <span>Resources</span>
+                </a>
+            </div>
+        </header>
+
+        <div id="header-spacer"></div>
+
+        <div class="container">
+            <h1 class="page-title">Coming Out Stories</h1>
+            <p class="page-subtitle">Real stories from our community members, shared with courage and love.</p>
+
+            <div class="story-section">
+                <h2>Ethan's Journey to Authenticity</h2>
+                <div class="story-author-date">
+                    <span>By Ethan M.</span>
+                    <span>May 23, 2025</span>
+                </div>
+                <div class="story-content">
+                    <p class="story-intro">"For years, I lived with a secret, a heavy weight on my shoulders. Today, I stand tall and proud, ready to share my journey."</p>
+                    <img src="https://via.placeholder.com/800x400/6A5ACD/FFFFFF?text=Ethan's+Story" alt="Young man looking confidently forward.">
+                    <p>My coming out story isn't dramatic, but it's deeply personal. Growing up in a small town, the idea of being gay felt like something from another world. I tried to push it down, to conform, to be what I thought everyone expected of me. It led to a lot of internal conflict and loneliness.</p>
+                    <p>It was during my first year of university that I met Sarah. She became my closest friend, and it was through her unwavering acceptance and support that I finally found the courage to truly look at myself. One night, while we were studying, I just blurted it out: "I think I'm gay."</p>
+                    <p>Her reaction was simply, "Okay. And? What else is on your mind?" That simple response was a lifeline. It showed me that the world wouldn't end. From there, I started opening up to a few other trusted friends. Each conversation was a step lighter.</p>
+                    <p>Telling my parents was the hardest part. I wrote them a letter first, because I was afraid I wouldn't be able to speak the words aloud. They were quiet for a few days, and then my mom called. She was tearful, but not with anger or disappointment. She said she loved me, and that she just wanted me to be happy. My dad took a bit longer, but he eventually came around too. It wasn't perfect, but it was acceptance.</p>
+                    <p>Today, I'm grateful for that journey. It taught me resilience, the importance of true friendship, and the immense relief that comes with living authentically. It's a continuous process, but every day is a step forward in being truly myself.</p>
+                </div>
+            </div>
+
+            <div class="story-section">
+                <h2>Maria's Rainbow Revelation</h2>
+                <div class="story-author-date">
+                    <span>By Maria P.</span>
+                    <span>May 23, 2025</span>
+                </div>
+                <div class="story-content">
+                    <p class="story-intro">"Discovering my truth felt like finding a missing piece of my soul. My coming out wasn't a single event, but a beautiful, ongoing revelation."</p>
+                    <img src="https://via.placeholder.com/800x400/483D8B/FFFFFF?text=Maria's+Journey" alt="Woman smiling brightly, looking peaceful.">
+                    <p>My story isn't about a single "aha!" moment, but rather a slow, blossoming understanding of who I am. I dated boys in high school, never quite feeling right. There was always a piece of the puzzle missing. It wasn't until college, when I met my now-partner, Alex, that everything clicked into place.</p>
+                    <p>Falling in love with Alex wasn't just about finding a partner; it was about finding myself. Her strength, kindness, and unapologetic self-love showed me what authenticity looked like. With her by my side, I started to embrace the idea that I was a lesbian.</p>
+                    <p>Coming out to my family was a mixed bag. My older sister was immediately supportive, celebrating with me. My parents, who are quite traditional, struggled initially. There were many long conversations, some tears, and a lot of learning on their part. It wasn't easy, but I knew I deserved to live my truth.</p>
+                    <p>What helped immensely was the love and patience Alex and I showed them, along with providing them with resources and answering their questions. Over time, their understanding grew, and now, years later, they not only accept but genuinely love Alex and celebrate our relationship.</p>
+                    <p>My "rainbow revelation" has taught me that coming out is often a journey, not a destination. It's about continuously choosing authenticity, and finding joy and strength in who you are. The most powerful liberation comes from within, and sharing it with the world is a beautiful act of self-love.</p>
+                </div>
+            </div>
+
+            <div class="story-section">
+                <h2>John Banana Revelation</h2>
+                <div class="story-author-date">
+                    <span>By John BP.</span>
+                    <span>May 28, 2025</span>
+                </div>
+                <div class="story-content">
+                    <p class="story-intro">"Discovering my truth felt like finding a missing piece of my soul. My coming out wasn't a single event, but a beautiful, ongoing revelation."</p>
+                    <img src="https://via.placeholder.com/800x400/483D8B/FFFFFF?text=Maria's+Journey" alt="Woman smiling brightly, looking peaceful.">
+                    <p>My story isn't about a single "aha!" moment, but rather a slow, blossoming understanding of who I am. I dated boys in high school, never quite feeling right. There was always a piece of the puzzle missing. It wasn't until college, when I met my now-partner, Alex, that everything clicked into place.</p>
+                    <p>Falling in love with Alex wasn't just about finding a partner; it was about finding myself. Her strength, kindness, and unapologetic self-love showed me what authenticity looked like. With her by my side, I started to embrace the idea that I was a lesbian.</p>
+                    <p>Coming out to my family was a mixed bag. My older sister was immediately supportive, celebrating with me. My parents, who are quite traditional, struggled initially. There were many long conversations, some tears, and a lot of learning on their part. It wasn't easy, but I knew I deserved to live my truth.</p>
+                    <p>What helped immensely was the love and patience Alex and I showed them, along with providing them with resources and answering their questions. Over time, their understanding grew, and now, years later, they not only accept but genuinely love Alex and celebrate our relationship.</p>
+                    <p>My "rainbow revelation" has taught me that coming out is often a journey, not a destination. It's about continuously choosing authenticity, and finding joy and strength in who you are. The most powerful liberation comes from within, and sharing it with the world is a beautiful act of self-love.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="bottom-nav">
+            <a href="index.html" class="nav-item">
+                <span class="material-icons">home</span>
+                <span>Home</span>
+            </a>
+            <a href="shop.html" class="nav-item">
+                <span class="material-icons">storefront</span>
+                <span>Shop</span>
+            </a>
+            <a href="#" class="nav-item register-nav-item" id="openAddCreateModalLink">
+                <span class="material-icons">add_circle</span>
+                <span>Add</span>
+            </a>
+            <a href="legal.html" class="nav-item">
+                <span class="material-icons">policy</span>
+                <span>Legal</span>
+            </a>
+            <a href="help.html" class="nav-item">
+                <span class="material-icons">help_outline</span>
+                <span>Help</span>
+            </a>
+        </div>
+    </div>
+
+    <div id="resourcesMenuModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-button material-icons">close</span>
+            <h2>Resources</h2>
+            <div class="resources-menu-options">
+                <a href="resources-all.html">
+                    <span class="material-icons">article</span> Article, Blog, News
+                </a>
+                <a href="coming-out-stories.html">
+                    <span class="material-icons">volunteer_activism</span> Coming Out Stories
+                </a>
+                <a href="courses-under-construction.html"> <span class="material-icons">school</span> Courses
+                </a>
+                <a href="resources-fashion.html">
+                    <span class="material-icons">accessibility</span> Fashion Designing
+                </a>
+                <a href="resources-modeling.html">
+                    <span class="material-icons">person_add</span> Modelling
+                </a>
+                <a href="resources-content-creation.html">
+                    <span class="material-icons">video_library</span> Content Creation
+                </a>
+                <a href="resources-agriculture.html">
+                    <span class="material-icons">eco</span> Agriculture
+                </a>
+                <a href="resources-testimonials.html">
+                    <span class="material-icons">rate_review</span> Testimonials
+                </a>
+                <a href="resources-events.html">
+                    <span class="material-icons">event</span> LGBTQ+ Events World
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="addCreateModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-button material-icons">close</span>
+            <h2>Add</h2> <div class="add-create-options">
+                <a href="add-product.html"><button>Add a Product</button></a>
+                <a href="submit-book.html"><button>Submit a Book</button></a>
+                <a href="submit-movie.html"><button>Submit a Movie</button></a>
+                <a href="volunteer.html"><button>Volunteer & Donate</button></a>
+                <a style="display: none;"href="create-card.html" id="createGayCardLink"><button>Create Your Gay Card</button></a> </div>
+        </div>
+    </div>
+
+    <div id="contactFormModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-button material-icons">close</span>
+            <h2>Contact Us</h2>
+            <form id="contactForm" class="contact-form">
+                <label for="contactName">Your Name:</label>
+                <input type="text" id="contactName" placeholder="Enter your name" required>
+                <label for="contactEmail">Your Email:</label>
+                <input type="email" id="contactEmail" placeholder="Enter your email" required>
+                <label for="contactSubject">Subject:</label>
+                <input type="text" id="contactSubject" placeholder="Subject of your inquiry" required>
+                <label for="contactMessage">Message:</label>
+                <textarea id="contactMessage" placeholder="Type your message here..." required></textarea>
+                <button type="submit">Send Email</button>
+                <p class="mail-note"> * Clicking 'Send Email' will open your default email client with your message pre-filled. You will need to click 'Send' again in your email client. </p>
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+        // --- Modal & General UI Logic ---
+        function showModal(modalElement) {
+            modalElement.classList.add('show-modal');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling background
+        }
+
+        function hideModal(modalElement) {
+            modalElement.classList.remove('show-modal');
+            document.body.style.overflow = ''; // Restore scrolling background
+        }
+
+        // --- Event Listeners ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentPagePath = window.location.pathname;
+            const currentPageFileName = currentPagePath.split('/').pop(); // E.g., "coming-out-stories.html"
+
+            // --- Active state for bottom navigation (JavaScript-driven) ---
+            const bottomNavItems = document.querySelectorAll('.bottom-nav .nav-item');
+            bottomNavItems.forEach(item => {
+                item.classList.remove('active'); // Always remove 'active' from ALL items first
+                const itemHref = item.getAttribute('href');
+                if (itemHref === currentPageFileName) {
+                    item.classList.add('active');
+                }
+            });
+
+            // --- Modals and their buttons ---
+            const resourcesMenuModal = document.getElementById('resourcesMenuModal');
+            const resourcesMenuCloseButton = resourcesMenuModal.querySelector('.close-button');
+            const openResourcesMenuModalLink = document.getElementById('openResourcesMenuModalLink');
+
+            const addCreateModal = document.getElementById('addCreateModal');
+            const addCreateModalCloseButton = addCreateModal.querySelector('.close-button');
+            const openAddCreateModalLink = document.getElementById('openAddCreateModalLink'); // Bottom nav "Add" button
+
+            const contactFormModal = document.getElementById('contactFormModal');
+            const contactFormCloseButton = contactFormModal.querySelector('.close-button');
+            // There's no direct "Contact Us" button on this page's main content,
+            // but the modal is included for consistency.
+
+            // Listeners for Resources Menu Modal (Header)
+            if (openResourcesMenuModalLink) {
+                openResourcesMenuModalLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showModal(resourcesMenuModal);
+                });
+            }
+            if (resourcesMenuCloseButton) {
+                resourcesMenuCloseButton.addEventListener('click', () => {
+                    hideModal(resourcesMenuModal);
+                });
+            }
+            if (resourcesMenuModal) {
+                resourcesMenuModal.addEventListener('click', (e) => {
+                    if (e.target === resourcesMenuModal) {
+                        hideModal(resourcesMenuModal);
+                    }
+                });
+            }
+
+            // Listeners for Add/Create Modal (Bottom Nav "Add" button)
+            if (openAddCreateModalLink) {
+                openAddCreateModalLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showModal(addCreateModal);
+                });
+            }
+            if (addCreateModalCloseButton) {
+                addCreateModalCloseButton.addEventListener('click', () => {
+                    hideModal(addCreateModal);
+                });
+            }
+            if (addCreateModal) {
+                addCreateModal.addEventListener('click', (e) => {
+                    if (e.target === addCreateModal) {
+                        hideModal(addCreateModal);
+                    }
+                });
+            }
+
+            // "Live" link functionality (placeholder for now)
+            const openLiveLink = document.getElementById('openLiveLink');
+            if (openLiveLink) {
+                openLiveLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    alert('Navigating to Live Content! (This link is a placeholder)');
+                });
+            }
+
+            // Contact Form Submission (opens email client)
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const name = document.getElementById('contactName').value;
+                    const email = document.getElementById('contactEmail').value;
+                    const subject = document.getElementById('contactSubject').value;
+                    const message = document.getElementById('contactMessage').value;
+                    const mailtoLink = `mailto:iceconsort@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+                    window.location.href = mailtoLink;
+                    hideModal(contactFormModal); // Hide modal after initiating mailto
+                    contactForm.reset(); // Clear the form
+                });
+            }
+        });
+    </script>
+</body>
+</html>
