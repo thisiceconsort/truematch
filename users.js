@@ -55,7 +55,7 @@ const verifiedUsers = {
         interested_in: 'Someone who shares a passion for entrepreneurship, travel, and sunsets.',
         is_verified: true
     }
-    // YOU CAN ADD MORE USERS HERE
+    // ADD OR REMOVE MORE USERS HERE (e.g., add new entry, or delete existing one)
     /* Example of adding a new user:
     ,
     '4321': {
