@@ -1,9 +1,1185 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    </head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify & Join community</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Bebas+Neue&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <style>
+        /* --- Global Reset & Color Variables --- */
+        * {
+            box-sizing: border-box; /* Apply globally for consistency */
+        }
+
+        :root {
+            --bg-darkest: #121212; /* Very dark background */
+            --bg-card: #1a1a1a;    /* Slightly lighter for cards */
+            --text-light: #e0e0e0;
+            --text-muted: #888888; /* Darker muted text for descriptions */
+            --accent-dark-purple: #483D8B; /* Dark Slate Blue - main accent */
+            --accent-light-purple: #6A5ACD; /* Medium Slate Blue - hover/highlight */
+            --border-color: #333333;
+            --price-color: #00FF00; /* Bright Green for prices, for contrast (used for verified status) */
+            --error-color: #FF0000; /* Red for errors */
+            /* Removed unused button colors */
+            --live-red: #FF0000; /* For pulsing live indicator */
+        }
+
+        /* --- Global Styles --- */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-darkest);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scrollbar on body */
+            scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+        }
+
+        /* Main content wrapper to control fade-in */
+        #main-page-content {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1s ease-in, visibility 1s ease-in;
+        }
+
+        #main-page-content.fade-in {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 20px 80px; /* Padding for content, leaving space for fixed footer */
+            /* box-sizing: border-box; removed due to global rule */
+        }
+
+        /* --- Main Header / Animated Title (Updated for consistent header) --- */
+        #main-header {
+            position: fixed; /* Always fixed at the top */
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100; /* Ensure it's above content */
+            background-color: rgba(0, 0, 0, 0.9); /* Always dark background */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5); /* Always shadow */
+            display: flex; /* Flexbox for alignment */
+            justify-content: space-between; /* Space title and icons */
+            align-items: center;
+            padding: 10px 20px; /* Reduced padding for consistent small header */
+            /* Removed unnecessary transitions as header is static now */
+        }
+
+        #site-title {
+            font-family: 'Bebas Neue', sans-serif;
+            color: var(--accent-dark-purple);
+            font-size: 2em; /* Consistent smaller size */
+            letter-spacing: 1px;
+            margin: 0; /* Remove default margins */
+            text-shadow: none; /* No glow in the header */
+            line-height: 1; /* For cleaner alignment */
+            flex-shrink: 0; /* Prevent it from shrinking unwantedly */
+            /* Removed unnecessary transitions as title is static now */
+        }
+
+        /* Dummy div to push content down, equal to fixed header height */
+        #header-spacer {
+            height: 60px; /* Matching the fixed header height */
+            /* Removed unnecessary transition */
+        }
+
+        .tagline {
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+            font-size: 1.5em;
+            color: var(--text-muted);
+            margin-bottom: 80px;
+            font-style: italic;
+            /* Removed unnecessary transitions and overflow/height */
+        }
+
+        /* --- Resources & Live Icons in Header (New) --- */
+        .header-icons-group {
+            display: flex;
+            align-items: center;
+            gap: 15px; /* Spacing between the two icon groups */
+            margin-left: auto; /* Push to the right */
+        }
+
+        .header-icon-link {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.9em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .header-icon-link:hover {
+            color: var(--accent-light-purple);
+        }
+
+        .header-icon-link .material-icons {
+            font-size: 24px;
+            color: var(--text-light);
+            transition: color 0.3s ease;
+        }
+
+        .header-icon-link:hover .material-icons {
+            color: var(--accent-light-purple);
+        }
+
+        /* Live Indicator */
+        .live-indicator {
+            width: 8px;
+            height: 8px;
+            background-color: var(--live-red);
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 5px;
+            position: relative;
+            animation: pulse-red 1.5s infinite ease-out;
+        }
+
+        @keyframes pulse-red {
+            0% {
+                transform: scale(0.8);
+                opacity: 0.7;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0.8);
+                opacity: 0.7;
+            }
+        }
+
+
+        /* --- Verification Section (Replaces Hero) --- */
+        .verification-section {
+            background-color: var(--bg-card);
+            border-radius: 8px;
+            padding: 40px;
+            margin-bottom: 80px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .verification-section h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3.5em;
+            color: var(--accent-light-purple);
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+            text-shadow: 0 0 15px rgba(106, 90, 205, 0.5);
+        }
+
+        .verification-input-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            align-items: center;
+        }
+
+        /* ENHANCED VERIFICATION INPUT STYLE - MADE BIGGER AND MORE PREMIUM */
+        .verification-input {
+            width: 300px; /* Made much wider */
+            padding: 30px 40px; /* Increased padding */
+            font-size: 5em; /* Made much bigger */
+            text-align: center;
+            background-color: #2a2a2a; /* Slightly lighter background */
+            /* Using a subtle linear gradient for a premium look */
+            background-image: linear-gradient(to bottom right, #2a2a2a, #1a1a1a);
+            border: 3px solid var(--accent-dark-purple); /* Thicker purple border */
+            border-radius: 20px; /* More rounded for premium feel */
+            color: var(--text-light);
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, background-image 0.3s ease;
+            font-weight: 700; /* Bolder text */
+            /* Enhanced outer glow and inner shadow for premium effect */
+            box-shadow:
+                0 0 20px rgba(72, 61, 139, 0.6), /* Stronger, softer purple glow */
+                0 0 40px rgba(72, 61, 139, 0.3), /* Wider, fainter purple glow */
+                inset 0 0 12px rgba(0,0,0,0.7); /* Stronger inner shadow for depth */
+            text-shadow: 0 0 8px rgba(255,255,255,0.4); /* Subtle text glow */
+            -webkit-appearance: none; /* Remove default number input spinners */
+            -moz-appearance: textfield; /* Firefox spinner removal */
+        }
+
+        .verification-input::placeholder {
+            color: rgba(224, 224, 224, 0.4); /* Lighter placeholder */
+            font-size: 0.8em; /* Slightly smaller placeholder text */
+            line-height: 1; /* Ensure placeholder centers vertically better */
+        }
+
+        .verification-input:focus {
+            border-color: var(--accent-light-purple);
+            box-shadow:
+                0 0 30px rgba(106, 90, 205, 1), /* Stronger, brighter glow on focus */
+                0 0 50px rgba(106, 90, 205, 0.5), /* Wider, more diffused glow on focus */
+                inset 0 0 10px rgba(0,0,0,0.9); /* Slightly less inner shadow to let glow stand out */
+            background-color: #333333; /* Slightly lighter on focus */
+            background-image: linear-gradient(to bottom right, #333333, #222222); /* Brighter gradient on focus */
+        }
+
+        .verify-button {
+            background-color: var(--accent-dark-purple);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.2em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .verify-button:hover {
+            background-color: var(--accent-light-purple);
+            transform: translateY(-2px);
+        }
+
+        .verification-message {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-top: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        .verification-message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .verification-message.verified {
+            color: var(--price-color); /* Green */
+        }
+        .verification-message.fake {
+            color: var(--error-color); /* Red */
+        }
+
+        .user-profile-display {
+            background-color: var(--bg-darkest);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 25px;
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .user-profile-display.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .user-profile-display img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-dark-purple);
+            box-shadow: 0 0 15px rgba(72, 61, 139, 0.7);
+        }
+
+        .user-profile-display h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8em;
+            margin: 0;
+            color: var(--text-light);
+        }
+
+        .user-profile-display p {
+            font-size: 1em;
+            margin: 5px 0;
+            color: var(--text-muted);
+        }
+        .user-profile-display p strong {
+            color: var(--text-light);
+        }
+
+        /* --- Join Community Section --- */
+        .join-community-section {
+            background-color: var(--bg-card);
+            border-radius: 8px;
+            padding: 40px;
+            margin-top: 60px;
+            margin-bottom: 80px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .join-community-section h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.8em;
+            color: var(--text-light);
+            margin-bottom: 25px;
+        }
+
+        .join-community-section p {
+            font-size: 1.1em;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .join-button {
+            background-color: var(--accent-dark-purple);
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.4em;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .join-button:hover {
+            background-color: var(--accent-light-purple);
+            transform: translateY(-3px);
+        }
+
+        .join-success-message {
+            background-color: var(--accent-dark-purple);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1.8em;
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 1px;
+            box-shadow: 0 0 20px rgba(72, 61, 139, 0.7);
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .join-success-message.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .join-success-message a {
+            color: white;
+            text-decoration: underline;
+            margin-top: 15px;
+            display: block;
+            font-size: 0.7em;
+            font-family: 'Roboto', sans-serif;
+        }
+
+
+        /* --- Section Titles for Rows (kept for consistency but not actively used for "rows") --- */
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 2.8em;
+            color: var(--text-light);
+            margin-top: 60px;
+            margin-bottom: 30px;
+            padding-left: 20px;
+            border-left: 6px solid var(--accent-dark-purple);
+            letter-spacing: 1px;
+        }
+
+        /* --- Fixed Bottom Navigation --- */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #000000; /* Solid black like Netflix/Vidflix */
+            border-top: none; /* Remove the border */
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0; /* Adjust padding for visual balance */
+            z-index: 100;
+            box-shadow: none; /* Remove the shadow */
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1; /* Make items take equal space */
+            padding: 5px 0; /* Add some vertical padding */
+            color: var(--text-muted); /* Muted for inactive state */
+            text-decoration: none;
+            font-size: 0.75em;
+            transition: color 0.3s ease;
+            white-space: nowrap; /* Prevent text wrapping */
+        }
+
+        /* Home Nav Item - Default Purple */
+        .nav-item.home-nav-item {
+            color: var(--accent-dark-purple); /* Default purple for home */
+        }
+        .nav-item.home-nav-item .material-icons {
+             color: var(--accent-dark-purple); /* Default purple for home */
+        }
+
+
+        /* Active state for bottom nav item - uses the purple accent color */
+        .nav-item.active {
+            color: var(--accent-dark-purple); /* Changed to purple */
+            font-weight: 600; /* Make text bolder for active item */
+        }
+        .nav-item.active .material-icons {
+            color: var(--accent-dark-purple); /* Icon also gets the active color */
+        }
+
+        /* Hover state for bottom nav item */
+        .nav-item:hover {
+            color: var(--text-light); /* Lighter on hover */
+        }
+        /* Ensure icon color changes on hover too */
+        .nav-item:hover .material-icons {
+            color: var(--text-light);
+        }
+
+        /* Material Icons specific for bottom nav */
+        .nav-item .material-icons {
+            font-size: 28px;
+            margin-bottom: 4px; /* Space between icon and text */
+            transition: color 0.3s ease; /* Smooth color transition for icon */
+        }
+
+        /* Special styling for the plus icon (now 'Add') */
+        .bottom-nav .nav-item.register-nav-item {
+            color: var(--text-muted); /* Default color when inactive */
+        }
+        .bottom-nav .nav-item.register-nav-item .material-icons {
+            font-size: 36px; /* Slightly larger */
+            color: var(--text-muted); /* Default icon color when inactive */
+        }
+        .bottom-nav .nav-item.register-nav-item.active {
+             color: var(--accent-dark-purple); /* Active text color */
+        }
+        .bottom-nav .nav-item.register-nav-item.active .material-icons {
+             color: var(--accent-dark-purple); /* Active icon color */
+        }
+        .bottom-nav .nav-item.register-nav-item:hover {
+            color: var(--accent-light-purple); /* Lighter purple on hover */
+        }
+        .bottom-nav .nav-item.register-nav-item:hover .material-icons {
+            color: var(--accent-light-purple); /* Lighter purple on hover */
+        }
+
+        /* --- Global Modal Styles (applies to both addCreateModal and registrationModal) --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent dark overlay */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000; /* Above everything else */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-overlay.show-modal {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: var(--bg-card);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            transform: translateY(20px); /* Start slightly below center */
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-overlay.show-modal .modal-content {
+            transform: translateY(0); /* Slide up to center */
+            opacity: 1;
+        }
+
+        .modal-content h2 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-light);
+            font-size: 1.8em;
+            margin-top: 0;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .modal-content .close-button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: var(--text-muted);
+            font-size: 28px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .modal-content .close-button:hover {
+            color: var(--text-light);
+        }
+
+        /* Specific styles for Add or Create Modal */
+        .add-create-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .add-create-options button {
+            background-color: var(--accent-dark-purple);
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            width: 100%;
+        }
+
+        .add-create-options button:hover {
+            background-color: var(--accent-light-purple);
+            transform: translateY(-2px);
+        }
+
+        /* Form Specific Styles for Registration Modal */
+        .registration-form label {
+            display: block;
+            font-size: 0.9em;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            text-align: left;
+        }
+        .registration-form input[type="text"],
+        .registration-form input[type="number"],
+        .registration-form textarea,
+        .registration-form select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            background-color: var(--bg-darkest);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            color: var(--text-light);
+            font-size: 1em;
+            /* box-sizing: border-box; removed due to global rule */
+        }
+        .registration-form input[type="text"]:focus,
+        .registration-form input[type="number"]:focus,
+        .registration-form textarea:focus,
+        .registration-form select:focus {
+            border-color: var(--accent-light-purple);
+            outline: none;
+            box-shadow: 0 0 8px rgba(106, 90, 205, 0.4);
+        }
+        .registration-form textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        .registration-form button[type="submit"] {
+            background-color: var(--accent-dark-purple);
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            width: 100%;
+            /* box-sizing: border-box; removed due to global rule */
+        }
+        .registration-form button[type="submit"]:hover {
+            background-color: var(--accent-light-purple);
+            transform: translateY(-2px);
+        }
+
+        /* --- FAQ Section --- */
+        .faq-section {
+            margin-top: 80px;
+            margin-bottom: 80px;
+        }
+        .faq-item {
+            background-color: var(--bg-card);
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: 600;
+            color: var(--text-light);
+            background-color: var(--bg-darkest);
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.3s ease;
+        }
+        .faq-question:hover {
+            background-color: #252525;
+        }
+        .faq-question .material-icons {
+            transition: transform 0.3s ease;
+        }
+        .faq-question.active .material-icons {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+            color: var(--text-muted);
+            font-size: 0.95em;
+        }
+        .faq-answer p {
+            margin: 20px 0;
+        }
+        .faq-item.active .faq-answer {
+            /* max-height: 200px;  <-- REMOVED THIS LINE */
+            padding: 20px;
+        }
+
+        /* --- Splash Screen Styles --- */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: var(--bg-darkest);
+            display: grid; /* Changed to grid for better centering */
+            place-items: center; /* Centers content both horizontally and vertically */
+            z-index: 9999; /* Highest z-index */
+            opacity: 1;
+            transition: opacity 0.8s ease-out; /* Slower fade out */
+            /* Removed overflow: hidden; here */
+        }
+
+        #splash-screen.fade-out {
+            opacity: 0;
+            pointer-events: none; /* Make non-interactive */
+        }
+
+        /* Styles for the video background */
+        #splash-video {
+            position: absolute; /* Keep absolute to allow other content to layer on top */
+            top: 0;
+            left: 0;
+            width: 100%; /* Ensure video takes full width of parent */
+            height: 100%; /* Ensure video takes full height of parent */
+            z-index: 0;
+            background-size: cover;
+            opacity: 0.6; /* Slight transparency */
+            filter: brightness(0.7); /* Darken the video */
+            object-fit: cover; /* Ensures video covers the area while maintaining aspect ratio */
+            transition: opacity 1s ease-in-out; /* Smooth fade-in of video */
+        }
+        #splash-video.hidden {
+            display: none; /* Hide when not playing */
+        }
+
+        /* Styles for the image fallback background */
+        #splash-image-fallback {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://via.placeholder.com/1920x1080/121212/FFFFFF?text=TrueMatch+Splash+Fallback'); /* Replace with your actual fallback image URL */
+            background-size: cover;
+            background-position: center;
+            z-index: 0;
+            opacity: 0.6;
+            filter: brightness(0.7);
+            display: none; /* Hidden by default */
+            transition: opacity 1s ease-in-out;
+        }
+        #splash-image-fallback.show {
+            display: block; /* Show when video fails */
+        }
+
+
+        .splash-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2; /* Ensure content is above the video */
+            /* Removed position: relative and margin-bottom */
+        }
+
+        .splash-logo-text {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 6em;
+            color: var(--accent-light-purple);
+            letter-spacing: 5px;
+            text-shadow: 0 0 30px rgba(106, 90, 205, 0.9);
+            opacity: 0; /* Initially hidden */
+            line-height: 1; /* For cleaner alignment */
+        }
+
+        .splash-logo-text.true-text {
+            transform: translateX(-100vw); /* Start off-screen left */
+            animation: slideInLeft 1.2s ease-out 0.5s forwards; /* Adjust timing */
+        }
+
+        .splash-logo-text.match-text {
+            transform: translateX(100vw); /* Start off-screen right */
+            animation: slideInRight 1.2s ease-out 0.5s forwards; /* Adjust timing, same as true-text for simultaneous slide */
+        }
+
+        .splash-icon {
+            font-size: 4em; /* Large icon */
+            color: white;
+            text-shadow: 0 0 20px rgba(255,255,255,0.7);
+            opacity: 0;
+            animation: fadeInIcon 1.0s ease-out 1.2s forwards; /* Delayed after text animation */
+            margin: 0 20px; /* Space between words and icon */
+        }
+
+        .powered-by-text {
+            position: relative; /* Changed to relative */
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.8em;
+            font-family: 'Roboto', sans-serif;
+            z-index: 2; /* Above background */
+            opacity: 0; /* Initially hidden, controlled by sequence */
+            animation: fadeInContent 1.0s ease-out 2.0s forwards;
+            margin-top: 20px; /* Add some space from the logo */
+        }
+
+        /* Removed crayon background animation as it's replaced by video/image */
+
+
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInIcon {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInContent { /* Re-used for powered-by-text */
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* --- Resources Menu Modal Specific Styles (New) --- */
+        #resourcesMenuModal h2 {
+            color: var(--accent-light-purple);
+            text-shadow: 0 0 10px rgba(106, 90, 205, 0.4);
+            margin-bottom: 20px;
+        }
+
+        .resources-menu-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px; /* Spacing between menu items */
+        }
+
+        .resources-menu-options a {
+            display: block; /* Make the whole area clickable */
+            background-color: var(--bg-darkest);
+            color: var(--text-light);
+            padding: 15px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: 500;
+            transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .resources-menu-options a:hover {
+            background-color: var(--accent-dark-purple);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+
+        .resources-menu-options a .material-icons {
+            font-size: 24px;
+            color: var(--accent-light-purple); /* Icon color */
+            transition: color 0.2s ease;
+        }
+
+        .resources-menu-options a:hover .material-icons {
+            color: white; /* Icon color on hover */
+        }
+
+        /* --- Responsive Adjustments --- */
+        @media (max-width: 992px) {
+            #header-spacer { height: 60px; } /* Remains same */
+            #main-header { padding: 10px 15px; } /* Remains same */
+            #site-title { font-size: 1.8em; } /* Remains same */
+
+            .verification-section h2 { font-size: 2.8em; }
+            .verification-input-group { flex-direction: column; gap: 10px; }
+            .verification-input { width: 80%; max-width: 280px; font-size: 4em; padding: 25px 35px; }
+            .verify-button { padding: 12px 25px; font-size: 1.1em; }
+            .verification-message { font-size: 1.2em; }
+            .user-profile-display img { width: 100px; height: 100px; }
+            .user-profile-display h3 { font-size: 1.5em; }
+            .user-profile-display p { font-size: 0.9em; }
+
+            .join-community-section h2 { font-size: 2.2em; }
+            .join-button { padding: 15px 30px; font-size: 1.2em; }
+            .join-success-message { font-size: 1.5em; padding: 25px; }
+
+            .faq-question { font-size: 1.1em; padding: 15px; }
+            .faq-answer { font-size: 0.9em; }
+
+            .splash-logo-text { font-size: 4.5em; }
+            .splash-icon { font-size: 3.5em; }
+
+            .header-icon-link { font-size: 0.85em; gap: 4px; }
+            .header-icon-link .material-icons { font-size: 22px; }
+            .live-indicator { width: 7px; height: 7px; }
+        }
+
+        @media (max-width: 768px) {
+            #header-spacer { height: 60px; } /* Remains same */
+            #main-header { padding: 8px 10px; } /* Smaller padding */
+            #site-title { font-size: 1.5em; letter-spacing: 0.5px; } /* Smaller title */
+
+            .tagline { font-size: 1.1em; margin-bottom: 60px; } /* Adjust tagline */
+
+            .verification-section { padding: 25px; }
+            .verification-section h2 { font-size: 2.4em; }
+            .verification-input { width: 70%; max-width: 250px; font-size: 3.5em; padding: 20px 30px; }
+            .verify-button { font-size: 1em; padding: 10px 20px; }
+            .verification-message { font-size: 1.1em; }
+            .user-profile-display { padding: 15px; }
+            .user-profile-display img { width: 80px; height: 80px; }
+            .user-profile-display h3 { font-size: 1.3em; }
+            .user-profile-display p { font-size: 0.85em; }
+
+            .join-community-section { padding: 25px; }
+            .join-community-section h2 { font-size: 1.8em; }
+            .join-button { padding: 15px 30px; font-size: 1.2em; }
+            .join-success-message { font-size: 1.5em; padding: 20px; }
+
+            .bottom-nav .material-icons { font-size: 24px; }
+            .nav-item { font-size: 0.65em; }
+
+            .modal-content { padding: 20px; max-width: 95%; }
+            .modal-content h2 { font-size: 1.5em; margin-bottom: 20px; }
+            .add-create-options button { padding: 12px 18px; font-size: 1em; }
+            .registration-form label { font-size: 0.85em; }
+            .registration-form input, .registration-form textarea, .registration-form select { padding: 10px; font-size: 0.9em; margin-bottom: 15px; }
+            .registration-form button[type="submit"] { padding: 12px 20px; font-size: 1em; }
+
+            .faq-question { font-size: 1em; padding: 12px; }
+            .faq-answer { font-size: 0.85em; padding: 0 15px; }
+            .faq-item.active .faq-answer { padding: 15px; }
+
+            .splash-logo-text { font-size: 3.5em; }
+            .splash-icon { font-size: 3em; }
+            .splash-content { flex-direction: column; } /* Stack vertically on very small screens */
+
+            .header-icon-link { font-size: 0.75em; gap: 3px; }
+            .header-icon-link .material-icons { font-size: 20px; }
+            .live-indicator { width: 6px; height: 6px; margin-left: 3px; }
+        }
+
+        @media (max-width: 480px) {
+            #header-spacer { height: 50px; } /* Further reduced */
+            #main-header { padding: 5px 8px; } /* Even smaller padding */
+            #site-title { font-size: 1.2em; letter-spacing: 0px; } /* Even smaller title */
+
+            .tagline { font-size: 0.9em; margin-bottom: 40px; } /* Smaller tagline */
+
+            .verification-input { width: 150px; font-size: 2.5em; padding: 15px 20px; }
+            .verification-message { font-size: 0.9em; }
+            .user-profile-display img { width: 60px; height: 60px; }
+            .user-profile-display h3 { font-size: 1.1em; }
+            .user-profile-display p { font-size: 0.75em; }
+            .join-button { font-size: 1em; padding: 10px 20px; }
+            .join-success-message { font-size: 1em; padding: 15px; }
+            .faq-question { font-size: 0.9em; padding: 10px; }
+
+            .splash-logo-text { font-size: 2.5em;}
+            .splash-icon { font-size: 2.5em; margin: 0 10px;}
+            .splash-content { flex-direction: column; gap: 5px; } /* Stack vertically on very small screens */
+            .powered-by-text { font-size: 0.7em;}
+
+            .header-icons-group { gap: 8px; } /* Reduce gap */
+            .header-icon-link { font-size: 0.65em; gap: 2px; }
+            .header-icon-link .material-icons { font-size: 18px; }
+            .live-indicator { width: 5px; height: 5px; margin-left: 2px; }
+        }
+    </style>
+</head>
 <body>
-    <script src="userdata.js"></script>
+    <div id="splash-screen">
+        <video id="splash-video" preload="auto" muted playsinline>
+            <source src="https://thisiceconsort.github.io/truematch/splash.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div id="splash-image-fallback"></div>
+        <div class="splash-content">
+            <h1 class="splash-logo-text true-text"></h1>
+            <span class="material-icons splash-icon"></span>
+            <h1 class="splash-logo-text match-text"></h1>
+        </div>
+        <p class="powered-by-text"></p>
+    </div>
+
+    <div id="main-page-content">
+        <header id="main-header">
+            <h1 id="site-title">Mìlàájé</h1>
+            <div class="header-icons-group">
+                <a href="#" class="header-icon-link" id="openLiveLink">
+                        <span>Live</span>
+                    <span class="live-indicator"></span>
+                </a>
+                <a href="#" class="header-icon-link" id="openResourcesMenuModalLink">
+                    <span class="material-icons">menu_book</span>
+                    <span>Resources</span>
+                </a>
+            </div>
+        </header>
+
+        <div id="header-spacer"></div>
+
+        <div class="container">
+            <p class="tagline">Verify TrueMatch card and connect with our vibrant community.</p>
+
+            <div class="verification-section">
+                <h2>Card Verification</h2>
+                <p style="color:var(--text-muted); font-size:0.9em; margin-bottom: 25px;">Enter your unique 4-digit True Match code to verify your profile.</p>
+                <div class="verification-input-group">
+                    <input type="number" id="cardCodeInput" placeholder="0000" min="0" max="9999" maxlength="4" pattern="[0-9]{4}">
+                    <button id="verifyButton" class="verify-button">Verify</button>
+                </div>
+                <div id="verificationMessage" class="verification-message"></div>
+                <div id="userProfileDisplay" class="user-profile-display">
+                    </div>
+            </div>
+
+            <div class="join-community-section" id="joinCommunitySection">
+                <h2>Join Our Community</h2>
+                <p>If you haven't received your True Match code yet, join our exclusive community today!</p>
+                <a href="https://your-external-join-link.com" target="_blank" id="joinCommunityButton" class="join-button">Join Community</a>
+            </div>
+
+            <div class="join-success-message" id="joinSuccessMessage" style="display: none;">
+                <span class="material-icons" style="font-size: 3em; margin-bottom: 15px;">check_circle</span><br>
+                WELCOME TO THE TRUE MATCH CLUB!
+                <a href="mailto:support@truematch.com?subject=TrueMatch%20Code%20Request" target="_blank">Your unique code will be sent to your email shortly.</a>
+            </div>
+
+
+            <h2 class="section-title" id="faq-section-title">Frequently Asked Questions</h2>
+            <div class="faq-section">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What is a True Match Code? <span class="material-icons">keyboard_arrow_down</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Your True Match Code is a unique 4-digit identifier assigned to verified members of our community across Africa. It serves as a security measure to ensure genuine connections and helps maintain a safe environment for everyone.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Why do I need to pay to join? <span class="material-icons">keyboard_arrow_down</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>The membership fee of ₦600 helps us maintain the platform, implement robust verification processes, and provide a secure, inclusive space free from scammers and fake profiles. This ensures a higher quality of interaction for all genuine members.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What if I don't have a code? <span class="material-icons">keyboard_arrow_down</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>If you don't have a code, you can join our community by clicking the "Join Community" button. After a successful payment, your unique True Match Code will be generated and sent to you.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How do refunds work? <span class="material-icons">keyboard_arrow_down</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>All membership fees are non-refundable once your unique True Match code has been generated and sent to you, as it signifies access to our exclusive verified community. For any payment issues, please contact our support team.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How do I use this page? <span class="material-icons">keyboard_arrow_down</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Simply type the 4-digit True Match code into the verification field and click "Verify" to confirm someone's authenticity. If you wish to join and get your own code, click "Join Community" and follow the external link.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="bottom-nav">
+            <a href="#" class="nav-item home-nav-item" id="homeNavItem"> <span class="material-icons">home</span>
+                <span>Home</span>
+            </a>
+            <a href="shop.html" class="nav-item"> <span class="material-icons">storefront</span>
+                <span>Shop</span>
+            </a>
+            <a href="#" class="nav-item register-nav-item" id="registerNavItem"> <span class="material-icons">add_circle</span>
+                <span>Add</span>
+            </a>
+            <a href="legal.html" class="nav-item">
+                <span class="material-icons">policy</span>
+                <span>Legal</span>
+            </a>
+            <a href="help.html" class="nav-item">
+                <span class="material-icons">help_outline</span> <span>Help</span>
+            </a>
+        </div>
+    </div>
+
+    <div id="addCreateModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-button material-icons">close</span>
+            <h2>Add</h2>
+            <div class="add-create-options">
+                <a href="add-product.html"><button>Add a Product</button></a>
+                <a href="submit-book.html"><button>Submit a Book</button></a>
+                <a href="submit-movie.html"><button>Submit a Movie</button></a>
+                <a href="volunteer.html"><button>Volunteer & Donate</button></a>
+                <a style="display: none;" href="#" id="createGayCardLink"><button>Create your Gay Card</button></a>
+            </div>
+        </div>
+    </div>
+
+    <div id="registrationModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-button material-icons">close</span>
+            <h2>Register & Get Your Code</h2>
+            <form id="registrationForm">
+                <label for="regName">Full Name:</label>
+                <input type="text" id="regName" name="name" required>
+
+                <label for="regAge">Age:</label>
+                <input type="number" id="regAge" name="age" min="18" required>
+
+                <label for="regCountry">Country:</label>
+                <input type="text" id="regCountry" name="country" required>
+
+                <label for="regState">State/Province:</label>
+                <input type="text" id="regState" name="state_province" required>
+
+                <label for="regCity">City:</label>
+                <input type="text" id="regCity" name="city" required>
+
+                <label for="regSexuality">Sexuality:</label>
+                <select id="regSexuality" name="sexuality" required>
+                    <option value="">Select...</option>
+                    <option value="Gay">Gay</option>
+                    <option value="Lesbian">Lesbian</option>
+                    <option value="Bisexual">Bisexual</option>
+                    <option value="Transgender">Transgender</option>
+                    <option value="Queer">Queer</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label for="regBodyType">Body Type:</label>
+                <input type="text" id="regBodyType" name="body_type" placeholder="e.g., Athletic, Slim, Curvy">
+
+                <label for="regHeight">Height (cm):</label>
+                <input type="number" id="regHeight" name="height" min="100" max="250" placeholder="e.g., 175">
+
+                <label for="regInterestedIn">Interested In (brief description):</label>
+                <textarea id="regInterestedIn" name="interested_in" rows="3" placeholder="Tell us about who you're looking to connect with..."></textarea>
+
+                <button type="submit">Pay ₦600 to Register</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="resourcesMenuModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-button material-icons">close</span>
+            <h2>Resources</h2>
+            <div class="resources-menu-options">
+                <a href="resources-all.html">
+                    <span class="material-icons">article</span> Article, Blog, News
+                </a>
+                <a href="coming-out-stories.html">
+                    <span class="material-icons">volunteer_activism</span> Coming Out Stories
+                </a>
+                <a href="courses-under-construction.html">
+                    <span class="material-icons">school</span> Courses
+                </a>
+                <a href="resources-fashion.html">
+                    <span class="material-icons">accessibility</span> Fashion Designing
+                </a>
+                <a href="resources-modeling.html">
+                    <span class="material-icons">person_add</span> Modelling
+                </a>
+                <a href="resources-content-creation.html">
+                    <span class="material-icons">video_library</span> Content Creation
+                </a>
+                <a href="resources-agriculture.html">
+                    <span class="material-icons">eco</span> Agriculture
+                </a>
+                <a href="resources-testimonials.html">
+                    <span class="material-icons">rate_review</span> Testimonials
+                </a>
+                <a href="resources-events.html">
+                    <span class="material-icons">event</span> LGBTQ+ Events World
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="users.js"></script>
 
     <script>
         // --- CONFIGURATION ---
