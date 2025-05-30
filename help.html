@@ -858,7 +858,7 @@
                     const subject = document.getElementById('contactSubject').value;
                     const message = document.getElementById('contactMessage').value;
 
-                    const mailtoLink = `mailto:iceconsort@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+                    const mailtoLink = `mailto:team@milaaje.org?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
                     window.location.href = mailtoLink;
 
                     hideModal(contactFormModal); // Hide modal after initiating mailto
