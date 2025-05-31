@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>join community</title>
+    <title>Join Community</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Bebas+Neue&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
@@ -718,7 +718,8 @@
         }
     </style>
 </head>
-<body class="page-home"> <div id="main-page-content">
+<body class="page-home">
+    <div id="main-page-content">
         <header id="main-header">
             <h1 id="site-title">Mìlàájé</h1>
             <div class="header-icons-group">
@@ -894,7 +895,7 @@
                         <textarea id="likes" name="likes" placeholder="Tell us about your interests..." rows="5" required></textarea>
                     </div>
 
-                    <button type="submit" class="submit-button" id="paystackButton">Proceed to Payment</button>
+                    <button type="button" class="submit-button" id="paystackButton">Proceed to Payment</button>
                 </form>
             </div>
 
@@ -1003,17 +1004,23 @@
 
     <script src="https://js.paystack.co/v1/inline.js"></script>
     <script>
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <script>
         // --- Modal & General UI Logic (from your theme) ---
         function showModal(modalElement) {
             modalElement.classList.add('show-modal');
             document.body.style.overflow = 'hidden'; // Prevent scrolling background
+            console.log(`Modal "${modalElement.id}" shown.`); // Debugging
         }
         function hideModal(modalElement) {
             modalElement.classList.remove('show-modal');
             document.body.style.overflow = ''; // Restore scrolling background
+            console.log(`Modal "${modalElement.id}" hidden.`); // Debugging
         }
 
         document.addEventListener('DOMContentLoaded', () => {
+            console.log("DOM Content Loaded. Script is running."); // Debugging: Confirm script starts
+
             const currentPagePath = window.location.pathname;
             const currentPageFileName = currentPagePath.split('/').pop();
 
@@ -1023,10 +1030,11 @@
                 const itemHref = item.getAttribute('href');
                 if (itemHref === currentPageFileName) {
                     item.classList.add('active');
+                    console.log(`Nav item for "${currentPageFileName}" set to active.`); // Debugging
                 }
             });
 
-            // Modals and their buttons (from your theme)
+            // Modals and their buttons
             const resourcesMenuModal = document.getElementById('resourcesMenuModal');
             const resourcesMenuCloseButton = resourcesMenuModal.querySelector('.close-button');
             const openResourcesMenuModalLink = document.getElementById('openResourcesMenuModalLink');
@@ -1037,44 +1045,58 @@
             const contactFormCloseButton = contactFormModal.querySelector('.close-button');
             const openContactFormModalLink = document.getElementById('openContactFormModalLink');
 
-            openResourcesMenuModalLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                showModal(resourcesMenuModal);
-            });
-            resourcesMenuCloseButton.addEventListener('click', () => {
-                hideModal(resourcesMenuModal);
-            });
-            resourcesMenuModal.addEventListener('click', (e) => {
-                if (e.target === resourcesMenuModal) {
+            // Defensive checks for modal elements
+            if (openResourcesMenuModalLink && resourcesMenuModal && resourcesMenuCloseButton) {
+                openResourcesMenuModalLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showModal(resourcesMenuModal);
+                });
+                resourcesMenuCloseButton.addEventListener('click', () => {
                     hideModal(resourcesMenuModal);
-                }
-            });
+                });
+                resourcesMenuModal.addEventListener('click', (e) => {
+                    if (e.target === resourcesMenuModal) {
+                        hideModal(resourcesMenuModal);
+                    }
+                });
+            } else {
+                console.warn("Resources Menu Modal elements not found or incomplete.");
+            }
 
-            openAddCreateModalLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                showModal(addCreateModal);
-            });
-            addCreateModalCloseButton.addEventListener('click', () => {
-                hideModal(addCreateModal);
-            });
-            addCreateModal.addEventListener('click', (e) => {
-                if (e.target === addCreateModal) {
+            if (openAddCreateModalLink && addCreateModal && addCreateModalCloseButton) {
+                openAddCreateModalLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showModal(addCreateModal);
+                });
+                addCreateModalCloseButton.addEventListener('click', () => {
                     hideModal(addCreateModal);
-                }
-            });
+                });
+                addCreateModal.addEventListener('click', (e) => {
+                    if (e.target === addCreateModal) {
+                        hideModal(addCreateModal);
+                    }
+                });
+            } else {
+                console.warn("Add/Create Modal elements not found or incomplete.");
+            }
 
-            openContactFormModalLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                showModal(contactFormModal);
-            });
-            contactFormCloseButton.addEventListener('click', () => {
-                hideModal(contactFormModal);
-            });
-            contactFormModal.addEventListener('click', (e) => {
-                if (e.target === contactFormModal) {
+            if (openContactFormModalLink && contactFormModal && contactFormCloseButton) {
+                openContactFormModalLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showModal(contactFormModal);
+                });
+                contactFormCloseButton.addEventListener('click', () => {
                     hideModal(contactFormModal);
-                }
-            });
+                });
+                contactFormModal.addEventListener('click', (e) => {
+                    if (e.target === contactFormModal) {
+                        hideModal(contactFormModal);
+                    }
+                });
+            } else {
+                console.warn("Contact Form Modal elements not found or incomplete.");
+            }
+
 
             const openLiveLink = document.getElementById('openLiveLink');
             if (openLiveLink) {
@@ -1096,24 +1118,27 @@
                     window.location.href = mailtoLink;
                     hideModal(contactFormModal);
                     contactForm.reset();
+                    console.log("Contact form submitted via mailto."); // Debugging
                 });
             }
 
-            // --- Form Specific Logic ---
+
+            // --- Main Application Form Specific Logic ---
             const applicationFormSection = document.getElementById('applicationFormSection');
             const thankYouSection = document.getElementById('thankYouSection');
-            const form = document.getElementById('applicationForm');
+            const form = document.getElementById('applicationForm'); // The main form element
             const countrySelect = document.getElementById('country');
             const currencyDisplay = document.getElementById('currencyDisplay');
             const convertedAmountSpan = document.getElementById('convertedAmount');
-            const paystackButton = document.getElementById('paystackButton');
-            const applicantEmailInput = document.getElementById('applicantEmail'); // New email input
+            const paystackButton = document.getElementById('paystackButton'); // The button to initiate Paystack
+            const applicantEmailInput = document.getElementById('applicantEmail');
 
-            // Replace with your actual Paystack Public Key
-            const PAYSTACK_PUBLIC_KEY = 'pk_live_6b671064b6a716c1ceffe82bf20a28c317a69584'; 
+
+            // Paystack Public Key and Base Amount
+            const PAYSTACK_PUBLIC_KEY = 'pk_live_6b671064b6a716c1ceffe82bf20a28c317a69584';
             const BASE_NAIRA_AMOUNT = 650; // Amount in Naira (kobo for Paystack = 65000)
 
-            // Exchange rates (These are illustrative and should ideally be fetched from a live API)
+            // Exchange rates (Illustrative)
             const exchangeRates = {
                 "Algeria": { currency: "DZD", rate: 0.35 },
                 "Angola": { currency: "AOA", rate: 6.80 },
@@ -1175,107 +1200,128 @@
                 "India": { currency: "INR", rate: 0.055 }
             };
 
-            countrySelect.addEventListener('change', () => {
-                const selectedCountry = countrySelect.value;
-                if (selectedCountry && exchangeRates[selectedCountry]) {
-                    const { currency, rate } = exchangeRates[selectedCountry];
-                    const convertedAmount = (BASE_NAIRA_AMOUNT * rate).toFixed(2);
-                    convertedAmountSpan.textContent = `${currency} ${convertedAmount}`;
-                    currencyDisplay.style.display = 'block';
-                } else {
-                    currencyDisplay.style.display = 'none';
-                }
-            });
-            
-            // Trigger initial display if a country is pre-selected (e.g., via browser autofill)
-            if (countrySelect.value) {
-                countrySelect.dispatchEvent(new Event('change'));
-            }
-
-            form.addEventListener('submit', function(e) {
-                e.preventDefault(); // Prevent default form submission
-
-                // Basic form validation before payment
-                if (!form.checkValidity()) {
-                    alert('Please fill in all required fields.');
-                    form.reportValidity(); // Show browser's default validation messages
-                    return;
-                }
-
-                const email = applicantEmailInput.value; // Get email from the new input
-                const name = document.getElementById('fullName').value; // Get name from the form
-
-                if (!email) {
-                    alert('Please enter your email for payment processing.');
-                    applicantEmailInput.focus();
-                    return;
-                }
-                
-                const handler = PaystackPop.setup({
-                    key: PAYSTACK_PUBLIC_KEY,
-                    email: email, // User's email from the form
-                    amount: BASE_NAIRA_AMOUNT * 100, // Amount in kobo (650 NGN * 100)
-                    currency: "NGN", // Paystack always charges in NGN for NGN accounts
-                    ref: ''+Math.floor((Math.random() * 1000000000) + 1), // unique reference per transaction
-                    metadata: {
-                        custom_fields: [
-                            {
-                                display_name: "Full Name",
-                                variable_name: "full_name",
-                                value: name
-                            },
-                            {
-                                display_name: "Form Purpose",
-                                variable_name: "form_purpose",
-                                value: "TrueMatch Application"
-                            }
-                        ]
-                    },
-                    callback: function(response){
-                        // Payment successful, now submit the form to Formspree
-                        
-                        // Create a hidden input for the Paystack reference
-                        const paystackRefInput = document.createElement('input');
-                        paystackRefInput.type = 'hidden';
-                        paystackRefInput.name = 'paystack_reference';
-                        paystackRefInput.value = response.reference;
-                        form.appendChild(paystackRefInput);
-
-                        // Manually submit the form to Formspree
-                        const formData = new FormData(form);
-                        fetch(form.action, {
-                            method: form.method,
-                            body: formData,
-                            headers: {
-                                'Accept': 'application/json'
-                            }
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.ok) {
-                                // Hide form and show thank you message
-                                applicationFormSection.style.display = 'none';
-                                thankYouSection.style.display = 'block';
-                                // Clear form (optional, as it's now hidden)
-                                form.reset();
-                            } else {
-                                // Handle Formspree errors
-                                alert('There was an error submitting your form after payment. Please try again or contact support.');
-                                console.error('Formspree error:', data);
-                            }
-                        })
-                        .catch(error => {
-                            alert('There was a network error submitting your form after payment. Please check your internet connection.');
-                            console.error('Network error:', error);
-                        });
-                    },
-                    onClose: function(){
-                        alert('Payment window closed. Your application has not been submitted.');
+            if (countrySelect && currencyDisplay && convertedAmountSpan) {
+                countrySelect.addEventListener('change', () => {
+                    const selectedCountry = countrySelect.value;
+                    console.log(`Country changed to: ${selectedCountry}`); // Debugging
+                    if (selectedCountry && exchangeRates[selectedCountry]) {
+                        const { currency, rate } = exchangeRates[selectedCountry];
+                        const convertedAmount = (BASE_NAIRA_AMOUNT * rate).toFixed(2);
+                        convertedAmountSpan.textContent = `${currency} ${convertedAmount}`;
+                        currencyDisplay.style.display = 'block';
+                        console.log(`Converted amount: ${convertedAmountSpan.textContent}`); // Debugging
+                    } else {
+                        currencyDisplay.style.display = 'none';
+                        console.log("Country not selected or exchange rate missing."); // Debugging
                     }
                 });
-                handler.openIframe(); // Open the Paystack payment modal
-            });
+
+                // Trigger initial display if a country is pre-selected
+                if (countrySelect.value) {
+                    countrySelect.dispatchEvent(new Event('change'));
+                }
+            } else {
+                console.warn("Country selection elements not found or incomplete.");
+            }
+
+
+            // Paystack button click handler
+            if (paystackButton && form && applicantEmailInput) { // Ensure all elements are found
+                paystackButton.addEventListener('click', function(e) {
+                    console.log("Paystack button clicked!"); // CRUCIAL: Confirm click event fires
+
+                    // IMPORTANT: The browser's native HTML5 validation (`required` attributes)
+                    // will trigger if `form.checkValidity()` is called.
+                    // However, if you have type="button" on your button,
+                    // the form itself will not submit automatically.
+                    // We're handling the validation and submission manually here.
+
+                    if (!form.checkValidity()) {
+                        console.log("Form validation failed: Showing native browser validation messages.");
+                        // This will trigger the browser's default messages for required fields.
+                        form.reportValidity();
+                        return; // Stop execution if form is invalid
+                    }
+
+                    const email = applicantEmailInput.value;
+                    const name = document.getElementById('fullName').value;
+
+                    if (!email) {
+                        console.log("Email is missing for payment, prompting user.");
+                        alert('Please enter your email for payment processing.');
+                        applicantEmailInput.focus();
+                        return; // Stop execution if email is missing
+                    }
+
+                    console.log("All validations passed. Initiating Paystack payment for email:", email, "and amount:", BASE_NAIRA_AMOUNT * 100);
+
+                    const handler = PaystackPop.setup({
+                        key: PAYSTACK_PUBLIC_KEY,
+                        email: email,
+                        amount: BASE_NAIRA_AMOUNT * 100, // Amount in kobo (650 NGN * 100)
+                        currency: "NGN",
+                        ref: '' + Math.floor((Math.random() * 1000000000) + 1), // unique reference per transaction
+                        metadata: {
+                            custom_fields: [
+                                {
+                                    display_name: "Full Name",
+                                    variable_name: "full_name",
+                                    value: name
+                                },
+                                {
+                                    display_name: "Form Purpose",
+                                    variable_name: "form_purpose",
+                                    value: "Community Application"
+                                }
+                            ]
+                        },
+                        callback: function(response){
+                            console.log('Paystack Success Response:', response);
+
+                            const paystackRefInput = document.createElement('input');
+                            paystackRefInput.type = 'hidden';
+                            paystackRefInput.name = 'paystack_reference';
+                            paystackRefInput.value = response.reference;
+                            form.appendChild(paystackRefInput);
+
+                            // Manually submit the form to Formspree
+                            const formData = new FormData(form);
+                            fetch(form.action, {
+                                method: form.method,
+                                body: formData,
+                                headers: {
+                                    'Accept': 'application/json'
+                                }
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.ok) {
+                                    console.log("Formspree submission successful, showing thank you section.");
+                                    applicationFormSection.style.display = 'none';
+                                    thankYouSection.style.display = 'block';
+                                    form.reset();
+                                } else {
+                                    alert('There was an error submitting your form after payment. Please try again or contact support.');
+                                    console.error('Formspree error:', data);
+                                }
+                            })
+                            .catch(error => {
+                                alert('There was a network error submitting your form after payment. Please check your internet connection and try again.');
+                                console.error('Network error during Formspree submission:', error);
+                            });
+                        },
+                        onClose: function(){
+                            console.log("Paystack modal closed by user.");
+                            alert('Payment window closed. Your application has not been submitted. Please complete the payment to join.');
+                        }
+                    });
+                    handler.openIframe(); // Open the Paystack payment modal
+                });
+            } else {
+                console.error("CRITICAL ERROR: One or more main form elements (paystackButton, applicationForm, applicantEmailInput) not found. Check HTML IDs.");
+            }
         });
+
     </script>
 </body>
 </html>
