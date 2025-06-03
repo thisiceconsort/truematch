@@ -101,6 +101,7 @@ const products = [
     // --- Affiliate Products (Links to External Sites) ---
     // Use 'affiliate' type for products you link to, but don't sell directly.
     // Ensure 'affiliateLink' is set and 'price' is omitted.  
+   //boys toy 
     {
         id: 'aff-001', // UNIQUE custom ID for affiliate products
         name: 'Safe Dildo For Bottoms',
@@ -125,9 +126,20 @@ const products = [
         category: 'Adult Boy Toys',
         affiliateLink: 'https://a.aliexpress.com/_Ex8N3Pc',
         imageUrl: 'https://i.imgur.com/2Yq4GWw.jpeg',
-        description: 'Transparent Male Masturbator Artificial Pussy Vaginal for Men 18 Glans Sucking Penis Pump Spikes Exerciser Sex Toys Erotic',
+        description: 'Transparent Male Masturbator Artificial Pussy Vaginal for Men 18 Glans Sucking Penis Pump Spikes Exerciser Sex Toys Erotic.',
         type: 'affiliate'
     },
+    {
+        id: 'aff-009',
+        name: 'Safe Penis Pump',
+        category: 'Adult Boy Toys',
+        affiliateLink: 'https://a.aliexpress.com/_EJxEjJM',
+        imageUrl: 'https://i.imgur.com/SoyNyMt.jpeg',
+        description: 'Sex Machine Men Masturbation Cup Manual Penis Enlarger Masturbation Equipment Machine Sex Toys Simulation.',
+        type: 'affiliate'
+    },
+        
+//girls toy 
     {
         id: 'aff-002',
         name: 'Sparkle Unicorn Plushie',
