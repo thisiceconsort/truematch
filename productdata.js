@@ -100,14 +100,14 @@ const products = [
 
     // --- Affiliate Products (Links to External Sites) ---
     // Use 'affiliate' type for products you link to, but don't sell directly.
-    // Ensure 'affiliateLink' is set and 'price' is omitted.
+    // Ensure 'affiliateLink' is set and 'price' is omitted.  
     {
         id: 'aff-001', // UNIQUE custom ID for affiliate products
-        name: 'Futuristic Robot Companion',
+        name: 'Safe Wand For Bottoms',
         category: 'Adult Boy Toys',
-        affiliateLink: 'https://www.aliexpress.com/item/10050012345.html',
-        imageUrl: 'https://images.unsplash.com/photo-1601004245604-58dc103135fb?auto=format&fit=crop&q=80&w=1974&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        description: 'An advanced robot designed for companionship and entertainment, featuring AI capabilities and interactive modes. Perfect for tech enthusiasts.',
+        affiliateLink: 'https://a.aliexpress.com/_EwMyU6m',
+        imageUrl: 'https://i.imgur.com/mBgMqWA.jpeg',
+        description: 'Realistic Dildo with Suction Cup Huge Dildos Adult Sex Toys for Woman Men Fake Dick Big Penis Anal Butt Plug Erotic Sex Shop 18+.',
         type: 'affiliate'
     },
     {
