@@ -111,7 +111,7 @@ const products = [
         type: 'affiliate'
     },
     {
-        id: 'aff-008', // UNIQUE custom ID for affiliate products
+        id: 'aff-008',
         name: 'Safe ButtPlug For Bottoms',
         category: 'Adult Boy Toys',
         affiliateLink: 'https://a.aliexpress.com/_EIkPig6',
