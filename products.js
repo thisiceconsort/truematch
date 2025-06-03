@@ -4,9 +4,9 @@
 // The new product will appear as the hero.
 const heroProduct = {
     id: 'hero-1', // Unique ID for the product
-    image: 'https://via.placeholder.com/1920x1080/8A2BE2/FFFFFF?text=Featured+Discovery', // Image URL
+    image: 'https://i.imgur.com/mBgMqWA.jpeg', // Image URL
     title: 'Your Ultimate Journey to Discovery', // Main title
-    description: 'Dive into exclusive collections of the latest trends, cutting-edge tech, and captivating digital narratives tailored just for you. Explore the extraordinary.', // Description
+    description: 'Dive into exclusive collections of the latest trends, cutting-edge wands, and captivating digital narratives tailored just for you. Explore the extraordinary.', // Description
     price: 'Start Exploring', // Text for price/call to action
     link: '#boys-fashion-section', // Link when button is clicked (can be internal #id or external URL)
     buttonText: 'Explore Now', // Text for the button
