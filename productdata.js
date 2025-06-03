@@ -138,7 +138,15 @@ const products = [
         description: 'Sex Machine Men Masturbation Cup Manual Penis Enlarger Masturbation Equipment Machine Sex Toys Simulation.',
         type: 'affiliate'
     },
-        
+     {
+        id: 'aff-012',
+        name: 'Safe Temporary Enlargement For Tops',
+        category: 'Adult Boy Toys',
+        affiliateLink: 'https://a.aliexpress.com/_EQcgba2',
+        imageUrl: 'https://i.imgur.com/pqcGeHX.jpeg',
+        description: 'Long-lasting 60-minute penis enlargement oil, male external use sexual delay spray, anti-premature ejaculation sexual spray.',
+        type: 'affiliate'
+    },
 //girls toy 
     {
         id: 'aff-002',
