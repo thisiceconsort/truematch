@@ -110,8 +110,8 @@ const products = [
         description: 'Realistic Dildo with Suction Cup Huge Dildos Adult Sex Toys for Men, Big Penis Anal Butt Plug Erotic Relaxation toy, Shop 18+.',
         type: 'affiliate'
     },
-{
-        id: 'aff-011', // UNIQUE custom ID for affiliate products
+    {
+        id: 'aff-008', // UNIQUE custom ID for affiliate products
         name: 'Safe ButtPlug For Bottoms',
         category: 'Adult Boy Toys',
         affiliateLink: 'https://a.aliexpress.com/_EIkPig6',
