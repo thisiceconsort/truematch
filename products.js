@@ -59,8 +59,8 @@ const carProducts = [
 
 // Adult Boys' Products - Add new products here
 const adultBoyProducts = [
-    { id: 'abp-1', image: 'https://via.placeholder.com/400x600/6B4683/FFFFFF?text=Boy+Intimate+Toy+1', title: 'Discreet Pleasure Wand Pro', description: 'Designed for personal exploration with multiple settings for intense pleasure and relaxation.', price: 'View on AliExpress', link: 'YOUR_ALIEXPRESS_AFFILIATE_LINK_ABP_1', type: 'ali' },
-    { id: 'abp-2', image: 'https://via.placeholder.com/400x600/7A0020/FFFFFF?text=Boy+Intimate+Toy+2', title: 'Ultimate Silicone Massager', description: 'Silky smooth, body-safe silicone for pure, unadulterated pleasure and comfort.', price: 'View on AliExpress', link: 'YOUR_ALIEXPRESS_AFFILIATE_LINK_ABP_2', type: 'ali' },
+    { id: 'abp-1', image: 'https://i.imgur.com/mBgMqWA.jpeg', title: 'DISCREET PLEASURE DILDO PRO', description: 'Realistic Dildo with Suction Cup Huge Dildos Adult Sex Toys for Woman Men Fake Dick Big Penis Anal Butt Plug Erotic Sex Shop 18+.', price: 'View on AliExpress', link: 'YOUR_ALIEXPRESS_AFFILIATE_LINK_ABP_1', type: 'ali' },
+    { id: 'abp-2', image: 'https://via.placeholder.com/400x600/7A0020/FFFFFF?text=Boy+Intimate+Toy+2', title: 'Ultimate Silicone Massager', description: 'Silky smooth, body-safe silicone for pure, unadulterated pleasure and comfort.', price: 'View on AliExpress', link: 'https://a.aliexpress.com/_EytimzM', type: 'ali' },
     { id: 'abp-3', image: 'https://via.placeholder.com/400x600/9400D3/FFFFFF?text=Boy+Intimate+Toy+3', title: 'Pulse-Wave Stimulator', description: 'Advanced technology for targeted sensations and ultimate satisfaction.', price: 'View on AliExpress', link: 'YOUR_ALIEXPRESS_AFFILIATE_LINK_ABP_3', type: 'ali' },
 ];
 
