@@ -103,14 +103,23 @@ const products = [
     // Ensure 'affiliateLink' is set and 'price' is omitted.  
     {
         id: 'aff-001', // UNIQUE custom ID for affiliate products
-        name: 'Safe Wand For Bottoms',
+        name: 'Safe Dildo For Bottoms',
         category: 'Adult Boy Toys',
         affiliateLink: 'https://a.aliexpress.com/_EwMyU6m',
         imageUrl: 'https://i.imgur.com/mBgMqWA.jpeg',
-        description: 'Realistic Dildo with Suction Cup Huge Dildos Adult Sex Toys for Woman Men Fake Dick Big Penis Anal Butt Plug Erotic Sex Shop 18+.',
+        description: 'Realistic Dildo with Suction Cup Huge Dildos Adult Sex Toys for Men, Big Penis Anal Butt Plug Erotic Relaxation toy, Shop 18+.',
         type: 'affiliate'
     },
-    {
+{
+        id: 'aff-011', // UNIQUE custom ID for affiliate products
+        name: 'Safe ButtPlug For Bottoms',
+        category: 'Adult Boy Toys',
+        affiliateLink: 'https://a.aliexpress.com/_EIkPig6',
+        imageUrl: 'https://i.imgur.com/A1ALhXR.jpeg',
+        description: 'Wireless Control Anal Vibrator Butt Plug Men Prostate Massager Stimulator.',
+        type: 'affiliate'
+    },
+     {
         id: 'aff-002',
         name: 'Sparkle Unicorn Plushie',
         category: 'Adult Girl Toys',
