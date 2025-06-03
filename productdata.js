@@ -129,8 +129,8 @@ const products = [
         description: 'Transparent Male Masturbator Artificial Pussy Vaginal for Men 18 Glans Sucking Penis Pump Spikes Exerciser Sex Toys Erotic.',
         type: 'affiliate'
     },
-    {
-        id: 'aff-010',
+     {
+        id: 'aff-011',
         name: 'Safe Penis Pump',
         category: 'Adult Boy Toys',
         affiliateLink: 'https://a.aliexpress.com/_EJxEjJM',
