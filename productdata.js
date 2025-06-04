@@ -165,6 +165,17 @@ const products = [
         description: 'Powerful Clit Vibrators for Women Dildo AV Magic Wand Vibrator Massager Adult  Sex Machine  Female Sex Shop for Couple',
         type: 'affiliate'
     },
+    {
+        id: 'aff-014',
+        name: 'Lingerie For Ladies, Fetish Bodysuit',
+        category: 'Adult Girl Toys',
+        affiliateLink: 'https://a.aliexpress.com/_Exc6la6',
+        imageUrl: 'https://i.imgur.com/Eh1SMO3.jpeg',
+        description: 'Sexy Adult Female Body Lingerie Women Fetish Bodysuit Open Chest Crotchless 18 Transparent Hot Erotic Underwear Costumes',
+        type: 'affiliate'
+    },
+
+
 
     //smart Home
     {
