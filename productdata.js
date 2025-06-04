@@ -176,7 +176,7 @@ const products = [
     },
     {
         id: 'aff-015',
-        name: 'Sage Butt Engagement Cream',
+        name: 'Butt Engagement Cream',
         category: 'Adult Girl Toys',
         affiliateLink: 'https://a.aliexpress.com/_EJ6dI42',
         imageUrl: 'https://i.imgur.com/TAItdhV.jpeg',
