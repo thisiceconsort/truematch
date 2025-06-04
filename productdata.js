@@ -63,13 +63,6 @@ const products = [
         description: ' Y2K Vintage Flame Printed Jeans For Men Baggy Streetwear Wide Leg Denim Trousers 2024 New Hip Hop Fashion Straight Pantalones',
         type: 'affiliate'
     },
-
-
-
-
-
-
-
     {
         id: '003',
         name: 'Sapphire Dreams (GL Book Vol. 1)',
