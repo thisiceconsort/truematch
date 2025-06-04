@@ -157,6 +157,18 @@ const products = [
         description: 'A super soft and cuddly plushie with magical sparkling features. A charming addition to any collection, bringing a touch of whimsy.',
         type: 'affiliate'
     },
+    
+{
+        id: 'aff-013',
+        name: 'Clit Vibrator For Ladies',
+        category: 'Adult Girl Toys',
+        affiliateLink: 'https://a.aliexpress.com/_EHyvq9U',
+        imageUrl: 'https://i.imgur.com/inPbELM.jpeg',
+        description: 'Powerful Clit Vibrators for Women Dildo AV Magic Wand Vibrator Massager Adult  Sex Machine  Female Sex Shop for Couple',
+        type: 'affiliate'
+    },
+
+    //smart Home
     {
         id: 'aff-003',
         name: 'Smart Home Hub X',
