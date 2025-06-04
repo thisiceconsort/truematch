@@ -44,9 +44,7 @@ const products = [
         type: 'shoppable'
     },
 
-
-    https://s.click.aliexpress.com/e/_EzrcMRo
-//boys fashion 
+    //boys fashion
     {
         id: '018',
         name: 'Graffiti Printed Baggy Jeans',
@@ -56,7 +54,22 @@ const products = [
         description: ' New Graffiti Printed Baggy Jeans For Men Y2K Vintage Distressed Blue Harajuku Denim Pants High Street Straight-leg Jean Trousers',
         type: 'affiliate'
     },
-    
+        {
+        id: '019',
+        name: 'Vintage Flame Printed Jeans',
+        category: 'Jeans|Boys Fashion',
+        affiliateLink: 'https://s.click.aliexpress.com/e/_EzrcMRo',
+        imageUrl: 'https://i.imgur.com/ennsvUj.jpeg',
+        description: ' Y2K Vintage Flame Printed Jeans For Men Baggy Streetwear Wide Leg Denim Trousers 2024 New Hip Hop Fashion Straight Pantalones',
+        type: 'affiliate'
+    },
+
+
+
+
+
+
+
     {
         id: '003',
         name: 'Sapphire Dreams (GL Book Vol. 1)',
