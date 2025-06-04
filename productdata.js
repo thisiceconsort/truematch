@@ -150,15 +150,13 @@ const products = [
 //girls toy 
     {
         id: 'aff-002',
-        name: 'Sparkle Unicorn Plushie',
+        name: ' Potable Trusting Vibrator',
         category: 'Adult Girl Toys',
-        affiliateLink: 'https://www.aliexpress.com/item/10050067890.html',
-        imageUrl: 'https://images.unsplash.com/photo-1549490192-351829288e6e?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        description: 'A super soft and cuddly plushie with magical sparkling features. A charming addition to any collection, bringing a touch of whimsy.',
-        type: 'affiliate'
-    },
-    
-{
+        affiliateLink: 'https://a.aliexpress.com/_EGURCt4',
+        imageUrl: 'https://i.imgur.com/IYSUTAp.jpeg',
+        description: 'APP Thrusting Anal Vibrator for Adult Butt Plug with Cock Ring for Men Prostate Massager Ass Anal Dildo Buttplug Adult Goods',        type: 'affiliate'
+    },    
+    {
         id: 'aff-013',
         name: 'Clit Vibrator For Ladies',
         category: 'Adult Girl Toys',
