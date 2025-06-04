@@ -117,7 +117,9 @@ function renderCategorySliders(productsToRender) {
 
     // Define preferred category order and filter to include only categories present in productsToRender
     const preferredCategoryOrder = [
-        'BL Books', 'GL Books', 'BL Movies', 'GL Movies',
+        'Jeans|Boy Fashion','Tops|Boy Fashion','Underwear|Boy Fashion',
+        'Jeans|Girl Fashion','Gowns|Boy Fashion','Underwear|Girl Fashion',
+        'Hoddies' ,'BL Books', 'GL Books',
         'Adult Boy Toys', 'Adult Girl Toys', 'Gadgets',
         'Phones and Laptops', 'Cars', 'Wearable Tech'
     ];
