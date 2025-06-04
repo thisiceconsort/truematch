@@ -117,11 +117,11 @@ function renderCategorySliders(productsToRender) {
 
     // Define preferred category order and filter to include only categories present in productsToRender
     const preferredCategoryOrder = [
-        'Jeans|Boy Fashion','Tops|Boy Fashion','Underwear|Boy Fashion',
-        'Jeans|Girl Fashion','Gowns|Boy Fashion','Underwear|Girl Fashion',
-        'Hoddies' ,'BL Books', 'GL Books',
-        'Adult Boy Toys', 'Adult Girl Toys', 'Gadgets',
-        'Phones and Laptops', 'Cars', 'Wearable Tech'
+        'BL Books','Jeans|Boys Fashion','Tops|Boys Fashion','Underwear|Boys Fashion',
+        'Jeans|Girls Fashion','Gowns|Girs Fashion','Underwear|Girls Fashion',
+        'Hoddies','GL Books',
+        'Adult Boy Toys', 'Adult Girl Toys',
+        'Phones and Laptops','Gadgets', 'Wearable Tech'
     ];
 
     const uniqueCategories = preferredCategoryOrder.filter(cat =>
