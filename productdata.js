@@ -43,6 +43,18 @@ const products = [
         description: 'The highly anticipated sequel, delving deeper into the interwoven destinies of its characters. New challenges and heart-wrenching moments await, pushing the protagonists to their limits.',
         type: 'shoppable'
     },
+
+//boys fashion 
+    {
+        id: '018',
+        name: 'Graffiti Printed Baggy Jeans',
+        category: 'Jeans|Boys Fashion',
+        affiliateLink: 'https://s.click.aliexpress.com/e/_EyKoFSi',
+        imageUrl: 'https://i.imgur.com/PvChCb1.jpeg',
+        description: ' New Graffiti Printed Baggy Jeans For Men Y2K Vintage Distressed Blue Harajuku Denim Pants High Street Straight-leg Jean Trousers',
+        type: 'affiliate'
+    },
+    
     {
         id: '003',
         name: 'Sapphire Dreams (GL Book Vol. 1)',
@@ -183,6 +195,7 @@ const products = [
         description: 'Natural Buttock Augmentation Cream Effective Butt Enlargement Growth Lift Up Ass Firm Breast Bigger Sexy Body Lotion For Women',
         type: 'affiliate'
     },
+
     
     //smart Home
     {
