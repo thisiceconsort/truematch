@@ -108,7 +108,7 @@ const products = [
         id: '024',
         name: 'Wide-Leg Denim Jeans',
         category: 'Jeans|Boys Fashion',
-        affiliateLink: 'https://s.click.aliexpress.com/e/_EupS3lg',
+        affiliateLink:'https://s.click.aliexpress.com/e/_EupS3lg',
         imageUrl: 'https://i.imgur.com/enhyMqz.jpeg',
         description: 'Men Stylish Wide-Leg Denim Jeans -  Loose Fit, Perfect for Casual Weekends, Casual Jeans|Stylish Wideleg Jeans y2k streetwear',
         type: 'affiliate'
@@ -124,6 +124,25 @@ const products = [
         type: 'affiliate'
     },
     
+    {
+        id: '026',
+        name: 'Streetwear Loose Jeans',
+        category: 'Jeans|Boys Fashion',
+        affiliateLink: 'https://s.click.aliexpress.com/e/_Ew3ln8I',
+        imageUrl: 'https://i.imgur.com/petqfcm.jpeg',
+        description: 'New Streetwear Loose Jeans Men Korean Style Fashion Loose Straight Wide Leg Pants Mens Brand Clothing Black Light Blue',
+        type: 'affiliate'
+    },
+
+{
+        id: '027',
+        name: 'Hop Retro Skull Embroidery Washed Baggy',
+        category: 'Jeans|Boys Fashion',
+        affiliateLink: 'https://s.click.aliexpress.com/e/_EyTnjF4',
+        imageUrl: 'https://i.imgur.com/uGqRdKI.jpeg',
+        description: 'Y2K Jeans Mens Hip Hop Retro Skull Embroidery Washed Baggy Denim Pants New Straight Casual Loose Wide Leg Trouser Streetwear',
+        type: 'affiliate'
+    },
 
     //books
     {
