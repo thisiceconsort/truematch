@@ -109,7 +109,7 @@ const products = [
         name: 'Wide-Leg Denim Jeans',
         category: 'Jeans|Boys Fashion',
         affiliateLink: 'https://s.click.aliexpress.com/e/_EupS3lg',
-        imageUrl: 'https://s.click.aliexpress.com/e/_EvDapA6',
+        imageUrl: 'https://i.imgur.com/enhyMqz.jpeg',
         description: 'Men Stylish Wide-Leg Denim Jeans -  Loose Fit, Perfect for Casual Weekends, Casual Jeans|Stylish Wideleg Jeans y2k streetwear',
         type: 'affiliate'
     },
