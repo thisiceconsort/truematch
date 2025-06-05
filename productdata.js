@@ -144,6 +144,19 @@ const products = [
         type: 'affiliate'
     },
 
+    //boystop
+{
+        id: '027',
+        name: 'Summer Time Sadness',
+        category: 'Tops|Boys Fashion',
+        affiliateLink: 'https://s.click.aliexpress.com/e/_EHiSlHY',
+        imageUrl: 'https://i.imgur.com/uGqRdKI.jpeg',
+        description: 'Summer mens 100% pure cotton casual sports loose and fashionable cartoon bear pattern printed round neck short sleeved T-shirt',
+        type: 'affiliate'
+    },
+
+    
+
     //books
     {
         id: '003',
