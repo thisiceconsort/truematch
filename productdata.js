@@ -120,7 +120,7 @@ const products = [
         category: 'Jeans|Boys Fashion',
         affiliateLink: 'https://s.click.aliexpress.com/e/_EQcbW5y',
         imageUrl: 'https://i.imgur.com/GgqBWc1.jpeg',
-        description: 'Baggy Jeans Men Harajuku Street Hip Hop Washed and Distressed High Waisted Jeans Man Casual Wide Leg Pants Women Jeans',
+        description: 'Baggy Jeans Men Harajuku Street Hip Hop Washed and Distressed High Waisted Jeans Man Casual Wide Leg Pants men Jeans',
         type: 'affiliate'
     },
     
@@ -150,7 +150,7 @@ const products = [
         name: 'Summer Time Sadness',
         category: 'Tops|Boys Fashion',
         affiliateLink: 'https://s.click.aliexpress.com/e/_EHiSlHY',
-        imageUrl: 'https://i.imgur.com/uGqRdKI.jpeg',
+        imageUrl: 'https://i.imgur.com/JpliKwN.jpeg',
         description: 'Summer mens 100% pure cotton casual sports loose and fashionable cartoon bear pattern printed round neck short sleeved T-shirt',
         type: 'affiliate'
     },
