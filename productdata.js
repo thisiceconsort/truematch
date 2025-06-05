@@ -63,6 +63,69 @@ const products = [
         description: ' Y2K Vintage Flame Printed Jeans For Men Baggy Streetwear Wide Leg Denim Trousers 2024 New Hip Hop Fashion Straight Pantalones',
         type: 'affiliate'
     },
+
+    {
+        id: '020',
+        name: 'Gothic Retro Oversized Baggy',
+        category: 'Jeans|Boys Fashion',
+        affiliateLink: 'https://s.click.aliexpress.com/e/_EQZSTcA',
+        imageUrl: 'https://i.imgur.com/aaSCGUu.jpeg',
+        description: ' Gothic Retro Oversized Baggy Fit Unisex Mopping Pants Y2K Phantom Jeans High Street Spider Embroidered Patch Hip Hop Streetwear',
+        type: 'affiliate'
+    },
+
+{
+        id: '021',
+        name: 'Male Classic America Hip Hop Rap Jeans',
+        category: 'Jeans|Boys Fashion',
+        affiliateLink: 'https://s.click.aliexpress.com/e/_EQCv2js',
+        imageUrl: 'https://i.imgur.com/OoMqstL.jpeg',
+        description: ' Male Classic America Hip Hop Rap Jeans Wide Leg Youth Popular Jeans Men Straight Leg Retro Loose Trousers Oversized Denim Pants',
+        type: 'affiliate'
+    },
+
+{
+        id: '022',
+        name: 'Distressed Vintage Blue Jeans',
+        category: 'Jeans|Boys Fashion',
+        affiliateLink: 'https://s.click.aliexpress.com/e/_Eu7elWE',
+        imageUrl: 'https://i.imgur.com/c4GoK2b.jpeg',
+        description: ' Distressed Vintage Blue Jeans Pants Men Wide-leg Denim Trousers Male Oversize Streetwear Fashion Casual Baggy Straight Jeans',
+        type: 'affiliate'
+    },
+
+{
+        id: '023',
+        name: 'Denim Seven-Five Shorts',
+        category: 'Jeans|Boys Fashion',
+        affiliateLink: 'https://s.click.aliexpress.com/e/_Eu6fYJu',
+        imageUrl: 'https://i.imgur.com/bs0rYEl.jpeg',
+        description: 'Mens Non-Elastic Denim Seven-Five Shorts Loose Wide Leg Fit Versatile Simple Style Casual Shorts',
+        type: 'affiliate'
+    },
+
+{
+        id: '024',
+        name: 'Wide-Leg Denim Jeans',
+        category: 'Jeans|Boys Fashion',
+        affiliateLink: 'https://s.click.aliexpress.com/e/_EupS3lg',
+        imageUrl: 'https://s.click.aliexpress.com/e/_EvDapA6',
+        description: 'Men Stylish Wide-Leg Denim Jeans -  Loose Fit, Perfect for Casual Weekends, Casual Jeans|Stylish Wideleg Jeans y2k streetwear',
+        type: 'affiliate'
+    },
+
+{
+        id: '025',
+        name: 'Baggy Jeans Men Harajuku Street Hip Hop',
+        category: 'Jeans|Boys Fashion',
+        affiliateLink: 'https://s.click.aliexpress.com/e/_EQcbW5y',
+        imageUrl: 'https://i.imgur.com/GgqBWc1.jpeg',
+        description: 'Baggy Jeans Men Harajuku Street Hip Hop Washed and Distressed High Waisted Jeans Man Casual Wide Leg Pants Women Jeans',
+        type: 'affiliate'
+    },
+    
+
+    //books
     {
         id: '003',
         name: 'Sapphire Dreams (GL Book Vol. 1)',
