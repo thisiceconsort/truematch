@@ -171,7 +171,7 @@ const products = [
         category: 'Tops|Boys Fashion',
         affiliateLink: 'https://s.click.aliexpress.com/e/_EH9N0wm',
         imageUrl: 'https://i.imgur.com/m0Km7mC.jpeg',
-        description: 'T Shirt for Men Set Summer Hot Selling Men's Short Sleeved T-shirt Casual Versatile Half Sleeved Trend Color Blocking Top Tshirt',
+        description: 'T Shirt for Men Set Summer Hot Selling Mens Short Sleeved T-shirt Casual Versatile Half Sleeved Trend Color Blocking Top Tshirt',
         type: 'affiliate'
     },
 
@@ -181,7 +181,7 @@ const products = [
         category: 'Tops|Boys Fashion',
         affiliateLink: 'https://s.click.aliexpress.com/e/_EH9N0wm',
         imageUrl: 'https://i.imgur.com/m0Km7mC.jpeg',
-        description: 'T Shirt for Men Set Summer Hot Selling Men's Short Sleeved T-shirt Casual Versatile Half Sleeved Trend Color Blocking Top Tshirt',
+        description: 'T Shirt for Men Set Summer Hot Selling Mens Short Sleeved T-shirt Casual Versatile Half Sleeved Trend Color Blocking Top Tshirt',
         type: 'affiliate'
     },
 
