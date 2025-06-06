@@ -82,7 +82,7 @@
 
         #site-title {
             font-family: 'Bebas Neue', sans-serif;
-            color: var(--accent-dark-purple);/* Use new accent color */
+            color: var(--accent-color); /* Use new accent color */
             font-size: 0.7em; /* Drastically reduced font size */
             letter-spacing: 1px; /* Reduced letter spacing */
             margin: 0;
@@ -1578,7 +1578,7 @@
 <body class="page-shop">
     <div id="main-page-content">
         <header id="main-header">
-            <h1 style="font-size: 15px;" id="site-title">Mìlàájé</h1>
+            <h1 style="font-size: 16px;" id="site-title">Mìlàájé</h1>
             <div class="header-icons-group">
                 <a href="#" class="header-icon-link" id="openLiveLink">
                     <span style="display:none;" class="material-icons">sensors_waves</span>
@@ -1586,7 +1586,7 @@
                     <span class="live-indicator"></span>
                 </a>
                 <a href="#" class="header-icon-link" id="openResourcesMenuModalLink">
-                    <span style="font-size:15px;" class="material-icons">menu_book</span>
+                    <span class="material-icons">menu_book</span>
                     <span>Resources</span>
                 </a>
             </div>
@@ -1645,7 +1645,7 @@
                     </div>
                     <div class="form-row">
                         <div>
-                            <label for="address">Delivery Country:</label>
+                            <label for="address">Delivery Address:</label>
                             <input type="text" id="address" name="Delivery Address" required>
                         </div>
                         <div>
@@ -1664,11 +1664,11 @@
         </div>
 
         <div class="bottom-nav">
-            <a href="https://thisiceconsort.github.io/truematch/" class="nav-item">
+            <a href="index.html" class="nav-item">
                 <span class="material-icons">home</span>
                 <span>Home</span>
             </a>
-            <a href="#" class="nav-item">
+            <a href="shop.html" class="nav-item">
                 <span class="material-icons">storefront</span>
                 <span>Shop</span>
             </a>
@@ -1676,11 +1676,11 @@
                 <span class="material-icons">add_circle</span>
                 <span>Add</span>
             </a>
-            <a href="https://thisiceconsort.github.io/truematch/legal.html" class="nav-item">
+            <a href="legal.html" class="nav-item">
                 <span class="material-icons">policy</span>
                 <span>Legal</span>
             </a>
-            <a href="https://thisiceconsort.github.io/truematch/help.html" class="nav-item">
+            <a href="help.html" class="nav-item">
                 <span class="material-icons">help_outline</span>
                 <span>Help</span>
             </a>
@@ -1692,21 +1692,33 @@
             <span class="close-button material-icons">close</span>
             <h2>Resources</h2>
             <div class="resources-menu-options">
-                <a href="https://thisiceconsort.github.io/truematch/updates.html">
+                <a href="resources-all.html">
                     <span class="material-icons">article</span> Article, Blog, News
                 </a>
-                <a href="https://thisiceconsort.github.io/truematch/free.html">
+                <a href="coming-out-stories.html">
                     <span class="material-icons">volunteer_activism</span> Coming Out Stories
                 </a>
-                <a href="https://thisiceconsort.github.io/truematch/skills.html">
-                    <span class="material-icons">settings</span> Skill Learning
+                <a href="courses-under-construction.html">
+                    <span class="material-icons">school</span> Courses
                 </a>
-                
-            
-                <a href="https://thisiceconsort.github.io/truematch/reviews.html">
-                    <span class="material-icons">rate_review</span> Feedbacks & Ratings
+                <a href="resources-fashion.html">
+                    <span class="material-icons">accessibility</span> Fashion Designing
                 </a>
-                
+                <a href="resources-modeling.html">
+                    <span class="material-icons">person_add</span> Modelling
+                </a>
+                <a href="resources-content-creation.html">
+                    <span class="material-icons">video_library</span> Content Creation
+                </a>
+                <a href="resources-agriculture.html">
+                    <span class="material-icons">eco</span> Agriculture
+                </a>
+                <a href="resources-testimonials.html">
+                    <span class="material-icons">rate_review</span> Testimonials
+                </a>
+                <a href="resources-events.html">
+                    <span class="material-icons">event</span> LGBTQ+ Events World
+                </a>
             </div>
         </div>
     </div>
@@ -1715,11 +1727,11 @@
         <div class="modal-content">
             <span class="close-button material-icons">close</span>
             <h2>Add</h2>
-            <div style="text-decoration:none;" class="add-create-options">
-                <a style="display:none;" href="add-product.html"><button>Add a Product</button></a>
-                <a style="text-decoration:none;" href="https://thisiceconsort.github.io/truematch/books.html"><button>Submit a Book</button></a>
-                <a style="text-decoration:none;" href="https://thisiceconsort.github.io/truematch/movies.html"><button>Submit a Movie</button></a>
-                <a style="text-decoration:none;" href="https://thisiceconsort.github.io/truematch/donate.html"><button>Volunteer & Donate</button></a>
+            <div class="add-create-options">
+                <a href="add-product.html"><button>Add a Product</button></a>
+                <a href="submit-book.html"><button>Submit a Book</button></a>
+                <a href="submit-movie.html"><button>Submit a Movie</button></a>
+                <a href="volunteer.html"><button>Volunteer & Donate</button></a>
                 <a style="display: none;" href="create-card.html" id="createGayCardLink"><button>Create Your Gay Card</button></a>
             </div>
         </div>
@@ -1760,7 +1772,7 @@
         </div>
     </div>
 
-    <script src="productdata.js"></script>
-    <script src="shopscript.js"></script>
+    <script src="productsData.js"></script>
+    <script src="shopScript.js"></script>
 </body>
 </html>
