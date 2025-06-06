@@ -38,205 +38,11 @@ const products = [
         id: '002',
         name: 'Crimson Promise (BL Book Vol. 2)',
         category: 'BL Books',
-        price: 280000, // ₦28.00
+        price: 2800, // ₦28.00
         imageUrl: 'https://i.imgur.com/3gVgNH8.jpeg',
         description: 'The highly anticipated sequel, delving deeper into the interwoven destinies of its characters. New challenges and heart-wrenching moments await, pushing the protagonists to their limits.',
         type: 'shoppable'
     },
-
-    //boys fashion
-    {
-        id: '018',
-        name: 'Graffiti Printed Baggy Jeans',
-        category: 'Jeans|Boys Fashion',
-        affiliateLink: 'https://s.click.aliexpress.com/e/_EyKoFSi',
-        imageUrl: 'https://i.imgur.com/PvChCb1.jpeg',
-        description: ' New Graffiti Printed Baggy Jeans For Men Y2K Vintage Distressed Blue Harajuku Denim Pants High Street Straight-leg Jean Trousers',
-        type: 'affiliate'
-    },
-        {
-        id: '019',
-        name: 'Vintage Flame Printed Jeans',
-        category: 'Jeans|Boys Fashion',
-        affiliateLink: 'https://s.click.aliexpress.com/e/_EzrcMRo',
-        imageUrl: 'https://i.imgur.com/ennsvUj.jpeg',
-        description: ' Y2K Vintage Flame Printed Jeans For Men Baggy Streetwear Wide Leg Denim Trousers 2024 New Hip Hop Fashion Straight Pantalones',
-        type: 'affiliate'
-    },
-
-    {
-        id: '020',
-        name: 'Gothic Retro Oversized Baggy',
-        category: 'Jeans|Boys Fashion',
-        affiliateLink: 'https://s.click.aliexpress.com/e/_EQZSTcA',
-        imageUrl: 'https://i.imgur.com/aaSCGUu.jpeg',
-        description: ' Gothic Retro Oversized Baggy Fit Unisex Mopping Pants Y2K Phantom Jeans High Street Spider Embroidered Patch Hip Hop Streetwear',
-        type: 'affiliate'
-    },
-
-{
-        id: '021',
-        name: 'Male Classic America Hip Hop Rap Jeans',
-        category: 'Jeans|Boys Fashion',
-        affiliateLink: 'https://s.click.aliexpress.com/e/_EQCv2js',
-        imageUrl: 'https://i.imgur.com/OoMqstL.jpeg',
-        description: ' Male Classic America Hip Hop Rap Jeans Wide Leg Youth Popular Jeans Men Straight Leg Retro Loose Trousers Oversized Denim Pants',
-        type: 'affiliate'
-    },
-    {
-        id: '022',
-        name: 'Distressed Vintage Blue Jeans',
-        category: 'Jeans|Boys Fashion',
-        affiliateLink: 'https://s.click.aliexpress.com/e/_Eu7elWE',
-        imageUrl: 'https://i.imgur.com/c4GoK2b.jpeg',
-        description: ' Distressed Vintage Blue Jeans Pants Men Wide-leg Denim Trousers Male Oversize Streetwear Fashion Casual Baggy Straight Jeans',
-        type: 'affiliate'
-    },
-    {
-        id: '023',
-        name: 'Denim Seven-Five Shorts',
-        category: 'Jeans|Boys Fashion',
-        affiliateLink: 'https://s.click.aliexpress.com/e/_Eu6fYJu',
-        imageUrl: 'https://i.imgur.com/bs0rYEl.jpeg',
-        description: 'Mens Non-Elastic Denim Seven-Five Shorts Loose Wide Leg Fit Versatile Simple Style Casual Shorts',
-        type: 'affiliate'
-    },
-    {
-        id: '024',
-        name: 'Wide-Leg Denim Jeans',
-        category: 'Jeans|Boys Fashion',
-        affiliateLink:'https://s.click.aliexpress.com/e/_EupS3lg',
-        imageUrl: 'https://i.imgur.com/enhyMqz.jpeg',
-        description: 'Men Stylish Wide-Leg Denim Jeans -  Loose Fit, Perfect for Casual Weekends, Casual Jeans|Stylish Wideleg Jeans y2k streetwear',
-        type: 'affiliate'
-    },
-    {
-        id: '025',
-        name: 'Baggy Jeans Men Harajuku Street Hip Hop',
-        category: 'Jeans|Boys Fashion',
-        affiliateLink: 'https://s.click.aliexpress.com/e/_EQcbW5y',
-        imageUrl: 'https://i.imgur.com/GgqBWc1.jpeg',
-        description: 'Baggy Jeans Men Harajuku Street Hip Hop Washed and Distressed High Waisted Jeans Man Casual Wide Leg Pants men Jeans',
-        type: 'affiliate'
-    },    
-    {
-        id: '026',
-        name: 'Streetwear Loose Jeans',
-        category: 'Jeans|Boys Fashion',
-        affiliateLink: 'https://s.click.aliexpress.com/e/_Ew3ln8I',
-        imageUrl: 'https://i.imgur.com/petqfcm.jpeg',
-        description: 'New Streetwear Loose Jeans Men Korean Style Fashion Loose Straight Wide Leg Pants Mens Brand Clothing Black Light Blue',
-        type: 'affiliate'
-    },
-    {
-        id: '027',
-        name: 'Hop Retro Skull Embroidery Washed Baggy',
-        category: 'Jeans|Boys Fashion',
-        affiliateLink: 'https://s.click.aliexpress.com/e/_EyTnjF4',
-        imageUrl: 'https://i.imgur.com/uGqRdKI.jpeg',
-        description: 'Y2K Jeans Mens Hip Hop Retro Skull Embroidery Washed Baggy Denim Pants New Straight Casual Loose Wide Leg Trouser Streetwear',
-        type: 'affiliate'
-    },
-
-    //boystop
-
-{
-        id: '028',
-        name: 'Summer Time Sadness',
-        category: 'Tshirt|Boys Fashion',
-        affiliateLink: 'https://s.click.aliexpress.com/e/_EHiSlHY',
-        imageUrl: 'https://i.imgur.com/JpliKwN.jpeg',
-        description: 'Summer mens 100% pure cotton casual sports loose and fashionable cartoon bear pattern printed round neck short sleeved T-shirt',
-        type: 'affiliate'
-    },
-    {
-        id: '029',
-        name: 'Better Days Ahead Letter Graphic Men T-Shirt',
-        category: 'Tshirt|Boys Fashion',
-        affiliateLink: 'https://s.click.aliexpress.com/e/_Evgtdea',
-        imageUrl: 'https://i.imgur.com/m0Km7mC.jpeg',
-        description: 'Better Days Ahead Letter Graphic Men T-Shirt O-Neck Casual Oversize T-Shirt Fashion Cotton Tee Clothes Summer Loose Tshirt',
-        type: 'affiliate'
-    },
-{
-        id: '030',
-        name: 'Short Sleeved T-shirt',
-        category: 'Tshirt|Boys Fashion',
-        affiliateLink: 'https://s.click.aliexpress.com/e/_EH9N0wm',
-        imageUrl: 'https://i.imgur.com/mnzRKpO.jpeg',
-        description: 'T Shirt for Men Set Summer Hot Selling Mens Short Sleeved T-shirt Casual Versatile Half Sleeved Trend Color Blocking Top Tshirt',
-        type: 'affiliate'
-    },
-{
-        id: '031',
-        name: 'Morning Rose',
-        category: 'Tshirt|Boys Fashion',
-        affiliateLink: 'https://s.click.aliexpress.com/e/_EuzJvSa',
-        imageUrl: 'https://i.imgur.com/ljy7lC0.jpeg',
-        description: 'Loose Size 100% Cotton Rose Print Casual Slim Fit Round Neck Short Sleeve T-shirt Top',
-        type: 'affiliate'
-    },
-{
-        id: '032',
-        name: 'Be A Kind King!',
-        category: 'Tshirt|Boys Fashion',
-        affiliateLink: 'https://s.click.aliexpress.com/e/_EuRekBu',
-        imageUrl: 'https://i.imgur.com/V7sGBZi.jpeg',
-        description: 'summer loose size BE KIND letter cartoon print casual comfortable round neck short sleeved T-shirt top',
-        type: 'affiliate'
-    },
-
-{
-        id: '033',
-        name: 'Vacation Undisputed!',
-        category: 'Tshirt|Boys Fashion',
-        affiliateLink: 'https://s.click.aliexpress.com/e/_ExelCbY',
-        imageUrl: 'https://i.imgur.com/7PI392V.jpeg',
-        description: 'Hawaiian Shirt Man Print Casual Thin Beach Slim Fashion Shirt High Quality Luxury Black Social Vintage Funny Oversized Clothes',
-        type: 'affiliate'
-    },
-
-{
-        id: '034',
-        name: 'Smile Face T-shirt',
-        category: 'Tshirt|Boys Fashion',
-        affiliateLink: 'https://s.click.aliexpress.com/e/_EQUrZsO',
-        imageUrl: 'https://i.imgur.com/w2rAvrT.jpeg',
-        description: 'Minimalist Smile Face Style Graphic Print Tops Men Hip Hop Tee Clothes T Shirt Summer Breathable T-Shirt Street Cotton Tshirt',
-        type: 'affiliate'
-    },
-
-{
-        id: '035',
-        name: 'Stand Collar T-shirt',
-        category: 'Tshirt|Boys Fashion',
-        affiliateLink: 'https://s.click.aliexpress.com/e/_EIwYhXU',
-        imageUrl: 'https://i.imgur.com/Bc8Lhon.jpeg',
-        description: 'Spring and Summer Stand Collar Five-point Mid-sleeve Fashionable Men's Short-sleeved Shirt Seven-point Sleeve Large Size Mens',
-        type: 'affiliate'
-    },
-
-{
-        id: '036',
-        name: 'Vintage Men T-Shirts',
-        category: 'Tshirt|Boys Fashion',
-        affiliateLink: 'https://s.click.aliexpress.com/e/_EJjvQXC',
-        imageUrl: 'https://i.imgur.com/FAigqhc.jpeg',
-        description: 'Washed Vintage Men T-Shirts Street Hip Hop Retro Punk T Shirt Harajuku Casual Cotton Short Sleeve Acid Wash TShirts Tops',
-        type: 'affiliate'
-    },
-
-{
-        id: '037',
-        name: 'Samurai X T-Shirt',
-        category: 'Tshirt|Boys Fashion',
-        affiliateLink: 'https://s.click.aliexpress.com/e/_EyfNowq',
-        imageUrl: 'https://i.imgur.com/qXfQtwn.jpeg',
-        description: 'Japanese Samurai Cat 3d Printed T Shirts For Casual Fashion Funny Shirt Top Tee Men Clothing',
-        type: 'affiliate'
-    },
-    
-    //books
     {
         id: '003',
         name: 'Sapphire Dreams (GL Book Vol. 1)',
@@ -294,92 +100,25 @@ const products = [
 
     // --- Affiliate Products (Links to External Sites) ---
     // Use 'affiliate' type for products you link to, but don't sell directly.
-    // Ensure 'affiliateLink' is set and 'price' is omitted.  
-   //boys toy 
+    // Ensure 'affiliateLink' is set and 'price' is omitted.
     {
         id: 'aff-001', // UNIQUE custom ID for affiliate products
-        name: 'Safe Dildo For Bottoms',
+        name: 'Futuristic Robot Companion',
         category: 'Adult Boy Toys',
-        affiliateLink: 'https://a.aliexpress.com/_EwMyU6m',
-        imageUrl: 'https://i.imgur.com/mBgMqWA.jpeg',
-        description: 'Realistic Dildo with Suction Cup Huge Dildos Adult Sex Toys for Men, Big Penis Anal Butt Plug Erotic Relaxation toy, Shop 18+.',
+        affiliateLink: 'https://www.aliexpress.com/item/10050012345.html',
+        imageUrl: 'https://images.unsplash.com/photo-1601004245604-58dc103135fb?auto=format&fit=crop&q=80&w=1974&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        description: 'An advanced robot designed for companionship and entertainment, featuring AI capabilities and interactive modes. Perfect for tech enthusiasts.',
         type: 'affiliate'
     },
-    {
-        id: 'aff-008',
-        name: 'Safe ButtPlug For Bottoms',
-        category: 'Adult Boy Toys',
-        affiliateLink: 'https://a.aliexpress.com/_EIkPig6',
-        imageUrl: 'https://i.imgur.com/A1ALhXR.jpeg',
-        description: 'Wireless Control Anal Vibrator Butt Plug Men Prostate Massager Stimulator.',
-        type: 'affiliate'
-    },
-    {
-        id: 'aff-009',
-        name: 'Safe Masturbator For Tops',
-        category: 'Adult Boy Toys',
-        affiliateLink: 'https://a.aliexpress.com/_Ex8N3Pc',
-        imageUrl: 'https://i.imgur.com/2Yq4GWw.jpeg',
-        description: 'Transparent Male Masturbator Artificial Pussy Vaginal for Men 18 Glans Sucking Penis Pump Spikes Exerciser Sex Toys Erotic.',
-        type: 'affiliate'
-    },
-     {
-        id: 'aff-011',
-        name: 'Safe Penis Pump',
-        category: 'Adult Boy Toys',
-        affiliateLink: 'https://a.aliexpress.com/_EJxEjJM',
-        imageUrl: 'https://i.imgur.com/SoyNyMt.jpeg',
-        description: 'Sex Machine Men Masturbation Cup Manual Penis Enlarger Masturbation Equipment Machine Sex Toys Simulation.',
-        type: 'affiliate'
-    },
-     {
-        id: 'aff-012',
-        name: 'Safe Temporary Enlargement For Tops',
-        category: 'Adult Boy Toys',
-        affiliateLink: 'https://a.aliexpress.com/_EQcgba2',
-        imageUrl: 'https://i.imgur.com/pqcGeHX.jpeg',
-        description: 'Long-lasting 60-minute penis enlargement oil, male external use sexual delay spray, anti-premature ejaculation sexual spray.',
-        type: 'affiliate'
-    },
-//girls toy 
     {
         id: 'aff-002',
-        name: ' Potable Trusting Vibrator',
+        name: 'Sparkle Unicorn Plushie',
         category: 'Adult Girl Toys',
-        affiliateLink: 'https://a.aliexpress.com/_EGURCt4',
-        imageUrl: 'https://i.imgur.com/IYSUTAp.jpeg',
-        description: 'APP Thrusting Anal Vibrator for Adult Butt Plug with Cock Ring for Men Prostate Massager Ass Anal Dildo Buttplug Adult Goods',        type: 'affiliate'
-    },    
-    {
-        id: 'aff-013',
-        name: 'Clit Vibrator For Ladies',
-        category: 'Adult Girl Toys',
-        affiliateLink: 'https://a.aliexpress.com/_EHyvq9U',
-        imageUrl: 'https://i.imgur.com/inPbELM.jpeg',
-        description: 'Powerful Clit Vibrators for Women Dildo AV Magic Wand Vibrator Massager Adult  Sex Machine  Female Sex Shop for Couple',
+        affiliateLink: 'https://www.aliexpress.com/item/10050067890.html',
+        imageUrl: 'https://images.unsplash.com/photo-1549490192-351829288e6e?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        description: 'A super soft and cuddly plushie with magical sparkling features. A charming addition to any collection, bringing a touch of whimsy.',
         type: 'affiliate'
     },
-    {
-        id: 'aff-014',
-        name: 'Lingerie For Ladies, Fetish Bodysuit',
-        category: 'Adult Girl Toys',
-        affiliateLink: 'https://a.aliexpress.com/_Exc6la6',
-        imageUrl: 'https://i.imgur.com/Eh1SMO3.jpeg',
-        description: 'Sexy Adult Female Body Lingerie Women Fetish Bodysuit Open Chest Crotchless 18 Transparent Hot Erotic Underwear Costumes',
-        type: 'affiliate'
-    },
-    {
-        id: 'aff-015',
-        name: 'Butt Engagement Cream',
-        category: 'Adult Girl Toys',
-        affiliateLink: 'https://a.aliexpress.com/_EJ6dI42',
-        imageUrl: 'https://i.imgur.com/TAItdhV.jpeg',
-        description: 'Natural Buttock Augmentation Cream Effective Butt Enlargement Growth Lift Up Ass Firm Breast Bigger Sexy Body Lotion For Women',
-        type: 'affiliate'
-    },
-
-    
-    //smart Home
     {
         id: 'aff-003',
         name: 'Smart Home Hub X',
