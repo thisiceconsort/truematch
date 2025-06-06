@@ -83,8 +83,7 @@ const products = [
         description: ' Male Classic America Hip Hop Rap Jeans Wide Leg Youth Popular Jeans Men Straight Leg Retro Loose Trousers Oversized Denim Pants',
         type: 'affiliate'
     },
-
-{
+    {
         id: '022',
         name: 'Distressed Vintage Blue Jeans',
         category: 'Jeans|Boys Fashion',
@@ -93,8 +92,7 @@ const products = [
         description: ' Distressed Vintage Blue Jeans Pants Men Wide-leg Denim Trousers Male Oversize Streetwear Fashion Casual Baggy Straight Jeans',
         type: 'affiliate'
     },
-
-{
+    {
         id: '023',
         name: 'Denim Seven-Five Shorts',
         category: 'Jeans|Boys Fashion',
@@ -103,8 +101,7 @@ const products = [
         description: 'Mens Non-Elastic Denim Seven-Five Shorts Loose Wide Leg Fit Versatile Simple Style Casual Shorts',
         type: 'affiliate'
     },
-
-{
+    {
         id: '024',
         name: 'Wide-Leg Denim Jeans',
         category: 'Jeans|Boys Fashion',
@@ -113,8 +110,7 @@ const products = [
         description: 'Men Stylish Wide-Leg Denim Jeans -  Loose Fit, Perfect for Casual Weekends, Casual Jeans|Stylish Wideleg Jeans y2k streetwear',
         type: 'affiliate'
     },
-
-{
+    {
         id: '025',
         name: 'Baggy Jeans Men Harajuku Street Hip Hop',
         category: 'Jeans|Boys Fashion',
@@ -122,8 +118,7 @@ const products = [
         imageUrl: 'https://i.imgur.com/GgqBWc1.jpeg',
         description: 'Baggy Jeans Men Harajuku Street Hip Hop Washed and Distressed High Waisted Jeans Man Casual Wide Leg Pants men Jeans',
         type: 'affiliate'
-    },
-    
+    },    
     {
         id: '026',
         name: 'Streetwear Loose Jeans',
@@ -133,8 +128,7 @@ const products = [
         description: 'New Streetwear Loose Jeans Men Korean Style Fashion Loose Straight Wide Leg Pants Mens Brand Clothing Black Light Blue',
         type: 'affiliate'
     },
-
-{
+    {
         id: '027',
         name: 'Hop Retro Skull Embroidery Washed Baggy',
         category: 'Jeans|Boys Fashion',
@@ -155,7 +149,6 @@ const products = [
         description: 'Summer mens 100% pure cotton casual sports loose and fashionable cartoon bear pattern printed round neck short sleeved T-shirt',
         type: 'affiliate'
     },
-
     {
         id: '029',
         name: 'Better Days Ahead Letter Graphic Men T-Shirt',
@@ -165,7 +158,6 @@ const products = [
         description: 'Better Days Ahead Letter Graphic Men T-Shirt O-Neck Casual Oversize T-Shirt Fashion Cotton Tee Clothes Summer Loose Tshirt',
         type: 'affiliate'
     },
-
 {
         id: '030',
         name: 'Short Sleeved T-shirt',
@@ -175,7 +167,6 @@ const products = [
         description: 'T Shirt for Men Set Summer Hot Selling Mens Short Sleeved T-shirt Casual Versatile Half Sleeved Trend Color Blocking Top Tshirt',
         type: 'affiliate'
     },
-
 {
         id: '031',
         name: 'Morning Rose',
