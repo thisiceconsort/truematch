@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -682,7 +683,7 @@
             background-color: var(--accent-color);
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 8px; /* More rounded */
             cursor: pointer;
             font-size: 1.3rem; /* Larger font in buttons */
             font-weight: bold;
@@ -1573,7 +1574,8 @@
             .bottom-nav .nav-item.register-nav-item .material-icons {
                 font-size: 32px;
             }
-        </style>
+        }
+    </style>
 </head>
 <body class="page-shop">
     <div id="main-page-content">
@@ -1771,708 +1773,1067 @@
             </div>
         </div>
     </div>
-
-    <script src="productsdata.js"></script>
     <script>
-        // shopScript.js
+        // --- IMPORTANT: REPLACE THESE PLACEHOLDERS --- //
+        // You'll need to get your actual public key from Paystack and your Formspree endpoint.
+        const PAYSTACK_PUBLIC_KEY = 'pk_test_YOUR_PAYSTACK_PUBLIC_KEY'; // Replace with your actual Paystack Public Key
+        const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORMSPREE_ENDPOINT'; // Replace with your actual Formspree endpoint
+        // --- END IMPORTANT --- //
 
-// --- IMPORTANT: REPLACE THESE PLACEHOLDERS --- //
-// You'll need to get your actual public key from Paystack and your Formspree endpoint.
-const PAYSTACK_PUBLIC_KEY = 'pk_test_YOUR_PAYSTACK_PUBLIC_KEY'; // Replace with your actual Paystack Public Key
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORMSPREE_ENDPOINT'; // Replace with your actual Formspree endpoint
-// --- END IMPORTANT --- //
-
-
-// Global state for the cart
-let cart = [];
-
-// DOM elements
-const categorySectionsContainer = document.getElementById('category-sections');
-const searchInput = document.getElementById('search-input');
-const cancelSearchButton = document.getElementById('cancel-search-button');
-const cartIcon = document.getElementById('cart-icon');
-const cartCount = document.getElementById('cart-count');
-const cartPopup = document.getElementById('cart-popup');
-const cartPopupList = document.getElementById('cart-popup-list');
-const cartPopupTotal = document.getElementById('cart-popup-total');
-const cartItemsDisplay = document.getElementById('cart-items-display');
-const totalPriceDisplay = document.getElementById('total-price-display');
-const checkoutForm = document.getElementById('checkout-form');
-const formCartItems = document.getElementById('form-cart-items');
-const formTotalAmount = document.getElementById('form-total-amount');
-const payNowButton = document.getElementById('pay-now-button'); // This is not strictly necessary for the script but kept for reference
-const paymentMessage = document.getElementById('payment-message');
-
-// Hero Product DOM elements
-const heroProductSection = document.getElementById('hero-product-section');
-const heroProductTag = document.getElementById('hero-product-tag');
-const heroProductTitle = document.getElementById('hero-product-title');
-const heroProductDescription = document.getElementById('hero-product-description');
-const heroProductPrice = document.getElementById('hero-product-price');
-const heroAddToCartButton = document.getElementById('hero-add-to-cart');
-
-// Product Quick View Modal DOM elements
-const productQuickViewModal = document.getElementById('productQuickViewModal');
-const quickViewCloseButton = productQuickViewModal.querySelector('.close-button');
-const quickViewImage = document.getElementById('quick-view-image');
-const quickViewName = document.getElementById('quick-view-name');
-const quickViewDescription = document.getElementById('quick-view-description');
-const quickViewPrice = document.getElementById('quick-view-price');
-const quickViewAddToCartButton = document.getElementById('quick-view-add-to-cart');
-const quickViewViewAffiliateButton = document.getElementById('quick-view-view-affiliate');
-
-
-// --- Utility Functions ---
+        // Product Data (JavaScript based)
+        const products = [
+            // Shoppable Products (BL Books, GL Books, BL Movies, GL Books - with 3-digit codes)
+            // productsData.js
 
 /**
- * Formats a number as Nigerian Naira (NGN).
- * @param {number} amount - The amount in kobo (smallest currency unit).
- * @returns {string} Formatted NGN string.
+ * @typedef {Object} Product
+ * @property {string} id - A unique identifier for the product (e.g., '001', 'aff-001').
+ * @property {string} name - The name of the product.
+ * @property {string} category - The category the product belongs to (e.g., 'BL Books', 'Gadgets').
+ * @property {number} [price] - The price of the product in kobo (smallest currency unit). Required for 'shoppable' type.
+ * @property {string} [affiliateLink] - The URL for affiliate products. Required for 'affiliate' type.
+ * @property {string} imageUrl - The URL for the main product image.
+ * @property {string} [heroImageUrl] - An optional image URL specifically for the hero section. If not provided, imageUrl will be used.
+ * @property {string} description - A brief description of the product.
+ * @property {'shoppable' | 'affiliate'} type - The type of product: 'shoppable' for direct purchase, 'affiliate' for external links.
  */
-function formatNaira(amount) {
-    // Check if amount is a valid number, if not, return a default string or throw error
-    if (typeof amount !== 'number' || isNaN(amount)) {
-        return '₦0.00'; // Or handle as an error
+
+/**
+ * Array containing all product data.
+ * To add a new product, copy an existing product object, modify its properties, and paste it into this array.
+ * Ensure 'id' is unique for each product.
+ *
+ * @type {Product[]}
+ */
+const products = [
+    // --- Shoppable Products (Direct Purchase via Cart/Paystack) ---
+    // Use 'shoppable' type for products you sell directly.
+    // Ensure 'price' is set in kobo (e.g., NGN 25.00 = 2500 kobo).
+    {
+        id: '001', // UNIQUE 3-digit code or custom ID for shoppable products
+        name: 'Whispers of Love (BL Book Vol. 1)',
+        category: 'BL Books',
+        price: 2500, // ₦25.00
+        imageUrl: 'https://i.imgur.com/3gVgNH8.jpeg',
+        heroImageUrl: 'https://i.imgur.com/3gVgNH8.jpeg', // Optional: Specific image for the hero section
+        description: 'A captivating romance novel that explores the depths of connection and unspoken desires.',
+        type: 'shoppable'
+    },
+    {
+        id: '002',
+        name: 'Crimson Promise (BL Book Vol. 2)',
+        category: 'BL Books',
+        price: 280000, // ₦28.00
+        imageUrl: 'https://i.imgur.com/3gVgNH8.jpeg',
+        description: 'The highly anticipated sequel, delving deeper into the interwoven destinies of its characters. New challenges and heart-wrenching moments await, pushing the protagonists to their limits.',
+        type: 'shoppable'
+    },
+
+    //boys fashion
+    {
+        id: '018',
+        name: 'Graffiti Printed Baggy Jeans',
+        category: 'Jeans|Boys Fashion',
+        affiliateLink: 'https://s.click.aliexpress.com/e/_EyKoFSi',
+        imageUrl: 'https://i.imgur.com/PvChCb1.jpeg',
+        description: ' New Graffiti Printed Baggy Jeans For Men Y2K Vintage Distressed Blue Harajuku Denim Pants High Street Straight-leg Jean Trousers',
+        type: 'affiliate'
+    },
+        {
+        id: '019',
+        name: 'Vintage Flame Printed Jeans',
+        category: 'Jeans|Boys Fashion',
+        affiliateLink: 'https://s.click.aliexpress.com/e/_EzrcMRo',
+        imageUrl: 'https://i.imgur.com/ennsvUj.jpeg',
+        description: ' Y2K Vintage Flame Printed Jeans For Men Baggy Streetwear Wide Leg Denim Trousers 2024 New Hip Hop Fashion Straight Pantalones',
+        type: 'affiliate'
+    },
+
+    {
+        id: '020',
+        name: 'Gothic Retro Oversized Baggy',
+        category: 'Jeans|Boys Fashion',
+        affiliateLink: 'https://s.click.aliexpress.com/e/_EQZSTcA',
+        imageUrl: 'https://i.imgur.com/aaSCGUu.jpeg',
+        description: ' Gothic Retro Oversized Baggy Fit Unisex Mopping Pants Y2K Phantom Jeans High Street Spider Embroidered Patch Hip Hop Streetwear',
+        type: 'affiliate'
+    },
+
+{
+        id: '021',
+        name: 'Male Classic America Hip Hop Rap Jeans',
+        category: 'Jeans|Boys Fashion',
+        affiliateLink: 'https://s.click.aliexpress.com/e/_EQCv2js',
+        imageUrl: 'https://i.imgur.com/OoMqstL.jpeg',
+        description: ' Male Classic America Hip Hop Rap Jeans Wide Leg Youth Popular Jeans Men Straight Leg Retro Loose Trousers Oversized Denim Pants',
+        type: 'affiliate'
+    },
+    {
+        id: '022',
+        name: 'Distressed Vintage Blue Jeans',
+        category: 'Jeans|Boys Fashion',
+        affiliateLink: 'https://s.click.aliexpress.com/e/_Eu7elWE',
+        imageUrl: 'https://i.imgur.com/c4GoK2b.jpeg',
+        description: ' Distressed Vintage Blue Jeans Pants Men Wide-leg Denim Trousers Male Oversize Streetwear Fashion Casual Baggy Straight Jeans',
+        type: 'affiliate'
+    },
+    {
+        id: '023',
+        name: 'Denim Seven-Five Shorts',
+        category: 'Jeans|Boys Fashion',
+        affiliateLink: 'https://s.click.aliexpress.com/e/_Eu6fYJu',
+        imageUrl: 'https://i.imgur.com/bs0rYEl.jpeg',
+        description: 'Mens Non-Elastic Denim Seven-Five Shorts Loose Wide Leg Fit Versatile Simple Style Casual Shorts',
+        type: 'affiliate'
+    },
+    {
+        id: '024',
+        name: 'Wide-Leg Denim Jeans',
+        category: 'Jeans|Boys Fashion',
+        affiliateLink:'https://s.click.aliexpress.com/e/_EupS3lg',
+        imageUrl: 'https://i.imgur.com/enhyMqz.jpeg',
+        description: 'Men Stylish Wide-Leg Denim Jeans -  Loose Fit, Perfect for Casual Weekends, Casual Jeans|Stylish Wideleg Jeans y2k streetwear',
+        type: 'affiliate'
+    },
+    {
+        id: '025',
+        name: 'Baggy Jeans Men Harajuku Street Hip Hop',
+        category: 'Jeans|Boys Fashion',
+        affiliateLink: 'https://s.click.aliexpress.com/e/_EQcbW5y',
+        imageUrl: 'https://i.imgur.com/GgqBWc1.jpeg',
+        description: 'Baggy Jeans Men Harajuku Street Hip Hop Washed and Distressed High Waisted Jeans Man Casual Wide Leg Pants men Jeans',
+        type: 'affiliate'
+    },    
+    {
+        id: '026',
+        name: 'Streetwear Loose Jeans',
+        category: 'Jeans|Boys Fashion',
+        affiliateLink: 'https://s.click.aliexpress.com/e/_Ew3ln8I',
+        imageUrl: 'https://i.imgur.com/petqfcm.jpeg',
+        description: 'New Streetwear Loose Jeans Men Korean Style Fashion Loose Straight Wide Leg Pants Mens Brand Clothing Black Light Blue',
+        type: 'affiliate'
+    },
+    {
+        id: '027',
+        name: 'Hop Retro Skull Embroidery Washed Baggy',
+        category: 'Jeans|Boys Fashion',
+        affiliateLink: 'https://s.click.aliexpress.com/e/_EyTnjF4',
+        imageUrl: 'https://i.imgur.com/uGqRdKI.jpeg',
+        description: 'Y2K Jeans Mens Hip Hop Retro Skull Embroidery Washed Baggy Denim Pants New Straight Casual Loose Wide Leg Trouser Streetwear',
+        type: 'affiliate'
+    },
+
+    //boystop
+
+{
+        id: '028',
+        name: 'Summer Time Sadness',
+        category: 'Tshirt|Boys Fashion',
+        affiliateLink: 'https://s.click.aliexpress.com/e/_EHiSlHY',
+        imageUrl: 'https://i.imgur.com/JpliKwN.jpeg',
+        description: 'Summer mens 100% pure cotton casual sports loose and fashionable cartoon bear pattern printed round neck short sleeved T-shirt',
+        type: 'affiliate'
+    },
+    {
+        id: '029',
+        name: 'Better Days Ahead Letter Graphic Men T-Shirt',
+        category: 'Tshirt|Boys Fashion',
+        affiliateLink: 'https://s.click.aliexpress.com/e/_Evgtdea',
+        imageUrl: 'https://i.imgur.com/m0Km7mC.jpeg',
+        description: 'Better Days Ahead Letter Graphic Men T-Shirt O-Neck Casual Oversize T-Shirt Fashion Cotton Tee Clothes Summer Loose Tshirt',
+        type: 'affiliate'
+    },
+{
+        id: '030',
+        name: 'Short Sleeved T-shirt',
+        category: 'Tshirt|Boys Fashion',
+        affiliateLink: 'https://s.click.aliexpress.com/e/_EH9N0wm',
+        imageUrl: 'https://i.imgur.com/mnzRKpO.jpeg',
+        description: 'T Shirt for Men Set Summer Hot Selling Mens Short Sleeved T-shirt Casual Versatile Half Sleeved Trend Color Blocking Top Tshirt',
+        type: 'affiliate'
+    },
+{
+        id: '031',
+        name: 'Morning Rose',
+        category: 'Tshirt|Boys Fashion',
+        affiliateLink: 'https://s.click.aliexpress.com/e/_EuzJvSa',
+        imageUrl: 'https://i.imgur.com/ljy7lC0.jpeg',
+        description: 'Loose Size 100% Cotton Rose Print Casual Slim Fit Round Neck Short Sleeve T-shirt Top',
+        type: 'affiliate'
+    },
+{
+        id: '032',
+        name: 'Be A Kind King!',
+        category: 'Tshirt|Boys Fashion',
+        affiliateLink: 'https://s.click.aliexpress.com/e/_EuRekBu',
+        imageUrl: 'https://i.imgur.com/V7sGBZi.jpeg',
+        description: 'summer loose size BE KIND letter cartoon print casual comfortable round neck short sleeved T-shirt top',
+        type: 'affiliate'
+    },
+
+{
+        id: '033',
+        name: 'Vacation Undisputed!',
+        category: 'Tshirt|Boys Fashion',
+        affiliateLink: 'https://s.click.aliexpress.com/e/_ExelCbY',
+        imageUrl: 'https://i.imgur.com/7PI392V.jpeg',
+        description: 'Hawaiian Shirt Man Print Casual Thin Beach Slim Fashion Shirt High Quality Luxury Black Social Vintage Funny Oversized Clothes',
+        type: 'affiliate'
+    },
+
+{
+        id: '034',
+        name: 'Smile Face T-shirt',
+        category: 'Tshirt|Boys Fashion',
+        affiliateLink: 'https://s.click.aliexpress.com/e/_EQUrZsO',
+        imageUrl: 'https://i.imgur.com/w2rAvrT.jpeg',
+        description: 'Minimalist Smile Face Style Graphic Print Tops Men Hip Hop Tee Clothes T Shirt Summer Breathable T-Shirt Street Cotton Tshirt',
+        type: 'affiliate'
+    },
+
+{
+        id: '035',
+        name: 'Stand Collar T-shirt',
+        category: 'Tshirt|Boys Fashion',
+        affiliateLink: 'https://s.click.aliexpress.com/e/_EIwYhXU',
+        imageUrl: 'https://i.imgur.com/Bc8Lhon.jpeg',
+        description: 'Spring and Summer Stand Collar Five-point Mid-sleeve Fashionable Men's Short-sleeved Shirt Seven-point Sleeve Large Size Mens',
+        type: 'affiliate'
+    },
+
+{
+        id: '036',
+        name: 'Vintage Men T-Shirts',
+        category: 'Tshirt|Boys Fashion',
+        affiliateLink: 'https://s.click.aliexpress.com/e/_EJjvQXC',
+        imageUrl: 'https://i.imgur.com/FAigqhc.jpeg',
+        description: 'Washed Vintage Men T-Shirts Street Hip Hop Retro Punk T Shirt Harajuku Casual Cotton Short Sleeve Acid Wash TShirts Tops',
+        type: 'affiliate'
+    },
+
+{
+        id: '037',
+        name: 'Samurai X T-Shirt',
+        category: 'Tshirt|Boys Fashion',
+        affiliateLink: 'https://s.click.aliexpress.com/e/_EyfNowq',
+        imageUrl: 'https://i.imgur.com/qXfQtwn.jpeg',
+        description: 'Japanese Samurai Cat 3d Printed T Shirts For Casual Fashion Funny Shirt Top Tee Men Clothing',
+        type: 'affiliate'
+    },
+    
+    //books
+    {
+        id: '003',
+        name: 'Sapphire Dreams (GL Book Vol. 1)',
+        category: 'GL Books',
+        price: 2700, // ₦27.00
+        imageUrl: 'https://images.unsplash.com/photo-1522030299443-4f92d4766f07?auto=format&fit=crop&q=80&w=1935&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        description: 'An enchanting tale of self-discovery and enduring love, set against a magical backdrop. Follow protagonists as they navigate a world of wonders and challenges, forging a bond that defies all odds.',
+        type: 'shoppable'
+    },
+    {
+        id: '004',
+        name: 'Emerald Whispers (GL Book Vol. 2)',
+        category: 'GL Books',
+        price: 2900, // ₦29.00
+        imageUrl: 'https://images.unsplash.com/photo-1512820790803-830f65ce8843?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        description: 'The continuation of the beloved GL story, filled with courage and heartwarming moments. A journey of growth, resilience, and the unwavering power of true partnership.',
+        type: 'shoppable'
+    },
+    {
+        id: '005',
+        name: 'Starlight Embrace (BL Movie)',
+        category: 'BL Movies',
+        price: 3500, // ₦35.00
+        imageUrl: 'https://images.unsplash.com/photo-1542204165-f4ff70034a74?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        description: 'A visually stunning movie with a poignant BL storyline and unforgettable performances. Experience a cinematic masterpiece that will leave you breathless and deeply moved.',
+        type: 'shoppable'
+    },
+    {
+        id: '006',
+        name: 'Celestial Bonds (GL Movie)',
+        category: 'GL Movies',
+        price: 3200, // ₦32.00
+        imageUrl: 'https://images.unsplash.com/photo-1620292723307-889b6574f26b?auto=format&fit=crop&q=80&w=1932&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        description: 'Experience a powerful GL film that touches on themes of destiny and true partnership. A compelling narrative beautifully brought to life on screen, inspiring hope and acceptance.',
+        type: 'shoppable'
+    },
+    {
+        id: '007',
+        name: 'The BL Book Vol. 3: Echoes',
+        category: 'BL Books',
+        price: 2600, // ₦26.00
+        imageUrl: 'https://images.unsplash.com/photo-1621990710185-bc964a7c06c5?auto=format&fit=crop&q=80&w=1935&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        description: 'The thrilling conclusion to the BL book series, bringing all mysteries to light. Secrets unravel and new paths emerge in this epic final chapter, leaving a lasting impression.',
+        type: 'shoppable'
+    },
+    {
+        id: '008',
+        name: 'GL Movie: Rainbow Horizon',
+        category: 'GL Movies',
+        price: 3300, // ₦33.00
+        imageUrl: 'https://images.unsplash.com/photo-1620292723307-889b6574f26b?auto=format&fit=crop&q=80&w=1932&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        description: 'A vibrant and inspiring GL movie about finding hope and new beginnings. A cinematic journey of self-discovery, joy, and the beauty of embracing who you truly are.',
+        type: 'shoppable'
+    },
+
+    // --- Affiliate Products (Links to External Sites) ---
+    // Use 'affiliate' type for products you link to, but don't sell directly.
+    // Ensure 'affiliateLink' is set and 'price' is omitted.  
+   //boys toy 
+    {
+        id: 'aff-001', // UNIQUE custom ID for affiliate products
+        name: 'Safe Dildo For Bottoms',
+        category: 'Adult Boy Toys',
+        affiliateLink: 'https://a.aliexpress.com/_EwMyU6m',
+        imageUrl: 'https://i.imgur.com/mBgMqWA.jpeg',
+        description: 'Realistic Dildo with Suction Cup Huge Dildos Adult Sex Toys for Men, Big Penis Anal Butt Plug Erotic Relaxation toy, Shop 18+.',
+        type: 'affiliate'
+    },
+    {
+        id: 'aff-008',
+        name: 'Safe ButtPlug For Bottoms',
+        category: 'Adult Boy Toys',
+        affiliateLink: 'https://a.aliexpress.com/_EIkPig6',
+        imageUrl: 'https://i.imgur.com/A1ALhXR.jpeg',
+        description: 'Wireless Control Anal Vibrator Butt Plug Men Prostate Massager Stimulator.',
+        type: 'affiliate'
+    },
+    {
+        id: 'aff-009',
+        name: 'Safe Masturbator For Tops',
+        category: 'Adult Boy Toys',
+        affiliateLink: 'https://a.aliexpress.com/_Ex8N3Pc',
+        imageUrl: 'https://i.imgur.com/2Yq4GWw.jpeg',
+        description: 'Transparent Male Masturbator Artificial Pussy Vaginal for Men 18 Glans Sucking Penis Pump Spikes Exerciser Sex Toys Erotic.',
+        type: 'affiliate'
+    },
+     {
+        id: 'aff-011',
+        name: 'Safe Penis Pump',
+        category: 'Adult Boy Toys',
+        affiliateLink: 'https://a.aliexpress.com/_EJxEjJM',
+        imageUrl: 'https://i.imgur.com/SoyNyMt.jpeg',
+        description: 'Sex Machine Men Masturbation Cup Manual Penis Enlarger Masturbation Equipment Machine Sex Toys Simulation.',
+        type: 'affiliate'
+    },
+     {
+        id: 'aff-012',
+        name: 'Safe Temporary Enlargement For Tops',
+        category: 'Adult Boy Toys',
+        affiliateLink: 'https://a.aliexpress.com/_EQcgba2',
+        imageUrl: 'https://i.imgur.com/pqcGeHX.jpeg',
+        description: 'Long-lasting 60-minute penis enlargement oil, male external use sexual delay spray, anti-premature ejaculation sexual spray.',
+        type: 'affiliate'
+    },
+//girls toy 
+    {
+        id: 'aff-002',
+        name: ' Potable Trusting Vibrator',
+        category: 'Adult Girl Toys',
+        affiliateLink: 'https://a.aliexpress.com/_EGURCt4',
+        imageUrl: 'https://i.imgur.com/IYSUTAp.jpeg',
+        description: 'APP Thrusting Anal Vibrator for Adult Butt Plug with Cock Ring for Men Prostate Massager Ass Anal Dildo Buttplug Adult Goods',        type: 'affiliate'
+    },    
+    {
+        id: 'aff-013',
+        name: 'Clit Vibrator For Ladies',
+        category: 'Adult Girl Toys',
+        affiliateLink: 'https://a.aliexpress.com/_EHyvq9U',
+        imageUrl: 'https://i.imgur.com/inPbELM.jpeg',
+        description: 'Powerful Clit Vibrators for Women Dildo AV Magic Wand Vibrator Massager Adult  Sex Machine  Female Sex Shop for Couple',
+        type: 'affiliate'
+    },
+    {
+        id: 'aff-014',
+        name: 'Lingerie For Ladies, Fetish Bodysuit',
+        category: 'Adult Girl Toys',
+        affiliateLink: 'https://a.aliexpress.com/_Exc6la6',
+        imageUrl: 'https://i.imgur.com/Eh1SMO3.jpeg',
+        description: 'Sexy Adult Female Body Lingerie Women Fetish Bodysuit Open Chest Crotchless 18 Transparent Hot Erotic Underwear Costumes',
+        type: 'affiliate'
+    },
+    {
+        id: 'aff-015',
+        name: 'Butt Engagement Cream',
+        category: 'Adult Girl Toys',
+        affiliateLink: 'https://a.aliexpress.com/_EJ6dI42',
+        imageUrl: 'https://i.imgur.com/TAItdhV.jpeg',
+        description: 'Natural Buttock Augmentation Cream Effective Butt Enlargement Growth Lift Up Ass Firm Breast Bigger Sexy Body Lotion For Women',
+        type: 'affiliate'
+    },
+
+    
+    //smart Home
+    {
+        id: 'aff-003',
+        name: 'Smart Home Hub X',
+        category: 'Gadgets',
+        affiliateLink: 'https://www.aliexpress.com/item/10050011223.html',
+        imageUrl: 'https://images.unsplash.com/photo-1563829026369-0268ec3b2462?auto=format&fit=crop&q=80&w=1974&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        description: 'Control all your smart devices from one central, easy-to-use hub. Streamline your home automation with voice commands and intuitive controls.',
+        type: 'affiliate'
+    },
+    {
+        id: 'aff-004',
+        name: 'Quantum 5G Smartphone',
+        category: 'Phones and Laptops',
+        affiliateLink: 'https://www.aliexpress.com/item/10050044556.html',
+        imageUrl: 'https://images.unsplash.com/photo-1604533038661-39e80e14c2c5?auto=format&fit=crop&q=80&w=1974&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        description: 'Experience blazing-fast 5G speeds and an incredible camera system. Capture stunning photos and videos with unparalleled clarity and detail.',
+        type: 'affiliate'
+    },
+    {
+        id: 'aff-005',
+        name: 'Zenith UltraBook Pro',
+        category: 'Phones and Laptops',
+        affiliateLink: 'https://www.aliexpress.com/item/10050077889.html',
+        imageUrl: 'https://images.unsplash.com/photo-1593642532454-ce380775a7c5?auto=format&fit=crop&q=80&w=2069&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        description: 'Ultra-thin, ultra-powerful. Perfect for work and entertainment on the go. Boasting incredible performance and a sleek design, it\'s the ultimate portable workstation.',
+        type: 'affiliate'
+    },
+    {
+        id: 'aff-006',
+        name: 'Electric City Cruiser',
+        category: 'Cars',
+        affiliateLink: 'https://www.aliexpress.com/item/10050099001.html',
+        imageUrl: 'https://images.unsplash.com/photo-1620292723307-889b6574f26b?auto=format&fit=crop&q=80&w=1932&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        description: 'Eco-friendly and stylish, navigate the city with ease and zero emissions. Enjoy a smooth, quiet ride with advanced safety features and a modern design.',
+        type: 'affiliate'
+    },
+    {
+        id: 'aff-007',
+        name: 'Smartwatch Elite',
+        category: 'Wearable Tech',
+        affiliateLink: 'https://www.amazon.com/smartwatch-elite-12345',
+        imageUrl: 'https://images.unsplash.com/photo-1549490192-351829288e6e?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        description: 'Track your fitness, receive notifications, and stay connected on the go. Sleek design with advanced health monitoring capabilities.',
+        type: 'affiliate'
     }
-    return `₦${(amount / 100).toFixed(2)}`;
-}
+];       
+        ];
 
-/**
- * Displays a temporary message.
- * @param {string} message - The message to display.
- * @param {boolean} isSuccess - True for success message, false for error.
- */
-function showMessage(message, isSuccess) {
-    paymentMessage.textContent = message;
-    paymentMessage.className = `message ${isSuccess ? 'success' : 'error'}`;
-    paymentMessage.style.display = 'block';
-    setTimeout(() => {
-        paymentMessage.style.display = 'none';
-    }, 5000); // Hide after 5 seconds
-}
+        // Global state for the cart
+        let cart = [];
+
+        // DOM elements
+        const categorySectionsContainer = document.getElementById('category-sections');
+        const searchInput = document.getElementById('search-input');
+        const cancelSearchButton = document.getElementById('cancel-search-button');
+        const cartIcon = document.getElementById('cart-icon');
+        const cartCount = document.getElementById('cart-count');
+        const cartPopup = document.getElementById('cart-popup');
+        const cartPopupList = document.getElementById('cart-popup-list');
+        const cartPopupTotal = document.getElementById('cart-popup-total');
+        const cartItemsDisplay = document.getElementById('cart-items-display');
+        const totalPriceDisplay = document.getElementById('total-price-display');
+        const checkoutForm = document.getElementById('checkout-form');
+        const formCartItems = document.getElementById('form-cart-items');
+        const formTotalAmount = document.getElementById('form-total-amount');
+        const payNowButton = document.getElementById('pay-now-button');
+        const paymentMessage = document.getElementById('payment-message');
+
+        // Hero Product DOM elements
+        const heroProductSection = document.getElementById('hero-product-section');
+        // const heroProductImage = document.getElementById('hero-product-image'); // REMOVED - IMAGE IS NOW BACKGROUND
+        const heroProductTag = document.getElementById('hero-product-tag');
+        const heroProductTitle = document.getElementById('hero-product-title');
+        const heroProductDescription = document.getElementById('hero-product-description');
+        const heroProductPrice = document.getElementById('hero-product-price');
+        const heroAddToCartButton = document.getElementById('hero-add-to-cart');
+
+        // Product Quick View Modal DOM elements - NEW
+        const productQuickViewModal = document.getElementById('productQuickViewModal');
+        const quickViewCloseButton = productQuickViewModal.querySelector('.close-button');
+        const quickViewImage = document.getElementById('quick-view-image');
+        const quickViewName = document.getElementById('quick-view-name');
+        const quickViewDescription = document.getElementById('quick-view-description');
+        const quickViewPrice = document.getElementById('quick-view-price');
+        const quickViewAddToCartButton = document.getElementById('quick-view-add-to-cart');
+        const quickViewViewAffiliateButton = document.getElementById('quick-view-view-affiliate');
 
 
-// --- Product Rendering Functions ---
+        // --- Utility Functions ---
+        /**
+         * Formats a number as Nigerian Naira (NGN).
+         * @param {number} amount - The amount in kobo (smallest currency unit).
+         * @returns {string} Formatted NGN string.
+         */
+        function formatNaira(amount) {
+            return `₦${(amount / 100).toFixed(2)}`;
+        }
 
-/**
- * Creates a product card HTML element.
- * @param {object} product - The product object.
- * @returns {HTMLElement} The created product card div.
- */
-function createProductCard(product) {
-    const productCard = document.createElement('div');
-    productCard.className = 'product-card';
-    // Store product ID and type as data attributes for easy access
-    productCard.setAttribute('data-id', product.id);
-    productCard.setAttribute('data-category', product.category);
-    productCard.setAttribute('data-type', product.type); // Add data-type attribute
+        /**
+         * Displays a temporary message.
+         * @param {string} message - The message to display.
+         * @param {boolean} isSuccess - True for success message, false for error.
+         */
+        function showMessage(message, isSuccess) {
+            paymentMessage.textContent = message;
+            paymentMessage.className = `message ${isSuccess ? 'success' : 'error'}`;
+            paymentMessage.style.display = 'block';
+            setTimeout(() => {
+                paymentMessage.style.display = 'none';
+            }, 5000); // Hide after 5 seconds
+        }
 
-    // Use a conditional ternary operator for cleaner HTML generation
-    productCard.innerHTML = `
-        <img src="${product.imageUrl}" alt="${product.name}">
-        <div class="info">
-            <h3>${product.name}</h3>
-            <p class="category-text">${product.category}</p>
-            ${product.type === 'shoppable'
-                ? `<p class="price">${formatNaira(product.price)}</p>
-                   <button class="add-to-cart" data-id="${product.id}">Add to Cart</button>`
-                : `<button class="view-affiliate" data-id="${product.id}">View Product</button>`
+        // --- Product Rendering Functions ---
+        /**
+         * Creates a product card HTML element.
+         * @param {object} product - The product object.
+         * @returns {HTMLElement} The created product card div.
+         */
+        function createProductCard(product) {
+            const productCard = document.createElement('div');
+            productCard.className = 'product-card';
+            productCard.setAttribute('data-id', product.id);
+            productCard.setAttribute('data-category', product.category);
+            productCard.innerHTML = `
+                <img src="${product.imageUrl}" alt="${product.name}">
+                <div class="info">
+                    <h3>${product.name}</h3>
+                    <p class="category-text">${product.category}</p>
+                    ${product.type === 'shoppable' ?
+                        `<p class="price">${formatNaira(product.price)}</p>
+                        <button class="add-to-cart" data-id="${product.id}">Add to Cart</button>` :
+                        `<button class="view-affiliate" onclick="window.open('${product.affiliateLink}', '_blank')">View Product</button>`
+                    }
+                </div>
+            `;
+            return productCard;
+        }
+
+        /**
+         * Renders products into category sliders.
+         * @param {Array<object>} productsToRender - An array of product objects to display.
+         */
+        function renderCategorySliders(productsToRender) {
+            categorySectionsContainer.innerHTML = ''; // Clear existing sections
+
+            const uniqueCategories = [
+                'BL Books','Jeans|Boys Fashion','Tshirt|Boys Fashion','GL books'
+                'Adult Boy Toys', 'Adult Girl Toys', 'Gadgets',
+                'Phones','Laptops','Cars', 'Wearable Tech'
+            ].filter(cat => productsToRender.some(p => p.category === cat));
+
+            if (productsToRender.length === 0 && searchInput.value.trim() !== '') {
+                categorySectionsContainer.innerHTML = '<p style="color: var(--text-primary); text-align: center; margin-top: 50px; font-size: 1.1em;">No products found matching your search.</p>';
+                return;
+            } else if (productsToRender.length === 0) {
+                 categorySectionsContainer.innerHTML = '<p style="color: var(--text-primary); text-align: center; margin-top: 50px; font-size: 1.1em;">No products available.</p>';
+                 return;
             }
-        </div>
-    `;
-    return productCard;
-}
-
-/**
- * Renders products into category sliders.
- * It clears existing sections and rebuilds them based on the provided products.
- * @param {Array<object>} productsToRender - An array of product objects to display.
- */
-function renderCategorySliders(productsToRender) {
-    categorySectionsContainer.innerHTML = ''; // Clear existing sections
-
-    // Define preferred category order and filter to include only categories present in productsToRender
-    const preferredCategoryOrder = [
-        'BL Books','Jeans|Boys Fashion','Tshirt|Boys Fashion','GL Books', 'BL Movies', 'GL Movies',
-        'Adult Boy Toys', 'Adult Girl Toys', 'Gadgets',
-        'Phones and Laptops', 'Cars', 'Wearable Tech'
-    ];
-
-    const uniqueCategories = preferredCategoryOrder.filter(cat =>
-        productsToRender.some(p => p.category === cat)
-    );
-
-    // Message for no search results
-    if (productsToRender.length === 0 && searchInput.value.trim() !== '') {
-        categorySectionsContainer.innerHTML = '<p style="color: var(--text-primary); text-align: center; margin-top: 50px; font-size: 1.1em;">No products found matching your search.</p>';
-        return;
-    }
-    // Message for no products at all (unlikely if productsData.js is populated)
-    else if (productsToRender.length === 0) {
-         categorySectionsContainer.innerHTML = '<p style="color: var(--text-primary); text-align: center; margin-top: 50px; font-size: 1.1em;">No products available.</p>';
-         return;
-    }
-
-    uniqueCategories.forEach(category => {
-        const categorySection = document.createElement('div');
-        categorySection.className = 'category-section';
-
-        const categoryTitle = document.createElement('h2');
-        categoryTitle.textContent = category;
-        categorySection.appendChild(categoryTitle);
-
-        const productSlider = document.createElement('div');
-        productSlider.className = 'product-slider';
-
-        const productsInCategory = productsToRender.filter(p => p.category === category);
-
-        if (productsInCategory.length === 0) {
-            // This case should ideally not happen if uniqueCategories is filtered correctly,
-            // but kept as a safeguard for empty categories.
-            const noProductsMessage = document.createElement('p');
-            noProductsMessage.textContent = `No products found in this category.`;
-            noProductsMessage.style.color = 'var(--text-secondary)';
-            noProductsMessage.style.textAlign = 'center';
-            noProductsMessage.style.marginTop = '20px';
-            productSlider.appendChild(noProductsMessage);
-        } else {
-            productsInCategory.forEach(product => {
-                productSlider.appendChild(createProductCard(product));
-            });
-        }
-
-        categorySection.appendChild(productSlider);
-        categorySectionsContainer.appendChild(categorySection);
-    });
-}
-
-/**
- * Renders a single product search result directly to the main grid area.
- * Used specifically for 3-digit code search.
- * @param {object} product - The single product object to display.
- */
-function renderSingleProduct(product) {
-    categorySectionsContainer.innerHTML = `
-        <div class="category-section" id="search-results-section">
-            <h2>Search Results</h2>
-            <div class="product-slider"></div>
-        </div>
-    `;
-    const searchResultsSlider = document.querySelector('#search-results-section .product-slider');
-    if (product) {
-        searchResultsSlider.appendChild(createProductCard(product));
-    } else {
-        searchResultsSlider.innerHTML = '<p style="color: var(--text-primary); text-align: center; font-size: 1.1em;">No product found with that 3-digit code.</p>';
-    }
-}
-
-/**
- * Populates the hero product section.
- * It dynamically sets background image, text content, and button action based on product type.
- * @param {object} product - The product to feature in the hero section.
- */
-function populateHeroProduct(product) {
-    if (!product) {
-        heroProductSection.style.display = 'none';
-        return;
-    }
-
-    const heroBgUrl = product.heroImageUrl || product.imageUrl;
-    heroProductSection.style.backgroundImage = `url('${heroBgUrl}')`;
-    heroProductSection.style.backgroundSize = 'cover';
-    heroProductSection.style.backgroundPosition = 'center';
-
-    heroProductTag.textContent = `Trending in ${product.category}`;
-    heroProductTitle.textContent = product.name;
-    heroProductDescription.textContent = product.description || `A top trending item from our ${product.category} collection.`;
-
-    if (product.type === 'shoppable') {
-        heroProductPrice.textContent = formatNaira(product.price);
-        heroAddToCartButton.textContent = 'Add to Cart';
-        heroAddToCartButton.onclick = () => addToCart(product.id);
-    } else { // Affiliate product
-        heroProductPrice.textContent = ''; // Hide price for affiliate
-        heroAddToCartButton.textContent = 'View Affiliate Product';
-        heroAddToCartButton.onclick = () => window.open(product.affiliateLink, '_blank');
-    }
-    displayHeroSection(true); // Ensure hero section is visible if a product is populated
-}
-
-/**
- * Controls the visibility of the hero section.
- * @param {boolean} show - True to show, false to hide.
- */
-function displayHeroSection(show) {
-    heroProductSection.style.display = show ? 'flex' : 'none';
-}
 
 
-// --- Cart Functions ---
+            uniqueCategories.forEach(category => {
+                const categorySection = document.createElement('div');
+                categorySection.className = 'category-section';
 
-/**
- * Updates the cart display in the popup and the bottom checkout section.
- * Also updates hidden form fields for submission.
- */
-function updateCartDisplay() {
-    cartCount.textContent = cart.length;
-    cartPopupList.innerHTML = '';
-    cartItemsDisplay.innerHTML = '';
-    let total = 0;
-    const cartItemsForForm = [];
+                const categoryTitle = document.createElement('h2');
+                categoryTitle.textContent = category;
+                categorySection.appendChild(categoryTitle);
 
-    if (cart.length === 0) {
-        cartPopupList.innerHTML = '<li style="color: var(--text-secondary); text-align: center;">Your cart is empty.</li>';
-        cartItemsDisplay.innerHTML = '<p style="color: var(--text-secondary); text-align: center;">Your cart is empty.</p>';
-    } else {
-        cart.forEach(item => {
-            // For Cart Popup
-            const listItem = document.createElement('li');
-            listItem.innerHTML = `
-                <span class="item-name">${item.name}</span>
-                <span class="item-price">${formatNaira(item.price)}</span>
-                <button class="remove-item" data-id="${item.id}">×</button>
-            `;
-            cartPopupList.appendChild(listItem);
+                const productSlider = document.createElement('div');
+                productSlider.className = 'product-slider';
 
-            // For Bottom Cart Section
-            cartItemsDisplay.innerHTML += `
-                <p><strong>${item.name}</strong> - ${formatNaira(item.price)}</p>
-            `;
-            total += item.price;
-            // Prepare item details for Formspree submission
-            cartItemsForForm.push({ id: item.id, name: item.name, price: item.price });
-        });
-    }
+                const productsInCategory = productsToRender.filter(p => p.category === category);
 
-    cartPopupTotal.textContent = formatNaira(total);
-    totalPriceDisplay.textContent = `Total: ${formatNaira(total)}`;
-
-    // Update hidden form fields for submission
-    formCartItems.value = JSON.stringify(cartItemsForForm);
-    formTotalAmount.value = total; // Send total in kobo
-}
-
-/**
- * Adds a product to the cart.
- * Only 'shoppable' products can be added to the cart.
- * @param {string} productId - The ID of the product to add.
- */
-function addToCart(productId) {
-    // Find the product from the global 'products' array
-    const productToAdd = products.find(p => p.id === productId && p.type === 'shoppable');
-    if (productToAdd) {
-        cart.push(productToAdd);
-        updateCartDisplay();
-        showMessage(`${productToAdd.name} added to cart!`, true);
-    } else {
-        console.warn(`Attempted to add non-shoppable or non-existent product with ID: ${productId}`);
-    }
-}
-
-/**
- * Removes an item from the cart.
- * @param {string} productId - The ID of the product to remove.
- */
-function removeFromCart(productId) {
-    const index = cart.findIndex(item => item.id === productId);
-    if (index > -1) {
-        const removedItem = cart.splice(index, 1);
-        updateCartDisplay();
-        showMessage(`${removedItem[0].name} removed from cart.`, false);
-    }
-}
-
-
-// --- MODAL FUNCTIONS ---
-
-/**
- * Shows a given modal overlay.
- * @param {HTMLElement} modalElement - The modal element to show.
- */
-function showModal(modalElement) {
-    modalElement.classList.add('show-modal');
-    document.body.style.overflow = 'hidden'; // Prevent scrolling background
-}
-
-/**
- * Hides a given modal overlay.
- * @param {HTMLElement} modalElement - The modal element to hide.
- */
-function hideModal(modalElement) {
-    modalElement.classList.remove('show-modal');
-    document.body.style.overflow = ''; // Restore scrolling background
-}
-
-/**
- * Opens the product quick view modal with details of a specific product.
- * @param {string} productId - The ID of the product to display in quick view.
- */
-function openProductQuickView(productId) {
-    const product = products.find(p => p.id === productId);
-    if (!product) {
-        console.error('Product not found for quick view:', productId);
-        return;
-    }
-
-    quickViewImage.src = product.imageUrl;
-    quickViewImage.alt = product.name;
-    quickViewName.textContent = product.name;
-    quickViewDescription.textContent = product.description;
-
-    if (product.type === 'shoppable') {
-        quickViewPrice.textContent = formatNaira(product.price);
-        quickViewPrice.style.display = 'block';
-        quickViewAddToCartButton.style.display = 'block';
-        quickViewViewAffiliateButton.style.display = 'none';
-        quickViewAddToCartButton.onclick = () => {
-            addToCart(product.id);
-            hideModal(productQuickViewModal); // Close modal after adding to cart
-        };
-    } else { // Affiliate product
-        quickViewPrice.style.display = 'none';
-        quickViewAddToCartButton.style.display = 'none';
-        quickViewViewAffiliateButton.style.display = 'block';
-        quickViewViewAffiliateButton.onclick = () => {
-            window.open(product.affiliateLink, '_blank');
-            hideModal(productQuickViewModal); // Close modal
-        };
-    }
-
-    showModal(productQuickViewModal);
-}
-
-
-// --- Event Handlers ---
-
-// Search functionality handler
-function performSearch() {
-    const searchTerm = searchInput.value.trim();
-    if (searchTerm === '') {
-        displayHeroSection(true); // Show hero if search is empty
-        renderCategorySliders(products); // Show all if search is empty
-        return;
-    }
-
-    displayHeroSection(false); // Hide hero section when a search is performed
-
-    // Check if it's a 3-digit code search for shoppable products
-    if (searchTerm.match(/^\d{3}$/)) {
-        const foundProduct = products.find(p => p.id === searchTerm && p.type === 'shoppable');
-        renderSingleProduct(foundProduct); // Render only that product
-    } else {
-        // For other general text search (case-insensitive on name/category/id)
-        const filteredProducts = products.filter(p =>
-            p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            p.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            p.id.toLowerCase().includes(searchTerm.toLowerCase()) // Also search by ID for partial matches
-        );
-        renderCategorySliders(filteredProducts); // Render filtered products in their categories
-    }
-}
-
-
-// --- Event Listeners ---
-
-// Search input listener
-searchInput.addEventListener('input', () => {
-    // Show/hide the cancel search button
-    cancelSearchButton.style.display = searchInput.value.trim() !== '' ? 'block' : 'none';
-    if (searchInput.value.trim() === '') {
-        // If search input is cleared, show hero and all products
-        displayHeroSection(true);
-        renderCategorySliders(products);
-    }
-});
-
-// Search on Enter key press
-searchInput.addEventListener('keyup', (event) => {
-    if (event.key === 'Enter') {
-        performSearch();
-    }
-});
-
-// Cancel search button listener
-cancelSearchButton.addEventListener('click', () => {
-    searchInput.value = ''; // Clear search input
-    cancelSearchButton.style.display = 'none'; // Hide cancel button
-    displayHeroSection(true); // Show hero when search is cleared
-    renderCategorySliders(products); // Display all products
-});
-
-// Event delegation for product card interactions (Add to Cart, View Affiliate, Quick View)
-categorySectionsContainer.addEventListener('click', (event) => {
-    const target = event.target;
-    const targetCard = target.closest('.product-card');
-
-    if (target.classList.contains('add-to-cart')) {
-        event.stopPropagation(); // Prevent card click event from bubbling
-        const productId = target.dataset.id;
-        addToCart(productId);
-    } else if (target.classList.contains('view-affiliate')) {
-        event.stopPropagation(); // Prevent card click event from bubbling
-        const productId = target.dataset.id;
-        const product = products.find(p => p.id === productId);
-        if (product && product.affiliateLink) {
-            window.open(product.affiliateLink, '_blank');
-        }
-    } else if (targetCard) { // If a click occurred anywhere on the product card itself
-        const productId = targetCard.dataset.id;
-        openProductQuickView(productId);
-    }
-});
-
-
-// Event delegation for removing items from the cart popup
-cartPopupList.addEventListener('click', (event) => {
-    if (event.target.classList.contains('remove-item')) {
-        const productId = event.target.dataset.id;
-        removeFromCart(productId);
-    }
-});
-
-// Toggle cart popup visibility and scroll to cart section
-cartIcon.addEventListener('click', () => {
-    cartPopup.style.display = cartPopup.style.display === 'block' ? 'none' : 'block';
-    if (cartPopup.style.display === 'block') {
-        // Scroll to the bottom cart section when cart icon is clicked
-        document.getElementById('cart-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-});
-
-// Close cart popup if clicked outside
-document.addEventListener('click', (event) => {
-    if (!cartIcon.contains(event.target) && !cartPopup.contains(event.target) && cartPopup.style.display === 'block') {
-        cartPopup.style.display = 'none';
-    }
-});
-
-// Close product quick view modal if clicked outside or on close button
-productQuickViewModal.addEventListener('click', (e) => {
-    if (e.target === productQuickViewModal) {
-        hideModal(productQuickViewModal);
-    }
-});
-quickViewCloseButton.addEventListener('click', () => {
-    hideModal(productQuickViewModal);
-});
-
-
-// Paystack & Formspree Integration on Buy Now button click
-checkoutForm.addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent default form submission
-
-    if (cart.length === 0) {
-        showMessage('Your cart is empty. Please add items before checking out.', false);
-        return;
-    }
-
-    const emailInput = document.getElementById('email');
-    const amountInKobo = parseFloat(formTotalAmount.value); // Already in kobo
-    const customerEmail = emailInput.value;
-    const customerName = document.getElementById('full-name').value;
-    const customerPhone = document.getElementById('phone').value;
-    const customerAddress = document.getElementById('address').value;
-
-    if (!customerEmail || !customerName || !customerPhone || !customerAddress) {
-        showMessage('Please fill in all your contact and delivery details.', false);
-        return;
-    }
-
-    if (!PAYSTACK_PUBLIC_KEY || PAYSTACK_PUBLIC_KEY === 'pk_test_YOUR_PAYSTACK_PUBLIC_KEY') {
-        showMessage('Paystack Public Key is not configured. Please update the JavaScript code.', false);
-        return;
-    }
-    if (!FORMSPREE_ENDPOINT || FORMSPREE_ENDPOINT === 'https://formspree.io/f/YOUR_FORMSPREE_ENDPOINT') {
-        showMessage('Formspree Endpoint is not configured. Please update the JavaScript code.', false);
-        return;
-    }
-
-    // Initialize Paystack payment
-    let handler = PaystackPop.setup({
-        key: PAYSTACK_PUBLIC_KEY, // Replace with your public key
-        email: customerEmail,
-        amount: amountInKobo, // Amount in kobo
-        currency: 'NGN',
-        ref: '' + Math.floor((Math.random() * 1000000000) + 1), // unique reference
-        metadata: {
-            custom_fields: [
-                {
-                    display_name: "Customer Name",
-                    variable_name: "customer_name",
-                    value: customerName
-                },
-                {
-                    display_name: "Delivery Address",
-                    variable_name: "delivery_address",
-                    value: customerAddress
-                },
-                {
-                    display_name: "Phone Number",
-                    variable_name: "phone_number",
-                    value: customerPhone
-                },
-                {
-                    display_name: "Cart Details",
-                    variable_name: "cart_details",
-                    value: formCartItems.value // Send JSON string of cart items
-                }
-            ]
-        },
-        callback: function(response) {
-            // Payment successful
-            const transactionRef = response.reference;
-            showMessage(`Payment successful! Transaction Ref: ${transactionRef}`, true);
-
-            // Now submit the form to Formspree
-            const formData = new FormData(checkoutForm);
-            fetch(FORMSPREE_ENDPOINT, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    showMessage('Thank you! Your order has been placed successfully!', true);
-                    cart = []; // Clear cart
-                    updateCartDisplay();
-                    checkoutForm.reset(); // Clear form fields
+                if (productsInCategory.length === 0) {
+                    const noProductsMessage = document.createElement('p');
+                    noProductsMessage.textContent = `No products found in this category.`;
+                    noProductsMessage.style.color = 'var(--text-secondary)';
+                    noProductsMessage.style.textAlign = 'center';
+                    noProductsMessage.style.marginTop = '20px';
+                    productSlider.appendChild(noProductsMessage);
                 } else {
-                    showMessage('Order submission failed after payment. Please contact support.', false);
-                    console.error('Formspree submission failed:', response);
+                    productsInCategory.forEach(product => {
+                        productSlider.appendChild(createProductCard(product));
+                    });
                 }
-            })
-            .catch(error => {
-                showMessage('Network error during order submission. Please try again.', false);
-                console.error('Network error submitting to Formspree:', error);
+
+                categorySection.appendChild(productSlider);
+                categorySectionsContainer.appendChild(categorySection);
             });
-        },
-        onClose: function() {
-            // Payment window closed
-            showMessage('Payment window closed. Payment was not completed.', false);
         }
-    });
-    handler.openIframe(); // Open the Paystack checkout iframe
-});
 
-
-// --- Modal & General UI Logic (Non-Product Related) ---
-
-// Initial setup on page load
-document.addEventListener('DOMContentLoaded', () => {
-    // Determine current page for bottom nav highlighting
-    const currentPagePath = window.location.pathname;
-    const currentPageFileName = currentPagePath.split('/').pop();
-
-    // --- Active state for bottom navigation (JavaScript-driven) ---
-    const bottomNavItems = document.querySelectorAll('.bottom-nav .nav-item');
-    bottomNavItems.forEach(item => {
-        item.classList.remove('active'); // Remove active class from all first
-        const itemHref = item.getAttribute('href');
-        // Check if itemHref matches the current page file name
-        if (itemHref === currentPageFileName) {
-            item.classList.add('active');
+        /**
+         * Renders a single product search result directly to the main grid area.
+         * Used specifically for 3-digit code search.
+         * @param {object} product - The single product object to display.
+         */
+        function renderSingleProduct(product) {
+            categorySectionsContainer.innerHTML = `
+                <div class="category-section" id="search-results-section">
+                    <h2>Search Results</h2>
+                    <div class="product-slider"></div>
+                </div>
+            `;
+            const searchResultsSlider = document.querySelector('#search-results-section .product-slider');
+            if (product) {
+                searchResultsSlider.appendChild(createProductCard(product));
+            } else {
+                searchResultsSlider.innerHTML = '<p style="color: var(--text-primary); text-align: center; font-size: 1.1em;">No product found with that 3-digit code.</p>';
+            }
         }
-    });
 
-    // --- Modals and their buttons ---
-    // Resources Menu Modal
-    const resourcesMenuModal = document.getElementById('resourcesMenuModal');
-    const resourcesMenuCloseButton = resourcesMenuModal.querySelector('.close-button');
-    const openResourcesMenuModalLink = document.getElementById('openResourcesMenuModalLink');
+        /**
+         * Populates the hero product section.
+         * @param {object} product - The product to feature in the hero section.
+         */
+        function populateHeroProduct(product) {
+            if (!product) {
+                heroProductSection.style.display = 'none';
+                return;
+            }
 
-    // Add/Create Modal
-    const addCreateModal = document.getElementById('addCreateModal');
-    const addCreateModalCloseButton = addCreateModal.querySelector('.close-button');
-    const openAddCreateModalLink = document.getElementById('openAddCreateModalLink');
+            const heroBgUrl = product.heroImageUrl || product.imageUrl;
+            heroProductSection.style.backgroundImage = `url('${heroBgUrl}')`;
+            heroProductSection.style.backgroundSize = 'cover';
+            heroProductSection.style.backgroundPosition = 'center';
 
-    // Contact Form Modal
-    const contactFormModal = document.getElementById('contactFormModal');
-    const contactFormCloseButton = contactFormModal.querySelector('.close-button');
-    const openContactFormModalLink = document.getElementById('openContactFormModalLink');
+            heroProductTag.textContent = `Trending in ${product.category}`;
+            heroProductTitle.textContent = product.name;
+            heroProductDescription.textContent = product.description || `A top trending item from our ${product.category} collection.`;
 
-    // Event listeners for opening/closing modals
-    openResourcesMenuModalLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        showModal(resourcesMenuModal);
-    });
-    resourcesMenuCloseButton.addEventListener('click', () => {
-        hideModal(resourcesMenuModal);
-    });
-    resourcesMenuModal.addEventListener('click', (e) => {
-        if (e.target === resourcesMenuModal) { // Clicked on overlay, not content
-            hideModal(resourcesMenuModal);
+            if (product.type === 'shoppable') {
+                heroProductPrice.textContent = formatNaira(product.price);
+                heroAddToCartButton.textContent = 'Add to Cart';
+                heroAddToCartButton.onclick = () => addToCart(product.id);
+            } else {
+                heroProductPrice.textContent = ''; // Hide price for affiliate
+                heroAddToCartButton.textContent = 'View Affiliate Product';
+                heroAddToCartButton.onclick = () => window.open(product.affiliateLink, '_blank');
+            }
         }
-    });
 
-    openAddCreateModalLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        showModal(addCreateModal);
-    });
-    addCreateModalCloseButton.addEventListener('click', () => {
-        hideModal(addCreateModal);
-    });
-    addCreateModal.addEventListener('click', (e) => {
-        if (e.target === addCreateModal) { // Clicked on overlay, not content
-            hideModal(addCreateModal);
+        /**
+         * Controls the visibility of the hero section.
+         * @param {boolean} show - True to show, false to hide.
+         */
+        function displayHeroSection(show) {
+            heroProductSection.style.display = show ? 'flex' : 'none';
         }
-    });
 
-    if (openContactFormModalLink) { // Ensure button exists before adding listener
-        openContactFormModalLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            showModal(contactFormModal);
-        });
-    }
-    if (contactFormCloseButton) {
-        contactFormCloseButton.addEventListener('click', () => {
-            hideModal(contactFormModal);
-        });
-    }
-    if (contactFormModal) {
-        contactFormModal.addEventListener('click', (e) => {
-            if (e.target === contactFormModal) { // Clicked on overlay, not content
-                hideModal(contactFormModal);
+        // --- Cart Functions ---
+        /**
+         * Updates the cart display (popup and bottom section).
+         */
+        function updateCartDisplay() {
+            cartCount.textContent = cart.length;
+            cartPopupList.innerHTML = '';
+            cartItemsDisplay.innerHTML = '';
+            let total = 0;
+            const cartItemsForForm = [];
+
+            if (cart.length === 0) {
+                cartPopupList.innerHTML = '<li style="color: var(--text-secondary); text-align: center;">Your cart is empty.</li>';
+                cartItemsDisplay.innerHTML = '<p style="color: var(--text-secondary); text-align: center;">Your cart is empty.</p>';
+            } else {
+                cart.forEach(item => {
+                    // For Cart Popup
+                    const listItem = document.createElement('li');
+                    listItem.innerHTML = `
+                        <span class="item-name">${item.name}</span>
+                        <span class="item-price">${formatNaira(item.price)}</span>
+                        <button class="remove-item" data-id="${item.id}">×</button>
+                    `;
+                    cartPopupList.appendChild(listItem);
+
+                    // For Bottom Cart Section
+                    cartItemsDisplay.innerHTML += `
+                        <p><strong>${item.name}</strong> - ${formatNaira(item.price)}</p>
+                    `;
+                    total += item.price;
+                    cartItemsForForm.push({ id: item.id, name: item.name, price: item.price });
+                });
+            }
+
+            cartPopupTotal.textContent = formatNaira(total);
+            totalPriceDisplay.textContent = `Total: ${formatNaira(total)}`;
+
+            // Update hidden form fields
+            formCartItems.value = JSON.stringify(cartItemsForForm);
+            formTotalAmount.value = total; // Send total in kobo
+        }
+
+        /**
+         * Adds a product to the cart.
+         * @param {string} productId - The ID of the product to add.
+         */
+        function addToCart(productId) {
+            const productToAdd = products.find(p => p.id === productId && p.type === 'shoppable');
+            if (productToAdd) {
+                cart.push(productToAdd);
+                updateCartDisplay();
+                showMessage(`${productToAdd.name} added to cart!`, true);
+            }
+        }
+
+        /**
+         * Removes an item from the cart.
+         * @param {string} productId - The ID of the product to remove.
+         */
+        function removeFromCart(productId) {
+            const index = cart.findIndex(item => item.id === productId);
+            if (index > -1) {
+                const removedItem = cart.splice(index, 1);
+                updateCartDisplay();
+                showMessage(`${removedItem[0].name} removed from cart.`, false);
+            }
+        }
+
+        // --- MODAL FUNCTIONS (MOVED TO GLOBAL SCOPE FOR REUSE) ---
+        function showModal(modalElement) {
+            modalElement.classList.add('show-modal');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling background
+        }
+
+        function hideModal(modalElement) {
+            modalElement.classList.remove('show-modal');
+            document.body.style.overflow = ''; // Restore scrolling background
+        }
+
+        // Function to open the product quick view modal - NEW
+        function openProductQuickView(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            quickViewImage.src = product.imageUrl;
+            quickViewImage.alt = product.name;
+            quickViewName.textContent = product.name;
+            quickViewDescription.textContent = product.description;
+
+            if (product.type === 'shoppable') {
+                quickViewPrice.textContent = formatNaira(product.price);
+                quickViewPrice.style.display = 'block'; // Ensure price is visible
+                quickViewAddToCartButton.style.display = 'block'; // Ensure add to cart is visible
+                quickViewViewAffiliateButton.style.display = 'none'; // Ensure view affiliate is hidden
+                quickViewAddToCartButton.onclick = () => {
+                    addToCart(product.id);
+                    hideModal(productQuickViewModal); // Close modal after adding to cart
+                };
+            } else { // Affiliate product
+                quickViewPrice.style.display = 'none'; // Hide price for affiliate
+                quickViewAddToCartButton.style.display = 'none'; // Hide add to cart for affiliate
+                quickViewViewAffiliateButton.style.display = 'block'; // Ensure view affiliate is visible
+                quickViewViewAffiliateButton.onclick = () => {
+                    window.open(product.affiliateLink, '_blank');
+                    hideModal(productQuickViewModal); // Close modal
+                };
+            }
+
+            showModal(productQuickViewModal);
+        }
+
+
+        // --- Event Listeners ---
+        // Search functionality
+        searchInput.addEventListener('input', () => {
+            if (searchInput.value.trim() !== '') {
+                cancelSearchButton.style.display = 'block';
+            } else {
+                cancelSearchButton.style.display = 'none';
+                displayHeroSection(true); // Show hero when search is cleared
+                renderCategorySliders(products); // Display all products when search is cleared
             }
         });
-    }
 
-    // Live Link placeholder action
-    const openLiveLink = document.getElementById('openLiveLink');
-    if (openLiveLink) {
-        openLiveLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            alert('Navigating to Live Content! (This link is a placeholder)');
+        searchInput.addEventListener('keyup', (event) => {
+            if (event.key === 'Enter') {
+                performSearch();
+            }
         });
-    }
 
-    // Contact Form email functionality
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const name = document.getElementById('contactName').value;
-            const email = document.getElementById('contactEmail').value;
-            const subject = document.getElementById('contactSubject').value;
-            const message = document.getElementById('contactMessage').value;
-            const mailtoLink = `mailto:iceconsort@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
-            window.location.href = mailtoLink; // This opens the email client
-            hideModal(contactFormModal);
-            contactForm.reset(); // Clear form fields
+        cancelSearchButton.addEventListener('click', () => {
+            searchInput.value = ''; // Clear search input
+            cancelSearchButton.style.display = 'none'; // Hide cancel button
+            displayHeroSection(true); // Show hero when search is cleared
+            renderCategorySliders(products); // Display all products
         });
-    }
 
-    // --- Shop Specific Initializations (Runs once DOM is ready) ---
-    // Select a trending product for the hero section.
-    // It looks for the first 'shoppable' product that also has a 'heroImageUrl'.
-    // If none found, it falls back to the very first product in the 'products' array.
-    const trendingProduct = products.find(p => p.type === 'shoppable' && p.heroImageUrl);
-    populateHeroProduct(trendingProduct || products[0]); // Populate hero with trending or first product
+        function performSearch() {
+            const searchTerm = searchInput.value.trim();
+            if (searchTerm === '') {
+                displayHeroSection(true); // Show hero if search is empty
+                renderCategorySliders(products); // Show all if search is empty
+                return;
+            }
 
-    renderCategorySliders(products); // Render all products into their respective categories initially
-    updateCartDisplay(); // Initialize cart display on page load
-});
+            displayHeroSection(false); // Hide hero section when a search is performed
+
+            // Check if it's a 3-digit code search for shoppable products
+            if (searchTerm.match(/^\d{3}$/)) {
+                const foundProduct = products.find(p => p.id === searchTerm && p.type === 'shoppable');
+                renderSingleProduct(foundProduct); // Render only that product
+            } else {
+                // For other general text search (case-insensitive on name/category)
+                const filteredProducts = products.filter(p =>
+                    p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    p.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    p.id.toLowerCase().includes(searchTerm.toLowerCase())
+                );
+                renderCategorySliders(filteredProducts); // Render filtered products in their categories
+            }
+        }
+
+        // Event delegation for Add to Cart / View Affiliate buttons within product cards
+        categorySectionsContainer.addEventListener('click', (event) => {
+            if (event.target.classList.contains('add-to-cart')) {
+                event.stopPropagation(); // Prevent card click event
+                const productId = event.target.dataset.id;
+                addToCart(productId);
+            } else if (event.target.classList.contains('view-affiliate')) {
+                // Affiliate links are handled directly via onclick in createProductCard,
+                // so this else if is mostly for consistency if you modify that.
+                // The current setup allows the onclick to fire directly.
+            } else { // Handle clicks on the product card itself to open quick view
+                const targetCard = event.target.closest('.product-card');
+                if (targetCard) {
+                    const productId = targetCard.dataset.id;
+                    openProductQuickView(productId);
+                }
+            }
+        });
+
+
+        // Event delegation for removing items from the cart popup
+        cartPopupList.addEventListener('click', (event) => {
+            if (event.target.classList.contains('remove-item')) {
+                const productId = event.target.dataset.id;
+                removeFromCart(productId);
+            }
+        });
+
+        // Toggle cart popup visibility and scroll to cart section
+        cartIcon.addEventListener('click', () => {
+            cartPopup.style.display = cartPopup.style.display === 'block' ? 'none' : 'block';
+            if (cartPopup.style.display === 'block') {
+                // Scroll to the bottom cart section when cart icon is clicked
+                document.getElementById('cart-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+
+        // Close cart popup if clicked outside
+        document.addEventListener('click', (event) => {
+            if (!cartIcon.contains(event.target) && !cartPopup.contains(event.target) && cartPopup.style.display === 'block') {
+                cartPopup.style.display = 'none';
+            }
+        });
+
+        // Close product quick view modal if clicked outside - NEW
+        productQuickViewModal.addEventListener('click', (e) => {
+            if (e.target === productQuickViewModal) {
+                hideModal(productQuickViewModal);
+            }
+        });
+        quickViewCloseButton.addEventListener('click', () => { // NEW
+            hideModal(productQuickViewModal);
+        });
+
+
+        // Paystack & Formspree Integration on Buy Now button click
+        checkoutForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            if (cart.length === 0) {
+                showMessage('Your cart is empty. Please add items before checking out.', false);
+                return;
+            }
+
+            const emailInput = document.getElementById('email');
+            const amountInKobo = parseFloat(formTotalAmount.value); // Already in kobo
+            const customerEmail = emailInput.value;
+            const customerName = document.getElementById('full-name').value;
+            const customerPhone = document.getElementById('phone');
+            const customerAddress = document.getElementById('address');
+
+            if (!customerEmail || !customerName || !customerPhone.value || !customerAddress.value) {
+                showMessage('Please fill in all your contact and delivery details.', false);
+                return;
+            }
+
+            if (!PAYSTACK_PUBLIC_KEY || PAYSTACK_PUBLIC_KEY === 'pk_test_YOUR_PAYSTACK_PUBLIC_KEY') {
+                showMessage('Paystack Public Key is not configured. Please update the JavaScript code.', false);
+                return;
+            }
+            if (!FORMSPREE_ENDPOINT || FORMSPREE_ENDPOINT === 'https://formspree.io/f/YOUR_FORMSPREE_ENDPOINT') {
+                showMessage('Formspree Endpoint is not configured. Please update the JavaScript code.', false);
+                return;
+            }
+
+            // Initialize Paystack payment
+            let handler = PaystackPop.setup({
+                key: PAYSTACK_PUBLIC_KEY, // Replace with your public key
+                email: customerEmail,
+                amount: amountInKobo, // Amount in kobo
+                currency: 'NGN',
+                ref: '' + Math.floor((Math.random() * 1000000000) + 1), // unique reference
+                metadata: {
+                    custom_fields: [
+                        {
+                            display_name: "Customer Name",
+                            variable_name: "customer_name",
+                            value: customerName
+                        },
+                        {
+                            display_name: "Delivery Address",
+                            variable_name: "delivery_address",
+                            value: customerAddress.value
+                        },
+                        {
+                            display_name: "Phone Number",
+                            variable_name: "phone_number",
+                            value: customerPhone.value
+                        },
+                        {
+                            display_name: "Cart Details",
+                            variable_name: "cart_details",
+                            value: formCartItems.value // Send JSON string of cart items
+                        }
+                    ]
+                },
+                callback: function(response) {
+                    // Payment successful
+                    const transactionRef = response.reference;
+                    showMessage(`Payment successful! Transaction Ref: ${transactionRef}`, true);
+
+                    // Now submit the form to Formspree
+                    const formData = new FormData(checkoutForm);
+                    fetch(FORMSPREE_ENDPOINT, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            showMessage('Thank you! Your items will be delivered shortly.', true);
+                            cart = []; // Clear cart
+                            updateCartDisplay();
+                            checkoutForm.reset(); // Clear form fields
+                        } else {
+                            showMessage('Order submission failed after payment. Please contact support.', false);
+                            console.error('Formspree submission failed:', response);
+                        }
+                    })
+                    .catch(error => {
+                        showMessage('Network error during order submission. Please try again.', false);
+                        console.error('Network error submitting to Formspree:', error);
+                    });
+                },
+                onClose: function() {
+                    // Payment window closed
+                    showMessage('Payment window closed. Payment was not completed.', false);
+                }
+            });
+            handler.openIframe(); // Open the Paystack checkout iframe
+        });
+
+        // --- Modal & General UI Logic ---
+        // Initial setup on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentPagePath = window.location.pathname;
+            const currentPageFileName = currentPagePath.split('/').pop();
+
+            // --- Active state for bottom navigation (JavaScript-driven) ---
+            const bottomNavItems = document.querySelectorAll('.bottom-nav .nav-item');
+            bottomNavItems.forEach(item => {
+                item.classList.remove('active');
+                const itemHref = item.getAttribute('href');
+                if (itemHref === currentPageFileName) {
+                    item.classList.add('active');
+                }
+            });
+
+            // --- Modals and their buttons ---
+            const resourcesMenuModal = document.getElementById('resourcesMenuModal');
+            const resourcesMenuCloseButton = resourcesMenuModal.querySelector('.close-button');
+            const openResourcesMenuModalLink = document.getElementById('openResourcesMenuModalLink');
+
+            const addCreateModal = document.getElementById('addCreateModal');
+            const addCreateModalCloseButton = addCreateModal.querySelector('.close-button');
+            const openAddCreateModalLink = document.getElementById('openAddCreateModalLink');
+
+            const contactFormModal = document.getElementById('contactFormModal');
+            const contactFormCloseButton = contactFormModal.querySelector('.close-button');
+            const openContactFormModalLink = document.getElementById('openContactFormModalLink');
+
+            openResourcesMenuModalLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                showModal(resourcesMenuModal);
+            });
+            resourcesMenuCloseButton.addEventListener('click', () => {
+                hideModal(resourcesMenuModal);
+            });
+            resourcesMenuModal.addEventListener('click', (e) => {
+                if (e.target === resourcesMenuModal) {
+                    hideModal(resourcesMenuModal);
+                }
+            });
+
+            openAddCreateModalLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                showModal(addCreateModal);
+            });
+            addCreateModalCloseButton.addEventListener('click', () => {
+                hideModal(addCreateModal);
+            });
+            addCreateModal.addEventListener('click', (e) => {
+                if (e.target === addCreateModal) {
+                    hideModal(addCreateModal);
+                }
+            });
+
+            if (openContactFormModalLink) { // Ensure button exists before adding listener
+                openContactFormModalLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showModal(contactFormModal);
+                });
+            }
+            if (contactFormCloseButton) {
+                contactFormCloseButton.addEventListener('click', () => {
+                    hideModal(contactFormModal);
+                });
+            }
+            if (contactFormModal) {
+                contactFormModal.addEventListener('click', (e) => {
+                    if (e.target === contactFormModal) {
+                        hideModal(contactFormModal);
+                    }
+                });
+            }
+
+            const openLiveLink = document.getElementById('openLiveLink');
+            if (openLiveLink) {
+                openLiveLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    alert('Navigating to Live Content! (This link is a placeholder)');
+                });
+            }
+
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const name = document.getElementById('contactName').value;
+                    const email = document.getElementById('contactEmail').value;
+                    const subject = document.getElementById('contactSubject').value;
+                    const message = document.getElementById('contactMessage').value;
+                    const mailtoLink = `mailto:iceconsort@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+                    window.location.href = mailtoLink;
+                    hideModal(contactFormModal);
+                    contactForm.reset();
+                });
+            }
+
+            // --- Shop Specific Initializations ---
+            const trendingProduct = products.find(p => p.type === 'shoppable' && p.heroImageUrl); // Finds the first shoppable product with a hero image for the hero section
+            populateHeroProduct(trendingProduct || products[0]); // Fallback to first product if no specific hero product found
+            displayHeroSection(true); // Show hero on default view
+            renderCategorySliders(products); // Render all products initially
+            updateCartDisplay(); // Initialize cart display
+        });
     </script>
 </body>
 </html>
