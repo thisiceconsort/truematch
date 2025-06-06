@@ -146,7 +146,104 @@ const products = [
 
     //boystop
 
+{
+        id: '027',
+        name: 'Summer Time Sadness',
+        category: 'Tshirt|Boys Fashion',
+        affiliateLink: 'https://s.click.aliexpress.com/e/_EHiSlHY',
+        imageUrl: 'https://i.imgur.com/JpliKwN.jpeg',
+        description: 'Summer mens 100% pure cotton casual sports loose and fashionable cartoon bear pattern printed round neck short sleeved T-shirt',
+        type: 'affiliate'
+    },
 
+    {
+        id: '028',
+        name: 'Better Days Ahead Letter Graphic Men T-Shirt',
+        category: 'Tshirt|Boys Fashion',
+        affiliateLink: 'https://s.click.aliexpress.com/e/_Evgtdea',
+        imageUrl: 'https://i.imgur.com/m0Km7mC.jpeg',
+        description: 'Better Days Ahead Letter Graphic Men T-Shirt O-Neck Casual Oversize T-Shirt Fashion Cotton Tee Clothes Summer Loose Tshirt',
+        type: 'affiliate'
+    },
+
+{
+        id: '029',
+        name: 'Short Sleeved T-shirt',
+        category: 'Tshirt|Boys Fashion',
+        affiliateLink: 'https://s.click.aliexpress.com/e/_EH9N0wm',
+        imageUrl: 'https://i.imgur.com/mnzRKpO.jpeg',
+        description: 'T Shirt for Men Set Summer Hot Selling Mens Short Sleeved T-shirt Casual Versatile Half Sleeved Trend Color Blocking Top Tshirt',
+        type: 'affiliate'
+    },
+
+{
+        id: '031',
+        name: 'Morning Rose',
+        category: 'Tshirt|Boys Fashion',
+        affiliateLink: 'https://s.click.aliexpress.com/e/_EuzJvSa',
+        imageUrl: 'https://i.imgur.com/ljy7lC0.jpeg',
+        description: 'Loose Size 100% Cotton Rose Print Casual Slim Fit Round Neck Short Sleeve T-shirt Top',
+        type: 'affiliate'
+    },
+{
+        id: '032',
+        name: 'Be A Kind King!',
+        category: 'Tshirt|Boys Fashion',
+        affiliateLink: 'https://s.click.aliexpress.com/e/_EuRekBu',
+        imageUrl: 'https://i.imgur.com/V7sGBZi.jpeg',
+        description: 'summer loose size BE KIND letter cartoon print casual comfortable round neck short sleeved T-shirt top',
+        type: 'affiliate'
+    },
+
+{
+        id: '033',
+        name: 'Vacation Undisputed!',
+        category: 'Tshirt|Boys Fashion',
+        affiliateLink: 'https://s.click.aliexpress.com/e/_ExelCbY',
+        imageUrl: 'https://i.imgur.com/7PI392V.jpeg',
+        description: 'Hawaiian Shirt Man Print Casual Thin Beach Slim Fashion Shirt High Quality Luxury Black Social Vintage Funny Oversized Clothes',
+        type: 'affiliate'
+    },
+
+{
+        id: '034',
+        name: 'Smile Face T-shirt',
+        category: 'Tshirt|Boys Fashion',
+        affiliateLink: 'https://s.click.aliexpress.com/e/_EQUrZsO',
+        imageUrl: 'https://i.imgur.com/w2rAvrT.jpeg',
+        description: 'Minimalist Smile Face Style Graphic Print Tops Men Hip Hop Tee Clothes T Shirt Summer Breathable T-Shirt Street Cotton Tshirt',
+        type: 'affiliate'
+    },
+
+{
+        id: '035',
+        name: 'Stand Collar T-shirt',
+        category: 'Tshirt|Boys Fashion',
+        affiliateLink: 'https://s.click.aliexpress.com/e/_EIwYhXU',
+        imageUrl: 'https://i.imgur.com/Bc8Lhon.jpeg',
+        description: 'Spring and Summer Stand Collar Five-point Mid-sleeve Fashionable Men's Short-sleeved Shirt Seven-point Sleeve Large Size Mens',
+        type: 'affiliate'
+    },
+
+{
+        id: '036',
+        name: 'Vintage Men T-Shirts',
+        category: 'Tshirt|Boys Fashion',
+        affiliateLink: 'https://s.click.aliexpress.com/e/_EJjvQXC',
+        imageUrl: 'https://i.imgur.com/FAigqhc.jpeg',
+        description: 'Washed Vintage Men T-Shirts Street Hip Hop Retro Punk T Shirt Harajuku Casual Cotton Short Sleeve Acid Wash TShirts Tops',
+        type: 'affiliate'
+    },
+
+{
+        id: '037',
+        name: 'Samurai X T-Shirt',
+        category: 'Tshirt|Boys Fashion',
+        affiliateLink: 'https://s.click.aliexpress.com/e/_EyfNowq',
+        imageUrl: 'https://i.imgur.com/qXfQtwn.jpeg',
+        description: 'Japanese Samurai Cat 3d Printed T Shirts For Casual Fashion Funny Shirt Top Tee Men Clothing',
+        type: 'affiliate'
+    },
     
     //books
     {
