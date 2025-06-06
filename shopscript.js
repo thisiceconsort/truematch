@@ -2,8 +2,8 @@
 
 // --- IMPORTANT: REPLACE THESE PLACEHOLDERS --- //
 // You'll need to get your actual public key from Paystack and your Formspree endpoint.
-const PAYSTACK_PUBLIC_KEY = 'pk_live_6b671064b6a716c1ceffe82bf20a28c317a69584'; // Replace with your actual Paystack Public Key
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xovdrlby'; // Replace with your actual Formspree endpoint
+const PAYSTACK_PUBLIC_KEY = 'pk_test_YOUR_PAYSTACK_PUBLIC_KEY'; // Replace with your actual Paystack Public Key
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORMSPREE_ENDPOINT'; // Replace with your actual Formspree endpoint
 // --- END IMPORTANT --- //
 
 
@@ -117,11 +117,9 @@ function renderCategorySliders(productsToRender) {
 
     // Define preferred category order and filter to include only categories present in productsToRender
     const preferredCategoryOrder = [
-        'BL Books','Jeans|Boys Fashion','Tshirt|Boys Fashion','Underwear|Boys Fashion',
-        'Jeans|Girls Fashion','Shirt|Girs Fashion','Underwear|Girls Fashion',
-        'Hoddies','GL Books',
-        'Adult Boy Toys', 'Adult Girl Toys',
-        'Phones and Laptops','Gadgets', 'Wearable Tech'
+        'BL Books','Jeans|Boys Fashion','Tshirt|Boys Fashion','GL Books', 'BL Movies', 'GL Movies',
+        'Adult Boy Toys', 'Adult Girl Toys', 'Gadgets',
+        'Phones and Laptops', 'Cars', 'Wearable Tech'
     ];
 
     const uniqueCategories = preferredCategoryOrder.filter(cat =>
