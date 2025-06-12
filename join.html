@@ -1,1313 +1,510 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join Community</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Bebas+Neue&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <style>
-        /* --- Color Variables (Matching your website's theme) --- */
-        :root {
-            --bg-darkest: #121212; /* Very dark background */
-            --bg-card: #1a1a1a; /* Slightly lighter for cards */
-            --text-light: #e0e0e0;
-            --text-muted: #888888; /* Darker muted text for descriptions */
-            --accent-dark-purple: #483D8B; /* Dark Slate Blue - main accent */
-            --accent-light-purple: #6A5ACD; /* Medium Slate Blue - hover/highlight */
-            --border-color: #333333;
-            --error-color: #FF0000; /* Red for errors (if needed) */
-            --live-red: #FF0000; /* For pulsing live indicator */
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join Our Community - Sign Up</title>
+  <script src="https://js.paystack.co/v1/inline.js"></script> <style>
+    /* Define your CSS Variables */
+    :root {
+      --bg-darkest: #121212; /* Very dark background */
+      --bg-card: #1a1a1a; /* Slightly lighter for cards */
+      --text-light: #e0e0e0;
+      --text-muted: #888888; /* Darker muted text for descriptions */
+      --accent-dark-purple: #483D8B; /* Dark Slate Blue - main accent */
+      --accent-light-purple: #6A5ACD; /* Medium Slate Blue - hover/highlight */
+      --border-color: #333333;
+      --error-color: #FF0000; /* Red for errors (if needed) */
+      --live-red: #FF0000; /* For pulsing live indicator */
+      /* Netflix-Inspired Colors */
+      --netflix-red: #E50914;
+      --netflix-dark: #141414;
+      --netflix-darkest: #0d0d0d;
+      --netflix-light-grey: #E5E5E5;
+      --netflix-mid-grey: #444;
+      /* Modernized Palette Adjustments (Primary used for theme) */
+      --primary-bg: #0C0C0C; /* Even darker, richer black */
+      --secondary-bg: #1A1A1A; /* For cards and secondary elements */
+      --accent-color: #7B68EE; /* Brighter, more vibrant slate blue for accent */
+      --accent-hover: #9370DB; /* Lighter shade for hover */
+      --text-primary: #F0F0F0;
+      --text-secondary: #B0B0B0;
+      --border-subtle: #2A2A2A;
+      --gradient-start: rgba(123, 104, 238, 0.2);
+      --gradient-end: rgba(123, 104, 238, 0.0);
+    }
 
-        /* --- Global Styles --- */
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-darkest);
-            color: var(--text-light);
-            line-height: 1.6;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
+    /* General Styling */
+    body {
+      font-family: sans-serif;
+      background: var(--primary-bg);
+      color: var(--text-primary);
+      padding: 2rem;
+      line-height: 1.6;
+    }
+    .container {
+      background: var(--secondary-bg);
+      max-width: 550px; /* Slightly wider for more fields */
+      margin: auto;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    }
+    h2 {
+      text-align: center;
+      color: var(--accent-color);
+      margin-bottom: 1.5rem;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+      color: var(--text-primary);
+    }
+    input[type="text"],
+    input[type="number"],
+    input[type="password"],
+    input[type="email"],
+    input[type="tel"],
+    select {
+      width: calc(100% - 1.4rem); /* Account for padding */
+      padding: 0.7rem;
+      margin-bottom: 1rem;
+      border: 1px solid var(--border-subtle);
+      border-radius: 4px;
+      background: var(--bg-card);
+      color: var(--text-primary);
+    }
+    input::placeholder, select option {
+      color: var(--text-secondary);
+    }
+    select option {
+      background: var(--bg-card); /* Background for dropdown options */
+    }
+    button {
+      width: 100%;
+      padding: 0.8rem;
+      background: var(--accent-color);
+      color: white;
+      border: none;
+      font-weight: bold;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      margin-top: 1rem;
+    }
+    button:hover {
+        background: var(--accent-hover);
+    }
+    button:disabled {
+      background: var(--text-muted);
+      cursor: not-allowed;
+    }
+    .disclaimer {
+        font-size: 0.9em;
+        color: var(--text-secondary);
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+        text-align: center;
+        border: 1px solid var(--border-subtle);
+        padding: 10px;
+        border-radius: 5px;
+    }
+    .checkbox-group {
+      margin-bottom: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .checkbox-group label {
+        display: flex;
+        align-items: center;
+        margin-right: 15px;
+        margin-bottom: 8px;
+        font-weight: normal;
+        color: var(--text-primary);
+    }
+    .checkbox-group input[type="checkbox"] {
+        width: auto;
+        margin-right: 5px;
+        margin-bottom: 0;
+    }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 20px 80px; /* Space for fixed footer */
-            box-sizing: border-box;
-        }
-
-        /* --- Main Header --- */
-        #main-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 100;
-            background-color: rgba(0, 0, 0, 0.9);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            box-sizing: border-box;
-        }
-
-        #site-title {
-            font-family: 'Bebas Neue', sans-serif;
-            color: var(--accent-dark-purple);
-            font-size: 2em;
-            letter-spacing: 1px;
-            margin: 0;
-            line-height: 1;
-            flex-shrink: 0;
-        }
-
-        #header-spacer {
-            height: 60px; /* Matching header height */
-        }
-
-        /* --- Resources & Live Icons in Header --- */
-        .header-icons-group {
-            display: flex;
-            align-items: center;
-            gap: 15px; /* Spacing between the two icon groups */
-            margin-left: auto; /* Push to the right */
-        }
-
-        .header-icon-link {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            color: var(--text-light);
-            text-decoration: none;
-            font-size: 0.9em;
-            font-weight: 500;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        .header-icon-link:hover {
-            color: var(--accent-light-purple);
-        }
-
-        .header-icon-link .material-icons {
-            font-size: 24px;
-            color: var(--text-light);
-            transition: color 0.3s ease;
-        }
-
-        .header-icon-link:hover .material-icons {
-            color: var(--accent-light-purple);
-        }
-
-        /* Live Indicator */
-        .live-indicator {
-            width: 8px;
-            height: 8px;
-            background-color: var(--live-red);
-            border-radius: 50%;
-            display: inline-block;
-            margin-left: 5px;
-            position: relative;
-            animation: pulse-red 1.5s infinite ease-out;
-        }
-
-        @keyframes pulse-red {
-            0% {
-                transform: scale(0.8);
-                opacity: 0.7;
-            }
-            50% {
-                transform: scale(1.2);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(0.8);
-                opacity: 0.7;
-            }
-        }
-
-        /* --- Help Page Specific Content Styling (Adapted for form) --- */
-        .form-section, .thank-you-section {
-            background-color: var(--bg-card);
-            border-radius: 8px;
-            padding: 40px;
-            margin-top: 50px;
-            text-align: left;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
-            min-height: calc(100vh - 60px - 80px - 100px);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: flex-start;
-        }
-
-        .form-section h1, .thank-you-section h1 {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 3.5em;
-            color: var(--accent-light-purple);
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-            text-shadow: 0 0 15px rgba(106, 90, 205, 0.6);
-            align-self: center;
-        }
-
-        .form-section h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.8em;
-            color: var(--text-light);
-            margin-top: 30px;
-            margin-bottom: 15px;
-            border-bottom: 2px solid var(--accent-dark-purple);
-            padding-bottom: 5px;
-            width: 100%;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-            width: 100%;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 0.95em;
-            color: var(--text-light);
-            font-weight: 500;
-        }
-
-        .form-group input[type="text"],
-        .form-group input[type="email"],
-        .form-group input[type="tel"],
-        .form-group input[type="url"],
-        .form-group input[type="number"],
-        .form-group select,
-        .form-group textarea {
-            width: calc(100% - 20px);
-            padding: 10px;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            background-color: var(--bg-darkest);
-            color: var(--text-light);
-            font-family: 'Roboto', sans-serif;
-            font-size: 1em;
-            box-sizing: border-box;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .form-group input[type="text"]:focus,
-        .form-group input[type="email"]:focus,
-        .form-group input[type="tel"]:focus,
-        .form-group input[type="url"]:focus,
-        .form-group input[type="number"]:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--accent-light-purple);
-            box-shadow: 0 0 0 3px rgba(106, 90, 205, 0.5);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        .form-group select option {
-            background-color: var(--bg-darkest);
-            color: var(--text-light);
-        }
-
-        .form-group .radio-group,
-        .form-group .checkbox-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 10px;
-        }
-
-        .form-group .radio-group label,
-        .form-group .checkbox-group label {
-            display: flex;
-            align-items: center;
-            margin-bottom: 0;
-            font-size: 0.9em;
-            cursor: pointer;
-            color: var(--text-muted);
-        }
-
-        .form-group .radio-group input[type="radio"],
-        .form-group .checkbox-group input[type="checkbox"] {
-            margin-right: 8px;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            width: 18px;
-            height: 18px;
-            border: 2px solid var(--accent-dark-purple);
-            border-radius: 50%; /* For radio */
-            background-color: var(--bg-darkest);
-            transition: background-color 0.2s ease, border-color 0.2s ease;
-            cursor: pointer;
-        }
-
-        .form-group .checkbox-group input[type="checkbox"] {
-            border-radius: 4px; /* For checkbox */
-        }
-
-        .form-group .radio-group input[type="radio"]:checked,
-        .form-group .checkbox-group input[type="checkbox"]:checked {
-            background-color: var(--accent-light-purple);
-            border-color: var(--accent-light-purple);
-        }
-
-        /* Custom checkmark for checkbox */
-        .form-group .checkbox-group input[type="checkbox"]:checked::before {
-            content: '\2713'; /* Unicode checkmark character */
-            display: block;
-            text-align: center;
-            line-height: 14px; /* Vertically center the checkmark */
-            color: var(--text-light);
-            font-size: 14px;
-        }
-
-        .currency-display {
-            margin-top: 15px;
-            padding: 10px 15px;
-            background-color: var(--bg-darkest);
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            font-size: 1em;
-            color: var(--text-light);
-            text-align: center;
-        }
-
-        .currency-display span {
-            font-weight: 700;
-            color: var(--accent-light-purple);
-        }
-
-        .submit-button {
-            display: block;
-            background-color: var(--accent-dark-purple);
-            color: white;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 4px;
-            font-size: 1.2em;
-            font-weight: 600;
-            text-decoration: none;
-            margin-top: 30px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            cursor: pointer;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .submit-button:hover {
-            background-color: var(--accent-light-purple);
-            transform: translateY(-2px);
-        }
-
-        /* Thank You Section Specific Styles */
-        .thank-you-section {
-            text-align: center;
-            display: none; /* Hidden by default */
-        }
-        .thank-you-section p {
-            font-size: 1.1em;
-            color: var(--text-light);
-            margin-bottom: 15px;
-        }
-        .thank-you-section .material-icons {
-            font-size: 64px;
-            color: var(--accent-light-purple);
-            margin-bottom: 20px;
-        }
-        .thank-you-section strong {
-            color: var(--accent-light-purple);
-        }
-
-        /* --- Fixed Bottom Navigation --- */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: #000000;
-            border-top: none;
-            display: flex;
-            justify-content: space-around;
-            padding: 10px 0;
-            z-index: 100;
-            box-shadow: none;
-        }
-
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            flex: 1;
-            padding: 5px 0;
-            color: var(--text-muted); /* Default for all nav items */
-            text-decoration: none;
-            font-size: 0.75em;
-            transition: color 0.3s ease;
-            white-space: nowrap;
-        }
-
-        .nav-item .material-icons {
-            font-size: 28px;
-            margin-bottom: 4px;
-            color: var(--text-muted); /* Default for all nav icons */
-            transition: color 0.3s ease;
-        }
-
-        /* Hover states */
-        .nav-item:hover {
-            color: var(--text-light);
-        }
-        .nav-item:hover .material-icons {
-            color: var(--text-light);
-        }
-
-        /* --- CSS for "no matter what" highlighting based on unique body class --- */
-        body.page-home .bottom-nav .nav-item[href="index.html"] {
-            color: var(--accent-dark-purple);
-            font-weight: 600;
-        }
-        body.page-home .bottom-nav .nav-item[href="index.html"] .material-icons {
-            color: var(--accent-dark-purple);
-        }
-        body.page-shop .bottom-nav .nav-item[href="shop.html"] {
-            color: var(--accent-dark-purple);
-            font-weight: 600;
-        }
-        body.page-shop .bottom-nav .nav-item[href="shop.html"] .material-icons {
-            color: var(--accent-dark-purple);
-        }
-        body.page-legal .bottom-nav .nav-item[href="legal.html"] {
-            color: var(--accent-dark-purple);
-            font-weight: 600;
-        }
-        body.page-legal .bottom-nav .nav-item[href="legal.html"] .material-icons {
-            color: var(--accent-dark-purple);
-        }
-        body.page-help .bottom-nav .nav-item[href="help.html"] {
-            color: var(--accent-dark-purple);
-            font-weight: 600;
-        }
-        body.page-help .bottom-nav .nav-item[href="help.html"] .material-icons {
-            color: var(--accent-dark-purple);
-        }
-        /* Special styling for the plus icon (Add) */
-        .bottom-nav .nav-item.register-nav-item .material-icons {
-            font-size: 36px;
-            color: var(--text-muted);
-        }
-
-        /* --- Modals (Copied directly to ensure consistency) --- */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-
-        .modal-overlay.show-modal {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .modal-content {
-            background-color: var(--bg-card);
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
-            width: 90%;
-            max-width: 500px;
-            position: relative;
-            transform: translateY(20px);
-            opacity: 0;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .modal-overlay.show-modal .modal-content {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .modal-content h2 {
-            font-family: 'Montserrat', sans-serif;
-            color: var(--text-light);
-            font-size: 1.8em;
-            margin-top: 0;
-            margin-bottom: 25px;
-            text-align: center;
-        }
-
-        .modal-content .close-button {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            color: var(--text-muted);
-            font-size: 28px;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        .modal-content .close-button:hover {
-            color: var(--text-light);
-        }
-
-        /* --- Resources Menu Modal Specific Styles --- */
-        #resourcesMenuModal h2 {
-            color: var(--accent-light-purple);
-            text-shadow: 0 0 10px rgba(106, 90, 205, 0.4);
-            margin-bottom: 20px;
-        }
-
-        .resources-menu-options {
-            display: flex;
-            flex-direction: column;
-            gap: 12px; /* Spacing between menu items */
-        }
-
-        .resources-menu-options a {
-            display: block; /* Make the whole area clickable */
-            background-color: var(--bg-darkest);
-            color: var(--text-light);
-            padding: 15px 20px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 1.1em;
-            font-weight: 500;
-            transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
-            border: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .resources-menu-options a:hover {
-            background-color: var(--accent-dark-purple);
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-        }
-
-        .resources-menu-options a .material-icons {
-            font-size: 24px;
-            color: var(--accent-light-purple); /* Icon color */
-            transition: color 0.2s ease;
-        }
-
-        .resources-menu-options a:hover .material-icons {
-            color: white; /* Icon color on hover */
-        }
-
-        /* Add/Create Modal specific styles */
-        #addCreateModal .add-create-options {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        #addCreateModal .add-create-options button {
-            background-color: var(--accent-dark-purple);
-            color: white;
-            padding: 15px 25px;
-            border: none;
-            border-radius: 4px;
-            font-size: 1.1em;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        #addCreateModal .add-create-options button:hover {
-            background-color: var(--accent-light-purple);
-            transform: translateY(-2px);
-        }
-
-        /* --- New Contact Form Modal Styles --- */
-        #contactFormModal h2 {
-            color: var(--accent-light-purple);
-            text-shadow: 0 0 10px rgba(106, 90, 205, 0.4);
-            margin-bottom: 20px;
-        }
-
-        .contact-form label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 0.9em;
-            color: var(--text-light);
-            font-weight: 500;
-        }
-
-        .contact-form input[type="text"], .contact-form input[type="email"], .contact-form textarea {
-            width: calc(100% - 20px); /* Adjust for padding */
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            background-color: var(--bg-darkest);
-            color: var(--text-light);
-            font-family: 'Roboto', sans-serif;
-            font-size: 1em;
-            box-sizing: border-box; /* Include padding and border in the element's total width and height */
-        }
-
-        /* Added focus styles */
-        .contact-form input[type="text"]:focus, .contact-form input[type="email"]:focus, .contact-form textarea:focus {
-            outline: none; /* Remove the default browser outline */
-            border-color: var(--accent-light-purple); /* Change border color to purple */
-            box-shadow: 0 0 0 3px rgba(106, 90, 205, 0.5); /* Add a purple shadow for better visibility */
-        }
-
-        .contact-form textarea {
-            resize: vertical; /* Allow vertical resizing */
-            min-height: 120px;
-        }
-
-        .contact-form input::placeholder, .contact-form textarea::placeholder {
-            color: var(--text-muted);
-            opacity: 0.7;
-        }
-
-        .contact-form button[type="submit"] {
-            background-color: var(--accent-dark-purple);
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 4px;
-            font-size: 1.1em;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            width: 100%;
-            box-sizing: border-box;
-            margin-top: 10px;
-        }
-
-        .contact-form button[type="submit"]:hover {
-            background-color: var(--accent-light-purple);
-            transform: translateY(-2px);
-        }
-
-        .contact-form .mail-note {
-            font-size: 0.85em;
-            color: var(--text-muted);
-            text-align: center;
-            margin-top: 15px;
-        }
-
-        /* --- Responsive Adjustments --- */
-        @media (max-width: 768px) {
-            #header-spacer {
-                height: 40px;
-            }
-            #main-header {
-                padding: 5px 10px;
-            }
-            #site-title {
-                font-size: 1.3em;
-                letter-spacing: 0.5px;
-            }
-            .header-icon-link {
-                font-size: 0.8em;
-            }
-            .header-icon-link .material-icons {
-                font-size: 20px;
-            }
-            .live-indicator {
-                width: 6px;
-                height: 6px;
-            }
-            .form-section, .thank-you-section {
-                padding: 25px;
-                margin-top: 30px;
-                min-height: calc(100vh - 40px - 80px - 60px);
-            }
-            .form-section h1, .thank-you-section h1 {
-                font-size: 2.8em;
-            }
-            .form-section h2 {
-                font-size: 1.5em;
-                margin-top: 20px;
-            }
-            .form-group label {
-                font-size: 0.9em;
-            }
-            .form-group input[type="text"],
-            .form-group input[type="email"],
-            .form-group input[type="tel"],
-            .form-group input[type="url"],
-            .form-group input[type="number"],
-            .form-group select,
-            .form-group textarea {
-                width: calc(100% - 20px);
-            }
-            .bottom-nav .material-icons {
-                font-size: 24px;
-            }
-            .nav-item {
-                font-size: 0.65em;
-            }
-            .modal-content {
-                padding: 20px;
-                max-width: 95%;
-            }
-            .modal-content h2 {
-                font-size: 1.5em;
-                margin-bottom: 20px;
-            }
-            .resources-menu-options a {
-                padding: 12px 15px;
-                font-size: 1em;
-            }
-            .contact-form input[type="text"], .contact-form input[type="email"], .contact-form textarea {
-                width: calc(100% - 20px);
-            }
-        }
-        @media (max-width: 480px) {
-            #header-spacer {
-                height: 30px;
-            }
-            #site-title {
-                font-size: 1.0em;
-                letter-spacing: 0px;
-            }
-            .form-section, .thank-you-section {
-                padding: 20px 15px;
-                min-height: calc(100vh - 30px - 80px - 40px);
-            }
-            .form-section h1, .thank-you-section h1 {
-                font-size: 2.2em;
-                letter-spacing: 1px;
-            }
-            .form-group label {
-                font-size: 0.85em;
-            }
-            .form-group input[type="text"],
-            .form-group input[type="email"],
-            .form-group input[type="tel"],
-            .form-group input[type="url"],
-            .form-group input[type="number"],
-            .form-group select,
-            .form-group textarea {
-                width: calc(100% - 20px);
-            }
-        }
-    </style>
+    /* Pop-up Styles */
+    .popup-overlay {
+      display:none;
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background: rgba(0,0,0,0.85);
+      z-index:9999;
+      text-align:center;
+      padding:2rem;
+      box-sizing: border-box; /* Include padding in width/height */
+      overflow-y: auto; /* Allow scrolling for longer popups */
+    }
+    .popup-content {
+      background: var(--secondary-bg);
+      color: var(--text-primary);
+      padding: 2rem;
+      max-width: 500px;
+      margin: 50px auto; /* Adjust margin for better vertical centering */
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      position: relative; /* For closing button positioning */
+    }
+    .popup-content h3 {
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+    }
+    .popup-content button {
+        background: var(--accent-color);
+        margin-top: 1.5rem;
+    }
+    .popup-content button:hover {
+        background: var(--accent-hover);
+    }
+    .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        background: transparent;
+        border: none;
+        font-size: 1.5rem;
+        color: var(--text-secondary);
+        cursor: pointer;
+        padding: 0;
+        width: auto; /* Override button width */
+    }
+    .close-btn:hover {
+        color: var(--text-light);
+    }
+  </style>
 </head>
-<body class="page-home">
-    <div id="main-page-content">
-        <header id="main-header">
-            <h1 id="site-title">Mìlàájé</h1>
-            <div class="header-icons-group">
-                <a href="#" class="header-icon-link" id="openLiveLink">
-                    <span style="display:none;" class="material-icons">sensors_waves</span>
-                    <span>Live</span>
-                    <span class="live-indicator"></span>
-                </a>
-                <a href="#" class="header-icon-link" id="openResourcesMenuModalLink">
-                    <span class="material-icons">menu_book</span>
-                    <span>Resources</span>
-                </a>
-            </div>
-        </header>
-        <div id="header-spacer"></div>
+<body>
+  <div class="container">
+    <h2>Join Our Community</h2>
 
-        <div class="container">
-            <div class="form-section" id="applicationFormSection">
-                <h1>Mìlàájé</h1>
-                <p>Please fill out the form below to join our growing community. A payment of ₦650 will be required before submission.</p>
+    <form id="signupForm">
+      <label for="fullName">Full Name:</label>
+      <input type="text" name="fullName" id="fullName" placeholder="Your Full Name" required>
 
-                <form id="applicationForm" action="https://formspree.io/f/xovdrlby" method="POST">
-                    <div class="form-group">
-                        <label for="fullName">Full Name:</label>
-                        <input type="text" id="fullName" name="fullName" placeholder="Your Name" required>
-                    </div>
+      <label for="age">Age:</label>
+      <input type="number" name="age" id="age" placeholder="Your Age" min="18" max="100" required>
 
-                    <div class="form-group">
-                        <label for="applicantEmail">Email:</label>
-                        <input type="email" id="applicantEmail" name="applicantEmail" placeholder="Your Email" required>
-                    </div>
+      <label for="bodyType">Body Type:</label>
+      <select name="bodyType" id="bodyType" required>
+        <option value="">Select Body Type</option>
+        <option value="Slim">Slim</option>
+        <option value="Chubby">Chubby</option>
+        <option value="Fat">Fat</option>
+      </select>
 
-                    <div class="form-group">
-                        <label for="whatsappNumber">WhatsApp Phone Number:</label>
-                        <input type="tel" id="whatsappNumber" name="whatsappNumber" placeholder="+23480XXXXXXXX" required>
-                    </div>
+      <label for="height">Height:</label>
+      <select name="height" id="height" required>
+        <option value="">Select Height</option>
+        <option value="Half of a door height">Half of a door height</option>
+        <option value="Almost a door height">Almost a door height</option>
+        <option value="Reaching a door height">Reaching a door height</option>
+      </select>
 
-                    <div class="form-group">
-                        <label for="socialMedia">Social Media Handle (Optional):</label>
-                        <input type="text" id="socialMedia" name="socialMedia" placeholder="@yourhandle">
-                    </div>
+      <label for="sexIdentity">Sex/Gender Identity:</label>
+      <select name="sexIdentity" id="sexIdentity" required>
+        <option value="">Select Identity</option>
+      
+        <option value="Transgender (M to F)">Transgender (M to F)</option>
+        <option value="Transgender (F to M)">Transgender (F to M)</option>
+        <option value="Non-binary">Non-binary</option>
+        <option value="Genderfluid">Genderfluid</option>
+        <option value="Agender">Agender</option>
+        <option value="Bigender">Bigender</option>
+        <option value="Two-Spirit">Two-Spirit</option>
+        <option value="Intersex">Intersex</option>
+        <option value="Heterosexual">Heterosexual</option>
+        <option value="Gay">Gay</option>
+        <option value="Lesbian">Lesbian</option>
+        <option value="Bisexual">Bisexual</option>
+        <option value="Pansexual">Pansexual</option>
+        <option value="Asexual">Asexual</option>
+        <option value="Demisexual">Demisexual</option>
+        <option value="Queer">Queer</option>
+        <option value="Therian/Otherkin">Therian/Otherkin (Identifies as Animal)</option>
+        <option value="Questioning">Questioning</option>
+        <option value="Prefer not to say">Prefer not to say</option>
+      </select>
 
-                    <div class="form-group">
-                        <label for="age">Age:</label>
-                        <input type="number" id="age" name="age" min="18" max="99" placeholder="Your Age" required>
-                    </div>
+      <label for="country">Country:</label>
+      <select name="country" id="country" required>
+        <option value="">Select Your Country</option>
+        <option value="Nigeria">Nigeria</option>
+        <option value="Algeria">Algeria</option>
+        <option value="Angola">Angola</option>
+        <option value="Benin">Benin</option>
+        <option value="Botswana">Botswana</option>
+        <option value="Burkina Faso">Burkina Faso</option>
+        <option value="Burundi">Burundi</option>
+        <option value="Cabo Verde">Cabo Verde</option>
+        <option value="Cameroon">Cameroon</option>
+        <option value="Central African Republic">Central African Republic</option>
+        <option value="Chad">Chad</option>
+        <option value="Comoros">Comoros</option>
+        <option value="Congo (Brazzaville)">Congo (Brazzaville)</option>
+        <option value="Congo (Kinshasa)">Congo (Kinshasa)</option>
+        <option value="Cote d'Ivoire">Cote d'Ivoire</option>
+        <option value="Djibouti">Djibouti</option>
+        <option value="Egypt">Egypt</option>
+        <option value="Equatorial Guinea">Equatorial Guinea</option>
+        <option value="Eritrea">Eritrea</option>
+        <option value="Eswatini">Eswatini</option>
+        <option value="Ethiopia">Ethiopia</option>
+        <option value="Gabon">Gabon</option>
+        <option value="Gambia">Gambia</option>
+        <option value="Ghana">Ghana</option>
+        <option value="Guinea">Guinea</option>
+        <option value="Guinea-Bissau">Guinea-Bissau</option>
+        <option value="Kenya">Kenya</option>
+        <option value="Lesotho">Lesotho</option>
+        <option value="Liberia">Liberia</option>
+        <option value="Libya">Libya</option>
+        <option value="Madagascar">Madagascar</option>
+        <option value="Malawi">Malawi</option>
+        <option value="Mali">Mali</option>
+        <option value="Mauritania">Mauritania</option>
+        <option value="Mauritius">Mauritius</option>
+        <option value="Morocco">Morocco</option>
+        <option value="Mozambique">Mozambique</option>
+        <option value="Namibia">Namibia</option>
+        <option value="Niger">Niger</option>
+        <option value="Rwanda">Rwanda</option>
+        <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+        <option value="Senegal">Senegal</option>
+        <option value="Seychelles">Seychelles</option>
+        <option value="Sierra Leone">Sierra Leone</option>
+        <option value="Somalia">Somalia</option>
+        <option value="South Africa">South Africa</option>
+        <option value="South Sudan">South Sudan</option>
+        <option value="Sudan">Sudan</option>
+        <option value="Tanzania">Tanzania</option>
+        <option value="Togo">Togo</option>
+        <option value="Tunisia">Tunisia</option>
+        <option value="Uganda">Uganda</option>
+        <option value="Zambia">Zambia</option>
+        <option value="Zimbabwe">Zimbabwe</option>
+        <option value="USA">USA</option>
+        <option value="UK">UK</option>
+        <option value="India">India</option>
+      </select>
 
-                    <div class="form-group">
-                        <label for="height">Height (cm):</label>
-                        <select id="height" name="height" required>
-                            <option value="">Select your height</option>
-                            <option value="150-155">150 - 155 cm</option>
-                            <option value="156-160">156 - 160 cm</option>
-                            <option value="161-165">161 - 165 cm</option>
-                            <option value="166-170">166 - 170 cm</option>
-                            <option value="171-175">171 - 175 cm</option>
-                            <option value="176-180">176 - 180 cm</option>
-                            <option value="181-185">181 - 185 cm</option>
-                            <option value="186-190">186 - 190 cm</option>
-                            <option value="191+">191 cm or taller</option>
-                        </select>
-                    </div>
+      <label for="state">State:</label>
+      <input type="text" name="state" id="state" placeholder="Your State" required>
 
-                    <div class="form-group">
-                        <label>Body Type:</label>
-                        <div class="radio-group">
-                            <label><input type="radio" name="bodyType" value="slim" required> Slim</label>
-                            <label><input type="radio" name="bodyType" value="athletic"> Athletic</label>
-                            <label><input type="radio" name="bodyType" value="average"> Average</label>
-                            <label><input type="radio" name="bodyType" value="curvy"> Curvy</label>
-                            <label><input type="radio" name="bodyType" value="muscular"> Muscular</label>
-                            <label><input type="radio" name="bodyType" value="plus_size"> Plus Size</label>
-                        </div>
-                    </div>
+      <label for="city">City:</label>
+      <input type="text" name="city" id="city" placeholder="Your City" required>
 
-                    <div class="form-group">
-                        <label for="country">Country:</label>
-                        <select id="country" name="country" required>
-                            <option value="">Select your Country</option>
-                            <option value="Algeria">Algeria</option>
-                            <option value="Angola">Angola</option>
-                            <option value="Benin">Benin</option>
-                            <option value="Botswana">Botswana</option>
-                            <option value="Burkina Faso">Burkina Faso</option>
-                            <option value="Burundi">Burundi</option>
-                            <option value="Cabo Verde">Cabo Verde</option>
-                            <option value="Cameroon">Cameroon</option>
-                            <option value="Central African Republic">Central African Republic</option>
-                            <option value="Chad">Chad</option>
-                            <option value="Comoros">Comoros</option>
-                            <option value="Congo, Dem. Rep.">Congo, Dem. Rep.</option>
-                            <option value="Congo, Rep.">Congo, Rep.</option>
-                            <option value="Cote d'Ivoire">Cote d'Ivoire</option>
-                            <option value="Djibouti">Djibouti</option>
-                            <option value="Egypt">Egypt</option>
-                            <option value="Equatorial Guinea">Equatorial Guinea</option>
-                            <option value="Eritrea">Eritrea</option>
-                            <option value="Eswatini">Eswatini</option>
-                            <option value="Ethiopia">Ethiopia</option>
-                            <option value="Gabon">Gabon</option>
-                            <option value="Gambia">Gambia</option>
-                            <option value="Ghana">Ghana</option>
-                            <option value="Guinea">Guinea</option>
-                            <option value="Guinea-Bissau">Guinea-Bissau</option>
-                            <option value="Kenya">Kenya</option>
-                            <option value="Lesotho">Lesotho</option>
-                            <option value="Liberia">Liberia</option>
-                            <option value="Libya">Libya</option>
-                            <option value="Madagascar">Madagascar</option>
-                            <option value="Malawi">Malawi</option>
-                            <option value="Mali">Mali</option>
-                            <option value="Mauritania">Mauritania</option>
-                            <option value="Mauritius">Mauritius</option>
-                            <option value="Morocco">Morocco</option>
-                            <option value="Mozambique">Mozambique</option>
-                            <option value="Namibia">Namibia</option>
-                            <option value="Niger">Niger</option>
-                            <option value="Nigeria">Nigeria</option>
-                            <option value="Rwanda">Rwanda</option>
-                            <option value="Sao Tome and Principe">Sao Tome and Principe</option>
-                            <option value="Senegal">Senegal</option>
-                            <option value="Seychelles">Seychelles</option>
-                            <option value="Sierra Leone">Sierra Leone</option>
-                            <option value="Somalia">Somalia</option>
-                            <option value="South Africa">South Africa</option>
-                            <option value="South Sudan">South Sudan</option>
-                            <option value="Sudan">Sudan</option>
-                            <option value="Tanzania">Tanzania</option>
-                            <option value="Togo">Togo</option>
-                            <option value="Tunisia">Tunisia</option>
-                            <option value="Uganda">Uganda</option>
-                            <option value="Zambia">Zambia</option>
-                            <option value="Zimbabwe">Zimbabwe</option>
-                            <option value="United States">USA</option>
-                            <option value="United Kingdom">UK</option>
-                            <option value="India">India</option>
-                        </select>
-                        <div id="currencyDisplay" class="currency-display" style="display: none;">
-                            Estimated amount: <span id="convertedAmount"></span>
-                        </div>
-                    </div>
+      <label for="lga">Local Government Area (LGA):</label>
+      <input type="text" name="lga" id="lga" placeholder="Your LGA" required>
 
-                    <div class="form-group">
-                        <label for="state">State/Region:</label>
-                        <input type="text" id="state" name="state" placeholder="Your State/Region" required>
-                    </div>
+      <label for="password">Create Password (6+ characters/numbers):</label>
+      <input type="password" name="password" id="password" minlength="6" placeholder="******" required>
 
-                    <div class="form-group">
-                        <label for="city">City:</label>
-                        <input type="text" id="city" name="city" placeholder="Your City" required>
-                    </div>
+      <label for="confirmPassword">Confirm Password:</label>
+      <input type="password" name="confirmPassword" id="confirmPassword" placeholder="******" required>
+      <p id="passwordMatchError" style="color:var(--error-color); font-size:0.85em; margin-top:-0.5rem; display:none;">Passwords do not match!</p>
 
-                    <div class="form-group">
-                        <label>Which are you? (Select all that apply):</label>
-                        <div class="checkbox-group">
-                            <label><input type="checkbox" name="orientation" value="gay"> Gay</label>
-                            <label><input type="checkbox" name="orientation" value="lesbian"> Lesbian</label>
-                            <label><input type="checkbox" name="orientation" value="bisexual"> Bisexual</label>
-                            <label><input type="checkbox" name="orientation" value="transgender"> Transgender</label>
-                            <label><input type="checkbox" name="orientation" value="queer"> Queer</label>
-                            <label><input type="checkbox" name="orientation" value="intersex"> Intersex</label>
-                            <label><input type="checkbox" name="orientation" value="asexual"> Asexual</label>
-                            <label><input type="checkbox" name="orientation" value="pansexual"> Pansexual</label>
-                            <label><input type="checkbox" name="orientation" value="non-binary"> Non-binary</label>
-                            <label><input type="checkbox" name="orientation" value="genderfluid"> Genderfluid</label>
-                            <label><input type="checkbox" name="orientation" value="questioning"> Questioning</label>
-                            <label><input type="checkbox" name="orientation" value="other"> Other</label>
-                        </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="likes">What you like (hobbies, interests, etc.):</label>
-                        <textarea id="likes" name="likes" placeholder="Tell us about your interests..." rows="5" required></textarea>
-                    </div>
+      <div class="disclaimer">
+        <strong>Important Password Note:</strong> Do not share this password with anyone. It will be used to change or update your profile and request for withdrawal if you are a creator.
+      </div>
 
-                    <button type="button" class="submit-button" id="paystackButton">Proceed to Payment</button>
-                </form>
-            </div>
+      <label for="phoneNumber">Phone Number:</label>
+      <input type="tel" name="phoneNumber" id="phoneNumber" placeholder="e.g., +2348012345678" required>
 
-            <div class="thank-you-section" id="thankYouSection">
-                <span class="material-icons">check_circle</span>
-                <h1>Thank You!</h1>
-                <p>Your payment was successful and your application has been received.</p>
-                <p>We will now run a background check, which usually takes **27 hours**.</p>
-                <p>We will contact you for any future information we need. Please remember, we will **never personally ask for a credit card or a password** from you.</p>
-                <p>All our payments are securely handled by **Paystack**, a trusted African payment gateway.</p>
-            </div>
-        </div>
+      <label for="email">Email Address:</label>
+      <input type="email" name="email" id="email" placeholder="you@example.com" required>
 
-        <div class="bottom-nav">
-            <a href="https://thisiceconsort.github.io/truematch/" class="nav-item">
-                <span class="material-icons">home</span>
-                <span>Home</span>
-            </a>
-            <a href="https://thisiceconsort.github.io/truematch/shop.html" class="nav-item">
-                <span class="material-icons">storefront</span>
-                <span>Shop</span>
-            </a>
-            <a href="#" class="nav-item register-nav-item" id="openAddCreateModalLink">
-                <span class="material-icons">add_circle</span>
-                <span>Add</span>
-            </a>
-            <a href="https://thisiceconsort.github.io/truematch/legal.html" class="nav-item">
-                <span class="material-icons">policy</span>
-                <span>Legal</span>
-            </a>
-            <a href="https://thisiceconsort.github.io/truematch/help.html" class="nav-item">
-                <span class="material-icons">help_outline</span>
-                <span>Help</span>
-            </a>
-        </div>
+      <div class="disclaimer">
+        Upon joining, we will require any means of identification from you (e.g., Driver's License, Voter's Card, National ID, School ID, Work ID, Birth Certificate, or any valid document that carries your information). You will take a picture beside your means of identity. We will NOT collect this here.
+      </div>
+
+      <button type="button" onclick="handleJoinCommunity()">Join Community</button>
+    </form>
+  </div>
+
+  <div id="sexualInterestPopup" class="popup-overlay">
+    <div class="popup-content">
+      <button class="close-btn" onclick="closePopup('sexualInterestPopup')">&times;</button>
+      <h3 id="sexualInterestHeading">What kind of sex are you interested in?</h3>
+      <div class="checkbox-group">
+        <label><input type="checkbox" name="sexualInterest" value="Solo"> Solo</label>
+        <label><input type="checkbox" name="sexualInterest" value="Couple"> Couple</label>
+        <label><input type="checkbox" name="sexualInterest" value="Threesome"> Threesome</label>
+        <label><input type="checkbox" name="sexualInterest" value="Orgy"> Orgy</label>
+        <label><input type="checkbox" name="sexualInterest" value="Group"> Group</label>
+        <label><input type="checkbox" name="sexualInterest" value="Online/Virtual"> Online/Virtual</label>
+        <label><input type="checkbox" name="sexualInterest" value="Roleplay"> Roleplay</label>
+        <label><input type="checkbox" name="sexualInterest" value="Dominance/Submission"> Dominance/Submission</label>
+        <label><input type="checkbox" name="sexualInterest" value="Casual"> Casual</label>
+        <label><input type="checkbox" name="sexualInterest" value="Long-term"> Long-term</label>
+        <label><input type="checkbox" name="sexualInterest" value="Exploring"> Exploring</label>
+        <label><input type="checkbox" name="sexualInterest" value="Other"> Other (please specify in message)</label>
+      </div>
+      <button onclick="submitSexualInterests()">Continue</button>
     </div>
+  </div>
 
-    <div id="resourcesMenuModal" class="modal-overlay">
-        <div class="modal-content">
-            <span class="close-button material-icons">close</span>
-            <h2>Resources</h2>
-            <div class="resources-menu-options">
-                <a href="https://thisiceconsort.github.io/updates.html">
-                    <span class="material-icons">article</span> Article, Blog, News
-                </a>
-                <a href="https://thisiceconsort.github.io/truematch/free.html">
-                    <span class="material-icons">volunteer_activism</span> Coming Out Stories
-                </a>
-                <a href="https://thisiceconsort.github.io/truematch/skills.html">
-                    <span class="material-icons">settings</span> Skill Learning 
-                </a>
-                <a href=https://thisiceconsort.github.io/truematch/reviews.html">
-                    <span class="material-icons">rate_review</span> Feedback & Ratings
-                </a>
-                
-            </div>
-        </div>
-    </div>
+  <script>
+    // List of African countries (excluding Nigeria, which has a specific charge)
+    const AFRICAN_COUNTRIES_1000_CHARGE = [
+      "Algeria", "Angola", "Benin", "Botswana", "Burkina Faso", "Burundi", "Cabo Verde",
+      "Cameroon", "Central African Republic", "Chad", "Comoros", "Congo (Brazzaville)",
+      "Congo (Kinshasa)", "Cote d'Ivoire", "Djibouti", "Egypt", "Equatorial Guinea",
+      "Eritrea", "Eswatini", "Ethiopia", "Gabon", "Gambia", "Ghana", "Guinea",
+      "Guinea-Bissau", "Kenya", "Lesotho", "Liberia", "Libya", "Madagascar", "Malawi",
+      "Mali", "Mauritania", "Mauritius", "Morocco", "Mozambique", "Namibia", "Niger",
+      "Rwanda", "Sao Tome and Principe", "Senegal", "Seychelles", "Sierra Leone",
+      "Somalia", "South Africa", "South Sudan", "Sudan", "Tanzania", "Togo", "Tunisia",
+      "Uganda", "Zambia", "Zimbabwe"
+    ];
 
-    <div id="addCreateModal" class="modal-overlay">
-        <div class="modal-content">
-            <span class="close-button material-icons">close</span>
-            <h2>Add</h2>
-            <div class="add-create-options">
-                <a style="display:none;" href="add-product.html"><button>Add a Product</button></a>
-                <a href="https://thisiceconsort.github.io/truematch/books.html"><button>Submit a Book</button></a>
-                <a href="https://thisiceconsort.github.io/truematch/movies.html"><button>Submit a Movie</button></a>
-                <a href="https://thisiceconsort.github.io/truematch/donate.html"><button>Volunteer & Donate</button></a>
-                <a style="display: none;"href="create-card.html" id="createGayCardLink"><button>Create Your Gay Card</button></a>
-            </div>
-        </div>
-    </div>
+    let sexualInterestData = []; // To store selected sexual interests
 
-    <div id="contactFormModal" class="modal-overlay">
-        <div class="modal-content">
-            <span class="close-button material-icons">close</span>
-            <h2>Contact Us</h2>
-            <form id="contactForm" class="contact-form">
-                <label for="contactName">Your Name:</label>
-                <input type="text" id="contactName" placeholder="Enter your name" required>
-                <label for="contactEmail">Your Email:</label>
-                <input type="email" id="contactEmail" placeholder="Enter your email" required>
-                <label for="contactSubject">Subject:</label>
-                <input type="text" id="contactSubject" placeholder="Subject of your inquiry" required>
-                <label for="contactMessage">Message:</label>
-                <textarea id="contactMessage" placeholder="Type your message here..." required></textarea>
-                <button type="submit">Send Email</button>
-                <p class="mail-note"> * Clicking 'Send Email' will open your default email client with your message pre-filled. You will need to click 'Send' again in your email client. </p>
-            </form>
-        </div>
-    </div>
+    function closePopup(popupId) {
+        document.getElementById(popupId).style.display = 'none';
+    }
 
-    <script src="https://js.paystack.co/v1/inline.js"></script>
-    <script>
-    <script src="https://js.paystack.co/v1/inline.js"></script>
-    <script>
-        // --- Modal & General UI Logic (from your theme) ---
-        function showModal(modalElement) {
-            modalElement.classList.add('show-modal');
-            document.body.style.overflow = 'hidden'; // Prevent scrolling background
-            console.log(`Modal "${modalElement.id}" shown.`); // Debugging
+    function validatePassword() {
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+        const passwordMatchError = document.getElementById('passwordMatchError');
+
+        if (password !== confirmPassword) {
+            passwordMatchError.style.display = 'block';
+            return false;
+        } else {
+            passwordMatchError.style.display = 'none';
+            return true;
         }
-        function hideModal(modalElement) {
-            modalElement.classList.remove('show-modal');
-            document.body.style.overflow = ''; // Restore scrolling background
-            console.log(`Modal "${modalElement.id}" hidden.`); // Debugging
+    }
+
+    // Event listener for password fields to show/hide error message dynamically
+    document.getElementById('password').addEventListener('keyup', validatePassword);
+    document.getElementById('confirmPassword').addEventListener('keyup', validatePassword);
+
+
+    function handleJoinCommunity() {
+      const form = document.getElementById('signupForm');
+      if (!form.reportValidity()) { // HTML5 form validation
+        return;
+      }
+
+      if (!validatePassword()) { // Custom password match validation
+          alert('Passwords do not match!');
+          return;
+      }
+
+      const selectedIdentity = document.getElementById('sexIdentity').value;
+      const identitiesForSexualInterest = [
+        'Gay', 'Lesbian', 'Transgender (M to F)', 'Transgender (F to M)',
+        'Non-binary', 'Genderfluid', 'Agender', 'Bigender', 'Two-Spirit', 'Intersex',
+        'Bisexual', 'Pansexual', 'Queer', 'Therian/Otherkin'
+      ];
+
+      if (identitiesForSexualInterest.includes(selectedIdentity)) {
+        // Show sexual interest popup
+        document.getElementById('sexualInterestPopup').style.display = 'block';
+        return; // Stop here, payment will be initiated after sexual interest submission
+      } else {
+        // No specific sexual interest questions, proceed directly to payment
+        initiatePaystackPayment();
+      }
+    }
+
+    function submitSexualInterests() {
+      const checkboxes = document.querySelectorAll('#sexualInterestPopup input[name="sexualInterest"]:checked');
+      sexualInterestData = Array.from(checkboxes).map(cb => cb.value);
+
+      if (sexualInterestData.length === 0) {
+          alert("Please select at least one type of sexual interest.");
+          return;
+      }
+
+      closePopup('sexualInterestPopup');
+      initiatePaystackPayment();
+    }
+
+    function initiatePaystackPayment() {
+      const userEmail = document.getElementById('email').value; // Get email from form
+      const amountToPay = 650; // In Naira
+
+      const handler = PaystackPop.setup({
+        key: 'pk_live_6b671064b6a716c1ceffe82bf20a28c317a69584', // ✅ REPLACE WITH YOUR PUBLIC KEY
+        email: userEmail,
+        amount: amountToPay * 100, // Paystack uses kobo
+        currency: 'NGN',
+        ref: 'signup-' + Math.floor((Math.random() * 1000000000) + 1), // Unique reference
+        callback: function(response) {
+          // Payment Success
+          alert('Payment complete! Thank you for your payment. Reference: ' + response.reference);
+
+          // Gather all form data including sexual interests
+          const formData = {
+            fullName: document.getElementById('fullName').value,
+            age: document.getElementById('age').value,
+            bodyType: document.getElementById('bodyType').value,
+            height: document.getElementById('height').value,
+            sexIdentity: document.getElementById('sexIdentity').value,
+            sexualInterests: sexualInterestData.join(', '), // Join selected interests
+            country: document.getElementById('country').value,
+            state: document.getElementById('state').value,
+            city: document.getElementById('city').value,
+            lga: document.getElementById('lga').value,
+            // Password is NOT sent to Formspree for security reasons.
+            // It should only be handled on your server for hashing and storage.
+            // For this frontend, we validate but don't send it.
+            phoneNumber: document.getElementById('phoneNumber').value,
+            email: document.getElementById('email').value,
+            paystack_reference: response.reference,
+            payment_amount: amountToPay
+          };
+
+          // --- PLACE YOUR FORMSPREE URL HERE ---
+          const FORMSPREE_URL = 'https://formspree.io/f/xovdrlby'; // <---- IMPORTANT: Replace this with your actual Formspree URL!
+
+          fetch(FORMSPREE_URL, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify(formData)
+          })
+          .then(res => res.json())
+          .then(data => {
+            if (data.ok) {
+              console.log('Form data sent to Formspree successfully!');
+              // Redirect to processing page after payment and data initiation
+              window.location.href = 'signup-processing.html';
+            } else {
+              alert('An error occurred while submitting your data. Please contact support.');
+              console.error('Formspree error:', data);
+              // Still redirect to processing page, as payment was successful
+              window.location.href = 'signup-processing.html';
+            }
+          })
+          .catch(error => {
+            alert('An error occurred during data submission. Please contact support.');
+            console.error('Error submitting to Formspree:', error);
+            // Still redirect to processing page
+            window.location.href = 'signup-processing.html';
+          });
+        },
+        onClose: function() {
+          alert('Payment was cancelled. You need to complete payment to join the community.');
         }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log("DOM Content Loaded. Script is running."); // Debugging: Confirm script starts
-
-            const currentPagePath = window.location.pathname;
-            const currentPageFileName = currentPagePath.split('/').pop();
-
-            const bottomNavItems = document.querySelectorAll('.bottom-nav .nav-item');
-            bottomNavItems.forEach(item => {
-                item.classList.remove('active');
-                const itemHref = item.getAttribute('href');
-                if (itemHref === currentPageFileName) {
-                    item.classList.add('active');
-                    console.log(`Nav item for "${currentPageFileName}" set to active.`); // Debugging
-                }
-            });
-
-            // Modals and their buttons
-            const resourcesMenuModal = document.getElementById('resourcesMenuModal');
-            const resourcesMenuCloseButton = resourcesMenuModal.querySelector('.close-button');
-            const openResourcesMenuModalLink = document.getElementById('openResourcesMenuModalLink');
-            const addCreateModal = document.getElementById('addCreateModal');
-            const addCreateModalCloseButton = addCreateModal.querySelector('.close-button');
-            const openAddCreateModalLink = document.getElementById('openAddCreateModalLink');
-            const contactFormModal = document.getElementById('contactFormModal');
-            const contactFormCloseButton = contactFormModal.querySelector('.close-button');
-            const openContactFormModalLink = document.getElementById('openContactFormModalLink');
-
-            // Defensive checks for modal elements
-            if (openResourcesMenuModalLink && resourcesMenuModal && resourcesMenuCloseButton) {
-                openResourcesMenuModalLink.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    showModal(resourcesMenuModal);
-                });
-                resourcesMenuCloseButton.addEventListener('click', () => {
-                    hideModal(resourcesMenuModal);
-                });
-                resourcesMenuModal.addEventListener('click', (e) => {
-                    if (e.target === resourcesMenuModal) {
-                        hideModal(resourcesMenuModal);
-                    }
-                });
-            } else {
-                console.warn("Resources Menu Modal elements not found or incomplete.");
-            }
-
-            if (openAddCreateModalLink && addCreateModal && addCreateModalCloseButton) {
-                openAddCreateModalLink.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    showModal(addCreateModal);
-                });
-                addCreateModalCloseButton.addEventListener('click', () => {
-                    hideModal(addCreateModal);
-                });
-                addCreateModal.addEventListener('click', (e) => {
-                    if (e.target === addCreateModal) {
-                        hideModal(addCreateModal);
-                    }
-                });
-            } else {
-                console.warn("Add/Create Modal elements not found or incomplete.");
-            }
-
-            if (openContactFormModalLink && contactFormModal && contactFormCloseButton) {
-                openContactFormModalLink.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    showModal(contactFormModal);
-                });
-                contactFormCloseButton.addEventListener('click', () => {
-                    hideModal(contactFormModal);
-                });
-                contactFormModal.addEventListener('click', (e) => {
-                    if (e.target === contactFormModal) {
-                        hideModal(contactFormModal);
-                    }
-                });
-            } else {
-                console.warn("Contact Form Modal elements not found or incomplete.");
-            }
-
-
-            const openLiveLink = document.getElementById('openLiveLink');
-            if (openLiveLink) {
-                openLiveLink.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    alert('Navigating to Live Content! (This link is a placeholder)');
-                });
-            }
-
-            const contactForm = document.getElementById('contactForm');
-            if (contactForm) {
-                contactForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    const name = document.getElementById('contactName').value;
-                    const email = document.getElementById('contactEmail').value;
-                    const subject = document.getElementById('contactSubject').value;
-                    const message = document.getElementById('contactMessage').value;
-                    const mailtoLink = `mailto:iceconsort@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
-                    window.location.href = mailtoLink;
-                    hideModal(contactFormModal);
-                    contactForm.reset();
-                    console.log("Contact form submitted via mailto."); // Debugging
-                });
-            }
-
-
-            // --- Main Application Form Specific Logic ---
-            const applicationFormSection = document.getElementById('applicationFormSection');
-            const thankYouSection = document.getElementById('thankYouSection');
-            const form = document.getElementById('applicationForm'); // The main form element
-            const countrySelect = document.getElementById('country');
-            const currencyDisplay = document.getElementById('currencyDisplay');
-            const convertedAmountSpan = document.getElementById('convertedAmount');
-            const paystackButton = document.getElementById('paystackButton'); // The button to initiate Paystack
-            const applicantEmailInput = document.getElementById('applicantEmail');
-
-
-            // Paystack Public Key and Base Amount
-            const PAYSTACK_PUBLIC_KEY = 'pk_live_6b671064b6a716c1ceffe82bf20a28c317a69584';
-            const BASE_NAIRA_AMOUNT = 650; // Amount in Naira (kobo for Paystack = 65000)
-
-            // Exchange rates (Illustrative)
-            const exchangeRates = {
-                "Algeria": { currency: "DZD", rate: 0.35 },
-                "Angola": { currency: "AOA", rate: 6.80 },
-                "Benin": { currency: "XOF", rate: 0.90 },
-                "Botswana": { currency: "BWP", rate: 0.015 },
-                "Burkina Faso": { currency: "XOF", rate: 0.90 },
-                "Burundi": { currency: "BIF", rate: 5.00 },
-                "Cabo Verde": { currency: "CVE", rate: 0.07 },
-                "Cameroon": { currency: "XAF", rate: 0.90 },
-                "Central African Republic": { currency: "XAF", rate: 0.90 },
-                "Chad": { currency: "XAF", rate: 0.90 },
-                "Comoros": { currency: "KMF", rate: 1.20 },
-                "Congo, Dem. Rep.": { currency: "CDF", rate: 3.50 },
-                "Congo, Rep.": { currency: "XAF", rate: 0.90 },
-                "Cote d'Ivoire": { currency: "XOF", rate: 0.90 },
-                "Djibouti": { currency: "DJF", rate: 0.35 },
-                "Egypt": { currency: "EGP", rate: 0.033 },
-                "Equatorial Guinea": { currency: "XAF", rate: 0.90 },
-                "Eritrea": { currency: "ERN", rate: 0.06 },
-                "Eswatini": { currency: "SZL", rate: 0.025 },
-                "Ethiopia": { currency: "ETB", rate: 0.08 },
-                "Gabon": { currency: "XAF", rate: 0.90 },
-                "Gambia": { currency: "GMD", rate: 0.10 },
-                "Ghana": { currency: "GHS", rate: 0.007 },
-                "Guinea": { currency: "GNF", rate: 10.00 },
-                "Guinea-Bissau": { currency: "XOF", rate: 0.90 },
-                "Kenya": { currency: "KES", rate: 0.10 },
-                "Lesotho": { currency: "LSL", rate: 0.025 },
-                "Liberia": { currency: "LRD", rate: 1.00 },
-                "Libya": { currency: "LYD", rate: 0.003 },
-                "Madagascar": { currency: "MGA", rate: 9.00 },
-                "Malawi": { currency: "MWK", rate: 0.70 },
-                "Mali": { currency: "XOF", rate: 0.90 },
-                "Mauritania": { currency: "MRU", rate: 0.10 },
-                "Mauritius": { currency: "MUR", rate: 0.03 },
-                "Morocco": { currency: "MAD", rate: 0.008 },
-                "Mozambique": { currency: "MZN", rate: 0.04 },
-                "Namibia": { currency: "NAD", rate: 0.025 },
-                "Niger": { currency: "XOF", rate: 0.90 },
-                "Nigeria": { currency: "NGN", rate: 1.00 }, // Base currency
-                "Rwanda": { currency: "RWF", rate: 1.50 },
-                "Sao Tome and Principe": { currency: "STD", rate: 450.00 },
-                "Senegal": { currency: "XOF", rate: 0.90 },
-                "Seychelles": { currency: "SCR", rate: 0.01 },
-                "Sierra Leone": { currency: "SLL", rate: 25.00 },
-                "Somalia": { currency: "SOS", rate: 1.20 },
-                "South Africa": { currency: "ZAR", rate: 0.025 },
-                "South Sudan": { currency: "SSP", rate: 0.25 },
-                "Sudan": { currency: "SDG", rate: 0.007 },
-                "Tanzania": { currency: "TZS", rate: 1.70 },
-                "Togo": { currency: "XOF", rate: 0.90 },
-                "Tunisia": { currency: "TND", rate: 0.002 },
-                "Uganda": { currency: "UGX", rate: 4.50 },
-                "Zambia": { currency: "ZMW", rate: 0.01 },
-                "Zimbabwe": { currency: "ZWL", rate: 2.00 },
-
-                "United States": { currency: "USD", rate: 0.00065 },
-                "United Kingdom": { currency: "GBP", rate: 0.00052 },
-                "India": { currency: "INR", rate: 0.055 }
-            };
-
-            if (countrySelect && currencyDisplay && convertedAmountSpan) {
-                countrySelect.addEventListener('change', () => {
-                    const selectedCountry = countrySelect.value;
-                    console.log(`Country changed to: ${selectedCountry}`); // Debugging
-                    if (selectedCountry && exchangeRates[selectedCountry]) {
-                        const { currency, rate } = exchangeRates[selectedCountry];
-                        const convertedAmount = (BASE_NAIRA_AMOUNT * rate).toFixed(2);
-                        convertedAmountSpan.textContent = `${currency} ${convertedAmount}`;
-                        currencyDisplay.style.display = 'block';
-                        console.log(`Converted amount: ${convertedAmountSpan.textContent}`); // Debugging
-                    } else {
-                        currencyDisplay.style.display = 'none';
-                        console.log("Country not selected or exchange rate missing."); // Debugging
-                    }
-                });
-
-                // Trigger initial display if a country is pre-selected
-                if (countrySelect.value) {
-                    countrySelect.dispatchEvent(new Event('change'));
-                }
-            } else {
-                console.warn("Country selection elements not found or incomplete.");
-            }
-
-
-            // Paystack button click handler
-            if (paystackButton && form && applicantEmailInput) { // Ensure all elements are found
-                paystackButton.addEventListener('click', function(e) {
-                    console.log("Paystack button clicked!"); // CRUCIAL: Confirm click event fires
-
-                    // IMPORTANT: The browser's native HTML5 validation (`required` attributes)
-                    // will trigger if `form.checkValidity()` is called.
-                    // However, if you have type="button" on your button,
-                    // the form itself will not submit automatically.
-                    // We're handling the validation and submission manually here.
-
-                    if (!form.checkValidity()) {
-                        console.log("Form validation failed: Showing native browser validation messages.");
-                        // This will trigger the browser's default messages for required fields.
-                        form.reportValidity();
-                        return; // Stop execution if form is invalid
-                    }
-
-                    const email = applicantEmailInput.value;
-                    const name = document.getElementById('fullName').value;
-
-                    if (!email) {
-                        console.log("Email is missing for payment, prompting user.");
-                        alert('Please enter your email for payment processing.');
-                        applicantEmailInput.focus();
-                        return; // Stop execution if email is missing
-                    }
-
-                    console.log("All validations passed. Initiating Paystack payment for email:", email, "and amount:", BASE_NAIRA_AMOUNT * 100);
-
-                    const handler = PaystackPop.setup({
-                        key: PAYSTACK_PUBLIC_KEY,
-                        email: email,
-                        amount: BASE_NAIRA_AMOUNT * 100, // Amount in kobo (650 NGN * 100)
-                        currency: "NGN",
-                        ref: '' + Math.floor((Math.random() * 1000000000) + 1), // unique reference per transaction
-                        metadata: {
-                            custom_fields: [
-                                {
-                                    display_name: "Full Name",
-                                    variable_name: "full_name",
-                                    value: name
-                                },
-                                {
-                                    display_name: "Form Purpose",
-                                    variable_name: "form_purpose",
-                                    value: "Community Application"
-                                }
-                            ]
-                        },
-                        callback: function(response){
-                            console.log('Paystack Success Response:', response);
-
-                            const paystackRefInput = document.createElement('input');
-                            paystackRefInput.type = 'hidden';
-                            paystackRefInput.name = 'paystack_reference';
-                            paystackRefInput.value = response.reference;
-                            form.appendChild(paystackRefInput);
-
-                            // Manually submit the form to Formspree
-                            const formData = new FormData(form);
-                            fetch(form.action, {
-                                method: form.method,
-                                body: formData,
-                                headers: {
-                                    'Accept': 'application/json'
-                                }
-                            })
-                            .then(response => response.json())
-                            .then(data => {
-                                if (data.ok) {
-                                    console.log("Formspree submission successful, showing thank you section.");
-                                    applicationFormSection.style.display = 'none';
-                                    thankYouSection.style.display = 'block';
-                                    form.reset();
-                                } else {
-                                    alert('There was an error submitting your form after payment. Please try again or contact support.');
-                                    console.error('Formspree error:', data);
-                                }
-                            })
-                            .catch(error => {
-                                alert('There was a network error submitting your form after payment. Please check your internet connection and try again.');
-                                console.error('Network error during Formspree submission:', error);
-                            });
-                        },
-                        onClose: function(){
-                            console.log("Paystack modal closed by user.");
-                            alert('Payment window closed. Your application has not been submitted. Please complete the payment to join.');
-                        }
-                    });
-                    handler.openIframe(); // Open the Paystack payment modal
-                });
-            } else {
-                console.error("CRITICAL ERROR: One or more main form elements (paystackButton, applicationForm, applicantEmailInput) not found. Check HTML IDs.");
-            }
-        });
-
-    </script>
+      });
+      handler.openIframe();
+    }
+  </script>
 </body>
 </html>
