@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LGBTQ+ News: Progress, Pushback, and Persistent Pride</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Bebas+Neue&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        /* --- Color Variables --- */
+        :root {
+            --bg-darkest: #121212; /* Very dark background */
+            --bg-card: #1a1a1a; /* Slightly lighter for cards */
+            --text-light: #e0e0e0;
+            --text-muted: #888888; /* Darker muted text for descriptions */
+            --accent-dark-purple: #483D8B; /* Dark Slate Blue - main accent */
+            --accent-light-purple: #6A5ACD; /* Medium Slate Blue - hover/highlight */
+            --border-color: #333333;
+            --price-color: #00FF00; /* Bright Green for prices */
+            --error-color: #FF0000; /* Red for errors */
+            --button-color: #555555; /* Dark button background */
+            --button-hover-color: #777777; /* Lighter button on hover */
+            --live-red: #FF0000; /* For pulsing live indicator */
+        }
+
+        /* --- Global Styles --- */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-darkest);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            /* Adjusted padding to account for fixed header and footer */
+            padding: 0 20px 80px; /* Space for fixed bottom nav */
+            box-sizing: border-box;
+        }
+
+        /* --- Standard Header Styles (from your "Help" page) --- */
+        #main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            background-color: rgba(0, 0, 0, 0.9);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            box-sizing: border-box;
+        }
+
+        #site-title {
+            font-family: 'Bebas Neue', sans-serif;
+            color: var(--accent-dark-purple);
+            font-size: 2em;
+            letter-spacing: 1px;
+            margin: 0;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        #header-spacer {
+            height: 60px; /* Matching header height */
+        }
+
+        /* --- Resources & Live Icons in Header (from your "Help" page) --- */
+        .header-icons-group {
+            display: flex;
+            align-items: center;
+            gap: 15px; /* Spacing between the two icon groups */
+            margin-left: auto; /* Push to the right */
+        }
+
+        .header-icon-link {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.9em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .header-icon-link:hover {
+            color: var(--accent-light-purple);
+        }
+
+        .header-icon-link .material-icons {
+            font-size: 24px;
+            color: var(--text-light);
+            transition: color 0.3s ease;
+        }
+
+        .header-icon-link:hover .material-icons {
+            color: var(--accent-light-purple);
+        }
+
+        /* Live Indicator */
+        .live-indicator {
+            width: 8px;
+            height: 8px;
+            background-color: var(--live-red);
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 5px;
+            position: relative;
+            animation: pulse-red 1.5s infinite ease-out;
+        }
+
+        @keyframes pulse-red {
+            0% { transform: scale(0.8); opacity: 0.7; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(0.8); opacity: 0.7; }
+        }
+
+        /* --- Standard Fixed Bottom Navigation (from your "Help" page) --- */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #000000;
+            border-top: none;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            z-index: 100;
+            box-shadow: none;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            padding: 5px 0;
+            color: var(--text-muted); /* Default for all nav items */
+            text-decoration: none;
+            font-size: 0.75em;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-item .material-icons {
+            font-size: 28px;
+            margin-bottom: 4px;
+            color: var(--text-muted); /* Default for all nav icons */
+            transition: color 0.3s ease;
+        }
+
+        /* Hover states */
+        .nav-item:hover {
+            color: var(--text-light);
+        }
+
+        .nav-item:hover .material-icons {
+            color: var(--text-light);
+        }
+
+        /* --- CSS for "no matter what" highlighting based on unique body class --- */
+        /* Since this page will be "todays-topic.html" (or similar),
+           we can add a unique class to its body, e.g., `body.page-todays-topic`
+           and keep the existing nav item active styles for other pages.
+           For "Todays Topic" we won't activate any of the main 5 nav items directly.
+           You might consider adding a "Blog/News" nav item if this is a common section.
+        */
+        /* Home Page */
+        body.page-home .bottom-nav .nav-item[href="index.html"] {
+            color: var(--accent-dark-purple);
+            font-weight: 600;
+        }
+        body.page-home .bottom-nav .nav-item[href="index.html"] .material-icons {
+            color: var(--accent-dark-purple);
+        }
+        /* Shop Page */
+        body.page-shop .bottom-nav .nav-item[href="shop.html"] {
+            color: var(--accent-dark-purple);
+            font-weight: 600;
+        }
+        body.page-shop .bottom-nav .nav-item[href="shop.html"] .material-icons {
+            color: var(--accent-dark-purple);
+        }
+        /* Legal Page */
+        body.page-legal .bottom-nav .nav-item[href="legal.html"] {
+            color: var(--accent-dark-purple);
+            font-weight: 600;
+        }
+        body.page-legal .bottom-nav .nav-item[href="legal.html"] .material-icons {
+            color: var(--accent-dark-purple);
+        }
+        /* Help Page */
+        body.page-help .bottom-nav .nav-item[href="help.html"] {
+            color: var(--accent-dark-purple);
+            font-weight: 600;
+        }
+        body.page-help .bottom-nav .nav-item[href="help.html"] .material-icons {
+            color: var(--accent-dark-purple);
+        }
+
+        /* Special styling for the plus icon (Add) */
+        .bottom-nav .nav-item.register-nav-item .material-icons {
+            font-size: 36px;
+            color: var(--text-muted); /* Keeps its default muted color */
+        }
+
+
+        /* --- Global Modal Styles (reused for Resources Menu Modal, Add/Create, Contact Form) --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-overlay.show-modal {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: var(--bg-card);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
+            width: 90%;
+            max-width: 500px; /* Adjusted for menu and forms */
+            position: relative;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-overlay.show-modal .modal-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .modal-content h2 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-light);
+            font-size: 1.8em;
+            margin-top: 0;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .modal-content .close-button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: var(--text-muted);
+            font-size: 28px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .modal-content .close-button:hover {
+            color: var(--text-light);
+        }
+
+        /* --- Resources Menu Modal Specific Styles --- */
+        #resourcesMenuModal h2 {
+            color: var(--accent-light-purple);
+            text-shadow: 0 0 10px rgba(106, 90, 205, 0.4);
+            margin-bottom: 20px;
+        }
+
+        .resources-menu-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px; /* Spacing between menu items */
+        }
+
+        .resources-menu-options a {
+            display: block; /* Make the whole area clickable */
+            background-color: var(--bg-darkest);
+            color: var(--text-light);
+            padding: 15px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: 500;
+            transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .resources-menu-options a:hover {
+            background-color: var(--accent-dark-purple);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+
+        .resources-menu-options a .material-icons {
+            font-size: 24px;
+            color: var(--accent-light-purple); /* Icon color */
+            transition: color 0.2s ease;
+        }
+
+        .resources-menu-options a:hover .material-icons {
+            color: white; /* Icon color on hover */
+        }
+
+        /* Add/Create Modal specific styles */
+        #addCreateModal .add-create-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        #addCreateModal .add-create-options button {
+            background-color: var(--accent-dark-purple);
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        #addCreateModal .add-create-options button:hover {
+            background-color: var(--accent-light-purple);
+            transform: translateY(-2px);
+        }
+
+        /* New Contact Form Modal Styles */
+        #contactFormModal h2 {
+            color: var(--accent-light-purple);
+            text-shadow: 0 0 10px rgba(106, 90, 205, 0.4);
+            margin-bottom: 20px;
+        }
+        .contact-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9em;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea {
+            width: calc(100% - 20px); /* Adjust for padding */
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background-color: var(--bg-darkest);
+            color: var(--text-light);
+            font-family: 'Roboto', sans-serif;
+            font-size: 1em;
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+        }
+        /* Added focus styles */
+        .contact-form input[type="text"]:focus,
+        .contact-form input[type="email"]:focus,
+        .contact-form textarea:focus {
+            outline: none; /* Remove the default browser outline */
+            border-color: var(--accent-light-purple); /* Change border color to purple */
+            box-shadow: 0 0 0 3px rgba(106, 90, 205, 0.5); /* Add a purple shadow for better visibility */
+        }
+        .contact-form textarea {
+            resize: vertical; /* Allow vertical resizing */
+            min-height: 120px;
+        }
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: var(--text-muted);
+            opacity: 0.7;
+        }
+        .contact-form button[type="submit"] {
+            background-color: var(--accent-dark-purple);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            width: 100%;
+            box-sizing: border-box;
+            margin-top: 10px;
+        }
+        .contact-form button[type="submit"]:hover {
+            background-color: var(--accent-light-purple);
+            transform: translateY(-2px);
+        }
+        .contact-form .mail-note {
+            font-size: 0.85em;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        /* --- News Article Specific Styles (from original Todays Topic page) --- */
+        .article-container {
+            background-color: var(--bg-card);
+            padding: 40px;
+            border-radius: 8px;
+            margin-top: 30px; /* Adjusted margin-top as header is now fixed */
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+        }
+
+        .article-container h1 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--accent-light-purple);
+            font-size: 2.2em;
+            margin-bottom: 15px;
+            line-height: 1.3;
+            text-shadow: 0 0 10px rgba(106, 90, 205, 0.3);
+        }
+
+        .article-meta {
+            font-size: 0.9em;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .article-meta span {
+            margin-right: 15px;
+        }
+
+        .article-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 20px 0;
+            display: block;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5em;
+            line-height: 1.8;
+            font-size: 1.05em;
+        }
+
+        .article-content h2, .article-content h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-light);
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 5px;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 20px;
+            margin-bottom: 1.5em;
+        }
+
+        .article-content li {
+            margin-bottom: 0.5em;
+        }
+
+
+        /* --- Responsive Adjustments (from your "Help" page, adapted) --- */
+        @media (max-width: 768px) {
+            #header-spacer {
+                height: 40px;
+            }
+            #main-header {
+                padding: 5px 10px;
+            }
+            #site-title {
+                font-size: 1.3em;
+                letter-spacing: 0.5px;
+            }
+            .header-icon-link {
+                font-size: 0.8em;
+            }
+            .header-icon-link .material-icons {
+                font-size: 20px;
+            }
+            .live-indicator {
+                width: 6px;
+                height: 6px;
+            }
+            .modal-content {
+                padding: 20px;
+                max-width: 95%;
+            }
+            .modal-content h2 {
+                font-size: 1.5em;
+                margin-bottom: 20px;
+            }
+            .resources-menu-options a {
+                padding: 12px 15px;
+                font-size: 1em;
+            }
+            /* Article container specific responsive style */
+            .article-container {
+                padding: 20px;
+                margin-top: 20px;
+            }
+            .article-container h1 {
+                font-size: 1.8em;
+            }
+            .article-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+            /* Bottom Nav adjustments */
+            .bottom-nav .material-icons {
+                font-size: 24px;
+            }
+            .nav-item {
+                font-size: 0.65em;
+            }
+            .contact-form input[type="text"],
+            .contact-form input[type="email"],
+            .contact-form textarea {
+                width: calc(100% - 20px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            #header-spacer {
+                height: 30px;
+            }
+            #site-title {
+                font-size: 1.0em;
+                letter-spacing: 0px;
+            }
+            /* Article container specific responsive style */
+            .article-container {
+                padding: 15px;
+            }
+            .article-container h1 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body class="page-news-article">
+    <div id="main-page-content">
+        <header id="main-header">
+            <h1 id="site-title">Mìlàájé</h1>
+            <div class="header-icons-group">
+                <a href="#" class="header-icon-link" id="openLiveLink">
+                    <span style="display:none;" class="material-icons">sensors_waves</span>
+                    <span>Live</span>
+                    <span class="live-indicator"></span>
+                </a>
+                <a href="#" class="header-icon-link" id="openResourcesMenuModalLink">
+                    <span class="material-icons">menu_book</span>
+                    <span>Resources</span>
+                </a>
+            </div>
+        </header>
+
+        <div id="header-spacer"></div>
+
+        <div class="container">
+            <div class="article-container">
+                <h1>Pulse Updates: Today's Top News (June 16, 2025)</h1>
+                <div class="article-meta">
+                    <span>By Milaaje</span>
+                    <span>June 16, 2025</span>
+                    <span>Category: Global News, LGBTQ+ News</span>
+                </div>
+                <div class="article-content">
+                    
+
+                    <h2>LGBTQ+ News: Progress, Pushback, and Persistent Pride</h2>
+                    <img src="https://i.imgur.com/XsVoblc.jpeg" alt="A vibrant Pride celebration with diverse people.">
+                    <p>This Pride Month, while celebrations continue with vibrant spirit, the LGBTQ+ community faces a mixed bag of progress and renewed challenges.</p>
+                    <ul>
+                        <li><p>The **Southern Baptist Convention** is reportedly considering resolutions aiming for a legal ban on same-sex marriage in the U.S. This highlights ongoing efforts by some religious groups to overturn existing legal protections for LGBTQ+ individuals.</p></li>
+                        <li><p>Nine years after the horrific tragedy, survivors of the **Pulse Nightclub shooting** are revisiting the site in Florida as it prepares for demolition to make way for a permanent memorial. It's a poignant reminder of loss, resilience, and the enduring fight for safe spaces.</p></li>
+                        <li><p>Despite reports of decreased corporate sponsorships, **Pride Month celebrations are pressing on in 2025**. This underscores the grassroots strength and community-driven nature of Pride, proving that the spirit of visibility and advocacy thrives regardless of corporate backing.</p></li>
+                        <li><p>The legal terrain for LGBTQ+ rights continues to be highly varied. While **Thailand recently legalized same-sex marriage**, offering a beacon of hope in Southeast Asia, countries like **Hungary have approved constitutional changes banning LGBTQ+ events**, and **Russia's crackdown on the community** continues to intensify. In the US, there are ongoing legal battles, including a judge blocking anti-diversity and anti-transgender executive orders, and discussions around legal definitions of sex.</p></li>
+                    </ul>
+
+                    <h2>Global Headlines: Conflict, Protest, and Historic Appointments</h2>
+                    <img src="https://i.imgur.com/7dH4f6J.jpeg" alt="A collage of global news images, representing various current events.">
+                    <p>Beyond LGBTQ+ news, the world is grappling with a range of critical developments.</p>
+                    <ul>
+                        <li><p>The shadow war between **Israel and Iran has intensified**, with reports of missile attacks continuing for a third day. International calls for de-escalation are growing louder as fears of a broader regional conflict persist. President Donald Trump reportedly vetoed an Israeli plan to target Iran's Supreme Leader, indicating a complex diplomatic landscape.</p></li>
+                        <li><p>"**No Kings**" protests are sweeping across the United States, with thousands demonstrating against what they perceive as authoritarianism, particularly in response to the current administration's policies. These protests coincide with planned military celebrations, adding a layer of direct challenge to the displays of power.</p></li>
+                        <li><p>A manhunt is underway in **Minnesota following a deadly shooting** that killed one Democratic lawmaker and wounded another. The incident has sent shockwaves through the state, raising concerns about political violence.</p></li>
+                        <li><p>In a historic move, Britain's **MI6 spy agency has appointed its first female chief, Blaise Metreweli**. This appointment marks a significant milestone for diversity in the traditionally male-dominated world of espionage.</p></li>
+                        <li><p>From Barcelona to Mallorca, thousands are protesting against **overtourism in southern Europe**. Residents are raising concerns about skyrocketing housing costs, environmental impact, and the erosion of local culture, demanding a re-evaluation of current tourism models.</p></li>
+                        <li><p>In the ongoing conflict, Ukraine's military officials claim that **Russian military casualties have now topped 1 million** in the three-year-old war. This grim statistic underscores the devastating human cost of the protracted conflict.</p></li>
+                    </ul>
+                    <p>As always, staying informed is key to understanding the intricate tapestry of our world. We'll continue to bring you the latest as these stories unfold.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-nav">
+            <a href="https://thisiceconsort.github.io/truematch/" class="nav-item">
+                <span class="material-icons">home</span>
+                <span>Home</span>
+            </a>
+            <a href="https://thisiceconsort.github.io/truematch/shop.html" class="nav-item">
+                <span class="material-icons">storefront</span>
+                <span>Shop</span>
+            </a>
+            <a href="#" class="nav-item register-nav-item" id="openAddCreateModalLink">
+                <span class="material-icons">add_circle</span>
+                <span>Add</span>
+            </a>
+            <a href="https://thisiceconsort.github.io/truematch/legal.html" class="nav-item">
+                <span class="material-icons">policy</span>
+                <span>Legal</span>
+            </a>
+            <a href="https://thisiceconsort.github.io/truematch/help.html" class="nav-item">
+                <span class="material-icons">help_outline</span>
+                <span>Help</span>
+            </a>
+        </div>
+    </div>
+
+    <div id="resourcesMenuModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-button material-icons">close</span>
+            <h2>Resources</h2>
+            <div class="resources-menu-options">
+                <a href="#">
+                    <span class="material-icons">article</span> Article, Blog, News
+                </a>
+                <a href="https://thisiceconsort.github.io/truematch/free.html">
+                    <span class="material-icons">volunteer_activism</span> Coming Out Stories
+                </a>
+                <a href="https://thisiceconsort.github.io/truematch/skills.html">
+                    <span class="material-icons">settings</span> Skill Learning
+                </a>
+
+                <a href="https://thisiceconsort.github.io/truematch/reviews.html">
+                    <span class="material-icons">rate_review</span> Testimonials
+                </a>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="addCreateModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-button material-icons">close</span>
+            <h2>Add</h2>
+            <div class="add-create-options">
+                <a style="display:none;" href="add-product.html"><button>Add a Product</button></a>
+                <a href="https://thisiceconsort.github.io/truematch/books.html"><button>Submit a Book</button></a>
+                <a href="https://thisiceconsort.github.io/truematch/movies.html"><button>Submit a Movie</button></a>
+                <a href="https://thisiceconsort.github.io/truematch/donate.html"><button>Volunteer & Donate</button></a>
+                <a style="display: none;"href="create-card.html" id="createGayCardLink"><button>Create Your Gay Card</button></a>
+            </div>
+        </div>
+    </div>
+
+    <div id="contactFormModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-button material-icons">close</span>
+            <h2>Contact Us</h2>
+            <form id="contactForm" class="contact-form">
+                <label for="contactName">Your Name:</label>
+                <input type="text" id="contactName" placeholder="Enter your name" required>
+                <label for="contactEmail">Your Email:</label>
+                <input type="email" id="contactEmail" placeholder="Enter your email" required>
+                <label for="contactSubject">Subject:</label>
+                <input type="text" id="contactSubject" placeholder="Subject of your inquiry" required>
+                <label for="contactMessage">Message:</label>
+                <textarea id="contactMessage" placeholder="Type your message here..." required></textarea>
+                <button type="submit">Send Email</button>
+                <p class="mail-note"> * Clicking 'Send Email' will open your default email client with your message pre-filled. You will need to click 'Send' again in your email client. </p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // --- Modal & General UI Logic (Copied from your "Help" page) ---
+        function showModal(modalElement) {
+            modalElement.classList.add('show-modal');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling background
+        }
+        function hideModal(modalElement) {
+            modalElement.classList.remove('show-modal');
+            document.body.style.overflow = ''; // Restore scrolling background
+        }
+
+        // --- Event Listeners (Adapted for this page) ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentPagePath = window.location.pathname;
+            const currentPageFileName = currentPagePath.split('/').pop(); // E.g., "todays-topic.html" or "index.html"
+
+            // --- Active state for bottom navigation (JavaScript-driven) ---
+            const bottomNavItems = document.querySelectorAll('.bottom-nav .nav-item');
+            bottomNavItems.forEach(item => {
+                item.classList.remove('active'); // Always remove 'active' from ALL items first
+                const itemHref = item.getAttribute('href');
+                if (itemHref === currentPageFileName) {
+                    item.classList.add('active');
+                }
+            });
+
+            // --- Modals and their buttons ---
+            const resourcesMenuModal = document.getElementById('resourcesMenuModal');
+            const resourcesMenuCloseButton = resourcesMenuModal.querySelector('.close-button');
+            const openResourcesMenuModalLink = document.getElementById('openResourcesMenuModalLink');
+
+            const addCreateModal = document.getElementById('addCreateModal');
+            const addCreateModalCloseButton = addCreateModal.querySelector('.close-button');
+            const openAddCreateModalLink = document.getElementById('openAddCreateModalLink'); // This is the "Add" button in bottom nav
+
+            const contactFormModal = document.getElementById('contactFormModal');
+            const contactFormCloseButton = contactFormModal.querySelector('.close-button');
+            // This button might not exist on this page, or you might need a new one
+            // If you had a "Contact Us" button in the header, link it to this modal.
+            // For now, it's not directly triggered from the article page content.
+            const openContactFormModalLink = document.getElementById('openContactFormModalLink');
+
+
+            // Listeners for Resources Menu Modal (Header)
+            if (openResourcesMenuModalLink) { // Check if the element exists (from header)
+                openResourcesMenuModalLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showModal(resourcesMenuModal);
+                });
+            }
+            if (resourcesMenuCloseButton) {
+                resourcesMenuCloseButton.addEventListener('click', () => {
+                    hideModal(resourcesMenuModal);
+                });
+            }
+            if (resourcesMenuModal) {
+                resourcesMenuModal.addEventListener('click', (e) => {
+                    if (e.target === resourcesMenuModal) {
+                        hideModal(resourcesMenuModal);
+                    }
+                });
+            }
+
+            // Listeners for Add/Create Modal (Bottom Nav "Add" button)
+            if (openAddCreateModalLink) { // Check if the element exists (from bottom nav)
+                openAddCreateModalLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showModal(addCreateModal);
+                });
+            }
+            if (addCreateModalCloseButton) {
+                addCreateModalCloseButton.addEventListener('click', () => {
+                    hideModal(addCreateModal);
+                });
+            }
+            if (addCreateModal) {
+                addCreateModal.addEventListener('click', (e) => {
+                    if (e.target === addCreateModal) {
+                        hideModal(addCreateModal);
+                    }
+                });
+            }
+
+            // Listener for Contact Form Modal
+            // Note: There's no direct "Contact Form" button in the provided "Todays Topic" content.
+            // If you add one (e.g., in the article, or another part of the header/footer),
+            // ensure it has the ID 'openContactFormModalLink' or update this JS.
+            if (openContactFormModalLink) {
+                 openContactFormModalLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showModal(contactFormModal);
+                });
+            }
+            if (contactFormCloseButton) {
+                contactFormCloseButton.addEventListener('click', () => {
+                    hideModal(contactFormModal);
+                });
+            }
+            if (contactFormModal) {
+                contactFormModal.addEventListener('click', (e) => {
+                    if (e.target === contactFormModal) {
+                        hideModal(contactFormModal);
+                    }
+                });
+            }
+
+            // "Live" link functionality (placeholder for now)
+            const openLiveLink = document.getElementById('openLiveLink');
+            if (openLiveLink) {
+                openLiveLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    alert('Navigating to Live Content! (This link is a placeholder)');
+                });
+            }
+
+            // Contact Form Submission (opens email client)
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const name = document.getElementById('contactName').value;
+                    const email = document.getElementById('contactEmail').value;
+                    const subject = document.getElementById('contactSubject').value;
+                    const message = document.getElementById('contactMessage').value;
+                    const mailtoLink = `mailto:iceconsort@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+                    window.location.href = mailtoLink;
+                    hideModal(contactFormModal); // Hide modal after initiating mailto
+                    contactForm.reset(); // Clear the form
+                });
+            }
+        });
+    </script>
+</body>
+</html>
