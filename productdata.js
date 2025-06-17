@@ -2,12 +2,12 @@
 const products = [
     {
         id: '001',
-        name: 'Whispers of Love (BL Book Vol. 1)',
+        name: 'Hastings (Part. 1)',
         category: 'BL Books',
         price: 2500, // ₦25.00
-        imageUrl: 'https://i.imgur.com/3gVgNH8.jpeg',
-        heroImageUrl: 'https://i.imgur.com/3gVgNH8.jpeg',
-        description: 'A captivating romance novel that explores the depths of connection and unspoken desires.',
+        imageUrl: 'https://i.imgur.com/eFLVTdU.jpeg',
+        heroImageUrl: 'https://i.imgur.com/eFLVTdU.jpeg',
+        description: 'When rich, reckless Maro is sent to Hastings—a brutal school for the world’s elite—he never expects to fall for Toju, the quiet exchange student from nowhere. One stolen kiss turns into a dangerous obsession, a secret too risky to keep. But when their night together is caught on camera and leaked to the world, the scandal explodes—destroying Maro’s powerful family, dragging Hastings into chaos, and turning their love into a weapon. Fame, betrayal, blackmail—now it’s survival.',
         type: 'shoppable'
     },
     {
