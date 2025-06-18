@@ -81,7 +81,7 @@ const products = [
         name: 'Potable Trusting Vibrator',
         category: 'Adult Girl Toys',
         affiliateLink: 'https://a.aliexpress.com/_EGURCt4',
-        imageUrl: 'https://i.imgur.com/IYSUTAp.jpeg',
+        imageUrl: 'https://i.imgur.com/oGtqNfi.jpeg',
         description: 'APP Thrusting Anal Vibrator for Adult Butt Plug with Cock Ring for Men Prostate Massager Ass Anal Dildo Buttplug Adult Goods',
         type: 'affiliate'
     },
@@ -98,9 +98,9 @@ const products = [
         id: 'aff-014',
         name: 'Lingerie For Ladies, Fetish Bodysuit',
         category: 'Adult Girl Toys',
-        affiliateLink: 'https://a.aliexpress.com/_Exc6la6',
+        affiliateLink: 'https://s.click.aliexpress.com/e/_EJjTkRU',
         imageUrl: 'https://i.imgur.com/Eh1SMO.jpeg',
-        description: 'Sexy Adult Female Body Lingerie Women Fetish Bodysuit Open Chest Crotchless 18 Transparent Hot Erotic Underwear Costumes',
+        description: 'hollowed out underwire top push up ladies bra triangle lingerie set leopard print underwear female embroidery bralette',
         type: 'affiliate'
     },
     {
