@@ -12,11 +12,11 @@ const products = [
     },
     {
         id: '002',
-        name: 'Crimson Promise (BL Book Vol. 2)',
+        name: 'Chasing Shadows (Thriller)',
         category: 'BL Books',
-        price: 2800, // Corrected price from 280000 to 2800 based on your comment "₦28.00"
-        imageUrl: 'https://i.imgur.com/3gVgNH8.jpeg',
-        description: 'The highly anticipated sequel, delving deeper into the interwoven destinies of its characters. New challenges and heart-wrenching moments await, pushing the protagonists to their limits.',
+        price: 250, // Corrected price from 280000 to 2800 based on your comment "₦28.00"
+        imageUrl: 'https://i.imgur.com/Nk5VmBP.jpeg',
+        description: 'Kenzo and Elias have always been enemies, but when they wake up chained in a dark basement, their rivalry becomes the least of their worries as a masked figure presents them with a cruel ultimatum—one must die so the other can go free. Trapped in a deadly game, emotions twist between hatred, fear, and something far more dangerous, forcing them to confront not only their past but the horrifying reality of their present. As the walls close in and time runs out, they must decide if survival comes at the cost of sacrifice or if the price was set long before they woke up, because not all endings are meant to be happy.',
         type: 'shoppable'
     },
     {
