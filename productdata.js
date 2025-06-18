@@ -76,6 +76,7 @@ const products = [
         description: 'Long-lasting 60-minute penis enlargement oil, male external use sexual delay spray, anti-premature ejaculation sexual spray.',
         type: 'affiliate'
     },
+    //girls toy
     {
         id: 'aff-002',
         name: 'Potable Trusting Vibrator',
