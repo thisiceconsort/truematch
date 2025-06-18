@@ -37,16 +37,8 @@ const products = [
         description: 'An enchanting tale of self-discovery and enduring love, set against a magical backdrop. Follow protagonists as they navigate a world of wonders and challenges, forging a bond that defies all odds.',
         type: 'shoppable'
     },
-    //girlsbook
-    {
-        id: '004',
-        name: 'Emerald Whispers (GL Book Vol. 2)',
-        category: 'GL Books1',
-        price: 2900, // ₦29.00
-        imageUrl: 'https://images.unsplash.com/photo-1512820790803-830f65ce8843?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        description: 'The highly anticipated sequel, delving deeper into the interwoven destinies of its characters. New challenges and heart-wrenching moments await, pushing the protagonists to their limits.',
-        type: 'shoppable'
-    },
+    //girlsbook004
+//boytoy
     {
         id: 'aff-001',
         name: 'Safe Dildo For Bottoms',
@@ -56,7 +48,6 @@ const products = [
         description: 'Realistic Dildo with Suction Cup Huge Dildos Adult Sex Toys for Men, Big Penis Anal Butt Plug Erotic Relaxation toy, Shop 18+.',
         type: 'affiliate'
     },
-    //boystoy
     {
         id: 'aff-008',
         name: 'Safe ButtPlug For Bottoms',
