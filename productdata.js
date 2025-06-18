@@ -81,7 +81,7 @@ const products = [
         name: 'Potable Trusting Vibrator',
         category: 'Adult Girl Toys',
         affiliateLink: 'https://a.aliexpress.com/_EGURCt4',
-        imageUrl: '',
+        imageUrl: 'https://i.imgur.com/IYSUTAp.jpeg',
         description: 'APP Thrusting Anal Vibrator for Adult Butt Plug with Cock Ring for Men Prostate Massager Ass Anal Dildo Buttplug Adult Goods',
         type: 'affiliate'
     },
