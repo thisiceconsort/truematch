@@ -28,15 +28,7 @@ const products = [
         description: 'The thrilling conclusion to the BL book series, bringing all mysteries to light. Secrets unravel and new paths emerge in this epic final chapter, leaving a lasting impression.',
         type: 'shoppable'
     },
-    {
-        id: '003',
-        name: 'Sapphire Dreams (GL Book Vol. 1)',
-        category: 'GL Books1',
-        price: 2700, // ₦27.00
-        imageUrl: 'https://images.unsplash.com/photo-1522030299443-4f92d4766f07?auto=format&fit=crop&q=80&w=1935&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        description: 'An enchanting tale of self-discovery and enduring love, set against a magical backdrop. Follow protagonists as they navigate a world of wonders and challenges, forging a bond that defies all odds.',
-        type: 'shoppable'
-    },
+    
     //girlsbook004
 //boytoy
     {
