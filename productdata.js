@@ -21,11 +21,11 @@ const products = [
     },
     {
         id: '007',
-        name: 'The BL Book Vol. 3: Echoes',
+        name: 'Heirs & Lies',
         category: 'BL Books',
         price: 2600, // ₦26.00
-        imageUrl: 'https://images.unsplash.com/photo-1621990710185-bc964a7c06c5?auto=format&fit=crop&q=80&w=1935&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        description: 'The thrilling conclusion to the BL book series, bringing all mysteries to light. Secrets unravel and new paths emerge in this epic final chapter, leaving a lasting impression.',
+        imageUrl: 'https://i.imgur.com/4fQVQ5w.jpeg',
+        description: 'At eighteen, Luca and Finley have everything—wealth, privilege, and power—but not freedom, caught between two of the richest families in the country whose polished rivalry hides behind charity galas and luxury vacations. In secret, the boys are in love, building a fragile world of late-night meetings and stolen kisses, but everything spirals when they discover their forbidden romance isn’t the only betrayal between their families—each of their fathers has been secretly sleeping with the other’s son. As desire and betrayal collide, Luca and Finley are forced to confront the twisted layers of love, loyalty, and power, questioning whether their bond will survive the scandal—or if it was always destined to break.',
         type: 'shoppable'
     },
     
