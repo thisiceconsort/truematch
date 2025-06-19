@@ -4,16 +4,16 @@
 // You can consider this your "user database" for the frontend.
 const verifiedUsers = {
     '1234': {
-        name: 'Chukwudi Obi',
-        picture: 'https://via.placeholder.com/120/483D8B/FFFFFF?text=CO',
+        name: 'Maro Erubasa Akpovwovwo',
+        picture: 'https://i.imgur.com/1CpTG5U.jpeg',
         age: 28,
         country: 'Nigeria',
-        state_province: 'Lagos',
-        city: 'Lagos',
+        state_province: 'Delta',
+        city: 'Sapele',
         sexuality: 'Gay',
         body_type: 'Athletic',
-        height: 175,
-        interested_in: 'Someone who is kind, adventurous, and enjoys hiking and art.',
+        height: 179,
+        interested_in: 'Someone who is tall, silm, handsome, and enjoys being their true self and love art.',
         is_verified: true
     },
     '5678': {
