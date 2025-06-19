@@ -6,7 +6,7 @@ const verifiedUsers = {
     '0001': {
         name: 'Maro Erubasa Akpovwovwo',
         picture: 'https://i.imgur.com/1CpTG5U.jpeg',
-        age: 28,
+        age: 21,
         country: 'Nigeria',
         state_province: 'Delta',
         city: 'Sapele',
