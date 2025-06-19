@@ -3,7 +3,7 @@
 // This object will hold all your user data.
 // You can consider this your "user database" for the frontend.
 const verifiedUsers = {
-    '1234': {
+    '0001': {
         name: 'Maro Erubasa Akpovwovwo',
         picture: 'https://i.imgur.com/1CpTG5U.jpeg',
         age: 28,
