@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ice Consort Privilege - Membership</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* Global Styles & Futuristic Base */
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif; /* Still good for body text readability */
+      background-color: #05050C; /* Very dark, almost black-blue for a deep space feel */
+      color: #E0E0FF; /* Soft white/light blue for general text */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Full-screen Hero Section */
+    .hero-section {
+        position: relative; /* Changed to relative to contain overlay, but img inside is full screen */
+        width: 100vw;
+        height: 100vh; /* Full viewport height */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: white;
+        overflow: hidden;
+        margin-bottom: 0; /* No margin as it's the dominant first screen */
+    }
+
+    .hero-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Ensures the image covers the area, cropping as needed */
+        z-index: -2; /* Behind everything */
+    }
+
+    /* Subtle Animated Grid Overlay for Futuristic Look */
+    .hero-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image:
+            linear-gradient(to right, rgba(0,255,255,0.05) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(0,255,255,0.05) 1px, transparent 1px);
+        background-size: 50px 50px; /* Adjust grid size */
+        opacity: 0.3;
+        z-index: -1;
+        animation: gridShift 60s linear infinite; /* Subtle slow movement */
+    }
+
+    @keyframes gridShift {
+        from {
+            background-position: 0 0;
+        }
+        to {
+            background-position: 100% 100%;
+        }
+    }
+
+    /* Darker, more pronounced gradient overlay for text readability */
+    .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.85) 100%);
+        z-index: -1; /* Above image, below content */
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        padding: 40px 20px; /* More padding for content */
+        max-width: 90%;
+        animation: fadeInScale 1.5s ease-out forwards;
+    }
+
+    @keyframes fadeInScale {
+        from {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    .hero-content h1 {
+        font-family: 'Orbitron', sans-serif; /* Futuristic font */
+        font-size: clamp(2.5rem, 8vw, 4.5rem); /* Responsive font size */
+        color: #00FFFF; /* Cyan for primary glow */
+        text-shadow: 0 0 15px rgba(0,255,255,0.8), 0 0 30px rgba(0,255,255,0.5); /* Intense glow */
+        letter-spacing: 3px;
+        margin-bottom: 15px;
+        line-height: 1.2;
+    }
+
+    .hero-content p {
+        font-family: 'Roboto', sans-serif;
+        font-style: italic;
+        color: #A0FFFF; /* Lighter cyan for subtitle */
+        font-size: clamp(1rem, 3.5vw, 1.4rem);
+        max-width: 700px;
+        margin: 0 auto;
+        text-shadow: 0 0 8px rgba(0,255,255,0.4);
+    }
+
+    /* Main Page Wrapper - All content below the hero */
+    .page-wrapper {
+        width: 100%;
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 20px; /* Global horizontal padding */
+        box-sizing: border-box;
+    }
+
+    /* Section Containers */
+    .about-section,
+    .content,
+    .testimonials-section,
+    .faq-section {
+      max-width: 900px; /* Wider content area */
+      width: 100%;
+      background-color: #0B0B15; /* Darker, more substantial background for cards */
+      padding: 40px; /* Generous padding */
+      border-radius: 20px; /* More rounded corners for app-like cards */
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.7), 0 0 25px rgba(0,255,255,0.2); /* Deep shadow with subtle glow */
+      margin-top: 50px; /* Space between sections */
+      border: 1px solid #1A1A30; /* Subtle border for definition */
+      position: relative;
+      overflow: hidden; /* For inner glow effects */
+    }
+
+    /* Inner Border Glow */
+    .about-section::before,
+    .content::before,
+    .testimonials-section::before,
+    .faq-section::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(45deg, #00FFFF, #8A2BE2, #00FFFF); /* Cyan and purple glow */
+        z-index: -1;
+        border-radius: 22px; /* Slightly larger than container for overflow */
+        filter: blur(15px); /* Soft glow */
+        opacity: 0.4;
+        animation: borderGlow 8s infinite alternate;
+    }
+
+    @keyframes borderGlow {
+        0% { opacity: 0.4; transform: scale(1); }
+        50% { opacity: 0.6; transform: scale(1.01); }
+        100% { opacity: 0.4; transform: scale(1); }
+    }
+
+
+    .about-section {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    h2 {
+      font-family: 'Orbitron', sans-serif;
+      color: #00FFFF; /* Cyan for section headings */
+      font-size: clamp(1.8rem, 5vw, 2.8rem); /* Responsive headings */
+      margin-bottom: 35px;
+      letter-spacing: 1.5px;
+      text-align: center;
+      text-shadow: 0 0 10px rgba(0,255,255,0.6);
+    }
+
+    .about-section p,
+    .content p {
+      font-size: clamp(1rem, 3vw, 1.2rem);
+      line-height: 1.9;
+      color: #C0C0D0; /* Slightly desaturated for body text */
+      margin-bottom: 1.5em; /* More space between paragraphs */
+    }
+
+    /* Main Content Container Specifics */
+    .content {
+      margin-top: 50px;
+      margin-bottom: 50px;
+    }
+
+    .price-info {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+      line-height: 1.7;
+      background-color: #1A1A30; /* Slightly lighter background for info box */
+      padding: 25px;
+      border-radius: 15px;
+      border-left: 8px solid #8A2BE2; /* Strong purple accent border */
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .price-info strong {
+      color: #FF00FF; /* Magenta for prices */
+      font-size: clamp(1.4rem, 4vw, 1.8rem);
+      font-weight: 700;
+      text-shadow: 0 0 10px rgba(255,0,255,0.6);
+    }
+
+    /* Form Elements */
+    label {
+      display: block;
+      margin-top: 30px;
+      font-weight: 600;
+      color: #00FFFF; /* Cyan for labels */
+      margin-bottom: 12px;
+      font-size: clamp(0.95rem, 2.8vw, 1.1rem);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 16px 20px; /* More padding */
+      margin-top: 8px;
+      border-radius: 10px; /* More rounded */
+      border: 1px solid #3A3A50; /* Subtle border */
+      background-color: #0F0F1A; /* Dark input background */
+      color: #E0E0FF;
+      font-size: clamp(1rem, 3vw, 1.1rem);
+      box-sizing: border-box;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      -webkit-appearance: none; /* Remove default browser styling for select */
+      appearance: none;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: #00FFFF; /* Cyan on focus */
+      box-shadow: 0 0 15px rgba(0,255,255,0.7); /* Stronger glow on focus */
+      background-color: #151525;
+    }
+
+    input.invalid, select.invalid {
+        border-color: #FF4D4D; /* Red for invalid fields */
+        box-shadow: 0 0 10px rgba(255, 77, 77, 0.7);
+    }
+
+    /* Custom dropdown arrow for select */
+    select {
+        background-image: url('data:image/svg+xml;utf8,<svg fill="%2300FFFF" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+        background-repeat: no-repeat;
+        background-position: right 15px center;
+        background-size: 20px;
+        padding-right: 40px; /* Make space for the arrow */
+    }
+
+
+    /* Currency Converter */
+    .currency-converter {
+      margin-top: 35px;
+      padding: 30px;
+      background-color: #1A1A30;
+      border-radius: 15px;
+      border: 1px solid #3A3A50;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+      position: relative;
+    }
+
+    .currency-converter label {
+      color: #FF00FF; /* Magenta for converter label */
+      margin-bottom: 15px;
+      font-size: clamp(1rem, 3vw, 1.1rem);
+    }
+
+    #convertedPrice {
+      margin-top: 25px;
+      font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+      font-weight: bold;
+      color: #39FF14; /* Neon green for converted price */
+      text-align: center;
+      background-color: #0F0F1A;
+      padding: 15px;
+      border-radius: 8px;
+      text-shadow: 0 0 8px rgba(57,255,20,0.6);
+    }
+
+    .currency-loader {
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #00FFFF; /* Loader color matches accent */
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        animation: spin 1s linear infinite;
+        z-index: 10;
+    }
+
+    @keyframes spin {
+        0% { transform: translate(-50%, -50%) rotate(0deg); }
+        100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    /* Button */
+    button {
+      margin-top: 50px;
+      padding: 20px;
+      width: 100%;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(45deg, #00FFFF, #8A2BE2); /* Cyan to purple gradient */
+      color: #05050C; /* Very dark text on vibrant button */
+      font-size: clamp(1.2rem, 4vw, 1.5rem);
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6), 0 0 15px rgba(0,255,255,0.4);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    button:hover {
+      background: linear-gradient(45deg, #8A2BE2, #00FFFF); /* Reverse gradient on hover */
+      transform: translateY(-7px) scale(1.02);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8), 0 0 25px rgba(0,255,255,0.7);
+    }
+
+    button:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Testimonials Section */
+    .testimonials-section {
+      margin-top: 60px;
+      margin-bottom: 60px;
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 35px; /* More space between cards */
+    }
+
+    .testimonial-card {
+      background-color: #1A1A30; /* Darker card background */
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+      border-left: 6px solid #FF00FF; /* Magenta accent color */
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonial-card::before {
+        content: '"';
+        position: absolute;
+        top: 15px;
+        left: 20px;
+        font-size: 5rem;
+        color: rgba(255,0,255,0.2);
+        font-family: 'Orbitron', sans-serif;
+        z-index: 0;
+    }
+
+    .testimonial-card p {
+      font-style: italic;
+      line-height: 1.8;
+      color: #D0D0E0;
+      margin-bottom: 20px;
+      font-size: clamp(0.95rem, 2.8vw, 1.1rem);
+      position: relative; /* Bring text above quote */
+      z-index: 1;
+    }
+
+    .testimonial-card .author {
+      font-weight: 600;
+      color: #00FFFF; /* Cyan for author names */
+      text-align: right;
+      font-size: clamp(0.9rem, 2.5vw, 1rem);
+      margin-top: 15px;
+      letter-spacing: 0.5px;
+    }
+
+    /* FAQ Section */
+    .faq-section {
+      margin-top: 60px;
+    }
+
+    .faq-item {
+      margin-bottom: 25px;
+      border-bottom: 1px solid #3A3A50; /* Darker separator */
+      padding-bottom: 25px;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .faq-question {
+      background-color: #1A1A30;
+      padding: 20px 25px;
+      border-radius: 10px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      color: #E0E0FF;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      font-size: clamp(1rem, 3vw, 1.15rem);
+      letter-spacing: 0.5px;
+    }
+
+    .faq-question:hover {
+      background-color: #252540;
+      color: #00FFFF;
+    }
+
+    .faq-question .toggle-icon {
+      font-size: 1.5rem;
+      transition: transform 0.3s ease;
+      color: #FF00FF; /* Magenta for icon */
+    }
+
+    .faq-answer {
+      background-color: #0F0F1A; /* Slightly lighter than question for contrast */
+      padding: 20px 25px;
+      border-radius: 10px;
+      margin-top: 10px;
+      display: none;
+      color: #C0C0D0;
+      line-height: 1.7;
+      font-size: clamp(0.9rem, 2.7vw, 1rem);
+    }
+
+    .faq-item.active .faq-question {
+        background-color: #252540;
+        color: #00FFFF;
+    }
+
+    .faq-item.active .faq-question .toggle-icon {
+      transform: rotate(90deg);
+      color: #00FFFF; /* Icon also turns cyan when active */
+    }
+    .faq-item.active .faq-answer {
+        display: block;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 80px;
+      text-align: center;
+      color: #707080;
+      font-size: 0.9rem;
+      padding-bottom: 40px;
+      width: 100%;
+      background-color: #0B0B15;
+      padding-top: 30px;
+      border-top: 1px solid #1A1A30;
+      box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    footer p {
+        margin-bottom: 10px;
+    }
+
+    .footer-links a {
+      color: #8A2BE2; /* Purple for footer links */
+      text-decoration: none;
+      margin: 0 15px;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: #00FFFF;
+      text-shadow: 0 0 8px rgba(0,255,255,0.6);
+    }
+
+    .security-icons {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .security-icons div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .security-icons i {
+      font-size: 3rem;
+      color: #39FF14; /* Neon green for security icons */
+      text-shadow: 0 0 10px rgba(57,255,20,0.8);
+      margin-bottom: 8px;
+    }
+
+    .security-icons span {
+      display: block;
+      font-size: 0.9rem;
+      color: #B0B0C0;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    /* Payment Notifications */
+    .payment-notification-container {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px; /* More space between notifications */
+      z-index: 1000;
+      pointer-events: none;
+    }
+
+    .payment-notification {
+      background: linear-gradient(to right, rgba(0,255,255,0.95), rgba(138,43,226,0.95)); /* Cyan to Purple gradient */
+      color: #05050C; /* Dark text */
+      padding: 16px 22px;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0,255,255,0.5);
+      font-size: clamp(0.9rem, 2.5vw, 1.05rem);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      animation: slideIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards, fadeOut 0.8s forwards 4.5s;
+      opacity: 0;
+      transform: translateX(-150%);
+      pointer-events: all;
+      border: 1px solid rgba(0,255,255,0.4);
+    }
+
+    .payment-notification strong {
+      color: #05050C;
+    }
+
+    .payment-notification .icon {
+      margin-right: 15px;
+      font-size: 1.6rem;
+      color: #FF00FF; /* Magenta icon */
+      text-shadow: 0 0 5px rgba(255,0,255,0.8);
+    }
+
+    @keyframes slideIn {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+      }
+      100% {
+          display: none;
+      }
+    }
+
+    /* General Responsive Adjustments - Designed mobile-first */
+    @media (max-width: 768px) {
+        .about-section,
+        .content,
+        .testimonials-section,
+        .faq-section {
+            padding: 30px 20px; /* Adjust padding for smaller screens */
+            margin-top: 35px;
+            margin-bottom: 35px;
+            border-radius: 15px;
+        }
+
+        .hero-content h1 {
+            font-size: 2.2rem;
+            letter-spacing: 2px;
+        }
+
+        .hero-content p {
+            font-size: 0.9rem;
+        }
+
+        h2 {
+            font-size: 1.7rem;
+            margin-bottom: 25px;
+        }
+
+        .price-info {
+            padding: 20px;
+            font-size: 1rem;
+        }
+
+        .price-info strong {
+            font-size: 1.3rem;
+        }
+
+        label {
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+
+        input, select, button {
+            padding: 14px 16px;
+            font-size: 0.95rem;
+            border-radius: 8px;
+        }
+
+        button {
+            margin-top: 40px;
+            padding: 16px;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-card {
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+        .testimonial-card p {
+            font-size: 0.9rem;
+        }
+
+        .faq-question, .faq-answer {
+            padding: 16px 20px;
+            font-size: 0.95rem;
+            border-radius: 8px;
+        }
+
+        .security-icons {
+            gap: 25px;
+        }
+
+        .security-icons i {
+            font-size: 2.2rem;
+        }
+        .security-icons span {
+            font-size: 0.8rem;
+        }
+
+        .payment-notification {
+            font-size: 0.8rem;
+            padding: 12px 18px;
+            border-radius: 10px;
+        }
+        .payment-notification .icon {
+            font-size: 1.2rem;
+            margin-right: 10px;
+        }
+    }
+
+    /* No large-screen-message needed, as we're designing mobile-first now */
+    /* The large-screen-message div and its media query are removed. */
+  </style>
+</head>
+<body>
+  <div class="hero-section">
+    <img src="https://i.imgur.com/VSnRhWs.jpeg" alt="Futuristic digital landscape with glowing elements" class="hero-image">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Ice Consort Privilege</h1>
+      <p>An lg B tq+ NSFW Membership</p>
+    </div>
+  </div>
+
+  <div class="page-wrapper">
+    <div class="about-section">
+      <h2>Welcome to Mìlàájé's Exclusive Inner Circle</h2>
+      <p>
+        Discover **Ice Consort Privilege**, an intimate and verified Telegram community crafted exclusively for the **LGBTQ+ community**. We provide a **discreet, safe, and curated space** to explore diverse erotic content, connect with like-minded individuals, and engage in a vibrant, private atmosphere. Your journey into our unique and liberating world begins here.
+      </p>
+    </div>
+
+    <div class="content">
+      <h2>Join Our Exclusive Telegram Community</h2>
+      <p class="price-info">
+        Gain instant access to our premium content and vibrant community! Your **first-time membership payment** is just <strong>₦1,100 NGN</strong>. <br>
+        Subsequent **monthly payments** are only <strong>₦550 NGN</strong> to maintain your active status and continuous access.
+      </p>
+      <p class="price-info">
+          <small><strong>Note for international users:</strong> Prices are in Nigerian Naira (NGN). Use the converter below to see the equivalent in your local currency.</small>
+      </p>
+
+      <div class="currency-converter">
+          <label for="targetCurrency">Convert Prices to:</label>
+          <select id="targetCurrency" onchange="convertCurrency()">
+              <option value="NGN" selected>Nigerian Naira (NGN)</option>
+              </select>
+          <div class="currency-loader" id="currencyLoader"></div>
+          <p id="convertedPrice"></p>
+      </div>
+
+      <form id="joinForm">
+        <label for="name">Full Name</label>
+        <input type="text" name="name" required />
+
+        <label for="email">Email</label>
+        <input type="email" name="email" required />
+
+        <label for="phone">Phone Number</label>
+        <input type="tel" name="phone" required />
+
+        <label for="country">Country</label>
+        <select name="country" id="country" required>
+          <option value="">Select your country</option>
+          </select>
+
+        <button type="button" onclick="makePayment()">Pay ₦1,100 NGN to Join</button>
+      </form>
+    </div>
+
+    <div class="testimonials-section">
+      <h2>What Our Members Say</h2>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <p>"As a queer Nigerian, finding a truly safe and private space like this online is rare. The content is amazing, and the community feels like family. Worth every kobo!"</p>
+          <div class="author">– Emeka O., Lagos</div>
+        </div>
+        <div class="testimonial-card">
+          <p>"I was a bit skeptical at first, but Ice Consort Privilege is everything they promised. The discretion and quality of the shared media are top-tier. Glad I joined!"</p>
+          <div class="author">– Adesuwa B., Abuja</div>
+        </div>
+        <div class="testimonial-card">
+          <p>"This community has been a breath of fresh air. It's so liberating to connect with others without judgment, and the content keeps things exciting. Highly recommend for my African queer family."</p>
+          <div class="author">– Neo M., Johannesburg</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-question">
+          What is Ice Consort Privilege?
+          <span class="toggle-icon">▶</span>
+        </div>
+        <div class="faq-answer">
+          Ice Consort Privilege is an exclusive, NSFW, LGBTQ+ verified Telegram community for individuals who appreciate erotic and discreet content.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          What kind of content can I expect?
+          <span class="toggle-icon">▶</span>
+        </div>
+        <div class="faq-answer">
+          Our community focuses on diverse, high-quality NSFW and erotic content curated for the LGBTQ+ audience. We prioritize discretion and a safe space for members to express themselves freely.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          How do I get access after payment?
+          <span class="toggle-icon">▶</span>
+        </div>
+        <div class="faq-answer">
+          After a successful payment, you will receive an email and/or WhatsApp message with the exclusive Telegram group link within minutes. Please check your spam folder if you don't see it immediately.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          Are there any age restrictions?
+          <span class="toggle-icon">▶</span>
+        </div>
+        <div class="faq-answer">
+          Yes, this community is strictly for individuals who are 18 years of age or older. Age verification may be required.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          What are the payment options?
+          <span class="toggle-icon">▶</span>
+        </div>
+        <div class="faq-answer">
+          We primarily process payments via Paystack, which supports various local and international payment methods including cards, bank transfers, and USSD. You can convert the NGN price to your local currency using our converter for convenience.
+        </div>
+      </div>
+      <div class="faq-item">
+          <div class="faq-question">
+              Is my privacy protected?
+              <span class="toggle-icon">▶</span>
+          </div>
+          <div class="faq-answer">
+              Absolutely. Your privacy and discretion are our top priorities. All community interactions are private within Telegram, and your payment information is handled securely via Paystack. We do not share your personal data.
+          </div>
+      </div>
+    </div>
+
+    <footer>
+ </div>
+      <p>&copy; 2025 Mìlàájé. All rights reserved.</p>
+    </footer>
+
+    <div class="payment-notification-container" id="paymentNotificationContainer"></div>
+  </div>
+
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+  <script>
+    const NGN_FIRST_TIME_PAYMENT = 1100;
+    const NGN_MONTHLY_PAYMENT = 550;
+
+    // IMPORTANT: Replace with your actual ExchangeRate-API.com key
+    const EXCHANGERATE_API_KEY = '77aaf77968a020bf439138a0'; // Get yours at https://www.exchangerate-api.com/
+    // IMPORTANT: Replace with your actual Paystack Public Key
+    const PAYSTACK_PUBLIC_KEY = 'pk_live_6b671064b6a716c1ceffe82bf20a28c317a69584'; // Placeholder: Replace with your actual live key
+
+    // --- Form Validation Helper ---
+    function validateForm() {
+        const form = document.getElementById('joinForm');
+        let isValid = true;
+        ['name', 'email', 'phone', 'country'].forEach(fieldName => {
+            const input = form.querySelector(`[name="${fieldName}"]`);
+            if (!input.value) {
+                input.classList.add('invalid');
+                isValid = false;
+            } else {
+                input.classList.remove('invalid');
+            }
+        });
+        // Basic email validation
+        const emailInput = form.querySelector('[name="email"]');
+        if (emailInput.value && !/\S+@\S+\.\S+/.test(emailInput.value)) {
+            emailInput.classList.add('invalid');
+            isValid = false;
+        }
+
+        return isValid;
+    }
+
+    // --- Currency Conversion Logic ---
+    async function convertCurrency() {
+        const targetCurrency = document.getElementById('targetCurrency').value;
+        const convertedPriceElement = document.getElementById('convertedPrice');
+        const currencyLoader = document.getElementById('currencyLoader');
+
+        convertedPriceElement.textContent = ''; // Clear previous conversion
+        currencyLoader.style.display = 'block'; // Show loader
+
+        if (targetCurrency === 'NGN') {
+            convertedPriceElement.textContent = `First payment: ₦${NGN_FIRST_TIME_PAYMENT} NGN | Monthly: ₦${NGN_MONTHLY_PAYMENT} NGN`;
+            currencyLoader.style.display = 'none'; // Hide loader
+            return;
+        }
+
+        try {
+            const response = await fetch(`https://v6.exchangerate-api.com/v6/${EXCHANGERATE_API_KEY}/latest/NGN`);
+            const data = await response.json();
+
+            if (data.result === 'success') {
+                const exchangeRate = data.conversion_rates[targetCurrency];
+                if (exchangeRate) {
+                    const convertedFirstPayment = (NGN_FIRST_TIME_PAYMENT * exchangeRate).toFixed(2);
+                    const convertedMonthlyPayment = (NGN_MONTHLY_PAYMENT * exchangeRate).toFixed(2);
+                    convertedPriceElement.textContent = `First payment: ${convertedFirstPayment} ${targetCurrency} | Monthly: ${convertedMonthlyPayment} ${targetCurrency}`;
+                } else {
+                    convertedPriceElement.textContent = `Conversion to ${targetCurrency} not available via API.`;
+                }
+            } else {
+                convertedPriceElement.textContent = `Error: ${data['error-type'] || 'Unknown error'}. Please check your API key or try again later.`;
+                console.error('ExchangeRate-API Error:', data['error-type']);
+            }
+        } catch (error) {
+            console.error('Error fetching currency data:', error);
+            convertedPriceElement.textContent = 'Error fetching currency data. Please check your internet connection or API key.';
+        } finally {
+            currencyLoader.style.display = 'none'; // Hide loader
+        }
+    }
+
+    // --- Paystack Payment Logic ---
+    function makePayment() {
+      const form = document.getElementById('joinForm');
+      if (!validateForm()) {
+          alert('Please fill in all required fields correctly before proceeding to payment.');
+          return;
+      }
+
+      const data = new FormData(form);
+      const email = data.get('email');
+      const amount = NGN_FIRST_TIME_PAYMENT * 100; // Convert Naira to Kobo for Paystack
+
+      if (!PAYSTACK_PUBLIC_KEY || PAYSTACK_PUBLIC_KEY === 'pk_test_b85b46e300ef65774a38753234d7d6f519597371') { // Check if it's the placeholder
+          alert('Warning: Paystack Public Key is still set to the placeholder value. Please replace "pk_test_b85b46e300ef65774a38753234d7d6f519597371" in the JavaScript with your actual live Paystack public key to enable real payments.');
+          simulateFormSubmission(form); // Call simulation function
+          return;
+      }
+
+      const handler = PaystackPop.setup({
+        key: PAYSTACK_PUBLIC_KEY,
+        email: email,
+        amount: amount,
+        currency: 'NGN',
+        callback: function (response) {
+          // Submit to Formspree only after successful payment
+          // REMEMBER TO REPLACE 'your-form-id' with your actual Formspree form ID
+          fetch('https://formspree.io/f/xovdrlby', { // Replace 'your-form-id'
+            method: 'POST',
+            headers: { 'Accept': 'application/json' },
+            body: data,
+          })
+            .then(response => {
+              if (response.ok) {
+                alert('Welcome! You are now a verified member. Check your email/WhatsApp for the group link.');
+                form.reset();
+              } else {
+                alert('Form submission failed. Contact support.');
+              }
+            })
+            .catch(error => {
+                console.error('Error submitting form to Formspree:', error);
+                alert('An error occurred during form submission. Please try again.');
+            });
+        },
+        onClose: function () {
+          alert('Payment canceled.');
+        },
+      });
+
+      handler.openIframe();
+    }
+
+    // --- Simulate Form Submission for Demo if Paystack Key is Placeholder ---
+    function simulateFormSubmission(form) {
+        alert('Payment simulated! Welcome! You are now a verified member. (Please replace the Paystack Public Key for real payments.)');
+        form.reset();
+        // You can also simulate the Formspree submission here if desired for a more complete demo.
+    }
+
+
+    // --- Dynamic Payment Notification Logic ---
+    const commonNames = [
+        "Chinedu", "Aisha", "Kwame", "Ngozi", "Jabari", "Kehinde", "Fatima", "Tunde",
+        "Amara", "Femi", "Zola", "Obinna", "Jelani", "Amina", "Kofi", "Damilola",
+        "Thabo", "Nomusa", "Ndidi", "Sipho", "Zara", "Mpho", "Adewale", "Lerato",
+        "Imani", "Ayodele", "Jide", "Chioma", "Akua", "Oluwafemi", "Yemi", "Tendai",
+        "Nnamdi", "Ifiok", "Bisi", "Dike", "Efe", "Simisola", "Uche", "Folake",
+        "Segun", "Abena", "Korede", "Sani", "Funke", "Kola", "Moremi", "Ejiro"
+    ];
+
+    const cities = [
+        // Nigerian Cities (Delta State Emphasis)
+        "Lagos", "Abuja", "Port Harcourt", "Warri", "Asaba", "Sapele", "Benin City", "Ibadan", "Kano", "Kaduna",
+        "Enugu", "Calabar", "Uyo", "Akure", "Abeokuta", "Onitsha", "Maiduguri", "Jos", "Ilorin", "Makurdi",
+        "Awka", "Owerri", "Yenagoa", "Lokoja", "Minna", "Bauchi", "Sokoto", "Gusau", "Jalingo", "Damaturu",
+        "Birnin Kebbi", "Dutse", "Gombe", "Katsina", "Lafia", "Osogbo", "Ado Ekiti", "Oshogbo", "Ile-Ife",
+
+        // Other African Cities
+        "Accra", "Nairobi", "Johannesburg", "Cairo", "Kigali", "Dakar", "Addis Ababa", "Casablanca", "Tunis",
+        "Algiers", "Cape Town", "Lusaka", "Kampala", "Harare", "Dar es Salaam", "Luanda", "Pretoria", "Abidjan",
+        "Kinshasa", "Yaoundé", "Douala", "Khartoum", "Maputo", "Antananarivo", "Port Louis", "Gaborone",
+        "Windhoek", "Monrovia", "Freetown", "Banjul", "Malabo", "Libreville", "Brazzaville", "Maseru", "Mbabane",
+        "Djibouti City", "Asmara", "Mogadishu", "Tripoli", "Bamako", "Niamey", "Ouagadougou", "Conakry", "Cotonou",
+        "Lome", "Nouakchott", "Victoria", "Moroni", "São Tomé"
+    ];
+
+    const currencySymbols = {
+        "NGN": "₦", "USD": "$", "GBP": "£", "EUR": "€", "CAD": "C$", "AUD": "A$", "ZAR": "R",
+        "JPY": "¥", "CNY": "¥", "INR": "₹", "AED": "د.إ", "CHF": "CHF", "NZD": "NZ$",
+        "SEK": "kr", "NOK": "kr", "DKK": "kr", "SGD": "S$", "HKD": "HK$", "THB": "฿",
+        "PHP": "₱", "MXN": "Mex$", "BRL": "R$", "RUB": "₽", "PLN": "zł", "CZK": "Kč",
+        "HUF": "Ft", "TRY": "₺", "EGP": "E£", "KES": "KSh", "GHS": "₵", "ZMW": "ZK",
+        "UGX": "USh", "XAF": "FCFA", "XOF": "FCFA", "MAD": "DH", "ILS": "₪", "SAR": "SR",
+        "KRW": "₩", "IDR": "Rp", "MYR": "RM", "VND": "₫", "PKR": "₨", "LKR": "Rs",
+        "BDT": "৳", "QAR": "QR", "KWD": "KD", "BHD": "BD", "OMR": "RO", "JOD": "JD",
+        "DZD": "DA", "TND": "DT", "LYD": "LD", "CVE": "Esc", "MUR": "Rs", "BWP": "P",
+        "ETB": "Br", "TZS": "TSh", "SSP": "£", "CDF": "FC", "MGA": "Ar", "AOA": "Kz"
+    };
+
+    const transactionTypes = [
+        "made a first-time payment",
+        "made a monthly payment",
+        "just joined"
+    ];
+
+    function getRandomElement(arr) {
+        return arr[Math.floor(Math.random() * arr.length)];
+    }
+
+    function showPaymentNotification() {
+        const name = getRandomElement(commonNames);
+        const city = getRandomElement(cities);
+        const transactionType = getRandomElement(transactionTypes);
+        const amountNGN = (transactionType.includes("first-time") || transactionType.includes("joined")) ? NGN_FIRST_TIME_PAYMENT : NGN_MONTHLY_PAYMENT;
+        const currency = "NGN";
+        const symbol = currencySymbols[currency] || currency;
+
+        const message = `
+            <div class="icon">💸</div>
+            <div>
+                <strong>${name}</strong> from ${city} ${transactionType} for <strong>${symbol}${amountNGN} ${currency}</strong>!
+            </div>
+        `;
+
+        const notificationContainer = document.getElementById('paymentNotificationContainer');
+        const notificationDiv = document.createElement('div');
+        notificationDiv.classList.add('payment-notification');
+        notificationDiv.innerHTML = message;
+
+        notificationContainer.prepend(notificationDiv);
+
+        setTimeout(() => {
+            notificationDiv.remove();
+        }, 5000);
+    }
+
+    function startPaymentNotifications() {
+        setInterval(() => {
+            const visibleNotifications = document.querySelectorAll('.payment-notification').length;
+            if (visibleNotifications < 3) {
+                showPaymentNotification();
+            }
+        }, Math.random() * (15000 - 5000) + 5000);
+    }
+
+    // --- Populate Country Dropdown ---
+    const countries = [
+        "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria",
+        "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan",
+        "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia",
+        "Cameroon", "Canada", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo (Brazzaville)", "Congo (Kinshasa)",
+        "Costa Rica", "Croatia", "Cuba", "Cyprus", "Czechia", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador",
+        "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Fiji", "Finland", "France",
+        "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau",
+        "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland",
+        "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kuwait", "Kyrgyzstan",
+        "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar",
+        "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia",
+        "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal",
+        "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Korea", "North Macedonia", "Norway", "Oman", "Pakistan",
+        "Palau", "Palestine State", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar",
+        "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia",
+        "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa",
+        "South Korea", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria", "Taiwan",
+        "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan",
+        "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City",
+        "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
+    ];
+
+    function populateCountries() {
+        const countrySelect = document.getElementById('country');
+        countries.sort().forEach(country => {
+            const option = document.createElement('option');
+            option.value = country;
+            option.textContent = country;
+            countrySelect.appendChild(option);
+        });
+    }
+
+    // --- Populate Currency Dropdown ---
+    // A comprehensive list of ISO 4217 currency codes and names.
+    // This list prioritizes currencies supported by common APIs like ExchangeRate-API.com
+    const currencies = [
+        { code: "USD", name: "US Dollar" }, { code: "EUR", name: "Euro" }, { code: "GBP", name: "British Pound" },
+        { code: "JPY", name: "Japanese Yen" }, { code: "AUD", name: "Australian Dollar" }, { code: "CAD", name: "Canadian Dollar" },
+        { code: "CHF", name: "Swiss Franc" }, { code: "CNY", name: "Chinese Yuan" }, { code: "HKD", name: "Hong Kong Dollar" },
+        { code: "NZD", name: "New Zealand Dollar" }, { code: "SGD", name: "Singapore Dollar" }, { code: "KRW", name: "South Korean Won" },
+        { code: "SEK", "name": "Swedish Krona" }, { code: "NOK", name: "Norwegian Krone" }, { code: "DKK", name: "Danish Krone" },
+        { code: "RUB", name: "Russian Ruble" }, { code: "INR", name: "Indian Rupee" }, { code: "BRL", name: "Brazilian Real" },
+        { code: "ZAR", name: "South African Rand" }, { code: "MXN", name: "Mexican Peso" }, { code: "PHP", name: "Philippine Peso" },
+        { code: "IDR", name: "Indonesian Rupiah" }, { code: "THB", name: "Thai Baht" }, { code: "MYR", name: "Malaysian Ringgit" },
+        { code: "AED", name: "UAE Dirham" }, { code: "SAR", name: "Saudi Riyal" }, { code: "TRY", name: "Turkish Lira" },
+        { code: "PLN", name: "Polish Zloty" }, { code: "CZK", name: "Czech Koruna" }, { code: "HUF", name: "Hungarian Forint" },
+        { code: "EGP", name: "Egyptian Pound" }, { code: "KES", name: "Kenyan Shilling" }, { code: "GHS", name: "Ghanaian Cedi" },
+        { code: "NGN", name: "Nigerian Naira" }, { code: "XOF", name: "West African CFA Franc" }, { code: "XAF", name: "Central African CFA Franc" },
+        { code: "MAD", name: "Moroccan Dirham" }, { code: "DZD", name: "Algerian Dinar" }, { code: "TND", name: "Tunisian Dinar" },
+        { code: "CVE", name: "Cape Verdean Escudo" }, { code: "MUR", name: "Mauritian Rupee" }, { code: "BWP", name: "Botswana Pula" },
+        { code: "ETB", name: "Ethiopian Birr" }, { code: "TZS", name: "Tanzanian Shilling" }, { code: "UGX", name: "Ugandan Shilling" },
+        { code: "RWF", name: "Rwandan Franc" }, { code: "CDF", name: "Congolese Franc" }, { code: "AOA", name: "Angolan Kwanza" },
+        { code: "MZN", name: "Mozambican Metical" }, { code: "NAD", name: "Namibian Dollar" }, { code: "ZMW", name: "Zambian Kwacha" },
+        { code: "MWK", name: "Malawian Kwacha" }, { code: "BIF", name: "Burundian Franc" }, { code: "GNF", name: "Guinean Franc" },
+        { code: "SLL", name: "Sierra Leonean Leone" }, { code: "LRD", name: "Liberian Dollar" }, { code: "SOS", name: "Somali Shilling" },
+        { code: "SDG", name: "Sudanese Pound" }, { code: "ERN", name: "Eritrean Nakfa" }, { code: "DJF", name: "Djiboutian Franc" },
+        { code: "KMF", name: "Comorian Franc" }, { code: "SCR", name: "Seychellois Rupee" }, { code: "MGA", name: "Malagasy Ariary" },
+        { code: "LYD", name: "Libyan Dinar" }, { code: "SSP", name: "South Sudanese Pound" }, { code: "GMD", name: "Gambian Dalasi" },
+        { code: "XCD", name: "East Caribbean Dollar" }, { code: "CUC", name: "Cuban Convertible Peso" }, { code: "COP", name: "Colombian Peso" },
+        { code: "CLP", name: "Chilean Peso" }, { code: "ARS", name: "Argentine Peso" }, { code: "PEN", name: "Peruvian Sol" },
+        { code: "UYU", name: "Uruguayan Peso" }, { code: "PYG", "name": "Paraguayan Guarani" }, { code: "CRC", name: "Costa Rican Colón" },
+        { code: "GTQ", name: "Guatemalan Quetzal" }, { code: "HNL", name: "Honduran Lempira" }, { code: "NIO", name: "Nicaraguan Córdoba" },
+        { code: "PAB", name: "Panamanian Balboa" }, { code: "DOP", name: "Dominican Peso" }, { code: "JMD", name: "Jamaican Dollar" },
+        { code: "TTD", name: "Trinidad and Tobago Dollar" }, { code: "BSD", name: "Bahamian Dollar" }, { code: "BBD", name: "Barbadian Dollar" },
+        { code: "AWG", name: "Aruban Florin" }, { code: "BZD", name: "Belize Dollar" }, { code: "SRD", name: "Surinamese Dollar" },
+        { code: "GYD", name: "Guyanese Dollar" }, { code: "HTG", name: "Haitian Gourde" }, { code: "ALL", name: "Albanian Lek" },
+        { code: "AMD", name: "Armenian Dram" }, { code: "AZN", name: "Azerbaijani Manat" }, { code: "BAM", name: "Bosnia and Herzegovina Convertible Mark" },
+        { code: "BGN", name: "Bulgarian Lev" }, { code: "BYN", name: "Belarusian Ruble" }, { code: "GEL", name: "Georgian Lari" },
+        { code: "HRK", name: "Croatian Kuna" }, { code: "ISK", name: "Icelandic Króna" }, { code: "MDL", name: "Moldovan Leu" },
+        { code: "MKD", name: "Macedonian Denar" }, { code: "RON", name: "Romanian Leu" }, { code: "RSD", name: "Serbian Dinar" },
+        { code: "UAH", name: "Ukrainian Hryvnia" }, { code: "UZS", name: "Uzbekistani Som" }, { code: "KZT", name: "Kazakhstani Tenge" },
+        { code: "KGS", name: "Kyrgyzstani Som" }, { code: "TJS", name: "Tajikistani Somoni" }, { code: "MMK", name: "Myanmar Kyat" },
+        { code: "LAK", name: "Lao Kip" }, { code: "BTN", name: "Bhutanese Ngultrum" }, { code: "MNT", name: "Mongolian Tugrik" },
+        { code: "NPR", name: "Nepalese Rupee" }, { code: "LKR", name: "Sri Lankan Rupee" }, { code: "PKR", name: "Pakistani Rupee" },
+        { code: "BDT", name: "Bangladeshi Taka" }, { code: "MOP", name: "Macanese Pataca" }, { code: "AFN", name: "Afghan Afghani" },
+        { code: "IQD", name: "Iraqi Dinar" }, { code: "JOD", name: "Jordanian Dinar" }, { code: "KWD", name: "Kuwaiti Dinar" },
+        { code: "LBP", name: "Lebanese Pound" }, { code: "OMR", name: "Omani Rial" }, { code: "QAR", name: "Qatari Riyal" },
+        { code: "SYP", name: "Syrian Pound" }, { code: "YER", name: "Yemeni Rial" }, { code: "VND", name: "Vietnamese Dong" },
+        { code: "FJD", name: "Fijian Dollar" }, { code: "PGK", name: "Papua New Guinean Kina" }, { code: "SBD", name: "Solomon Islands Dollar" },
+        { code: "VUV", name: "Vanuatu Vatu" }, { code: "WST", name: "Samoan Tala" }, { code: "TOP", name: "Tongan Paʻanga" },
+        { code: "KPW", name: "North Korean Won" }
+    ];
+
+    function populateCurrencies() {
+        const targetCurrencySelect = document.getElementById('targetCurrency');
+        // Clear existing options, except for the NGN which is default selected
+        targetCurrencySelect.innerHTML = '<option value="NGN" selected>Nigerian Naira (NGN)</option>';
+
+        // Filter out NGN as it's already added and sort the rest
+        const otherCurrencies = currencies.filter(c => c.code !== "NGN").sort((a, b) => a.name.localeCompare(b.name));
+
+        otherCurrencies.forEach(currency => {
+            const option = document.createElement('option');
+            option.value = currency.code;
+            option.textContent = `${currency.name} (${currency.code})`;
+            targetCurrencySelect.appendChild(option);
+        });
+    }
+
+    // --- FAQ Toggle Logic ---
+    function setupFaqToggles() {
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+    }
+
+    // --- Initialize on Load ---
+    document.addEventListener('DOMContentLoaded', () => {
+        populateCountries(); // First, populate countries
+        populateCurrencies(); // Then, populate currencies
+        convertCurrency(); // Finally, run initial conversion
+        startPaymentNotifications();
+        setupFaqToggles();
+
+        // Add event listeners for form validation on input change
+        const form = document.getElementById('joinForm');
+        ['name', 'email', 'phone', 'country'].forEach(fieldName => {
+            const input = form.querySelector(`[name="${fieldName}"]`);
+            input.addEventListener('input', () => {
+                if (input.value) {
+                    input.classList.remove('invalid');
+                }
+            });
+        });
+        form.querySelector('[name="email"]').addEventListener('input', (event) => {
+            if (event.target.value && /\S+@\S+\.\S+/.test(event.target.value)) {
+                event.target.classList.remove('invalid');
+            }
+        });
+    });
+  </script>
+</body>
+</html>
