@@ -15,7 +15,14 @@ const videosData = [
         views: 5000,
         isLocked: false
     },
-    { id: 'v2', title: 'Friendly Fire', description: 'After talking online for 2 months,he finally goes to visit and they had the best time.', videoUrl: 'https://dl.dropboxusercontent.com/scl/fi/d54zs3v83f89c0v8boiiy/Video.Guru_20250629_110957347.mp4', views: 1280, isLocked: false },
+    {
+        id: 'v2',
+        title: 'Friendly Fire',
+        description: "After talking online for 2 months,he finally goes to visit and they had the best time.",
+        videoUrl: 'https://dl.dropboxusercontent.com/scl/fi/d54zs3v83f89c0v8boiiy/Video.Guru_20250629_110957347.mp4u7pjv&dl=1',
+        views: 1263,
+        isLocked: false
+    },
     { id: 'v3', title: 'Girly & Roommates', description: 'Two souls finding comfort under the skirt of their roommate, its warm and lovely.', videoUrl: 'https://dl.dropboxusercontent.com/scl/fi/rzs5zsashow5chai6u0z5/Video.Guru_20250628_090304206.mp4', views: 23456, isLocked: false },
     { id: 'v4', title: 'Whispers', description: 'Intimate moments his friends room after he went to charge his phone.', videoUrl: 'https://www.dropbox.com/scl/fi/f2mu08q57fbkvm6ob0dk6/Video.Guru_20250505_081410202.mp4?rlkey=aq7itbpywt451qg1emy1gxqzl&st=eobgstnu&dl=1', views: 34567, isLocked: false },
     { id: 'v5', title: 'Electric Dreams', description: 'A vivid exploration of shared fantasies, They couldnt wait any longer.', videoUrl: 'https://www.dropbox.com/scl/fi/s50fd01hxmudvas5279s9/Video.Guru_20250501_160935903.mp4?rlkey=hz83zenv9x2lwvcfgfmwsw5f8&st=uspjglw0&dl=0', views: 9876, isLocked: false },
