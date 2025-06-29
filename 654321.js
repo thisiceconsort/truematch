@@ -16,7 +16,7 @@ const videosData = [
         isLocked: false
     },
     { id: 'v2', title: 'Friendly Fire', description: 'After talking online for 2 months,he finally goes to visit and they had the best time.', videoUrl: 'https://dl.dropboxusercontent.com/scl/fi/d54zs3v83f89c0v8boiiy/Video.Guru_20250629_110957347.mp4', views: 1280, isLocked: false },
-    { id: 'v3', title: 'Neon Night Passion', description: 'Two souls finding comfort in the dark.', videoUrl: 'https://www.dropbox.com/scl/fi/w9qj90q59i5lq45c12345/video3.mp4?rlkey=abcdefg123456&dl=1', views: 23456, isLocked: false },
+    { id: 'v3', title: 'Girly & Roommates', description: 'Two souls finding comfort under the skirt of their roommate, its warm and lovely.', videoUrl: 'https://dl.dropboxusercontent.com/scl/fi/rzs5zsashow5chai6u0z5/Video.Guru_20250628_090304206.mp4', views: 23456, isLocked: false },
     { id: 'v4', title: 'Whispers in the Void', description: 'Intimate moments in a silent space.', videoUrl: 'https://www.dropbox.com/scl/fi/w9qj90q59i5lq45c12345/video4.mp4?rlkey=abcdefg123456&dl=1', views: 34567, isLocked: false },
     { id: 'v5', title: 'Electric Dreams', description: 'A vivid exploration of shared fantasies.', videoUrl: 'https://www.dropbox.com/scl/fi/w9qj90q59i5lq45c12345/video5.mp4?rlkey=abcdefg123456&dl=1', views: 9876, isLocked: false },
     // LOCKED VIDEOS (Prices are examples)
