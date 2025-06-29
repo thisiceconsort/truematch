@@ -43,7 +43,7 @@ const videosData = [
     //locked videos   
     { id: 'v11', title: 'Glitch in the System', description: 'A beautiful disruption of reality.', videoUrl: 'https://www.dropbox.com/scl/fi/w9qj90q59i5lq45c12345/locked-video6.mp4?rlkey=abcdefg123456&dl=1', views: getRandomViews(), isLocked: true, priceNGN: 1700 },
    //free video 
-{ id: 'v17', title: 'Innocent Aura', description: 'I will bet 500 cows that he his calm and smooth but i dont trust that sinister stare, it giving i will fuck you up.', videoUrl: 'https://www.dropbox.com/scl/fi/bmwnuef4m38l1pjbrllir/Video.Guru_20250627_180203351.mp4?rlkey=4q60t8pipa3a422g0e3ygzsyf&st=lcliwvlo&dl=1', views: 6000, isLocked: false },
+{ id: 'v17', title: 'Receive It', description: 'I dont know but i feel like boys receive it better, like you can feel heaven looking at him go.', videoUrl: 'https://www.dropbox.com/scl/fi/bmwnuef4m38l1pjbrllir/Video.Guru_20250627_180203351.mp4?rlkey=4q60t8pipa3a422g0e3ygzsyf&st=lcliwvlo&dl=1', views: 6000, isLocked: false },
 
     //locked videos 
     { id: 'v12', title: 'Virtual Serenity', description: 'Finding peace in simulated pleasure.', videoUrl: 'https://www.dropbox.com/scl/fi/w9qj90q59i5lq45c12345/locked-video7.mp4?rlkey=abcdefg123456&dl=1', views: getRandomViews(), isLocked: true, priceNGN: 2100 },
