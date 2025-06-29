@@ -28,6 +28,11 @@ const videosData = [
     { id: 'v5', title: 'Electric Dreams', description: 'A vivid exploration of shared fantasies, They couldnt wait any longer.', videoUrl: 'https://www.dropbox.com/scl/fi/s50fd01hxmudvas5279s9/Video.Guru_20250501_160935903.mp4?rlkey=hz83zenv9x2lwvcfgfmwsw5f8&st=xechqkrf&dl=1', views: 9876, isLocked: false },
     // LOCKED VIDEOS (Prices are examples)
     { id: 'v6', title: 'Forbidden Protocol', description: 'Unlocking hidden desires.', videoUrl: 'https://www.dropbox.com/scl/fi/w9qj90q59i5lq45c12345/locked-video1.mp4?rlkey=abcdefg123456&dl=1', views: getRandomViews(), isLocked: true, priceNGN: 2000 },
+
+   //free video
+   { id: 'v14', title: 'Almost There', description: 'A quick creamy slash on his body before anyone comes around.', videoUrl: 'https://www.dropbox.com/scl/fi/33kjw3gfv8vm3mjq0w0sg/Video.Guru_20250503_081950234.mp4?rlkey=e92cvx8616sf50ylghnmjua36&st=taxd5p04&dl=1', views: 567, isLocked: false },
+    
+    //locked video
     { id: 'v7', title: 'System Override', description: 'Pushing boundaries, breaking codes.', videoUrl: 'https://www.dropbox.com/scl/fi/w9qj90q59i5lq45c12345/locked-video2.mp4?rlkey=abcdefg123456&dl=1', views: getRandomViews(), isLocked: true, priceNGN: 1500 },
     { id: 'v8', title: 'Data Stream Desire', description: 'Flowing into pure sensation.', videoUrl: 'https://www.dropbox.com/scl/fi/w9qj90q59i5lq45c12345/locked-video3.mp4?rlkey=abcdefg123456&dl=1', views: getRandomViews(), isLocked: true, priceNGN: 2500 },
     { id: 'v9', title: 'Encrypted Passion', description: 'Deciphering the language of touch.', videoUrl: 'https://www.dropbox.com/scl/fi/w9qj90q59i5lq45c12345/locked-video4.mp4?rlkey=abcdefg123456&dl=1', views: getRandomViews(), isLocked: true, priceNGN: 1800 },
