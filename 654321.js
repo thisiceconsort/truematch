@@ -19,7 +19,7 @@ const videosData = [
         id: 'v2',
         title: 'Friendly Fire',
         description: "After talking online for 2 months,he finally goes to visit and they had the best time.",
-        videoUrl: 'https://dl.dropboxusercontent.com/scl/fi/d54zs3v83f89c0v8boiiy/Video.Guru_20250629_110957347.mp4u7pjv&dl=1',
+        videoUrl: 'https://www.dropbox.com/scl/fi/d54zs3v83f89c0v8boiiy/Video.Guru_20250629_110957347.mp4?rlkey=lbjls2j0vk9zy9r9hiwevexmm&st=wbz4vmda&dl=1',
         views: 1263,
         isLocked: false
     },
