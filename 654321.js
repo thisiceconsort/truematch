@@ -37,6 +37,10 @@ const videosData = [
     { id: 'v8', title: 'Data Stream Desire', description: 'Flowing into pure sensation.', videoUrl: 'https://www.dropbox.com/scl/fi/w9qj90q59i5lq45c12345/locked-video3.mp4?rlkey=abcdefg123456&dl=1', views: getRandomViews(), isLocked: true, priceNGN: 2500 },
     { id: 'v9', title: 'Encrypted Passion', description: 'Deciphering the language of touch.', videoUrl: 'https://www.dropbox.com/scl/fi/w9qj90q59i5lq45c12345/locked-video4.mp4?rlkey=abcdefg123456&dl=1', views: getRandomViews(), isLocked: true, priceNGN: 1800 },
     { id: 'v10', title: 'Quantum Connection', description: 'Entangled in an intimate bond.', videoUrl: 'https://www.dropbox.com/scl/fi/w9qj90q59i5lq45c12345/locked-video5.mpkey=abcdefg123456&dl=1', views: getRandomViews(), isLocked: true, priceNGN: 2200 },
+    //freevideo
+{ id: 'v15', title: 'Pinnig him down', description: ' For the first time in his life, that boy on top experience what true happiness is.', videoUrl: 'https://www.dropbox.com/scl/fi/eq11sds4uv7g3o3aezsry/Video.Guru_20250628_164701334.mp4?rlkey=695ga3lzi6dh1xkx8t1e1x8ox&st=y6o7zrnh&dl=1', views: 6000, isLocked: false },
+
+    //locked videos   
     { id: 'v11', title: 'Glitch in the System', description: 'A beautiful disruption of reality.', videoUrl: 'https://www.dropbox.com/scl/fi/w9qj90q59i5lq45c12345/locked-video6.mp4?rlkey=abcdefg123456&dl=1', views: getRandomViews(), isLocked: true, priceNGN: 1700 },
     { id: 'v12', title: 'Virtual Serenity', description: 'Finding peace in simulated pleasure.', videoUrl: 'https://www.dropbox.com/scl/fi/w9qj90q59i5lq45c12345/locked-video7.mp4?rlkey=abcdefg123456&dl=1', views: getRandomViews(), isLocked: true, priceNGN: 2100 },
     // Add more videos here...
