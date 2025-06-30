@@ -10,48 +10,10 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   position: relative;
-  /* --- ADDED FOR USER REQUEST --- */
   -webkit-user-select: none; /* Safari */
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE10+/Edge */
   user-select: none; /* Standard */
-  /* Exclude input/textarea from user-select if needed later */
-}
-
-/* Mobile Only Message */
-.mobile-only-message {
-  display: none; /* Hidden by default */
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: #05050C;
-  color: #00FFFF;
-  font-family: 'Orbitron', sans-serif;
-  font-size: clamp(1.5rem, 5vw, 2.5rem);
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  z-index: 9999;
-  flex-direction: column;
-  text-shadow: 0 0 10px rgba(0,255,255,0.6);
-}
-
-.mobile-only-message p {
-    margin: 10px 0;
-}
-
-/* This media query ensures the message is visible ONLY on screens wider than 768px */
-@media (min-width: 769px) {
-  .mobile-only-message {
-    display: flex; /* Show the message */
-  }
-  body > *:not(.mobile-only-message) {
-    display: none; /* Hide everything else */
-  }
 }
 
 /* Existing styles for the theme */
@@ -104,7 +66,6 @@ h1, h2, h3 {
     animation: borderGlow 8s infinite alternate;
 }
 
-/* --- ADDED FOR USER REQUEST --- */
 .close-btn { /* Renamed from close-modal-btn to be generic */
     position: absolute;
     top: 15px;
@@ -284,7 +245,6 @@ h1, h2, h3 {
   padding-bottom: 80px; /* Space for loading spinner */
 }
 
-/* --- ADDED FOR USER REQUEST --- */
 .search-section {
     width: 100%;
     margin-bottom: 25px;
@@ -478,17 +438,18 @@ h1, h2, h3 {
   overflow: hidden;
 }
 
-.video-thumbnail video { /* Changed from img to video */
+/* NEW: Styles for the image thumbnail */
+.video-thumbnail-img {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover; /* This now works on the image! */
   transition: transform 0.3s ease;
 }
-.video-item:hover .video-thumbnail video { /* Changed from img to video */
-    transform: scale(1.05);
+.video-item:hover .video-thumbnail-img {
+    transform: scale(1.05); /* Apply hover effect to the image */
 }
 
 .video-info {
@@ -518,6 +479,7 @@ h1, h2, h3 {
 
 .video-meta {
   display: flex;
+ 
   justify-content: space-between;
   align-items: center;
   margin-top: 5px;
@@ -558,58 +520,62 @@ h1, h2, h3 {
     z-index: 1001; /* Above other modals */
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    flex-direction: column;
-    padding: 10px;
-    box-sizing: border-box;
+    flex-direction: column; /* Stack video and details vertically */
+    padding: 10px; /* Add some padding from screen edges */
+    box-sizing: border-box; /* Include padding in width/height */
 }
 
+/* NEW: Video Player Container for glowing effect and close button positioning */
 .video-player-container {
-    position: relative;
-    width: 95%;
-    max-width: 600px; /* Limit player size */
-    padding-top: 56.25%; /* 16:9 aspect ratio */
-    background-color: #000;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 0 30px rgba(0,255,255,0.7), 0 0 60px rgba(138,43,226,0.5);
+    position: relative; /* For positioning the close button and fullscreen button */
+    width: 95%; /* Take up 95% of available width */
+    max-width: 960px; /* Allow it to be larger on desktop, common video aspect ratio width */
+    aspect-ratio: 16 / 9; /* Maintain 16:9 aspect ratio */
+    border-radius: 15px; /* Rounded corners for the container */
+    overflow: hidden; /* Ensures glow doesn't escape rounded corners */
+    box-shadow: 0 0 20px rgba(0,255,255,0.7), 0 0 40px rgba(138,43,226,0.5); /* Glowing effect */
+    transition: box-shadow 0.3s ease-in-out;
+    margin-bottom: 20px; /* Space between video and details */
 }
 
+/* NEW: Styles for the <video> element */
 .video-player-container video {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Ensure video fits without cropping */
+    display: block; /* Remove extra space below video */
+    background-color: #000; /* Black background for video player */
 }
 
-.close-video-btn { /* Renamed for clarity in CSS only */
+.close-video-btn {
     position: absolute;
-    top: 15px;
-    right: 15px;
-    background-color: rgba(0,0,0,0.5);
+    top: 10px; /* Closer to the extreme top */
+    right: 10px; /* Closer to the extreme right */
+    background-color: rgba(0,0,0,0.7); /* Slightly darker background */
     color: #00FFFF;
     border: 2px solid #00FFFF;
     border-radius: 50%;
-    width: 35px;
-    height: 35px;
+    width: 40px; /* Slightly larger button */
+    height: 40px; /* Slightly larger button */
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5rem;
+    font-size: 1.6rem; /* Larger icon */
     cursor: pointer;
-    z-index: 10;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    z-index: 100; /* Higher z-index to ensure it's always on top of video */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
 }
 .close-video-btn:hover {
     background-color: #00FFFF;
     color: #05050C;
+    transform: rotate(90deg); /* Add a rotate effect on hover */
 }
 
 .video-playback-overlay .video-details {
-    margin-top: 20px;
+    margin-top: 20px; /* Space between video player and description */
     text-align: center;
-    max-width: 90%;
+    max-width: 90%; /* Limit width for readability */
+    padding: 0 10px; /* Add horizontal padding */
+    box-sizing: border-box;
 }
 .video-playback-overlay .video-details h3 {
     font-size: 1.3rem;
@@ -780,4 +746,38 @@ footer {
     color: #FF4D4D;
     margin-top: 15px;
     text-align: center;
+}
+
+/* NEW CSS FOR LOAD MORE BUTTON */
+.load-more-button-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.load-more-button {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(45deg, #00FFFF, #8A2BE2);
+    color: #05050C;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    display: none; /* Hidden by default, shown by JS */
+}
+
+.load-more-button:hover {
+    background: linear-gradient(45deg, #8A2BE2, #00FFFF);
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
+}
+.load-more-button:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
 }
