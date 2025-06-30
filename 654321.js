@@ -48,4 +48,6 @@ const videosData = [
     //locked videos 
     { id: 'v12', title: 'Virtual Serenity', description: 'Finding peace in simulated pleasure.', videoUrl: 'https://www.dropbox.com/scl/fi/w9qj90q59i5lq45c12345/locked-video7.mp4?rlkey=abcdefg123456&dl=1', views: getRandomViews(), isLocked: true, priceNGN: 2100 },
     // Add more videos here...
+    { id: 'v3', title: 'Girly & Roommates', description: 'Two souls finding comfort under the skirt of their roommate, its warm and lovely.', videoUrl: 'https://www.dropbox.com/scl/fi/rzs5zsashow5chai6u0z5/Video.Guru_20250628_090304206.mp4?rlkey=ffjidhcdhxhisoxtr3rbq5ajx&st=kbpq7h7v&dl=1', views: 23456, isLocked: false },
+    
 ];
