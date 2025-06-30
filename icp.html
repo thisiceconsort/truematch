@@ -10,11 +10,6 @@
 </head>
 <body>
 
-  <div class="mobile-only-message" id="mobileOnlyMessage">
-    <p>This content is optimized for mobile viewing.</p>
-    <p>Please use a mobile phone to access this page.</p>
-  </div>
-
   <div class="modal-overlay" id="accessCodeModal">
     <div class="modal-content">
       <h2>Enter Access Code</h2>
@@ -29,6 +24,7 @@
   <div class="modal-overlay" id="registrationModal" style="display: none;">
     <div class="modal-content">
       <button class="close-btn" onclick="hideRegistrationModal()">✕</button>
+      <br><br><br>
       <h2>Become a Member</h2>
       <p class="message" id="registrationMessage"></p>
       <form id="registrationForm">
@@ -72,10 +68,8 @@
 
   <div class="video-playback-overlay" id="videoPlaybackOverlay" style="display: none;">
     <div class="video-player-container">
-      <video id="videoPlayer" controls playsinline controlsList="nodownload">
-        Your browser does not support the video tag.
-      </video>
-      <button class="close-video-btn" onclick="closeVideoPlayer()">✕</button>
+        <video id="videoPlayer" controls playsinline></video>
+        <button class="close-video-btn" onclick="closeVideoPlayer()">✕</button>
     </div>
     <div class="video-details">
         <h3 id="playingVideoTitle"></h3>
@@ -88,7 +82,7 @@
   <div class="buy-video-modal" id="buyVideoModal" style="display: none;">
     <div class="modal-content">
       <button class="close-btn" onclick="hideBuyVideoModal()">✕</button>
-<br> <br>
+      <br><br>
       <h2>Video Locked</h2>
       <p>This video is exclusive content. Please pay <strong>₦<span id="buyVideoPrice"></span> NGN</strong> to unlock it.</p>
       <p style="font-size:0.8rem; color:#FFC107;">Once unlocked, the video will be accessible for one month. Clearing your browser data will relock the video, requiring re-purchase.</p>
@@ -100,7 +94,7 @@
   <div class="sell-video-modal" id="sellVideoModal" style="display: none;">
     <div class="modal-content">
         <button class="close-btn" onclick="hideSellVideoModal()">✕</button>
-<br> <br><br> <br>
+        <br><br><br>
         <h2>Sell Your Videos & Make Money!</h2>
         <p>Do you have engaging and high-quality NSFW LGBTQ+ content? Turn your creativity into cash!</p>
         <ul>
@@ -122,7 +116,7 @@
   <div class="matchmaker-modal" id="matchmakerModal" style="display: none;">
     <div class="modal-content">
       <button class="close-btn" onclick="hideMatchmakerModal()">Cancel</button>
-<br> <br><br>
+      <br><br><br>
       <h2>Find Your Match!</h2>
       <p class="message" id="matchmakerMessage"></p>
       <form id="matchmakerForm">
@@ -164,12 +158,12 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="matchRole">Role</label>
-            <select id="matchRole" required>
+            <label for="matchrole">Role</label>
+            <select id="matchrole" required>
                 <option value="">Select...</option>
-                <option value="top">Pure Top</option>
+                <option value="top">Top</option>
                 <option value="vers">Versatile</option>
-                <option value="btm">Total Bottom</option>
+                <option value="btm">Bottom</option>
             </select>
         </div>
         <div class="form-group">
@@ -268,16 +262,19 @@
     <div class="video-grid" id="videoGrid">
       </div>
 
-    <div class="loading-spinner" id="loadingSpinner"></div>
+    <div class="load-more-button-container">
+        <button class="load-more-button" id="loadMoreBtn" onclick="loadMoreVideos()">Load More</button>
+    </div>
 
     <footer>
-      <p>&copy; 2025 Mìlàájé. All rights reserved.</p>
+      <p>© 2025 Mìlàájé. All rights reserved.</p>
     </footer>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <script src="https://js.paystack.co/v1/inline.js"></script>
   <script src="654321.js"></script>
-  <script src="texp16cereawbsjwiefbbwkxoweieeifjdbdbfjskdkfkwbehfivkgnwncbdjwksonsbwbcifirngkslgkemdjfkwkfkfnfjdjfjfjejfjrjrjfjfjfjkekrjrjrjrdkdkdkdddndnejdjfjfjwififjjncas.js"></script>
   <script src="txt.js"></script>
+  <script src="placeholder.js"></script>
 </body>
 </html>
