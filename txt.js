@@ -1,8 +1,8 @@
 // IMPORTANT: Replace with your actual Paystack Public Key
-const PAYSTACK_PUBLIC_KEY = 'pk_test_b85b46e300ef65774a3877073234d7d6f519597371'; // Replace with your actual LIVE key!
+const PAYSTACK_PUBLIC_KEY = 'pk_live_6b671064b6a716c1ceffe82bf20a28c317a69584'; // Replace with your actual LIVE key!
 // IMPORTANT: Replace with your actual Formspree URL for registration
 const FORMSPREE_REGISTRATION_URL = 'https://formspree.io/f/xovdrlby'; // Replace with your actual Formspree endpoint
-const FORMSPREE_MATCHMAKER_URL = 'https://formspree.io/f/YOUR_MATCHMAKER_FORMSPREE_ID'; // **IMPORTANT: Replace with your Matchmaker Formspree URL**
+const FORMSPREE_MATCHMAKER_URL = 'https://formspree.io/f/xovdrlby'; // **IMPORTANT: Replace with your Matchmaker Formspree URL**
 
 const ACCESS_CODE_DURATION = 30 * 60 * 1000; // 30 minutes in milliseconds for session validity
 const VIDEO_UNLOCK_DURATION = 30 * 24 * 60 * 60 * 1000; // 1 month in milliseconds for video unlock
