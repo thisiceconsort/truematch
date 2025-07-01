@@ -4,6 +4,15 @@
 const videosData = [
     // FREE VIDEOS
     {
+        id: 'v25',
+        title: 'Good Evening',
+        description: "Straight Boy can't help but take this boy home to do some homework.",
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/51f1d9dd-17c5-408a-9199-64e6a6232f1b/playlist.m3u8',
+        thumbnailUrl: 'https://vz-28eb4f33-914.b-cdn.net/51f1d9dd-17c5-408a-9199-64e6a6232f1b/thumbnail_2106f0f8.jpg',
+        views: 392,
+        isLocked: false
+    },       
+    {
         id: 'v24',
         title: 'Straight Boy',
         description: "straight Bike boy at the back of an uncompleted building with his passenger that doesn't have money to pay.",
