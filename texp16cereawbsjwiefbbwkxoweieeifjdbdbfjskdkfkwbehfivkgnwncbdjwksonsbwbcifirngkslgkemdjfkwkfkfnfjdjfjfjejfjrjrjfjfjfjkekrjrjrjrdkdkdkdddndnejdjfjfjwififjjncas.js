@@ -6,9 +6,8 @@ let simulatedUserDatabase = [
     { name: "Jane Smith", email: "jane.smith@example.com", phone: "+15551234567", country: "United States", accessCode: "5678JAS", unlockedVideos: {} },
     { name: "Demo User", email: "demo@example.com", phone: "+1234567890", country: "United States", accessCode: "DEMOABC", unlockedVideos: {} }, // Special demo user
     { name: "Sam Esom", email: "orjisamuel19@gmail.com", phone: "+2347067411418", country: "Nigeria", accessCode: "2559SOM", unlockedVideos: {} },
-    { name: "Chinetu Emmanuel", email: "chinetuemmanuel@gmail.com", phone: "+31652560594", country: "Netherlands", accessCode: "1058CHI", unlockedVideos: {} },
-   { name: "Micah Samuel", email: "micahblaq1@gmail.com", phone: "+2349071375250", country: "Nigeria", accessCode: "5442BLA", unlockedVideos: {} },
-
+    { name: "Chinetu Emmanuel", email: "chinetuemmanuel@gmail.com", phone: "+2349071375250", country: "Nigeria", accessCode: "1058CHI", unlockedVideos: {} },
+   { name: "Micah Samuel", email: "micahblaq1@gmail.com", phone: "+31652560594", country: "Netherlands", accessCode: "5442BLA", unlockedVideos: {} },
 ];
 // Initialize simulatedUserDatabase from localStorage if available
 const storedSimulatedUsers = localStorage.getItem('simulatedUserDatabase');
