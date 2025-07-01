@@ -4,6 +4,15 @@
 const videosData = [
     // FREE VIDEOS
   {
+        id: 'v28',
+        title: 'Boys doing boys things',
+        description:"After finding out he likes boys, the curious boy went to his room to confirm and he didn't disappoint.",
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/2b662aed-e310-419d-8163-4961a2e5e649/playlist.m3u8',
+        thumbnailUrl: 'https://vz-28eb4f33-914.b-cdn.net/2b662aed-e310-419d-8163-4961a2e5e649/thumbnail_15da44f9.jpg',
+        views: 68,
+        isLocked: false
+    },
+    {
         id: 'v27',
         title: 'Toilet Banging',
         description: "At a club in kenya a waiter showed the customer to the toilet, he also showed him his butt.",
