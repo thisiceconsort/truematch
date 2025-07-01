@@ -4,6 +4,15 @@
 const videosData = [
     // FREE VIDEOS
     {
+        id: 'v26',
+        title: 'Top Boy',
+        description: "All he wanted was just 10 cedis , but his roommate tells him he will give him only if he does one round of mikrimor.",
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/e1ef6af5-d8df-4375-930b-0beaaa3ead19/playlist.m3u8',
+        thumbnailUrl: 'https://vz-28eb4f33-914.b-cdn.net/e1ef6af5-d8df-4375-930b-0beaaa3ead19/thumbnail.jpg',
+        views: 731,
+        isLocked: false
+    },       
+    {
         id: 'v25',
         title: 'Good Evening',
         description: "Straight Boy can't help but take this boy home to do some homework.",
