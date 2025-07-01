@@ -3,6 +3,15 @@
 // The `isLocked` property determines if a video requires payment.
 const videosData = [
     // FREE VIDEOS
+  {
+        id: 'v27',
+        title: 'Toilet Banging',
+        description: "Ar a club a waiter showed the customer to the toilet, he also showed him his butt.",
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/9d55c27a-2e62-4b91-a5e0-3316c8aea2e1/playlist.m3u8',
+        thumbnailUrl: 'https://vz-28eb4f33-914.b-cdn.net/9d55c27a-2e62-4b91-a5e0-3316c8aea2e1/thumbnail.jpg',
+        views: 228,
+        isLocked: false
+    },       
     {
         id: 'v26',
         title: 'Top Boy',
