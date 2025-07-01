@@ -7,9 +7,9 @@ const videosData = [
         id: 'v24',
         title: 'Straight Boy',
         description: "straight Bike boy in the back of ab uncomplicated building with his passenger that doesn't have money to pay.",
-        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/5e23df81-f07d-42d7-88de-2192057058a0/playlist.m3u8',
-        thumbnailUrl: 'https://vz-28eb4f33-914.b-cdn.net/5e23df81-f07d-42d7-88de-2192057058a0/thumbnail.jpg',
-        views: 585,
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/e96f1670-290d-47a1-b574-c8e79c5aa000/playlist.m3u8',
+        thumbnailUrl: 'https://vz-28eb4f33-914.b-cdn.net/e96f1670-290d-47a1-b574-c8e79c5aa000/thumbnail.jpg',
+        views: 98,
         isLocked: false
     },       
     {
