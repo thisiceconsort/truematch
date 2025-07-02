@@ -56,7 +56,7 @@ const videosData = [
         thumbnailUrl: 'https://vz-28eb4f33-914.b-cdn.net/2e3cb92e-2242-4881-87e7-d776d5c68e19/preview.webp?v=1751556512',
         views: getRandomViews(),
         isLocked: true,
-        priceNGN: 7546
+        priceNGN: 750
     },
 
 
