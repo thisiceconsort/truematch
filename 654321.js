@@ -3,7 +3,17 @@
 // The `isLocked` property determines if a video requires payment.
 const videosData = [
     // FREE VIDEOS
-  {
+    {
+        id: 'v29',
+        title: 'Under 21',
+        description:"Creamy things happens, when two boys under the age of 21 realized that they were the only one the compound.",
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/35551f04-c6a0-43b9-ae6c-b33e05e342ca/playlist.m3u8',
+        thumbnailUrl: 'https://vz-28eb4f33-914.b-cdn.net/35551f04-c6a0-43b9-ae6c-b33e05e342ca/thumbnail_02fa10c0.jpg',
+        views: 117,
+        isLocked: false
+    },
+
+    {
         id: 'v28',
         title: 'Boys doing boys things',
         description:"After finding out he likes boys, the curious boy went to his room to confirm and he didn't disappoint.",
