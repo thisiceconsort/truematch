@@ -6,7 +6,7 @@ const videosData = [
     {
         id: 'v29',
         title: 'Under 21',
-        description:"Creamy things happens, when two boys under the age of 21 realized that they were the only one the compound.",
+        description:"Creamy things happens, when two boys under the age of 21 realized that they were the only one in the compound.",
         videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/35551f04-c6a0-43b9-ae6c-b33e05e342ca/playlist.m3u8',
         thumbnailUrl: 'https://vz-28eb4f33-914.b-cdn.net/35551f04-c6a0-43b9-ae6c-b33e05e342ca/thumbnail_02fa10c0.jpg',
         views: 117,
