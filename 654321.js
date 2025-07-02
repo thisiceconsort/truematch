@@ -3,6 +3,15 @@
 // The `isLocked` property determines if a video requires payment.
 const videosData = [
 {
+        id: 'v34',
+        title: 'Gold Digging',
+        description:"Have you ever being in a situation where you are being pinned by a muscular guy that digs?",
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/d76c1ae8-f068-4428-b3ec-3bcc4b967439/playlist.m3u8',
+        thumbnailUrl: 'https://vz-28eb4f33-914.b-cdn.net/d76c1ae8-f068-4428-b3ec-3bcc4b967439/thumbnail.jpg',
+        views: 3727,
+        isLocked: false
+    },
+        {
         id: 'v33',
         title: 'At Last',
         description:"Kio from kenya finally found a match, no just any, the one that can service him well..",
