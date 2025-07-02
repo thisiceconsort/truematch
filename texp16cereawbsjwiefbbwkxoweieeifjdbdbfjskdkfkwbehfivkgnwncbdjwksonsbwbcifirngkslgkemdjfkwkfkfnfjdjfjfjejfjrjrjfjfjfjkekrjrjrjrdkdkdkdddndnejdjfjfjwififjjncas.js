@@ -8,6 +8,8 @@ let simulatedUserDatabase = [
     { name: "Sam Esom", email: "orjisamuel19@gmail.com", phone: "+2347067411418", country: "Nigeria", accessCode: "2559SOM", unlockedVideos: {} },
     { name: "Chinetu Emmanuel", email: "chinetuemmanuel@gmail.com", phone: "+2349071375250", country: "Nigeria", accessCode: "1058CHI", unlockedVideos: {} },
    { name: "Micah Samuel", email: "micahblaq1@gmail.com", phone: "+31652560594", country: "Netherlands", accessCode: "5442BLA", unlockedVideos: {} },
+ { name: "Barnabas Chidindu", email: "chidindubarnabasiwuafor@gmail.com", phone: "+2348066448413", country: "Nigeria", accessCode: "1234BAN", unlockedVideos: {} },
+
 ];
 // Initialize simulatedUserDatabase from localStorage if available
 const storedSimulatedUsers = localStorage.getItem('simulatedUserDatabase');
