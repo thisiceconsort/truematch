@@ -2,8 +2,20 @@
 // In a real application, this would come from a backend database.
 // The `isLocked` property determines if a video requires payment.
 const videosData = [
-    // FREE VIDEOS
-       {
+
+      {
+        id: 'v31',
+        title: 'Three Wise Boys',
+        description:"After the electricity went off and the boys decided to entertain their self another way, no doubt, lots of creams and screams .",
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/2e3cb92e-2242-4881-87e7-d776d5c68e19/playlist.m3u8',
+        thumbnailUrl: 'https://vz-28eb4f33-914.b-cdn.net/2e3cb92e-2242-4881-87e7-d776d5c68e19/preview.webp?v=1751556512',
+        views: getRandomViews(),
+        isLocked: true,
+        priceNGN: 7546
+    },
+
+
+    {
         id: 'v30',
         title: 'Hungry',
         description:"After being hungry for so long, straight friend allow me eat it.",
