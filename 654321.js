@@ -3,6 +3,16 @@
 // The `isLocked` property determines if a video requires payment.
 const videosData = [
 {
+        id: 'v36',
+        title: 'Straight boy for cash',
+        description:" straight boys got an offer they can't refuse, the aftermath is creamy, very creamy!!",
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/c0b7b33f-0199-47c2-9718-f160955b0cc4/playlist.m3u8',
+        thumbnailUrl: 'https://vz-28eb4f33-914.b-cdn.net/c0b7b33f-0199-47c2-9718-f160955b0cc4/preview.webp?v=1751557626',
+        views: getRandomViews(),
+        isLocked: true,
+        priceNGN: 19483
+    },
+        {
         id: 'v35',
         title: 'Why are you running?',
         description:"You went to deliver food at the guys house but things got out of hand and now you know you are cooked!",
