@@ -187,7 +187,7 @@ function handleRegistration() {
 
     // Check if access code already exists in simulated database
     if (simulatedUserDatabase.some(user => user.accessCode === accessCode)) {
-        showRegistrationModal('This access code is already taken. Please choose a different one.', true);
+        showRegistrationModal('Weak Access Code. Please choose a stronger one.', true);
         return;
     }
 
