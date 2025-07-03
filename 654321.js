@@ -3,6 +3,15 @@
 // The `isLocked` property determines if a video requires payment.
 const videosData = [
 {
+        id: 'v37',
+        title: 'Straight Boy Play',
+        description:"From dancing to getting the boy pussy cat leeked, two straight boys had fun in school hostel",
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/5858a6e8-ebd0-42c2-bfe1-64c983627c33/playlist.m3u8',
+        thumbnailUrl: 'https://vz-28eb4f33-914.b-cdn.net/5858a6e8-ebd0-42c2-bfe1-64c983627c33/thumbnail.jpg',
+        views: 197,
+        isLocked: false
+    },
+        {
         id: 'v36',
         title: 'Straight boy for cash',
         description:" straight boys got an offer they can't refuse, the aftermath is creamy, very creamy!!",
