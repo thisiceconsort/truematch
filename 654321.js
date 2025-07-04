@@ -3,6 +3,15 @@
 // The `isLocked` property determines if a video requires payment.
 const videosData = [
 {
+        id: 'v39',
+        title: 'Masked',
+        description:"Two masked boys have fun on camera for money and they certainly enjoyed the experience.",
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/88edf6d6-e270-4bb6-90f0-00e40e792098/playlist.m3u8',
+        thumbnailUrl: 'https://vz-28eb4f33-914.b-cdn.net/88edf6d6-e270-4bb6-90f0-00e40e792098/thumbnail.jpg',
+        views: 362,
+        isLocked: false
+    },
+        {
         id: 'v38',
         title: 'Feelings',
         description:"After locking eyes several times, he went to visit his new friend. Dearest viewer, they are more than friends!",
