@@ -5,7 +5,7 @@ const videosData = [
 {
         id: 'v38',
         title: 'Feelings',
-        description:"After locking eyes several times, he webt to visit his new friend. Dear viewers, they are more than friends!",
+        description:"After locking eyes several times, he went to visit his new friend. Dearest viewer, they are more than friends!",
         videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/de5cd89f-b907-4c8c-a111-2cfe22c75e4e/playlist.m3u8',
         thumbnailUrl: 'https://vz-28eb4f33-914.b-cdn.net/de5cd89f-b907-4c8c-a111-2cfe22c75e4e/thumbnail.jpg',
         views: 4729,
