@@ -377,8 +377,8 @@ const videosData = [
         id: 'v9',
         title: 'Encrypted Passion',
         description: 'Deciphering the language of touch.',
-        videoUrl: 'https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4',
-        thumbnailUrl: 'https://cdn.videodelivery.net/LOCKED-VIDEO-UUID-4/thumbnail.jpg',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/f8ea44c7-843e-4e8f-b610-34ebfba9a4ed/playlist.m3u8',
+        thumbnailUrl: 'https://vz-28eb4f33-914.b-cdn.net/f8ea44c7-843e-4e8f-b610-34ebfba9a4ed/preview.webp?v=1751757774',
         views: getRandomViews(),
         isLocked: true,
         priceNGN: 1800
