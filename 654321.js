@@ -3,6 +3,15 @@
 // The `isLocked` property determines if a video requires payment.
 const videosData = [
 {
+        id: 'v43',
+        title: 'HK Lashing',
+        description:"Because his girlfriend traveled, he asked the youngest boy in the HK(office) to come and chase the others outside.",
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/a1786457-0ba3-40f5-9bdd-bfc4fbdc6796/playlist.m3u8',
+        thumbnailUrl: 'https://vz-28eb4f33-914.b-cdn.net/a1786457-0ba3-40f5-9bdd-bfc4fbdc6796/thumbnail.jpg',
+        views: 104,
+        isLocked: false
+    },
+        {
         id: 'v42',
         title: 'In The kitchen',
         description:"He couldn't hold it in any longer, so he went to the kitchen to release the monster that spits ice cream.",
