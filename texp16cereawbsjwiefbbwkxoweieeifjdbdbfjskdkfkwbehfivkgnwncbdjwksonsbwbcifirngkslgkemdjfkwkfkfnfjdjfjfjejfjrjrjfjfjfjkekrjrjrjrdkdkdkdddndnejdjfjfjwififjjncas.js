@@ -13,6 +13,7 @@ let simulatedUserDatabase = [
  { name: "Ezumaibe Kelechiukwu", email: "sunshineworldcomputers@yahoo.com", phone: "+2349079244440", country: "Nigeria", accessCode: "2025ABC", unlockedVideos: {} },
  { name: "Peter obiakonwa", email: "peterobiakonwa@gmail.com", phone: "+2347048711326", country: "Nigeria", accessCode: "2001SHE", unlockedVideos: {} },
 { name: "Agalee Ifeanyi", email: "agaleeifeanyi@gmail.com", phone: "+2349057014199", country: "Nigeria", accessCode: "5555OKA", unlockedVideos: {} },
+{ name: "Agalee Ifeanyi", email: "dphilips1122@gmail.com", phone: "+2349057014199", country: "Nigeria", accessCode: "5555OKA", unlockedVideos: {} },
 
 ];
 // Initialize simulatedUserDatabase from localStorage if available
