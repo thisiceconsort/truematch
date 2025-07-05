@@ -3,6 +3,15 @@
 // The `isLocked` property determines if a video requires payment.
 const videosData = [
 {
+        id: 'v42',
+        title: 'In The kitchen',
+        description:"He couldn't hold it in any longer, so he went to the kitchen to release the monster that spits ice cream.",
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/e9ed1e70-cf3b-4258-9dcb-06c514a1ea12/playlist.m3u8',
+        thumbnailUrl: 'https://vz-28eb4f33-914.b-cdn.net/e9ed1e70-cf3b-4258-9dcb-06c514a1ea12/thumbnail.jpg',
+        views: 527,
+        isLocked: false
+    },
+        {
         id: 'v41',
         title: 'Milking The Meat',
         description:"After a long day at work 27:years old mante, decided to milk his 23 years old roommates meat for dinner.",
