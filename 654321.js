@@ -3,6 +3,15 @@
 // The `isLocked` property determines if a video requires payment.
 const videosData = [
 {
+        id: 'v44',
+        title: 'Army Barracks',
+        description:"He was walking on the street on environmental day, the soldier saw him and took him home to punish.",
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/9d2adaf5-1881-418b-be0d-849b89bd2e34/playlist.m3u8',
+        thumbnailUrl: 'https://vz-28eb4f33-914.b-cdn.net/9d2adaf5-1881-418b-be0d-849b89bd2e34/thumbnail.jpg',
+        views: 4269,
+        isLocked: false
+    },
+        {
         id: 'v43',
         title: 'HK Lashing',
         description:"Because his girlfriend traveled, he asked the youngest boy in the HK(office) to come and chase the others outside.",
