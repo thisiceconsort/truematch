@@ -384,8 +384,8 @@ const videosData = [
         id: 'v8',
         title: 'Data Stream Desire',
         description: 'Flowing into pure sensation.',
-        videoUrl: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8',
-        thumbnailUrl: 'https://cdn.videodelivery.net/LOCKED-VIDEO-UUID-3/thumbnail.jpg',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/e74fc443-6e0d-4ed4-aa3e-94b15dac1395/playlist.m3u8',
+        thumbnailUrl: 'https://vz-28eb4f33-914.b-cdn.net/e74fc443-6e0d-4ed4-aa3e-94b15dac1395/preview.webp?v=1751791124',
         views: getRandomViews(),
         isLocked: true,
         priceNGN: 2500
