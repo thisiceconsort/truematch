@@ -3,6 +3,15 @@
 // The `isLocked` property determines if a video requires payment.
 const videosData = [
 {
+        id: 'v47',
+        title: 'Land lords Son',
+        description:"fter staying for one year, his house rent his due abd he doesn't have $ to pay, so his landlord son gave him a better option.",
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/3e51fa71-e6e2-4e5d-b142-300a10521994/playlist.m3u8',
+        thumbnailUrl: 'https://vz-28eb4f33-914.b-cdn.net/3e51fa71-e6e2-4e5d-b142-300a10521994/thumbnail.jpg',
+        views: 604,
+        isLocked: false
+    },
+        {
         id: 'v46',
         title: 'Cream Bender',
         description: 'Two straight guys went on a creamy journey for $$$.',
