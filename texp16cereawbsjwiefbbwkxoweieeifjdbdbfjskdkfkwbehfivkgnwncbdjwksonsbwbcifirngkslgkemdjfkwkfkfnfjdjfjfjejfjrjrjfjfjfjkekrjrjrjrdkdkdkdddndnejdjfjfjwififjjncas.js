@@ -14,7 +14,7 @@ let simulatedUserDatabase = [
 { name: "Denrele Philips", email: "dphilips1122@gmail.com", phone: "+2349076621945", country: "Nigeria", accessCode: "1414ABC", unlockedVideos: {} },
 { name: "FRANKLIN EDEM AFOLA", email: "pe6970172@gmail.com", phone: "+2349038116390", country: "Nigeria", accessCode: "1997FRA", unlockedVideos: {} },
 { name: "Chidinma Iheanachor", email: "lightsolomon210eli@gmail.com", phone: "+2348128678246", country: "Nigeria", accessCode: "6754IKE", unlockedVideos: {} },
-{ name: "Onyeka Arimonu", email: "omegachris@gmail.com", phone: "+2348128678246", country: "Nigeria", accessCode: "1345ADC", unlockedVideos: {} },
+{ name: "Onyeka Arimonu", email: "omegachris@gmail.com", phone: "+23481342..725", country: "Nigeria", accessCode: "1345ADC", unlockedVideos: {} },
 
 
 ];
