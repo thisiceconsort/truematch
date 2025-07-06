@@ -2,10 +2,28 @@
 // In a real application, this would come from a backend database.
 // The `isLocked` property determines if a video requires payment.
 const videosData = [
-{
+                {
+        id: 'v50',
+        title: 'Biggie',
+        description:" Watch has this suger daddy gave his boy a nice creamy afternoon, what are you doing today?.",
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/c6041bed-ea24-4e8e-ac90-b83f7853c160/playlist.m3u8',
+        thumbnailUrl: 'https://vz-28eb4f33-914.b-cdn.net/c6041bed-ea24-4e8e-ac90-b83f7853c160/thumbnail_ce0ac330.jpg',
+        views: 494,
+        isLocked: false
+    },
+        {
+        id: 'v49',
+        title: 'Fisher Man',
+        description:" After sighting a very young fish in the street, gave him money, so he followed him home.",
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/87dc24b7-7ee1-45ae-bac5-347e951976cf/playlist.m3u8',
+        thumbnailUrl: 'https://vz-28eb4f33-914.b-cdn.net/87dc24b7-7ee1-45ae-bac5-347e951976cf/thumbnail_b241129c.jpg',
+        views: 364,
+        isLocked: false
+    },
+        {
         id: 'v48',
         title: 'A baloon Landing',
-        description:" 18 years old see's a very feminine boy on the street, he asked him to come visit that ye doesn't leave far.",
+        description:" 18 years old see's a very feminine boy on the street, he asked him to come visit that he doesn't leave far.",
         videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/3a8dfb5c-138c-40c8-8e66-8c6196b720bd/playlist.m3u8',
         thumbnailUrl: 'https://vz-28eb4f33-914.b-cdn.net/3a8dfb5c-138c-40c8-8e66-8c6196b720bd/thumbnail.jpg',
         views: 1804,
