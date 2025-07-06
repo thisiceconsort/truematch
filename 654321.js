@@ -2,7 +2,16 @@
 // In a real application, this would come from a backend database.
 // The `isLocked` property determines if a video requires payment.
 const videosData = [
-                {
+           {
+        id: 'v51',
+        title: 'Straight Boy Secret',
+        description:"He has a girlfriend and a gay best friend. best friends with benefits.",
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/36f3c78d-fa65-441a-bef1-0941ef262250/playlist.m3u8',
+        thumbnailUrl: 'https://vz-28eb4f33-914.b-cdn.net/36f3c78d-fa65-441a-bef1-0941ef262250/thumbnail.jpg',
+        views: 84,
+        isLocked: false
+    },   
+  {
         id: 'v50',
         title: 'Biggie',
         description:" Watch has this suger daddy gave his boy a nice creamy afternoon, what are you doing today?.",
