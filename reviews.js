@@ -9,6 +9,16 @@ const YOUR_MODERATION_EMAIL = 'iceconsort@gmail.com'; // Your email for receivin
 // Simulated review data for demonstration purposes.
 // In a real application, this data would come from a backend database.
 const reviewsData = [
+    
+
+    
+    {
+        name: "Vincent",
+        date: "July 7, 2025",
+        rating: 4,
+        text: "Good",
+        identity: 'vincentamboga17@gmail.com'
+    },
     {
         name: "Aisha M.",
         date: "May 20, 2025",
