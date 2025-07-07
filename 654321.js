@@ -2,6 +2,15 @@
 // In a real application, this would come from a backend database.
 // The `isLocked` property determines if a video requires payment.
 const videosData = [
+        {
+        id: 'v53',
+        title: 'Just The Tip',
+        description:"After inviting him for a meal, he tries to advance and won.",
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/e526c651-ee64-4f7b-ab2a-5fee210c683e/playlist.m3u8',
+        thumbnailUrl: 'https://vz-28eb4f33-914.b-cdn.net/e526c651-ee64-4f7b-ab2a-5fee210c683e/thumbnail.jpg',
+        views: 217,
+        isLocked: false
+    },   
           
            {
         id: 'v52',
@@ -9,7 +18,7 @@ const videosData = [
         description:"Roomate so excited, called one of  his guy friend and ask for a video.",
         videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/11717b72-0ce4-4822-b3f9-2bc750aac628/playlist.m3u8',
         thumbnailUrl: 'https://vz-28eb4f33-914.b-cdn.net/11717b72-0ce4-4822-b3f9-2bc750aac628/thumbnail.jpg',
-        views: 47,
+        views: 173,
         isLocked: false
     },   
 
@@ -19,7 +28,7 @@ const videosData = [
         description:"He has a girlfriend and a gay best friend. best friends with benefits.",
         videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/36f3c78d-fa65-441a-bef1-0941ef262250/playlist.m3u8',
         thumbnailUrl: 'https://vz-28eb4f33-914.b-cdn.net/36f3c78d-fa65-441a-bef1-0941ef262250/thumbnail.jpg',
-        views: 84,
+        views: 375,
         isLocked: false
     },   
   {
