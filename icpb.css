@@ -1,0 +1,1089 @@
+/* Global Styles & Futuristic Base */
+/* For the entire page (body and html elements) */
+html, body {
+    overflow-x: hidden; /* Hide horizontal scrollbar, just in case */
+    overflow-y: scroll; /* Ensure vertical scrolling is enabled */
+    /* Other existing styles for html, body (like height: 100%; margin: 0; padding: 0;) */
+
+    /* Hide scrollbar for WebKit browsers (Chrome, Safari) */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+/* Hide scrollbar for WebKit browsers (Chrome, Safari) specifically for the whole page */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none;
+}
+
+
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #05050C; /* Very dark, almost black-blue */
+    color: #E0E0FF; /* Soft white/light blue for general text */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+}
+
+/* Existing styles for the theme */
+h1, h2, h3 {
+    font-family: 'Orbitron', sans-serif;
+    color: #00FFFF;
+    text-shadow: 0 0 10px rgba(0,255,255,0.6);
+    text-align: center;
+}
+
+/* Modal Overlay & Content */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+
+.modal-content {
+    background-color: #0B0B15;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.7), 0 0 25px rgba(0,255,255,0.2);
+    border: 1px solid #1A1A30;
+    position: relative;
+    width: 90%;
+    max-width: 450px;
+    text-align: center;
+    animation: fadeIn 0.5s ease-out;
+    overflow: auto; /* Make modal content scrollable */
+    max-height: 90vh; /* Limit height to enable scrolling */
+background-color: #0B0B15;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.7), 0 0 25px rgba(0,255,255,0.2);
+    border: 1px solid #1A1A30;
+    position: relative;
+    width: 90%;
+    max-width: 450px;
+    text-align: center;
+    animation: fadeIn 0.5s ease-out;
+    overflow: auto; /* Make modal content scrollable */
+    max-height: 90vh; /* Limit height to enable scrolling */
+
+    /* ----- ADD THESE NEW LINES HERE ----- */
+    -ms-overflow-style: none; /* For Internet Explorer and Edge */
+    scrollbar-width: none; /* For Firefox */
+/* ----- AND ADD THIS SEPARATE RULE AS WELL ----- */
+.modal-content::-webkit-scrollbar {
+    display: none;
+}
+
+    
+}
+
+.modal-content::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #00FFFF, #8A2BE2, #00FFFF);
+    z-index: -1;
+    border-radius: 22px;
+    filter: blur(15px);
+    opacity: 0.4;
+    animation: borderGlow 8s infinite alternate;
+    
+}
+
+/* Close Button */
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: rgba(0,0,0,0.5);
+    color: #FF00FF;
+    border: 2px solid #FF00FF;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.close-btn:hover {
+    background-color: #FF00FF;
+    color: #05050C;
+    transform: rotate(90deg);
+}
+
+/* Specific style for matchmaker cancel button */
+.matchmaker-modal .close-btn {
+    color: #FF4D4D; /* Red color for cancel */
+    border-color: #FF4D4D;
+}
+.matchmaker-modal .close-btn:hover {
+    background-color: #FF4D4D;
+    color: #05050C;
+}
+
+/* Keyframe Animations */
+@keyframes borderGlow {
+    0% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.01); }
+    100% { opacity: 0.4; transform: scale(1); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Modal Content Typography & Inputs */
+.modal-content h2 {
+    margin-bottom: 25px;
+    font-size: clamp(1.5rem, 6vw, 2.2rem);
+}
+
+.modal-content label {
+    display: block;
+    margin-top: 20px;
+    font-weight: 600;
+    color: #00FFFF;
+    margin-bottom: 10px;
+    font-size: clamp(0.9rem, 2.8vw, 1rem);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.modal-content input,
+.modal-content select {
+    width: calc(100% - 40px); /* Adjust for padding */
+    padding: 15px 20px;
+    border-radius: 10px;
+    border: 1px solid #3A3A50;
+    background-color: #0F0F1A;
+    color: #E0E0FF;
+    font-size: clamp(0.95rem, 3vw, 1.05rem);
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    -webkit-appearance: none;
+    appearance: none;
+    /* Allow text selection in inputs */
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+.modal-content input:focus,
+.modal-content select:focus {
+    outline: none;
+    border-color: #00FFFF;
+    box-shadow: 0 0 10px rgba(0,255,255,0.7);
+    background-color: #151525;
+}
+
+.modal-content input.invalid,
+.modal-content select.invalid {
+    border-color: #FF4D4D;
+    box-shadow: 0 0 8px rgba(255, 77, 77, 0.7);
+}
+
+/* Modal Buttons */
+.modal-content button {
+    margin-top: 30px;
+    padding: 15px 25px;
+    width: 100%;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(45deg, #00FFFF, #8A2BE2);
+    color: #05050C;
+    font-size: clamp(1rem, 4vw, 1.3rem);
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+.modal-content button:hover {
+    background: linear-gradient(45deg, #8A2BE2, #00FFFF);
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
+}
+
+.modal-content button:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Messages & Links */
+.message {
+    margin-top: 20px;
+    color: #FF00FF;
+    font-size: 0.95rem;
+    text-shadow: 0 0 5px rgba(255,0,255,0.4);
+}
+
+.message.error {
+    color: #FF4D4D;
+}
+
+.message.success {
+    color: #39FF14;
+}
+
+.forgot-code-link {
+    margin-top: 20px;
+    display: block;
+    color: #8A2BE2;
+    text-decoration: underline;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.forgot-code-link:hover {
+    color: #00FFFF;
+}
+
+/* Password Toggle */
+.password-input-container {
+    position: relative;
+    width: 100%;
+    margin-top: 8px; /* aligns with other inputs */
+}
+.password-input-container input {
+    width: 100%; /* fill parent */
+    padding-right: 50px; /* space for toggle icon */
+}
+.toggle-password {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #FF00FF;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+.toggle-password:hover {
+    color: #00FFFF;
+}
+
+/* Main Content Styles */
+.page-content {
+    width: 100%;
+    max-width: 480px; /* Max width for mobile-first video grid */
+    padding: 15px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    padding-bottom: 80px; /* Space for loading spinner */
+    position: relative; /* For logout icon */
+}
+
+/* Logout Icon */
+.logout-icon {
+    position: fixed; /* Fixed position */
+    top: 20px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #FF4D4D;
+    border: 2px solid #FF4D4D;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8rem;
+    cursor: pointer;
+    z-index: 10000; /* Highest z-index */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 0 15px rgba(255, 77, 77, 0.5);
+}
+
+.logout-icon:hover {
+    background-color: #FF4D4D;
+    color: #05050C;
+    transform: scale(1.1);
+}
+
+/* Search Section */
+.search-section {
+    width: 100%;
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+.search-section input {
+    width: calc(100% - 40px);
+    padding: 15px 20px;
+    border-radius: 10px;
+    border: 1px solid #3A3A50;
+    background-color: #0F0F1A;
+    color: #E0E0FF;
+    font-size: clamp(0.95rem, 3vw, 1.05rem);
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    -webkit-appearance: none;
+    appearance: none;
+    /* Allow text selection in search input */
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+.search-section input:focus {
+    outline: none;
+    border-color: #00FFFF;
+    box-shadow: 0 0 10px rgba(0,255,255,0.7);
+    background-color: #151525;
+}
+.search-section button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(45deg, #00FFFF, #39FF14);
+    color: #05050C;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    width: 100%;
+    max-width: 200px; /* Limit button width */
+    text-align: center;
+}
+.search-section button:hover {
+    background: linear-gradient(45deg, #39FF14, #00FFFF);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+}
+.search-section button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+.search-results-message {
+    color: #FFC107;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    text-align: center;
+    width: 100%;
+}
+
+/* User Info Section */
+.user-info-section {
+    background-color: #0B0B15;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+    width: 100%;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0,255,255,0.3);
+    border: 1px solid #1A1A30;
+    text-align: left;
+    position: relative;
+}
+
+.user-info-section::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #00FFFF, #8A2BE2, #00FFFF);
+    z-index: -1;
+    border-radius: 17px;
+    filter: blur(10px);
+    opacity: 0.2;
+    animation: borderGlow 6s infinite alternate;
+}
+
+.user-info-section p {
+    margin: 5px 0;
+    font-size: 0.95rem;
+    color: #C0C0D0;
+}
+
+.user-info-section strong {
+    color: #E0E0FF;
+}
+
+.user-info-section h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+    color: #FF00FF;
+    text-align: left;
+    text-shadow: 0 0 8px rgba(255,0,255,0.5);
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    flex-direction: row; /* Make buttons side by side */
+    flex-wrap: wrap; /* Allow wrapping if space is tight */
+    justify-content: center; /* Center them */
+    gap: 10px; /* Space between buttons */
+    margin-top: 20px;
+}
+
+.action-buttons button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(45deg, #FF00FF, #8A2BE2);
+    color: #E0E0FF;
+    font-size: 0.9rem; /* Slightly smaller font */
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    flex-grow: 1; /* Allow buttons to grow */
+    max-width: calc(50% - 5px); /* Take up roughly half width minus gap */
+    text-align: center;
+}
+
+.action-buttons button:hover {
+    background: linear-gradient(45deg, #8A2BE2, #FF00FF);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+}
+
+.action-buttons button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Terms Link */
+.terms-link {
+    margin-top: 10px;
+    margin-bottom: 25px;
+    display: block;
+    color: #00FFFF;
+    text-decoration: underline;
+    font-size: 0.9rem;
+    text-align: center;
+    transition: color 0.3s ease;
+}
+
+.terms-link:hover {
+    color: #8A2BE2;
+}
+
+/* Video Grid */
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two videos per row */
+    gap: 15px; /* Spacing between videos */
+    width: 100%;
+    margin-top: 20px;
+}
+
+.video-item {
+    background-color: #0B0B15;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5), 0 0 10px rgba(0,255,255,0.2);
+    border: 1px solid #1A1A30;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Ensure cards are same height */
+}
+
+.video-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7), 0 0 15px rgba(0,255,255,0.4);
+}
+
+.video-thumbnail {
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    position: relative;
+    background-color: #0F0F1A;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Styles for the image thumbnail */
+.video-thumbnail-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This now works on the image! */
+    transition: transform 0.3s ease;
+}
+
+.video-item:hover .video-thumbnail-img {
+    transform: scale(1.05); /* Apply hover effect to the image */
+}
+
+.video-info {
+    padding: 10px;
+    flex-grow: 1; /* Allows info to take available space */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.video-info h3 {
+    font-family: 'Roboto', sans-serif; /* Simpler font for video titles */
+    font-size: 0.9rem;
+    margin: 0 0 5px 0;
+    line-height: 1.3;
+    color: #E0E0FF;
+    text-align: left;
+    text-shadow: none; /* No glow here */
+}
+
+.video-info p {
+    font-size: 0.75rem;
+    color: #A0A0B0;
+    margin-bottom: 5px;
+    line-height: 1.4;
+}
+
+.video-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.video-meta span {
+    font-size: 0.7rem;
+    color: #808090;
+}
+
+.views-count {
+    color: #39FF14;
+    font-weight: 500;
+}
+
+.lock-icon {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #FF00FF;
+    padding: 6px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    z-index: 10;
+    border: 1px solid #FF00FF;
+}
+
+/* Video Playback Overlay */
+.video-playback-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001; /* Above other modals */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    flex-direction: column; /* Stack video and details vertically */
+    padding: 10px; /* Add some padding from screen edges */
+    box-sizing: border-box; /* Include padding in width/height */
+}
+
+/* Video Player Container for glowing effect and close button positioning */
+.video-player-container {
+    position: relative; /* For positioning the close button and fullscreen button */
+    width: 95%; /* Take up 95% of available width */
+    max-width: 960px; /* Allow it to be larger on desktop, common video aspect ratio width */
+    aspect-ratio: 16 / 9; /* Maintain 16:9 aspect ratio */
+    border-radius: 15px; /* Rounded corners for the container */
+    overflow: hidden; /* Ensures glow doesn't escape rounded corners */
+    box-shadow: 0 0 20px rgba(0,255,255,0.7), 0 0 40px rgba(138,43,226,0.5); /* Glowing effect */
+    transition: box-shadow 0.3s ease-in-out;
+    margin-bottom: 20px; /* Space between video and details */
+}
+
+/* Styles for the <video> element */
+.video-player-container video {
+    width: 100%;
+    height: 100%;
+    display: block; /* Remove extra space below video */
+    background-color: #000; /* Black background for video player */
+}
+
+.close-video-btn {
+    position: absolute;
+    top: 10px; /* Closer to the extreme top */
+    right: 10px; /* Closer to the extreme right */
+    background-color: rgba(0,0,0,0.7); /* Slightly darker background */
+    color: #00FFFF;
+    border: 2px solid #00FFFF;
+    border-radius: 50%;
+    width: 40px; /* Slightly larger button */
+    height: 40px; /* Slightly larger button */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.6rem; /* Larger icon */
+    cursor: pointer;
+    z-index: 100; /* Higher z-index to ensure it's always on top of video */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.close-video-btn:hover {
+    background-color: #00FFFF;
+    color: #05050C;
+    transform: rotate(90deg); /* Add a rotate effect on hover */
+}
+
+.video-playback-overlay .video-details {
+    margin-top: 20px; /* Space between video player and description */
+    text-align: center;
+    max-width: 90%; /* Limit width for readability */
+    padding: 0 10px; /* Add horizontal padding */
+    box-sizing: border-box;
+}
+
+.video-playback-overlay .video-details h3 {
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+    color: #E0E0FF;
+}
+
+.video-playback-overlay .video-details p {
+    font-size: 0.9rem;
+    color: #C0C0D0;
+    margin-bottom: 10px;
+}
+
+.video-playback-overlay .video-details .views-count {
+    font-size: 0.9rem;
+    color: #39FF14;
+    font-weight: 600;
+}
+
+/* Loading Spinner for Lazy Loading */
+.loading-spinner {
+    border: 4px solid #3A3A50;
+    border-top: 4px solid #00FFFF; /* Cyan */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 30px auto;
+    display: none; /* Hidden by default */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Footer - Kept light for this page */
+footer {
+    margin-top: 40px;
+    text-align: center;
+    color: #707080;
+    font-size: 0.9rem;
+    padding-bottom: 20px;
+    width: 100%;
+    padding-top: 15px;
+}
+
+/* Payment Pop-up for Locked Videos */
+.buy-video-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1002; /* Higher than video player */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+.buy-video-modal .modal-content {
+    max-width: 380px;
+}
+.buy-video-modal .modal-content h2 {
+    color: #FF00FF;
+    text-shadow: 0 0 10px rgba(255,0,255,0.6);
+}
+.buy-video-modal .modal-content p {
+    color: #C0C0D0;
+    font-size: 1rem;
+    margin-bottom: 25px;
+}
+.buy-video-modal .modal-content strong {
+    color: #39FF14;
+    font-size: 1.3rem;
+}
+
+/* General Modal Styles for Sell Video, Matchmaker, Terms, Payment Options, Match Display, Expired Subscription */
+.sell-video-modal,
+.matchmaker-modal,
+.terms-modal,
+.payment-options-modal,
+.match-display-modal,
+.expired-subscription-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1003;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.sell-video-modal .modal-content,
+.matchmaker-modal .modal-content,
+.terms-modal .modal-content,
+.payment-options-modal .modal-content,
+.match-display-modal .modal-content,
+.expired-subscription-modal .modal-content {
+    max-width: 480px;
+    text-align: left;
+}
+
+.sell-video-modal .modal-content h2,
+.matchmaker-modal .modal-content h2,
+.terms-modal .modal-content h2,
+.payment-options-modal .modal-content h2,
+.match-display-modal .modal-content h2,
+.expired-subscription-modal .modal-content h2 {
+    font-size: clamp(1.3rem, 5vw, 2rem);
+    text-align: center;
+}
+
+.sell-video-modal .modal-content p,
+.matchmaker-modal .modal-content p,
+.terms-modal .modal-content p,
+.payment-options-modal .modal-content p,
+.match-display-modal .modal-content p,
+.expired-subscription-modal .modal-content p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #C0C0D0;
+    margin-bottom: 15px;
+}
+
+.sell-video-modal .modal-content ul,
+.matchmaker-modal .modal-content ul,
+.terms-modal .modal-content ul,
+.payment-options-modal .modal-content ul,
+.expired-subscription-modal .modal-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.sell-video-modal .modal-content ul li,
+.matchmaker-modal .modal-content ul li,
+.terms-modal .modal-content ul li,
+.payment-options-modal .modal-content ul li,
+.expired-subscription-modal .modal-content ul li {
+    margin-bottom: 10px;
+    color: #E0E0FF;
+    font-size: 0.9rem;
+}
+
+.sell-video-modal .modal-content ul li i,
+.matchmaker-modal .modal-content ul li i,
+.terms-modal .modal-content ul li i,
+.payment-options-modal .modal-content ul li i,
+.expired-subscription-modal .modal-content ul li i {
+    color: #39FF14;
+    margin-right: 10px;
+}
+
+.sell-video-modal .modal-content a,
+.matchmaker-modal .modal-content a,
+.terms-modal .modal-content a,
+.payment-options-modal .modal-content a,
+.expired-subscription-modal .modal-content a {
+    color: #00FFFF;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.sell-video-modal .modal-content a:hover,
+.matchmaker-modal .modal-content a:hover,
+.terms-modal .modal-content a:hover,
+.payment-options-modal .modal-content a:hover,
+.expired-subscription-modal .modal-content a:hover {
+    color: #8A2BE2;
+}
+
+.sell-video-modal .modal-content .contact-info,
+.matchmaker-modal .modal-content .contact-info,
+.terms-modal .modal-content .contact-info,
+.payment-options-modal .modal-content .contact-info,
+.expired-subscription-modal .modal-content .contact-info {
+    margin-top: 25px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.sell-video-modal .modal-content .contact-info a,
+.matchmaker-modal .modal-content .contact-info a,
+.terms-modal .modal-content .contact-info a,
+.payment-options-modal .modal-content .contact-info a,
+.expired-subscription-modal .modal-content .contact-info a {
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* Matchmaker Specific Styles (Form) - Refined for "free and elegant" */
+.matchmaker-modal .modal-content {
+    text-align: left; /* Align form fields to left */
+}
+
+.matchmaker-modal .modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Spacing between form elements */
+    padding: 0 10px; /* Add slight padding for elegance */
+}
+
+.matchmaker-modal .modal-content .form-group {
+    margin-bottom: 0; /* Reduced margin, relying on gap */
+}
+
+.matchmaker-modal .modal-content .form-group label {
+    margin-bottom: 5px;
+    font-size: 0.85rem;
+    color: #C0C0D0;
+    text-transform: none;
+    letter-spacing: normal;
+    font-weight: normal;
+}
+
+.matchmaker-modal .modal-content .form-group input,
+.matchmaker-modal .modal-content .form-group select {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 0.9rem;
+}
+
+.matchmaker-modal .modal-content .warning-text {
+    font-size: 0.8rem;
+    color: #FF4D4D;
+    margin-top: 15px;
+    text-align: center;
+}
+
+/* Styles for Payment Options Modal */
+.payment-options-modal .modal-content {
+    max-width: 380px;
+    text-align: center;
+}
+
+.payment-options-modal .modal-content .payment-option-buttons button {
+    margin-top: 15px;
+    background: linear-gradient(45deg, #FF00FF, #39FF14); /* Different gradient for options */
+    color: #05050C;
+}
+
+.payment-options-modal .modal-content .payment-option-buttons button:hover {
+    background: linear-gradient(45deg, #39FF14, #FF00FF);
+}
+
+/* Load More Button */
+.load-more-button-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.load-more-button {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(45deg, #00FFFF, #8A2BE2);
+    color: #05050C;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    display: none; /* Hidden by default, shown by JS */
+}
+
+.load-more-button:hover {
+    background: linear-gradient(45deg, #8A2BE2, #00FFFF);
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
+}
+
+.load-more-button:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Twitter-like Match Display Modal Styles */
+.match-display-modal .modal-content {
+    max-width: 600px; /* Wider for Twitter-like feed */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.match-display-modal .modal-content h2 {
+    margin-bottom: 15px;
+    text-align: left;
+    padding-left: 10px; /* Align with content */
+}
+
+.match-profile-card {
+    background-color: #0F0F1A;
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5), 0 0 10px rgba(0,255,255,0.2);
+    border: 1px solid #1A1A30;
+    position: relative;
+    overflow: hidden; /* For inner elements */
+}
+
+.match-profile-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #FF00FF, #39FF14, #FF00FF);
+    z-index: -1;
+    border-radius: 17px;
+    filter: blur(8px);
+    opacity: 0.3;
+    animation: borderGlow 5s infinite alternate-reverse;
+}
+
+.match-profile-card .profile-images {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.match-profile-card .profile-images img {
+    width: 100%;
+    height: 120px; /* Fixed height for image shape */
+    object-fit: cover; /* Ensures images fill the space and maintain aspect ratio */
+    border-radius: 8px;
+    border: 1px solid #3A3A50;
+}
+
+.match-profile-card .profile-details p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+    color: #C0C0D0;
+}
+
+.match-profile-card .profile-details strong {
+    color: #E0E0FF;
+    margin-right: 5px;
+}
+
+/* Floating Plus Button */
+.floating-plus-button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: linear-gradient(45deg, #39FF14, #00FFFF);
+    color: #05050C;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(57, 255, 20, 0.7), 0 0 30px rgba(0, 255, 255, 0.5);
+    transition: all 0.3s ease;
+    z-index: 1004; /* Above other modals but below logout */
+}
+
+.floating-plus-button:hover {
+    transform: scale(1.1) rotate(90deg);
+    box-shadow: 0 0 25px rgba(57, 255, 20, 0.9), 0 0 40px rgba(0, 255, 255, 0.7);
+}
+
+.floating-plus-button:active {
+    transform: scale(0.95);
+}
+
+/* Expired Subscription Modal */
+.expired-subscription-modal .modal-content {
+    max-width: 400px;
+    text-align: center;
+}
+
+.expired-subscription-modal .modal-content h2 {
+    color: #FF4D4D;
+    text-shadow: 0 0 10px rgba(255, 77, 77, 0.6);
+}
+
+.expired-subscription-modal .modal-content .highlight-link {
+    color: #00FFFF; /* Highlighted color */
+    text-decoration: underline;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.expired-subscription-modal .modal-content .highlight-link:hover {
+    color: #8A2BE2;
+}
