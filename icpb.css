@@ -34,6 +34,10 @@ body {
     user-select: none; /* Standard */
 }
 
+a {
+  text-decoration: none;     /* removes underline */
+  color: inherit;            /* optional: keeps text color unchanged */
+}
 /* Existing styles for the theme */
 h1, h2, h3 {
     font-family: 'Orbitron', sans-serif;
