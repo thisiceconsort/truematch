@@ -3,7 +3,15 @@
 // The `isLocked` property determines if a video requires payment.
 const videosData = [
        
-       
+       {
+        id: 'v56',
+        title: 'Hot Dog',
+        description:" Travelled all the way to kenya to receive the almighty injection from the kenyan boy",
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/1717906b-a24d-4f36-90f4-c6ae3f5d4921/playlist.m3u8',
+        thumbnailUrl: 'https://vz-28eb4f33-914.b-cdn.net/1717906b-a24d-4f36-90f4-c6ae3f5d4921/thumbnail.jpg',
+        views: 1042,
+        isLocked: false
+    },
         {
         id: 'v55',
         title: 'Body Builder',
