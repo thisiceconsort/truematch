@@ -39,12 +39,6 @@ async function getConvertedAmount(amountInNGN, targetCurrencyCode) {
     }
 
     try {
-        // ExchangeRate-API.com provides a "standard" free endpoint where EUR is base,
-        // or a paid endpoint where you can specify base.
-        // For the free tier, we'll fetch all rates against USD and then convert NGN to target via USD.
-        // Or, more directly, fetch 'latest/NGN' as base if your free plan supports it (some offer limited custom base).
-        // Let's assume 'latest/NGN' is supported for simplicity here,
-        // if not, you'd need to convert NGN->USD then USD->TARGET.
         const apiUrl = `https://v6.exchangerate-api.com/v6/${EXCHANGERATE_API_KEY}/latest/NGN`;
         const response = await fetch(apiUrl);
 
@@ -58,8 +52,6 @@ async function getConvertedAmount(amountInNGN, targetCurrencyCode) {
 
         if (data.result === 'success' && data.conversion_rates && data.conversion_rates[targetCurrencyCode]) {
             const rateNGNToTarget = data.conversion_rates[targetCurrencyCode];
-            // The API provides "what 1 NGN is worth in TARGET_CURRENCY".
-            // So, to convert amountInNGN to target currency, we multiply.
             const convertedValue = amountInNGN * rateNGNToTarget;
             return Math.round(convertedValue); // Round to nearest whole number for display/payment
         } else {
@@ -74,6 +66,33 @@ async function getConvertedAmount(amountInNGN, targetCurrencyCode) {
     }
 }
 // --- End Currency Conversion ---
+
+// --- Formspree Integration ---
+// IMPORTANT: Replace 'YOUR_FORMSPREE_ENDPOINT_ID_HERE' with your actual Formspree form ID
+const FORMSPREE_SINGLE_ENDPOINT_ID = 'YOUR_FORMSPREE_ENDPOINT_ID_HERE'; 
+
+async function sendDataToFormspree(formspreeId, data) {
+    try {
+        const response = await fetch(`https://formspree.io/f/${formspreeId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+
+        if (response.ok) {
+            console.log(`Data successfully sent to Formspree for ID ${formspreeId}.`);
+        } else {
+            const errorText = await response.text();
+            console.error(`Failed to send data to Formspree for ID ${formspreeId}: ${response.status} - ${errorText}`);
+        }
+    } catch (error) {
+        console.error(`Network error sending data to Formspree for ID ${formspreeId}:`, error);
+    }
+}
+// --- End Formspree Integration ---
 
 
 // Global variables
@@ -375,6 +394,11 @@ function handlePaystackPayment(amount, email, name, phone, country, paymentType)
         reference = `renewal_${currentUserData.accessCode}_${Date.now()}`;
     }
 
+    // ADDED: Store payment gateway for Formspree
+    if (pendingPaymentDetails) {
+        pendingPaymentDetails.paymentGatewayUsed = 'Paystack';
+    }
+
     const handler = PaystackPop.setup({
         key: PAYSTACK_PUBLIC_KEY,
         email: email,
@@ -458,6 +482,11 @@ function handleFlutterwavePayment(amount, email, phone, name, country, paymentTy
         // This logic can be refined further if certain payment types ONLY allow specific channels
     }
 
+    // ADDED: Store payment gateway for Formspree
+    if (pendingPaymentDetails) {
+        pendingPaymentDetails.paymentGatewayUsed = 'Flutterwave';
+    }
+
     // --- START: NEW ADDITIONS/CHANGES FOR FLUTTERWAVE METADATA ---
     let accessCodeForMeta = 'N/A';
     if (paymentType === 'registration' && pendingPaymentDetails && pendingPaymentDetails.accessCode) {
@@ -518,6 +547,9 @@ function handlePaymentSuccess(paymentType, transactionReference) {
     const regMessage = document.getElementById('registrationMessage'); // For registration modal
     console.log(`Payment successful for type: ${paymentType}, Ref: ${transactionReference}`);
 
+    let formspreeData = {};
+    let formspreeSent = false; // Flag to ensure data is prepared for Formspree
+
     if (paymentType === 'registration') {
         const newUser = registerNewUser(
             pendingPaymentDetails.name,
@@ -531,7 +563,6 @@ function handlePaymentSuccess(paymentType, transactionReference) {
         currentUserData = newUser; // Use newUser, not just 'user'
         localStorage.setItem('currentUserData', JSON.stringify(currentUserData));
 
-        // const subscriptionStatus = isAccessValid(); // Mark session active - this is implicitly done by checkAccessCode
         hideRegistrationModal();
         hidePaymentOptionsModal();
         document.getElementById('mainContent').style.display = 'flex';
@@ -541,12 +572,40 @@ function handlePaymentSuccess(paymentType, transactionReference) {
         updateLoadMoreButtonVisibility();
         alert('Registration successful! Welcome to ICE Consort Privilege.');
 
+        // Prepare data for Formspree
+        formspreeData = {
+            _form_type: 'Registration', // Added this field to differentiate submissions
+            fullName: pendingPaymentDetails.name,
+            email: pendingPaymentDetails.email,
+            phone: pendingPaymentDetails.phone,
+            country: pendingPaymentDetails.country,
+            accessCode: pendingPaymentDetails.accessCode,
+            paymentGateway: pendingPaymentDetails.paymentGatewayUsed,
+            transactionReference: transactionReference,
+            timestamp: new Date().toISOString()
+        };
+        formspreeSent = true;
+
     } else if (paymentType === 'video') {
         if (currentUserData && pendingPaymentDetails.videoId) {
             unlockVideo(pendingPaymentDetails.videoId); // This updates currentUserData and localStorage
         } else {
             alert('Error: Could not unlock video. User data or video ID missing.');
         }
+
+        // Prepare data for Formspree
+        formspreeData = {
+            _form_type: 'VideoUnlock', // Added this field
+            email: currentUserData.email,
+            accessCode: currentUserData.accessCode,
+            videoId: pendingPaymentDetails.videoId,
+            videoTitle: videosData.find(v => v.id === pendingPaymentDetails.videoId)?.title || 'Unknown Video',
+            paymentGateway: pendingPaymentDetails.paymentGatewayUsed,
+            transactionReference: transactionReference,
+            timestamp: new Date().toISOString()
+        };
+        formspreeSent = true;
+
     } else if (paymentType === 'matchmaker') {
         // Assume pendingPaymentDetails holds the form data submitted for matchmaker
         simulateMatchmakerSuccess(
@@ -560,6 +619,23 @@ function handlePaymentSuccess(paymentType, transactionReference) {
         );
         hideMatchmakerModal(); // Hide the matchmaker form modal
         hidePaymentOptionsModal(); // Hide payment options if shown
+
+        // Prepare data for Formspree (assuming you have a matchmaker form data in pendingPaymentDetails)
+        formspreeData = {
+            _form_type: 'MatchmakerBioSubmission', // Added this field
+            realName: pendingPaymentDetails.realName,
+            age: pendingPaymentDetails.age,
+            role: pendingPaymentDetails.role,
+            country: pendingPaymentDetails.country,
+            city: pendingPaymentDetails.city,
+            phone: pendingPaymentDetails.phone,
+            email: pendingPaymentDetails.email,
+            paymentGateway: pendingPaymentDetails.paymentGatewayUsed,
+            transactionReference: transactionReference,
+            timestamp: new Date().toISOString()
+        };
+        formspreeSent = true;
+
     } else if (paymentType === 'renewal') {
         if (currentUserData) {
             const newExpiry = new Date();
@@ -572,6 +648,24 @@ function handlePaymentSuccess(paymentType, transactionReference) {
         } else {
             alert('Error: Could not renew subscription. User data missing.');
         }
+
+        // Prepare data for Formspree
+        formspreeData = {
+            _form_type: 'SubscriptionRenewal', // Added this field
+            email: currentUserData.email,
+            accessCode: currentUserData.accessCode,
+            oldExpiry: new Date(currentUserData.subscriptionExpiry).toISOString(), // Capture old expiry for record
+            newExpiry: newExpiry.toISOString(), // The new expiry date
+            paymentGateway: pendingPaymentDetails.paymentGatewayUsed,
+            transactionReference: transactionReference,
+            timestamp: new Date().toISOString()
+        };
+        formspreeSent = true;
+    }
+
+    // Send data to Formspree only if it was prepared
+    if (formspreeSent) {
+        sendDataToFormspree(FORMSPREE_SINGLE_ENDPOINT_ID, formspreeData);
     }
 
     pendingPaymentDetails = null; // Clear pending payment details
