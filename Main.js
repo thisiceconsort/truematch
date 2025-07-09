@@ -25,7 +25,7 @@ function currencySymbol(code) {
 // --- NEW: API Key for ExchangeRate-API.com ---
 // IMPORTANT: In a production environment, this API key should be handled on your backend
 // to prevent exposure and misuse. For this client-side demonstration, it's placed here.
-const EXCHANGERATE_API_KEY = 'YOUR_EXCHANGERATE_API_KEY'; // <<< REPLACE WITH YOUR ACTUAL KEY
+const EXCHANGERATE_API_KEY = 'd852fe1a5c2d4ef9a40400ed'; // <<< REPLACE WITH YOUR ACTUAL KEY
 
 /**
  * Fetches the live exchange rate from NGN to a target currency and converts the amount.
