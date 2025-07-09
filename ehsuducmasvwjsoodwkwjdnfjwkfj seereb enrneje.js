@@ -3,6 +3,35 @@ function getRandomViews() {
 }
 
 const videosData = [
+          
+       {
+        id: 'v56',
+        title: 'Hot Dog',
+        description:" Travelled all the way to kenya to receive the almighty injection from the kenyan boy",
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/1717906b-a24d-4f36-90f4-c6ae3f5d4921/playlist.m3u8',
+        thumbnailUrl: 'https://vz-28eb4f33-914.b-cdn.net/1717906b-a24d-4f36-90f4-c6ae3f5d4921/thumbnail.jpg',
+        views: 1042,
+        isLocked: false
+    },
+        {
+        id: 'v55',
+        title: 'Body Builder',
+        description:"He applied for a private training with the gym instructor, and now he is instructing inside him",
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/6c61c035-8ce5-42fc-bbc9-5193d87d2b26/playlist.m3u8',
+        thumbnailUrl: 'https://vz-28eb4f33-914.b-cdn.net/6c61c035-8ce5-42fc-bbc9-5193d87d2b26/thumbnail.jpg',
+        views: 427,
+        isLocked: false
+    },
+        {
+        id: 'v54',
+        title: 'Sleeping Already?',
+        description:"He travelled all the way to his friends house and he won't allow him sleep until he test his donut.",
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/1fff1432-f249-48bc-aab6-1a7e3fcaa453/playlist.m3u8',
+        thumbnailUrl: 'https://vz-28eb4f33-914.b-cdn.net/1fff1432-f249-48bc-aab6-1a7e3fcaa453/thumbnail.jpg',
+        views: 738,
+        isLocked: false
+    },
+    
     {
           
         id: "v51",
