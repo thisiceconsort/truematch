@@ -1,19 +1,6 @@
 // --- Currency Conversion Logic ---
-const exchangeRates = {
-    NGN: 1,
-    GHS: 0.01,
-    KES: 0.09,
-    ZAR: 0.012,
-    TZS: 1.5,
-    UGX: 2.5,
-    ZMW: 0.047,
-    RWF: 1.6,
-    XAF: 1.0,
-    XOF: 1.0,
-    GMD: 0.93,
-    LRD: 1.14,
-    SLL: 14.5
-};
+// REMOVE the static exchangeRates object, as we will now fetch live rates.
+// const exchangeRates = { ... };
 
 const currencySymbols = {
     NGN: '₦',
@@ -33,6 +20,58 @@ const currencySymbols = {
 
 function currencySymbol(code) {
     return currencySymbols[code] || code;
+}
+
+// --- NEW: API Key for ExchangeRate-API.com ---
+// IMPORTANT: In a production environment, this API key should be handled on your backend
+// to prevent exposure and misuse. For this client-side demonstration, it's placed here.
+const EXCHANGERATE_API_KEY = 'YOUR_EXCHANGERATE_API_KEY'; // <<< REPLACE WITH YOUR ACTUAL KEY
+
+/**
+ * Fetches the live exchange rate from NGN to a target currency and converts the amount.
+ * @param {number} amountInNGN - The base amount in Nigerian Naira (NGN).
+ * @param {string} targetCurrencyCode - The 3-letter ISO code of the target currency (e.g., 'ZAR', 'GHS').
+ * @returns {Promise<number>} - A promise that resolves with the converted amount, or the original NGN amount if conversion fails.
+ */
+async function getConvertedAmount(amountInNGN, targetCurrencyCode) {
+    if (targetCurrencyCode === 'NGN') {
+        return amountInNGN; // No conversion needed if target is NGN
+    }
+
+    try {
+        // ExchangeRate-API.com provides a "standard" free endpoint where EUR is base,
+        // or a paid endpoint where you can specify base.
+        // For the free tier, we'll fetch all rates against USD and then convert NGN to target via USD.
+        // Or, more directly, fetch 'latest/NGN' as base if your free plan supports it (some offer limited custom base).
+        // Let's assume 'latest/NGN' is supported for simplicity here,
+        // if not, you'd need to convert NGN->USD then USD->TARGET.
+        const apiUrl = `https://v6.exchangerate-api.com/v6/${EXCHANGERATE_API_KEY}/latest/NGN`;
+        const response = await fetch(apiUrl);
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            console.error(`API fetch error: ${response.status} - ${errorText}`);
+            throw new Error('Failed to fetch exchange rates from API.');
+        }
+
+        const data = await response.json();
+
+        if (data.result === 'success' && data.conversion_rates && data.conversion_rates[targetCurrencyCode]) {
+            const rateNGNToTarget = data.conversion_rates[targetCurrencyCode];
+            // The API provides "what 1 NGN is worth in TARGET_CURRENCY".
+            // So, to convert amountInNGN to target currency, we multiply.
+            const convertedValue = amountInNGN * rateNGNToTarget;
+            return Math.round(convertedValue); // Round to nearest whole number for display/payment
+        } else {
+            console.error('API response format error or target currency not found:', data);
+            throw new Error('Invalid API response or currency not supported by API.');
+        }
+
+    } catch (error) {
+        console.error('Error during currency conversion:', error);
+        alert(`Failed to get live exchange rates for ${targetCurrencyCode}. Payment will proceed in NGN.`);
+        return amountInNGN; // Fallback to original NGN amount on error
+    }
 }
 // --- End Currency Conversion ---
 
@@ -90,7 +129,7 @@ function hideRegistrationModal() {
 
 function showPaymentOptionsModal(paymentType, amount) {
     document.getElementById('paymentOptionsTitle').textContent = `Choose Payment Method for ${paymentType === 'registration' ? 'Membership' : paymentType === 'video' ? 'Video Unlock' : paymentType === 'matchmaker' ? 'Bio Submission' : 'Subscription Renewal'}`;
-    document.getElementById('paymentAmount').textContent = `${amount.toLocaleString()} NGN`;
+    document.getElementById('paymentAmount').textContent = `${amount.toLocaleString()} NGN`; // Still showing NGN here as base
     document.getElementById('paymentOptionsModal').style.display = 'flex';
 
     // Set up listeners for payment buttons based on the current context
@@ -107,7 +146,7 @@ function showPaymentOptionsModal(paymentType, amount) {
     newPaystackBtn.onclick = () => {
         hidePaymentOptionsModal();
         handlePaystackPayment(
-            pendingPaymentDetails.amount,
+            pendingPaymentDetails.amount, // Paystack always takes NGN amount and handles its own conversion if international card
             pendingPaymentDetails.email,
             pendingPaymentDetails.name,
             pendingPaymentDetails.phone,
@@ -116,15 +155,21 @@ function showPaymentOptionsModal(paymentType, amount) {
         );
     };
 
-    newFlutterwaveMMBtn.onclick = () => {
+    newFlutterwaveMMBtn.onclick = async () => { // Make this async to await conversion
         hidePaymentOptionsModal();
+        const countryInfo = FLUTTERWAVE_COUNTRIES_MAP[pendingPaymentDetails.country];
+        const targetCurrencyCode = countryInfo?.currency || 'NGN'; // Default to NGN
+
+        const convertedAmount = await getConvertedAmount(pendingPaymentDetails.amount, targetCurrencyCode);
+
         handleFlutterwavePayment(
-            pendingPaymentDetails.amount,
+            convertedAmount, // Pass the converted amount
             pendingPaymentDetails.email,
             pendingPaymentDetails.phone,
             pendingPaymentDetails.name,
             pendingPaymentDetails.country,
-            pendingPaymentDetails.type
+            pendingPaymentDetails.type,
+            targetCurrencyCode // Pass target currency code
         );
     };
 }
@@ -144,10 +189,11 @@ function hideExpiredSubscriptionModal() {
 
 function showBuyVideoModal(video) {
     const buyVideoModal = document.getElementById('buyVideoModal');
-    document.getElementById('buyVideoPrice').textContent = video.price.toLocaleString();
+    // Display NGN price to the user, conversion happens at payment initiation
+    document.getElementById('buyVideoPrice').textContent = video.price.toLocaleString() + ' NGN'; 
     buyVideoModal.style.display = 'flex';
     buyVideoModal.dataset.videoId = video.id; // Store video ID for payment
-    buyVideoModal.dataset.videoPrice = video.price; // Store price for payment
+    buyVideoModal.dataset.videoPrice = video.price; // Store price for payment (in NGN)
 }
 
 function hideBuyVideoModal() {
@@ -255,7 +301,7 @@ function validateRegistrationForm() {
     return isValid;
 }
 
-function initiateRegistrationPayment() {
+async function initiateRegistrationPayment() { // Make this async
     if (!validateRegistrationForm()) {
         return;
     }
@@ -265,7 +311,7 @@ function initiateRegistrationPayment() {
     const phone = document.getElementById('regPhone').value;
     const country = document.getElementById('regCountry').value;
     const accessCode = document.getElementById('regPassword').value.toUpperCase();
-    const amount = REGISTRATION_PAYMENT_NGN;
+    const amountInNGN = REGISTRATION_PAYMENT_NGN; // Base amount in NGN
 
     pendingPaymentDetails = {
         type: 'registration',
@@ -274,42 +320,49 @@ function initiateRegistrationPayment() {
         phone: phone,
         country: country,
         accessCode: accessCode,
-        amount: amount
+        amount: amountInNGN // Store base NGN amount
     };
 
     hideRegistrationModal();
 
     const countryInfo = FLUTTERWAVE_COUNTRIES_MAP[country];
     const countryCode = countryInfo ? countryInfo.code : null;
+    const targetCurrencyCode = countryInfo?.currency || 'NGN'; // Determine target currency
 
-    if (
-    countryCode === "NG" || countryCode === "ZA"
-) {
-    showPaymentOptionsModal('registration', amount);
-} else if (
-    countryInfo && (
-        countryInfo.channels.includes('mobilemoneyfranco') ||
-        countryInfo.channels.includes('mobilemoney') ||
-        countryInfo.channels.includes('mpesa') ||
-        countryInfo.channels.includes('mobilemoneyghana') ||
-        countryInfo.channels.includes('mobilemoneyuganda') ||
-        countryInfo.channels.includes('mobilemoneyzambia') ||
-        countryInfo.channels.includes('mobilemoneyrwanda') ||
-        countryInfo.channels.includes('mobilemoneytanzania') ||
-        countryInfo.channels.includes('eft') ||  // 🔥 For South Africa EFT via Flutterwave
-        countryInfo.channels.includes('ussd')    // 🔥 Also for SA and NG
-    )
-) {
-    handleFlutterwavePayment(amount, email, phone, name, country, 'registration');
-} else {
-    handlePaystackPayment(amount, email, name, phone, country, 'registration');
-}
+    // Perform conversion for Flutterwave payments if not NGN or if specific channels are needed
+    if (countryCode === "NG" || countryCode === "ZA") {
+        // For NG and ZA, offer options, conversion happens when Flutterwave is selected
+        showPaymentOptionsModal('registration', amountInNGN);
+    } else if (
+        countryInfo && (
+            countryInfo.channels.includes('mobilemoneyfranco') ||
+            countryInfo.channels.includes('mobilemoney') ||
+            countryInfo.channels.includes('mpesa') ||
+            countryInfo.channels.includes('mobilemoneyghana') ||
+            countryInfo.channels.includes('mobilemoneyuganda') ||
+            countryInfo.channels.includes('mobilemoneyzambia') ||
+            countryInfo.channels.includes('mobilemoneyrwanda') ||
+            countryInfo.channels.includes('mobilemoneytanzania') ||
+            countryInfo.channels.includes('eft') ||
+            countryInfo.channels.includes('ussd')
+        )
+    ) {
+        // For other African countries with specific Flutterwave channels, directly go to Flutterwave
+        const convertedAmount = await getConvertedAmount(amountInNGN, targetCurrencyCode);
+        handleFlutterwavePayment(convertedAmount, email, phone, name, country, 'registration', targetCurrencyCode);
+    } else {
+        // Default to Paystack for other cases or if Flutterwave channels aren't specifically listed
+        // Paystack usually handles its own FX for international cards, so we pass the NGN amount.
+        handlePaystackPayment(amountInNGN, email, name, phone, country, 'registration');
+    }
 }
 
 // --- Payment Handlers ---
 function handlePaystackPayment(amount, email, name, phone, country, paymentType) {
     const paystackAmount = amount * 100; // Paystack amount is in kobo (cents)
-    const countryCode = FLUTTERWAVE_COUNTRIES_MAP[country]?.code || 'NG'; // Default to NG if not found
+    // Paystack generally accepts NGN for local and international cards and handles the FX.
+    // The 'currency' field here indicates the currency you are charging IN (which is NGN from your setup).
+    const chargeCurrency = 'NGN'; // Always charge in NGN for Paystack as per your constants
 
     let reference = `ref_${Date.now()}`;
     if (paymentType === 'registration') {
@@ -327,7 +380,7 @@ function handlePaystackPayment(amount, email, name, phone, country, paymentType)
         email: email,
         amount: paystackAmount,
         ref: reference,
-        currency: FLUTTERWAVE_COUNTRIES_MAP[country]?.currency || 'NGN', // Use correct currency
+        currency: chargeCurrency, // Always NGN for Paystack
         metadata: {
             custom_fields: [
                 {
@@ -379,7 +432,8 @@ function handlePaystackPayment(amount, email, name, phone, country, paymentType)
     handler.openIframe();
 }
 
-function handleFlutterwavePayment(amount, email, phone, name, country, paymentType) {
+// Added targetCurrencyCode parameter to handleFlutterwavePayment
+function handleFlutterwavePayment(amount, email, phone, name, country, paymentType, targetCurrencyCode = 'NGN') {
     const countryInfo = FLUTTERWAVE_COUNTRIES_MAP[country];
     if (!countryInfo) {
         alert('Flutterwave payment not supported for your country yet. Please try another method if available.');
@@ -404,12 +458,11 @@ function handleFlutterwavePayment(amount, email, phone, name, country, paymentTy
         // This logic can be refined further if certain payment types ONLY allow specific channels
     }
 
-
     FlutterwaveCheckout({
         public_key: FLUTTERWAVE_PUBLIC_KEY,
         tx_ref: reference,
-        amount: amount,
-        currency: countryInfo.currency,
+        amount: amount, // THIS IS THE CONVERTED AMOUNT IN THE TARGET CURRENCY
+        currency: targetCurrencyCode, // THIS IS THE TARGET CURRENCY CODE
         country: countryInfo.code,
         payment_options: channelsToUse.join(','), // Comma separated string
         customer: {
@@ -451,12 +504,11 @@ function handlePaymentSuccess(paymentType, transactionReference) {
             pendingPaymentDetails.accessCode
         );
         
-        localStorage.setItem('activeAccessCodeSession', accessCode); // Set first
-currentUserData = user;
-localStorage.setItem('currentUserData', JSON.stringify(currentUserData));
+        localStorage.setItem('activeAccessCodeSession', pendingPaymentDetails.accessCode); // Set first
+        currentUserData = newUser; // Use newUser, not just 'user'
+        localStorage.setItem('currentUserData', JSON.stringify(currentUserData));
 
-const subscriptionStatus = isAccessValid(); // Mark session active
-
+        // const subscriptionStatus = isAccessValid(); // Mark session active - this is implicitly done by checkAccessCode
         hideRegistrationModal();
         hidePaymentOptionsModal();
         document.getElementById('mainContent').style.display = 'flex';
@@ -623,12 +675,12 @@ function closeVideoPlayer() {
     document.getElementById('videoPlaybackOverlay').style.display = 'none';
 }
 
-function initiateVideoPayment() {
+async function initiateVideoPayment() { // Make this async
     const buyVideoModal = document.getElementById('buyVideoModal');
     const videoId = buyVideoModal.dataset.videoId;
-    const videoPrice = parseFloat(buyVideoModal.dataset.videoPrice);
+    const videoPriceInNGN = parseFloat(buyVideoModal.dataset.videoPrice); // Base price in NGN
 
-    if (!videoId || isNaN(videoPrice) || !currentUserData) {
+    if (!videoId || isNaN(videoPriceInNGN) || !currentUserData) {
         alert('Error: Video details missing or user not logged in.');
         return;
     }
@@ -636,7 +688,7 @@ function initiateVideoPayment() {
     pendingPaymentDetails = {
         type: 'video',
         videoId: videoId,
-        amount: videoPrice,
+        amount: videoPriceInNGN, // Store base NGN amount
         email: currentUserData.email,
         name: currentUserData.name,
         phone: currentUserData.phone,
@@ -647,20 +699,19 @@ function initiateVideoPayment() {
 
     const countryInfo = FLUTTERWAVE_COUNTRIES_MAP[currentUserData.country];
     const countryCode = countryInfo ? countryInfo.code : null;
+    const targetCurrencyCode = countryInfo?.currency || 'NGN'; // Determine target currency
 
     if (countryCode === "NG") {
-        showPaymentOptionsModal('video', videoPrice);
+        // For NG, offer payment options. Conversion happens on Flutterwave selection.
+        showPaymentOptionsModal('video', videoPriceInNGN);
     } else if (countryInfo && (countryInfo.channels.includes('mobilemoneyfranco') || countryInfo.channels.includes('mobilemoney') || countryInfo.channels.includes('mpesa'))) {
-        
-    const baseAmount = pendingPaymentDetails.amount || 1500;
-    const countryInfo = FLUTTERWAVE_COUNTRIES_MAP[pendingPaymentDetails.country];
-    const currency = countryInfo?.currency || "NGN";
-    const rate = exchangeRates[currency] || 1;
-    const convertedAmount = Math.round(baseAmount * rate);
-
-    handleFlutterwavePayment(convertedAmount, currentUserData.email, currentUserData.phone, currentUserData.name, currentUserData.country, 'video');
+        // For other African countries with mobile money, directly go to Flutterwave
+        const convertedAmount = await getConvertedAmount(videoPriceInNGN, targetCurrencyCode);
+        handleFlutterwavePayment(convertedAmount, currentUserData.email, currentUserData.phone, currentUserData.name, currentUserData.country, 'video', targetCurrencyCode);
     } else {
-        handlePaystackPayment(videoPrice, currentUserData.email, currentUserData.name, currentUserData.phone, currentUserData.country, 'video');
+        // Default to Paystack for other cases or if Flutterwave channels aren't specifically listed
+        // Paystack usually handles its own FX for international cards, so we pass the NGN amount.
+        handlePaystackPayment(videoPriceInNGN, currentUserData.email, currentUserData.name, currentUserData.phone, currentUserData.country, 'video');
     }
 }
 
@@ -738,15 +789,17 @@ function showAllVideos() {
 }
 
 // --- Expired Subscription Renewal Logic ---
-function handleExpiredSubscriptionPayment() {
+async function handleExpiredSubscriptionPayment() { // Make this async
     if (!currentUserData) {
         alert('Error: No active user session found for renewal.');
         return;
     }
 
+    const amountInNGN = SUBSCRIPTION_RENEWAL_NGN; // Base amount in NGN
+
     pendingPaymentDetails = {
         type: 'renewal',
-        amount: SUBSCRIPTION_RENEWAL_NGN, // Use the new constant
+        amount: amountInNGN, // Store base NGN amount
         email: currentUserData.email,
         name: currentUserData.name,
         phone: currentUserData.phone,
@@ -758,20 +811,19 @@ function handleExpiredSubscriptionPayment() {
 
     const countryInfo = FLUTTERWAVE_COUNTRIES_MAP[currentUserData.country];
     const countryCode = countryInfo ? countryInfo.code : null;
+    const targetCurrencyCode = countryInfo?.currency || 'NGN'; // Determine target currency
 
     if (countryCode === "NG") {
-        showPaymentOptionsModal('renewal', SUBSCRIPTION_RENEWAL_NGN);
+        // For NG, offer payment options. Conversion happens on Flutterwave selection.
+        showPaymentOptionsModal('renewal', amountInNGN);
     } else if (countryInfo && (countryInfo.channels.includes('mobilemoneyfranco') || countryInfo.channels.includes('mobilemoney') || countryInfo.channels.includes('mpesa'))) {
-        
-    const baseAmount = SUBSCRIPTION_RENEWAL_NGN;
-    const countryInfo = FLUTTERWAVE_COUNTRIES_MAP[pendingPaymentDetails.country];
-    const currency = countryInfo?.currency || "NGN";
-    const rate = exchangeRates[currency] || 1;
-    const convertedAmount = Math.round(baseAmount * rate);
-
-    handleFlutterwavePayment(convertedAmount, currentUserData.email, currentUserData.phone, currentUserData.name, currentUserData.country, 'renewal');
+        // For other African countries with mobile money, directly go to Flutterwave
+        const convertedAmount = await getConvertedAmount(amountInNGN, targetCurrencyCode);
+        handleFlutterwavePayment(convertedAmount, currentUserData.email, currentUserData.phone, currentUserData.name, currentUserData.country, 'renewal', targetCurrencyCode);
     } else {
-        handlePaystackPayment(SUBSCRIPTION_RENEWAL_NGN, currentUserData.email, currentUserData.name, currentUserData.phone, currentUserData.country, 'renewal');
+        // Default to Paystack for other cases or if Flutterwave channels aren't specifically listed
+        // Paystack usually handles its own FX for international cards, so we pass the NGN amount.
+        handlePaystackPayment(amountInNGN, currentUserData.email, currentUserData.name, currentUserData.phone, currentUserData.country, 'renewal');
     }
 }
 
