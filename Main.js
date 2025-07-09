@@ -245,7 +245,7 @@ function initiateRegistrationPayment() {
 
     if (
     countryCode === "NG" || countryCode === "ZA"
-) {
+); {
     showPaymentOptionsModal('registration', amount);
 } else if (
     countryInfo && (
