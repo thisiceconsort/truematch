@@ -45,7 +45,7 @@ const FORMSPREE_MATCHMAKER_URL = 'https://formspree.io/f/your_formspree_hash'; /
 
 // Dummy Payment Gateway Keys (REPLACE WITH YOUR ACTUAL LIVE KEYS!)
 const PAYSTACK_PUBLIC_KEY = 'pk_test_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'; // Replace with your Paystack Public Key
-const FLUTTERWAVE_PUBLIC_KEY = 'FLWPUBK_TEST-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-X'; // Replace with your Flutterwave Public Key
+const FLUTTERWAVE_PUBLIC_KEY = 'FLWPUBK-55e5d0e754e7da9baacac6e2cb4e04ac-X'; // Replace with your Flutterwave Public Key
 
 // Flutterwave Country Channels Map (simplified)
 const FLUTTERWAVE_COUNTRIES_MAP = {
