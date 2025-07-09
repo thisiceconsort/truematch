@@ -1,6 +1,6 @@
 // Existing users - added subscriptionExpires for testing
 const hardcodedUsers = [
-    let simulatedUserDatabase = [    
+    
     {
         name: 'John Doe',
         email: 'john.doe@example.com',
