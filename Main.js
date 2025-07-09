@@ -243,27 +243,13 @@ function initiateRegistrationPayment() {
     const countryInfo = FLUTTERWAVE_COUNTRIES_MAP[country];
     const countryCode = countryInfo ? countryInfo.code : null;
 
-    if (
-    countryCode === "NG" || countryCode === "ZA"
-); {
-    showPaymentOptionsModal('registration', amount);
-} else if (
-    countryInfo && (
-        countryInfo.channels.includes('mobilemoneyfranco') ||
-        countryInfo.channels.includes('mobilemoney') ||
-        countryInfo.channels.includes('mpesa') ||
-        countryInfo.channels.includes('mobilemoneyghana') ||
-        countryInfo.channels.includes('mobilemoneyuganda') ||
-        countryInfo.channels.includes('mobilemoneyzambia') ||
-        countryInfo.channels.includes('mobilemoneyrwanda') ||
-        countryInfo.channels.includes('mobilemoneytanzania') ||
-        countryInfo.channels.includes('eft') ||  // 🔥 For South Africa EFT via Flutterwave
-        countryInfo.channels.includes('ussd')    // 🔥 Also for SA and NG
-    )
-) {
-    handleFlutterwavePayment(amount, email, phone, name, country, 'registration');
+    if (countryCode === "NG") {
+showPaymentOptionsModal('registration', amount);
+} else if (countryInfo && (countryInfo.channels.includes('mobilemoneyfranco') || countryInfo.channels.includes('mobilemoney') || countryInfo.channels.includes('mpesa'))) {
+handleFlutterwavePayment(amount, email, phone, name, country, 'registration');
 } else {
-    handlePaystackPayment(amount, email, name, phone, country, 'registration');
+handlePaystackPayment(amount, email, name, phone, country, 'registration');
+}
 }
 // --- Payment Handlers ---
 function handlePaystackPayment(amount, email, name, phone, country, paymentType) {
