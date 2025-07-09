@@ -8,27 +8,30 @@ const videosData = [
         id: 'v56',
         title: 'Hot Dog',
         description:" Travelled all the way to kenya to receive the almighty injection from the kenyan boy",
-        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/1717906b-a24d-4f36-90f4-c6ae3f5d4921/playlist.m3u8',
-        thumbnailUrl: 'https://vz-28eb4f33-914.b-cdn.net/1717906b-a24d-4f36-90f4-c6ae3f5d4921/thumbnail.jpg',
-        views: 1042,
+       thumbnailUrl: 'https://vz-28eb4f33-914.b-cdn.net/1717906b-a24d-4f36-90f4-c6ae3f5d4921/thumbnail.jpg',
+
+    videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/1717906b-a24d-4f36-90f4-c6ae3f5d4921/playlist.m3u8',
+                views: 1042,
         isLocked: false
     },
         {
         id: 'v55',
         title: 'Body Builder',
         description:"He applied for a private training with the gym instructor, and now he is instructing inside him",
-        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/6c61c035-8ce5-42fc-bbc9-5193d87d2b26/playlist.m3u8',
-        thumbnailUrl: 'https://vz-28eb4f33-914.b-cdn.net/6c61c035-8ce5-42fc-bbc9-5193d87d2b26/thumbnail.jpg',
-        views: 427,
+    thumbnailUrl: 'https://vz-28eb4f33-914.b-cdn.net/6c61c035-8ce5-42fc-bbc9-5193d87d2b26/thumbnail.jpg',
+
+            videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/6c61c035-8ce5-42fc-bbc9-5193d87d2b26/playlist.m3u8',
+                views: 427,
         isLocked: false
     },
         {
         id: 'v54',
         title: 'Sleeping Already?',
         description:"He travelled all the way to his friends house and he won't allow him sleep until he test his donut.",
-        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/1fff1432-f249-48bc-aab6-1a7e3fcaa453/playlist.m3u8',
         thumbnailUrl: 'https://vz-28eb4f33-914.b-cdn.net/1fff1432-f249-48bc-aab6-1a7e3fcaa453/thumbnail.jpg',
-        views: 738,
+
+            videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/1fff1432-f249-48bc-aab6-1a7e3fcaa453/playlist.m3u8',
+                views: 738,
         isLocked: false
     },
     
@@ -36,8 +39,10 @@ const videosData = [
         id: 'v53',
         title: 'Just The Tip',
         description:"After inviting him for a meal, he tries to advance and won.",
-        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/e526c651-ee64-4f7b-ab2a-5fee210c683e/playlist.m3u8',
         thumbnailUrl: 'https://vz-28eb4f33-914.b-cdn.net/e526c651-ee64-4f7b-ab2a-5fee210c683e/thumbnail.jpg',
+
+                videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/e526c651-ee64-4f7b-ab2a-5fee210c683e/playlist.m3u8',
+        
         views: 217,
         isLocked: false
     },   
@@ -46,8 +51,9 @@ const videosData = [
         id: 'v52',
         title: 'Busting',
         description:"Roomate so excited, called one of  his guy friend and ask for a video.",
-        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/11717b72-0ce4-4822-b3f9-2bc750aac628/playlist.m3u8',
         thumbnailUrl: 'https://vz-28eb4f33-914.b-cdn.net/11717b72-0ce4-4822-b3f9-2bc750aac628/thumbnail.jpg',
+               videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/11717b72-0ce4-4822-b3f9-2bc750aac628/playlist.m3u8',
+        
         views: 173,
         isLocked: false
     },   
