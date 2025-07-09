@@ -32,6 +32,25 @@ const videosData = [
         isLocked: false
     },
     
+            {
+        id: 'v53',
+        title: 'Just The Tip',
+        description:"After inviting him for a meal, he tries to advance and won.",
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/e526c651-ee64-4f7b-ab2a-5fee210c683e/playlist.m3u8',
+        thumbnailUrl: 'https://vz-28eb4f33-914.b-cdn.net/e526c651-ee64-4f7b-ab2a-5fee210c683e/thumbnail.jpg',
+        views: 217,
+        isLocked: false
+    },   
+          
+           {
+        id: 'v52',
+        title: 'Busting',
+        description:"Roomate so excited, called one of  his guy friend and ask for a video.",
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/11717b72-0ce4-4822-b3f9-2bc750aac628/playlist.m3u8',
+        thumbnailUrl: 'https://vz-28eb4f33-914.b-cdn.net/11717b72-0ce4-4822-b3f9-2bc750aac628/thumbnail.jpg',
+        views: 173,
+        isLocked: false
+    },   
     {
           
         id: "v51",
