@@ -37,14 +37,14 @@ let activeAccessCodeSession = null; // Stores the access code of the currently a
 // Constants for payment amounts
 const REGISTRATION_PAYMENT_NGN = 1500;
 const VIDEO_UNLOCK_BASE_NGN = 500; // Base, but specific video prices override
-const MATCHMAKER_PAYMENT_NGN = 1500;
+const MATCHMAKER_PAYMENT_NGN = 500;
 const SUBSCRIPTION_RENEWAL_NGN = 1100; // New constant for renewal
 
 // Formspree URL for Matchmaker form submission
-const FORMSPREE_MATCHMAKER_URL = 'https://formspree.io/f/your_formspree_hash'; // REPLACE WITH YOUR ACTUAL FORMSPREE URL
+const FORMSPREE_MATCHMAKER_URL = 'https://formspree.io/f/xovdrlby'; // REPLACE WITH YOUR ACTUAL FORMSPREE URL
 
 // Dummy Payment Gateway Keys (REPLACE WITH YOUR ACTUAL LIVE KEYS!)
-const PAYSTACK_PUBLIC_KEY = 'pk_test_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'; // Replace with your Paystack Public Key
+const PAYSTACK_PUBLIC_KEY = 'pk_live_6b671064b6a716c1ceffe82bf20a28c317a69584'; // Replace with your Paystack Public Key
 const FLUTTERWAVE_PUBLIC_KEY = 'FLWPUBK-55e5d0e754e7da9baacac6e2cb4e04ac-X'; // Replace with your Flutterwave Public Key
 
 // Flutterwave Country Channels Map (simplified)
