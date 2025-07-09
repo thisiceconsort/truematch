@@ -243,14 +243,15 @@ function initiateRegistrationPayment() {
     const countryInfo = FLUTTERWAVE_COUNTRIES_MAP[country];
     const countryCode = countryInfo ? countryInfo.code : null;
 
-if (countryCode === "NG") {
-showPaymentOptionsModal('registration', amount);
-} else if (countryInfo && (countryInfo.channels.includes('mobilemoneyfranco') || countryInfo.channels.includes('mobilemoney') || countryInfo.channels.includes('mpesa'))) {
-handleFlutterwavePayment(amount, email, phone, name, country, 'registration');
-} else {
-handlePaystackPayment(amount, email, name, phone, country, 'registration');
+    if (countryCode === "NG") {
+        showPaymentOptionsModal('registration', amount);
+    } else if (countryInfo && (countryInfo.channels.includes('mobilemoneyfranco') || countryInfo.channels.includes('mobilemoney') || countryInfo.channels.includes('mpesa'))) {
+        handleFlutterwavePayment(amount, email, phone, name, country, 'registration');
+    } else {
+        handlePaystackPayment(amount, email, name, phone, country, 'registration');
+    }
 }
-}
+
 // --- Payment Handlers ---
 function handlePaystackPayment(amount, email, name, phone, country, paymentType) {
     const paystackAmount = amount * 100; // Paystack amount is in kobo (cents)
