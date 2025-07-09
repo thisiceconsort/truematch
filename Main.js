@@ -1,3 +1,42 @@
+// --- Currency Conversion Logic ---
+const exchangeRates = {
+    NGN: 1,
+    GHS: 0.01,
+    KES: 0.09,
+    ZAR: 0.012,
+    TZS: 1.5,
+    UGX: 2.5,
+    ZMW: 0.047,
+    RWF: 1.6,
+    XAF: 1.0,
+    XOF: 1.0,
+    GMD: 0.93,
+    LRD: 1.14,
+    SLL: 14.5
+};
+
+const currencySymbols = {
+    NGN: '₦',
+    GHS: '₵',
+    KES: 'KSh',
+    ZAR: 'R',
+    TZS: 'TSh',
+    UGX: 'USh',
+    ZMW: 'ZK',
+    RWF: 'FRw',
+    XAF: 'CFA',
+    XOF: 'CFA',
+    GMD: 'D',
+    LRD: '$',
+    SLL: 'Le'
+};
+
+function currencySymbol(code) {
+    return currencySymbols[code] || code;
+}
+// --- End Currency Conversion ---
+
+
 // Global variables
 let videosPerPage = 6;
 let currentVideoIndex = 0;
@@ -612,7 +651,14 @@ function initiateVideoPayment() {
     if (countryCode === "NG") {
         showPaymentOptionsModal('video', videoPrice);
     } else if (countryInfo && (countryInfo.channels.includes('mobilemoneyfranco') || countryInfo.channels.includes('mobilemoney') || countryInfo.channels.includes('mpesa'))) {
-        handleFlutterwavePayment(videoPrice, currentUserData.email, currentUserData.phone, currentUserData.name, currentUserData.country, 'video');
+        
+    const baseAmount = pendingPaymentDetails.amount || 1500;
+    const countryInfo = FLUTTERWAVE_COUNTRIES_MAP[pendingPaymentDetails.country];
+    const currency = countryInfo?.currency || "NGN";
+    const rate = exchangeRates[currency] || 1;
+    const convertedAmount = Math.round(baseAmount * rate);
+
+    handleFlutterwavePayment(convertedAmount, currentUserData.email, currentUserData.phone, currentUserData.name, currentUserData.country, 'video');
     } else {
         handlePaystackPayment(videoPrice, currentUserData.email, currentUserData.name, currentUserData.phone, currentUserData.country, 'video');
     }
@@ -716,7 +762,14 @@ function handleExpiredSubscriptionPayment() {
     if (countryCode === "NG") {
         showPaymentOptionsModal('renewal', SUBSCRIPTION_RENEWAL_NGN);
     } else if (countryInfo && (countryInfo.channels.includes('mobilemoneyfranco') || countryInfo.channels.includes('mobilemoney') || countryInfo.channels.includes('mpesa'))) {
-        handleFlutterwavePayment(SUBSCRIPTION_RENEWAL_NGN, currentUserData.email, currentUserData.phone, currentUserData.name, currentUserData.country, 'renewal');
+        
+    const baseAmount = SUBSCRIPTION_RENEWAL_NGN;
+    const countryInfo = FLUTTERWAVE_COUNTRIES_MAP[pendingPaymentDetails.country];
+    const currency = countryInfo?.currency || "NGN";
+    const rate = exchangeRates[currency] || 1;
+    const convertedAmount = Math.round(baseAmount * rate);
+
+    handleFlutterwavePayment(convertedAmount, currentUserData.email, currentUserData.phone, currentUserData.name, currentUserData.country, 'renewal');
     } else {
         handlePaystackPayment(SUBSCRIPTION_RENEWAL_NGN, currentUserData.email, currentUserData.name, currentUserData.phone, currentUserData.country, 'renewal');
     }
