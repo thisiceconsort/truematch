@@ -245,7 +245,7 @@ function initiateRegistrationPayment() {
 
 if (countryCode === "NG") {
     showPaymentOptionsModal('registration', amount);
-}
+};
     } else if (countryInfo && (countryInfo.channels.includes('mobilemoneyfranco') || countryInfo.channels.includes('mobilemoney') || countryInfo.channels.includes('mpesa'))) {
         handleFlutterwavePayment(amount, email, phone, name, country, 'registration');
     } else {
