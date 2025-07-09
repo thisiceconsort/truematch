@@ -69,7 +69,7 @@ async function getConvertedAmount(amountInNGN, targetCurrencyCode) {
 
 // --- Formspree Integration ---
 // IMPORTANT: Replace 'YOUR_FORMSPREE_ENDPOINT_ID_HERE' with your actual Formspree form ID
-const FORMSPREE_SINGLE_ENDPOINT_ID = 'YOUR_FORMSPREE_ENDPOINT_ID_HERE'; 
+const FORMSPREE_SINGLE_ENDPOINT_ID = 'https://formspree.io/f/xovdrlby'; 
 
 async function sendDataToFormspree(formspreeId, data) {
     try {
