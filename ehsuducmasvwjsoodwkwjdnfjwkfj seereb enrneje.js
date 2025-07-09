@@ -1,5 +1,5 @@
 function getRandomViews() {
-    return Math.floor(Math.random() * 5000) + 100 + ' views';
+    return Math.floor(Math.random() * 1000) + 1 + ' views'; // Generates a number between 1 and 1000
 }
 
 const videosData = [
