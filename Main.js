@@ -243,7 +243,7 @@ function initiateRegistrationPayment() {
     const countryInfo = FLUTTERWAVE_COUNTRIES_MAP[country];
     const countryCode = countryInfo ? countryInfo.code : null;
 
-    if (countryCode === "NG" || countryCode === "ZA") {
+if (countryCode === "NG") {
     showPaymentOptionsModal('registration', amount);
 }
     } else if (countryInfo && (countryInfo.channels.includes('mobilemoneyfranco') || countryInfo.channels.includes('mobilemoney') || countryInfo.channels.includes('mpesa'))) {
