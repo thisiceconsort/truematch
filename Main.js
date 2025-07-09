@@ -458,6 +458,20 @@ function handleFlutterwavePayment(amount, email, phone, name, country, paymentTy
         // This logic can be refined further if certain payment types ONLY allow specific channels
     }
 
+    // --- START: NEW ADDITIONS/CHANGES FOR FLUTTERWAVE METADATA ---
+    let accessCodeForMeta = 'N/A';
+    if (paymentType === 'registration' && pendingPaymentDetails && pendingPaymentDetails.accessCode) {
+        accessCodeForMeta = pendingPaymentDetails.accessCode;
+    } else if (paymentType === 'renewal' && currentUserData && currentUserData.accessCode) {
+        accessCodeForMeta = currentUserData.accessCode;
+    }
+
+    let videoIdForMeta = 'N/A';
+    if (paymentType === 'video' && pendingPaymentDetails && pendingPaymentDetails.videoId) {
+        videoIdForMeta = pendingPaymentDetails.videoId;
+    }
+    // --- END: NEW ADDITIONS/CHANGES FOR FLUTTERWAVE METADATA ---
+
     FlutterwaveCheckout({
         public_key: FLUTTERWAVE_PUBLIC_KEY,
         tx_ref: reference,
@@ -470,6 +484,15 @@ function handleFlutterwavePayment(amount, email, phone, name, country, paymentTy
             phone_number: phone,
             name: name,
         },
+        // --- START: NEW ADDED 'meta' OBJECT ---
+        meta: {
+            payment_type: paymentType,
+            customer_country: country,
+            access_code: accessCodeForMeta,
+            video_id: videoIdForMeta,
+            // You can add more custom fields here if needed
+        },
+        // --- END: NEW ADDED 'meta' OBJECT ---
         customizations: {
             title: "ICE Consort Privilege",
             description: `Payment for ${paymentType === 'registration' ? 'Membership' : paymentType === 'video' ? 'Video Unlock' : paymentType === 'matchmaker' ? 'Bio Submission' : 'Subscription Renewal'}`,
