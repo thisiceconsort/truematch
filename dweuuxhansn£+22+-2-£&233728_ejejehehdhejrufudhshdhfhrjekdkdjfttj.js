@@ -1,5 +1,14 @@
 // Existing users - added subscriptionExpires for testing
 const hardcodedUsers = [
+    {
+        name: 'Marvin Hush',
+        email: 'marvinhush@yahoo.com',
+        phone: '+2348160791600',
+        country: 'Nigeria',
+        accessCode: '1983ABC',
+        unlockedVideos: [],
+        subscriptionExpires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString()
+    },
     
     {
         name: 'John Doe',
