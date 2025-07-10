@@ -3,8 +3,25 @@ function getRandomViews() {
 }
 
 const videosData = [
-          
-       
+
+    {
+        id: 'v58',
+        title: 'Home Alone',
+        description:"After Paying his transport to come to his house, he didn't come, so he couldn't wait any longer, let it all out.",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/1ef12b7d-8a5c-4400-a8e6-27e1603e002a/thumbnail.jpg',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/1ef12b7d-8a5c-4400-a8e6-27e1603e002a/playlist.m3u8',
+        locked: false,
+        views: '1817 views'
+    },
+       {
+        id: 'v57',
+        title: 'Bush Lashing',
+        description:"Felt Milky on the way to the farm and he lashed his friend on the way.",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/99240da4-952a-4eaf-aebe-2e3b48f73161/thumbnail.jpg',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/99240da4-952a-4eaf-aebe-2e3b48f73161/playlist.m3u8',
+        locked: false,
+        views: '318 views'
+    },
     {
         id: 'v56',
         title: 'Hot Dog',
