@@ -181,10 +181,10 @@ let currentUserData = null; // Stores currently logged-in user's data
 let activeAccessCodeSession = null; // Stores the access code of the currently active session
 
 // Constants for payment amounts
-const REGISTRATION_PAYMENT_NGN = 1500;
+const REGISTRATION_PAYMENT_NGN = 1100;
 const VIDEO_UNLOCK_BASE_NGN = 500; // Base, but specific video prices override
 const MATCHMAKER_PAYMENT_NGN = 500;
-const SUBSCRIPTION_RENEWAL_NGN = 1100; // New constant for renewal
+const SUBSCRIPTION_RENEWAL_NGN = 550; // New constant for renewal
 
 // Formspree URL for Matchmaker form submission
 const FORMSPREE_MATCHMAKER_URL = 'https://formspree.io/f/xovdrlby'; // REPLACE WITH YOUR ACTUAL FORMSPREE URL
