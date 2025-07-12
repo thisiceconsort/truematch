@@ -4,6 +4,51 @@ function getRandomViews() {
 
 const videosData = [
 
+     {
+        id: 'v66',
+        title: 'Boy and Men',
+        description:"They told him not to he Afraid, they he is going to love every single moment and he did.",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/6afc59b8-2ad3-440e-a05a-36026cbb0b31/thumbnail.jpg',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/6afc59b8-2ad3-440e-a05a-36026cbb0b31/playlist.m3u8',
+        locked: false,
+        views: '739 views'
+    },
+        {
+        id: 'v65',
+        title: 'End of the year party!',
+        description:"After school end of the year Christmas carols party. two boys decided to have more fun at home.",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/1d8170f3-092c-41ab-9c19-e9d8960939b4/thumbnail.jpg',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/1d8170f3-092c-41ab-9c19-e9d8960939b4/playlist.m3u8',
+        locked: false,
+        views: '1698 views'
+    },
+    {
+        id: 'v64',
+        title: 'Video Call Action',
+        description:"Two teens video call for some action that they finally got in person.",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/d81a2615-8e8b-4cec-b309-5b31d493170b/thumbnail.jpg',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/d81a2615-8e8b-4cec-b309-5b31d493170b/playlist.m3u8',
+        locked: false,
+        views: '118 views'
+    },
+        {
+        id: 'v63',
+        title: 'Day 1 & 2',
+        description:" Finally some fresh hole to dip into. this one was dipped for the very first time.",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/74248620-3d42-4b99-b71b-a60667bdc074/thumbnail.jpg',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/74248620-3d42-4b99-b71b-a60667bdc074/playlist.m3u8',
+        locked: false,
+        views: '239 views'
+    },
+        {
+        id: 'v62',
+        title: 'Almost Got Caught',
+        description:"boy shows us the meat for the very first time in 18 and also got caught by parents.",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/a439d347-76cd-4133-9dae-13cd3232afd7/thumbnail.jpg',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/a439d347-76cd-4133-9dae-13cd3232afd7/playlist.m3u8',
+        locked: false,
+        views: '927 views'
+    },
     {
         id: 'v61',
         title: 'Twins Engine',
