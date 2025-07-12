@@ -4,6 +4,15 @@ function getRandomViews() {
 
 const videosData = [
 
+         {
+        id: 'v67',
+        title: 'Passion',
+        description:"Two boys shows us what a passionate love is, can we ever beat this?",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/ec3990ee-922a-449d-9442-e518057532ce/thumbnail.jpg',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/ec3990ee-922a-449d-9442-e518057532ce/playlist.m3u8',
+        locked: false,
+        views: '119 views'
+    },
      {
         id: 'v66',
         title: 'Boy and Men',
