@@ -26,7 +26,7 @@ const hardcodedUsers = [
         country: 'Nigeria',
         accessCode: '3214JOH',
         unlockedVideos: [],
-        subscriptionExpires: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString()
+        subscriptionExpires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString()
     },
     {
         name: 'Sam Esom',
