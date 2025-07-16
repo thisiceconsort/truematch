@@ -4,6 +4,24 @@ function getRandomViews() {
 
 const videosData = [
 
+        {
+        id: 'v70',
+        title: 'Sell The Skin(part 1)',
+        description:"after offering him a good sum of money in return flr the soft straight skin, his girlfriend at home, while he receives.",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/08fc22e7-51a1-4987-b75f-f1ccb6252762/thumbnail.jpg',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/08fc22e7-51a1-4987-b75f-f1ccb6252762/playlist.m3u8',
+        locked: false,
+        views: '133 views'
+    },
+        {
+        id: 'v69',
+        title: 'Sell The Skin(part 2)',
+        description:"after offering him a good sum of money in return flr the soft straight skin, his girlfriend at home, while he receives.",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/557e3fbf-b9ea-4300-a537-610e79ef2f38/thumbnail.jpg',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/557e3fbf-b9ea-4300-a537-610e79ef2f38/playlist.m3u8',
+        locked: false,
+        views: '158 views'
+    },
     {
         id: 'v68',
         title: 'Village Boys',
