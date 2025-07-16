@@ -3,7 +3,15 @@ function getRandomViews() {
 }
 
 const videosData = [
-
+{
+        id: 'v71',
+        title: 'Uncompleted Building ',
+        description:"Saw the 18 year old boy on the street and took him to the uncompleted building to warm him up with some milk .",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/9ce91353-1a97-4a14-bedb-1fbddc469f8c/thumbnail.jpg',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/9ce91353-1a97-4a14-bedb-1fbddc469f8c/playlist.m3u8',
+        locked: false,
+        views: '94 views'
+    },
         {
         id: 'v70',
         title: 'Sell The Skin(part 1)',
