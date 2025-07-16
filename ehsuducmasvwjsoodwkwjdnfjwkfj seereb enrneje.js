@@ -4,7 +4,15 @@ function getRandomViews() {
 
 const videosData = [
 
-    
+    {
+        id: 'v68',
+        title: 'Village Boys',
+        description:"After working at this father's farm all day. je saw his friend and asked him to come with him to his house.",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/f38a183c-0a85-402e-896c-8e343dd06c4f/thumbnail.jpg',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/f38a183c-0a85-402e-896c-8e343dd06c4f/playlist.m3u8',
+        locked: false,
+        views: '228 views'
+    },
              {
         id: 'v67',
         title: 'Unwarpping the boy',
