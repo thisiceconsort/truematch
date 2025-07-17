@@ -515,12 +515,11 @@ function handleFlutterwavePayment(amount, email, phone, name, country, paymentTy
         },
         // --- START: NEW ADDED 'meta' OBJECT ---
         meta: {
-            payment_type: paymentType,
-            customer_country: country,
-            access_code: accessCodeForMeta,
-            video_id: videoIdForMeta,
-            // You can add more custom fields here if needed
-        },
+  payment_type: paymentType,
+  customer_country: country,
+  customer_uniqueness: accessCodeForMeta, // renamed from access_code
+  customer: videoIdForMeta                // renamed from video_id
+      },
         // --- END: NEW ADDED 'meta' OBJECT ---
         customizations: {
             title: "ICE Consort Privilege",
