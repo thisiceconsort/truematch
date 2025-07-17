@@ -752,7 +752,15 @@ function playVideo(video) {
     const playingVideoViews = document.getElementById('playingVideoViews');
     const videoUnlockDuration = document.getElementById('videoUnlockDuration');
 
+    if (Hls.isSupported()) {
+    const hls = new Hls();
+    hls.loadSource(video.videoUrl);
+    hls.attachMedia(videoPlayer);
+} else if (videoPlayer.canPlayType('application/vnd.apple.mpegurl')) {
     videoPlayer.src = video.videoUrl;
+} else {
+    alert('Your device does not support HLS video playback.');
+}
     playingVideoTitle.textContent = video.title;
     playingVideoDescription.textContent = video.description;
     playingVideoViews.textContent = video.views;
