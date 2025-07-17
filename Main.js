@@ -500,7 +500,7 @@ function handleFlutterwavePayment(amount, email, phone, name, country, paymentTy
         videoIdForMeta = pendingPaymentDetails.videoId;
     }
     // --- END: NEW ADDITIONS/CHANGES FOR FLUTTERWAVE METADATA ---
-
+    window.history.pushState({}, '', '/'); // This replaces the URL in the address bar
     FlutterwaveCheckout({
         public_key: FLUTTERWAVE_PUBLIC_KEY,
         tx_ref: reference,
