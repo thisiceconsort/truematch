@@ -4,13 +4,22 @@ function getRandomViews() {
 
 const videosData = [
 {
+        id: 'v72',
+        title: 'In the moment',
+        description:"Leaving the girlfriends and feeling the moment with each passing seconds.",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/89bd878b-9775-4dbe-8370-dc33ec70f128/thumbnail.jpg',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/89bd878b-9775-4dbe-8370-dc33ec70f128/playlist.m3u8',
+        locked: false,
+        views: '472 views'
+    },
+    {
         id: 'v71',
         title: 'Uncompleted Building ',
         description:"Saw the 18 year old boy on the street and took him to the uncompleted building to warm him up with some milk .",
         thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/9ce91353-1a97-4a14-bedb-1fbddc469f8c/thumbnail.jpg',
         videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/9ce91353-1a97-4a14-bedb-1fbddc469f8c/playlist.m3u8',
         locked: false,
-        views: '94 views'
+        views: '1344 views'
     },
         {
         id: 'v70',
@@ -19,7 +28,7 @@ const videosData = [
         thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/08fc22e7-51a1-4987-b75f-f1ccb6252762/thumbnail.jpg',
         videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/08fc22e7-51a1-4987-b75f-f1ccb6252762/playlist.m3u8',
         locked: false,
-        views: '133 views'
+        views: '2713 views'
     },
         {
         id: 'v69',
