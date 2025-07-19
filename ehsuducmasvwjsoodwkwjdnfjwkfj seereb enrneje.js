@@ -4,6 +4,15 @@ function getRandomViews() {
 
 const videosData = [
 {
+        id: 'v73',
+        title: 'Feeling Romantic',
+        description:"2 African guys have fun at home after letting their girlfriends go home..",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/aad6f059-2ddc-4ded-bcfa-3ac8c4fc307e/thumbnail.jpg',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/aad6f059-2ddc-4ded-bcfa-3ac8c4fc307e/playlist.m3u8',
+        locked: false,
+        views: '411 views'
+    },
+    {
         id: 'v72',
         title: 'In the moment',
         description:"Leaving the girlfriends and feeling the moment with each passing seconds.",
