@@ -4,6 +4,24 @@ function getRandomViews() {
 
 const videosData = [
 {
+        id: 'v75',
+        title: 'My friend',
+        description:"I mean my friend with creamy hard benefits.",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/4fac72a0-ac5a-4154-a769-651dff18ea48/thumbnail.jpg',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/4fac72a0-ac5a-4154-a769-651dff18ea48/playlist.m3u8',
+        locked: false,
+        views: '389 views'
+    },
+    {
+        id: 'v74',
+        title: 'Spooky the straight',
+        description:"Have you ever seen two straight boys playing sword fight.",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/9586b639-7c17-424c-b3f2-84669b2822c8/thumbnail.jpg',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/9586b639-7c17-424c-b3f2-84669b2822c8/playlist.m3u8',
+        locked: false,
+        views: '163 views'
+    },
+    {
         id: 'v73',
         title: 'Feeling Romantic',
         description:"2 African guys have fun at home after letting their girlfriends go home..",
