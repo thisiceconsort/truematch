@@ -3,7 +3,36 @@ function getRandomViews() {
 }
 
 const videosData = [
-{
+
+     
+           {
+        id: 'v77',
+        title: 'The good life',
+        description:"Young boy experience true happiness for the first.",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/550255dc-a81c-4b10-8178-ea08cf32cdeb/thumbnail.jpg',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/550255dc-a81c-4b10-8178-ea08cf32cdeb/playlist.m3u8',
+        locked: false,
+        views: '3283 views'
+    },
+    {
+        id: 'v77',
+        title: 'King of position',
+        description:"The idwas just kept coming and he delivered like a pro..",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/6b4f2945-0b00-4e3d-9632-c4d50e3d92e2/thumbnail.jpg',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/6b4f2945-0b00-4e3d-9632-c4d50e3d92e2/playlist.m3u8',
+        locked: false,
+        views: '263 views'
+    },
+    {
+        id: 'v76',
+        title: 'Give it to him',
+        description:"Skinny by enjoy a good message from his kind neighbour.",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/3ea3f186-639c-40cf-820b-37381e9b072d/thumbnail.jpg',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/3ea3f186-639c-40cf-820b-37381e9b072d/playlist.m3u8',
+        locked: false,
+        views: '129 views'
+    },
+    {
         id: 'v75',
         title: 'My friend',
         description:"I mean my friend with creamy hard benefits.",
