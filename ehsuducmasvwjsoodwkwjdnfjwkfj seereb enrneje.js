@@ -5,7 +5,24 @@ function getRandomViews() {
 const videosData = [
 
      
-           {
+              {
+        id: 'v79',
+        title: 'Let him ride the horse',
+        description:"Young guy like riding his neighbours horse every night before he goes to bed.",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/9739cdf1-fa91-4887-8865-9b5283be6a1e/thumbnail.jpg',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/9739cdf1-fa91-4887-8865-9b5283be6a1e/playlist.m3u8',
+        locked: false,
+        views: '192 views'
+    },    {
+        id: 'v78',
+        title: 'My friend 2',
+        description:"I mean my friend with creamy hard benefits.",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/77a266bd-8be7-421d-85cc-eb221aac3f67/thumbnail.jpg',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/77a266bd-8be7-421d-85cc-eb221aac3f67/playlist.m3u8',
+        locked: false,
+        views: '272 views'
+    },
+    {
         id: 'v77',
         title: 'The good life',
         description:"Young boy experience true happiness for the first.",
