@@ -1,280 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>ICE Consort Privilege | Club & Membership</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="icpb.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Our New Site!</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 90%;
+        }
+
+        h1 {
+            color: #0056b3;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .button {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <div class="logout-icon" id="logoutIcon" onclick="logoutUser()" style="display: none;">
-        <i class="fas fa-sign-out-alt"></i>
+    <div class="container">
+        <h1>Outdated!</h1>
+        <p>Click the button below to visit our newer version.</p>
+        <a href="https://milaaje.org/iceconsort" class="button">Go to New Site</a>
     </div>
-
-    <div class="modal-overlay" id="accessCodeModal">
-        <div class="modal-content">
-            <h2>Enter Access Code</h2>
-            <p class="message" id="accessMessage"></p>
-            <label for="accessCode">Code (4 digits + 3 letters)</label>
-            <input type="text" id="accessCode" maxlength="7" placeholder="e.g., 1234ABC" />
-            <button onclick="checkAccessCode()">Unlock Content</button>
-            <a href="#" class="forgot-code-link" onclick="showRegistrationModal(); return false;"><u>Don't have a code? Create an account to become a member.</u></a>
-        </div>
-    </div>
-
-    <div class="modal-overlay" id="registrationModal" style="display: none;">
-        <div class="modal-content">
-            <button class="close-btn" onclick="hideRegistrationModal()">✕</button>
-            <br><br><br>
-            <h2>Become a Member</h2>
-            <p class="message" id="registrationMessage"></p>
-            <form id="registrationForm">
-                <label for="regName">Full Name</label>
-                <input type="text" id="regName" required />
-                <label for="regEmail">Email</label>
-                <input type="email" id="regEmail" required />
-                <label for="regPhone">Phone Number</label>
-                <input type="tel" id="regPhone" required />
-                <label for="regCountry">Country</label>
-                <select id="regCountry" required>
-                    <option value="">Select your country</option>
-                </select>
-                <label for="regAge">Are you 18+?</label>
-                <select id="regAge" required>
-                    <option value="">Select</option>
-                    <option value="yes">Yes, I am 18 or older</option>
-                    <option value="no">No, I am under 18</option>
-                </select>
-                <label for="regPassword">Create 4-Digit Code & 3 Letters</label>
-                <div class="password-input-container">
-                    <input type="password" id="regPassword" maxlength="7" required placeholder="e.g., 1234ABC" />
-                    <span class="toggle-password" onclick="togglePasswordVisibility('regPassword', this)"><i class="fa fa-eye"></i></span>
-                </div>
-                <label for="confirmPassword">Confirm Code</label>
-                <div class="password-input-container">
-                    <input type="password" id="confirmPassword" maxlength="7" required />
-                    <span class="toggle-password" onclick="togglePasswordVisibility('confirmPassword', this)"><i class="fa fa-eye"></i></span>
-                </div>
-                <button type="button" onclick="initiateRegistrationPayment()">Pay ₦1,100 NGN to Join</button>
-            </form>
-        </div>
-    </div>
-
-    <div class="modal-overlay" id="paymentOptionsModal" style="display: none;">
-        <div class="modal-content">
-            <button class="close-btn" onclick="hidePaymentOptionsModal()">✕</button>
-            <br><br><br>
-            <h2 id="paymentOptionsTitle">Choose Payment Method</h2>
-            <p id="paymentOptionsDescription">Select how you'd like to pay <strong id="paymentAmount"></strong></p>
-            <div class="payment-option-buttons">
-                <button id="payWithPaystackBtn">Pay with Card / Bank Transfer</button>
-                <button id="payWithFlutterwaveMMBtn">Pay with Mobile Money</button>
-            </div>
-            <p style="margin-top:20px; font-size:0.8rem; color:#A0A0B0;">*Paystack offers Card, Bank, Transfer. Flutterwave offers Mobile Money, EFT & others.</p>
-        </div>
-    </div>
-
-    <div class="modal-overlay" id="expiredSubscriptionModal" style="display: none;">
-        <div class="modal-content">
-            <button class="close-btn" onclick="hideExpiredSubscriptionModal()">✕</button>
-            <br><br><br>
-            <h2>Your Subscription Has Expired!</h2>
-            <p>To continue enjoying exclusive content, please renew your membership.</p>
-            <p>Click <a href="#" class="highlight-link" onclick="handleExpiredSubscriptionPayment(); return false;">here</a> to continue your membership.</p>
-            <p style="font-size:0.8rem; color:#FFC107;">The renewal fee is ₦550 NGN.</p>
-        </div>
-    </div>
-
-    <div class="video-playback-overlay" id="videoPlaybackOverlay" style="display: none;">
-        <div class="video-player-container">
-            <video id="videoPlayer" controls playsinline></video>
-            <button class="close-video-btn" onclick="closeVideoPlayer()">✕</button>
-        </div>
-        <div class="video-details">
-            <h3 id="playingVideoTitle"></h3>
-            <p id="playingVideoDescription"></p>
-            <span class="views-count" id="playingVideoViews"></span>
-            <p id="videoUnlockDuration" style="font-size:0.85rem; color:#FFC107; margin-top:10px;"></p>
-        </div>
-    </div>
-
-    <div class="buy-video-modal" id="buyVideoModal" style="display: none;">
-        <div class="modal-content">
-            <button class="close-btn" onclick="hideBuyVideoModal()">✕</button>
-            <br><br>
-            <h2>Video Locked</h2>
-            <p>This video is exclusive content. Please pay <strong>₦<span id="buyVideoPrice"></span> NGN</strong> to unlock it.</p>
-            <p style="font-size:0.8rem; color:#FFC107;">Once unlocked, the video will be accessible for one month. Clearing your browser data will relock the video, requiring re-purchase.</p>
-            <button onclick="initiateVideoPayment()">Unlock Video</button>
-            <a href="#" class="forgot-code-link" onclick="hideBuyVideoModal(); return false;"><u>Maybe later</u></a>
-        </div>
-    </div>
-
-    <div class="sell-video-modal" id="sellVideoModal" style="display: none;">
-        <div class="modal-content">
-            <button class="close-btn" onclick="hideSellVideoModal()">✕</button>
-            <br><br><br>
-            <h2>Sell Your Videos & Make Money!</h2>
-            <p>Do you have engaging and high-quality Gay content? Turn your creativity into cash!</p>
-            <ul>
-                <li><i class="fas fa-check-circle"></i> Create a **really good 3-minute video**. Quality matters!</li>
-                <li><i class="fas fa-dollar-sign"></i> You can sell it for up to **2000 Naira per view!**</li>
-                <li><i class="fas fa-upload"></i> We'll handle hosting.</li>
-            </ul>
-            <p>Ready to get started or have questions?</p>
-            <div class="contact-info">
-                <p>Send your video file directly or contact us:</p>
-                <a href="https://wa.me/2348027350284" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp: +2348027350284</a>
-                <a href="mailto:iceconsort@gmail.com"><i class="fas fa-envelope"></i> Email: iceconsort@gmail.com</a>
-                <a href="mailto:team.milaaje@gmail.com"><i class="fas fa-envelope"></i> Team Email: team.milaaje@gmail.com</a>
-            </div>
-            <button onclick="hideSellVideoModal()">Got It!</button>
-        </div>
-    </div>
-
-    <div class="modal-overlay match-display-modal" id="matchDisplayModal" style="display: none;">
-        <div class="modal-content">
-            <button class="close-btn" onclick="hideMatchDisplayModal()">✕</button>
-            <br><br><br>
-            <h2>Featured Profiles</h2>
-            <div id="matchProfilesContainer">
-                </div>
-            <div class="load-more-button-container">
-                <button class="load-more-button" id="loadMoreMatchesBtn" onclick="loadMoreMatchProfiles()">Load More Profiles</button>
-            </div>
-        </div>
-        <button class="floating-plus-button" id="openMatchmakerFormBtn" onclick="showMatchmakerFormViaPlus()" style="display: none;">
-            <i class="fas fa-plus"></i>
-        </button>
-    </div>
-
-    <div class="modal-overlay" id="matchmakerModal" style="display: none;">
-        <div class="modal-content">
-            <button class="close-btn" onclick="hideMatchmakerModal()">Cancel</button>
-            <br><br><br>
-            <h2>Share Your Bio to Find a Match!</h2>
-            <p class="message" id="matchmakerMessage"></p>
-            <form id="matchmakerForm">
-                <div class="form-group">
-                    <label for="matchRealName">Real Name</label>
-                    <input type="text" id="matchRealName" required />
-                </div>
-                <div class="form-group">
-                    <label for="matchAge">Age</label>
-                    <input type="number" id="matchAge" min="18" max="99" required />
-                </div>
-                <div class="form-group">
-                    <label for="matchrole">Role</label>
-                    <select id="matchrole" required>
-                        <option value="">Select...</option>
-                        <option value="top">Top</option>
-                        <option value="vers">Versatile</option>
-                        <option value="btm">Bottom</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="matchCountry">Country</label>
-                    <select id="matchCountry" required>
-                        <option value="">Select your country</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="matchCity">City</label>
-                    <input type="text" id="matchCity" required />
-                </div>
-                <div class="form-group">
-                    <label for="matchPhone">Phone Number</label>
-                    <input type="tel" id="matchPhone" required />
-                </div>
-                <div class="form-group">
-                    <label for="matchEmail">Email</label>
-                    <input type="email" id="matchEmail" required />
-                </div>
-                <p class="warning-text">
-                    <strong>Warning:</strong> This information will be shared with people in your proximity or close. Please ensure you are comfortable with this before proceeding.
-                </p>
-                <button type="button" onclick="initiateMatchmakerPayment()">Pay ₦1,500 NGN to Add Your Bio</button>
-            </form>
-        </div>
-    </div>
-
-    <div class="terms-modal" id="termsModal" style="display: none;">
-        <div class="modal-content">
-            <button class="close-btn" onclick="hideTermsModal()">✕</button>
-            <br><br><br>
-<h2>Terms & Conditions</h2>
-        <p>Welcome to ICE Consort Privilege. By accessing or using our services, you agree to comply with and be bound by the following terms and conditions. Please review them carefully.</p>
-        <h3>1. Content Ownership:</h3>
-        <p>While some content on this platform is owned by Mìlàájé, a significant portion is provided by third-party creators. We do not claim ownership of all videos. You acknowledge and agree that your use of the platform is subject to the content policies set forth by the respective content owners.</p>
-        <h3>2. Content Usage & Sharing:</h3>
-        <p>All content available on this website is for your personal viewing only. You are strictly prohibited from downloading, reproducing, distributing, modifying, displaying, performing, or otherwise sharing any content outside of this website. Unauthorized sharing or distribution will result in immediate termination of your membership and may lead to legal action.</p>
-        <h3>3. User Responsibilities:</h3>
-        <ul>
-            <li>You must be 18 years or older to access and use this platform.</li>
-            <li>You are responsible for maintaining the confidentiality of your access code/password.</li>
-            <li>You agree not to share your access code or password with any third party. Sharing your credentials may lead to account suspension without refund.</li>
-            <li>You agree not to use the platform for any illegal or unauthorized purpose.</li>
-        </ul>
-        <h3>4. Membership & Access:</h3>
-        <p>Becoming a member of ICE Consort Privilege unlocks a world of exclusive content and experiences, designed to enrich your journey with us. To gain access to our premium offerings, a **one-time membership activation fee of NGN 1,500 (One Thousand Five Hundred Naira only)** is required. This initial payment secures your place within our esteemed community and sets the foundation for continuous engagement.</p>
-        <p>Following the activation, your membership will be maintained through convenient **monthly payments of NGN 1,100 (One Thousand One Hundred Naira only)**. These recurring payments ensure uninterrupted access to all member-exclusive content, features, and benefits, allowing you to fully immerse yourself in the ICE Consort Privilege experience without interruption. We strive to provide exceptional value with every contribution, continually expanding our library and services to enhance your enjoyment.</p>
-        <p>Please note that all membership fees, both the initial activation and subsequent monthly payments, are subject to the terms outlined in our "Payment & Refunds" section. We encourage you to review these details carefully to understand your financial commitments and our refund policy.</p>
-        <h3>5. Purchased Video Access:</h3>
-        <p>Videos purchased provide access for a period of **one month** from the date of purchase. Access is tied to your browser data (local storage). If you clear your browser's local storage, the video will relock, and you will need to repurchase it to regain access.</p>
-        <h3>6. Matchmaker Service:</h3>
-        <p>By opting into the Matchmaker service, you consent to the collection and sharing of the personal information you provide (Real Name, Age, Role, City, Email, Phone Number, Country) with other users within your proximity or close, for the purpose of facilitating matches. Mìlàájé is not responsible for interactions or outcomes resulting from the Matchmaker service.</p>
-        <h3>7. Payment & Refunds:</h3>
-        <p>All payments made for membership (including the initial activation fee and monthly subscriptions), video unlocks, or Matchmaker services are generally non-refundable. We urge you to carefully consider your selections and understand the associated terms before finalizing any purchase or subscription. Our commitment is to transparency, ensuring you are fully informed prior to any financial commitment on the ICE Consort Privilege platform.</p>
-        <h3>8. Disclaimers:</h3>
-        <p>The platform is provided "as is" without any warranties, express or implied. Mìlàájé does not guarantee uninterrupted or error-free access to the platform. We reserve the right to modify or discontinue services at any time without notice.</p>
-        <h3>9. Changes to Terms:</h3>
-        <p>Mìlàájé reserves the right to update or modify these terms and conditions at any time. Your continued use of the platform after any such changes constitutes your acceptance of the new terms.</p>
-
-            <button onclick="hideTermsModal()">Close</button>
-        </div>
-    </div>
-
-    <div class="page-content" id="mainContent" style="display: none;">
-        <div class="user-info-section">
-            <h3>Welcome, <span id="displayUserName">Member</span>!</h3>
-            <p><strong>Country:</strong> <span id="displayUserCountry"></span></p>
-            <p><strong>Email:</strong> <span id="displayUserEmail"></span></p>
-            <p><strong>Phone:</strong> <span id="displayUserPhone"></span></p>
-            <div class="action-buttons">
-                <button class="sell-video-btn" onclick="showSellVideoModal()">Sell Your Video & Make Money!</button>
-                <button class="sell-video-btn" style="background: linear-gradient(45deg, #00C4FF, #39FF14);" onclick="showMatchDisplayModal()">Find Your Match!</button>
-            </div>
-        </div>
-
-        <div class="search-section">
-            <input type="text" id="videoSearchInput" placeholder="Search videos by ID (e.g., v13)" />
-            <button onclick="handleVideoSearch()">Search Video</button>
-            <p id="searchResultsMessage" class="search-results-message" style="display: none;"></p>
-            <button id="showAllVideosBtn" style="display: none;" onclick="showAllVideos()">Show All Videos</button>
-        </div>
-
-        <div class="video-grid" id="videoGrid">
-            </div>
-
-        <div class="load-more-button-container">
-            <button class="load-more-button" id="loadMoreBtn" onclick="loadMoreVideos()">Load More</button>
-        </div>
-<div class="loading-spinner" style="display: none;"></div>
-        
-        <footer>
-            <p>© 2025 Mìlàájé. All rights reserved.</p>
-                <a href="#" class="terms-link" onclick="showTermsModal(); return false;">Terms & Conditions</a>
-
-        </footer>
-    </div>
-<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-    <script src="https://checkout.flutterwave.com/v3.js"></script>
-    <script src="https://js.paystack.co/v1/inline.js"></script>
-    <script src="ehsuducmasvwjsoodwkwjdnfjwkfj seereb enrneje.js"></script>
-    <script src="dweuuxhansn£+22+-2-£&233728_ejejehehdhejrufudhshdhfhrjekdkdjfttj.js"></script>
-    <script src="Bios.js"></script>
-    <script src="Main.js"></script>
 </body>
 </html>
