@@ -6,6 +6,7 @@
 
 //allProfiles = [...initialProfiles]; // Populate allProfiles array
 
+
 const initialVideos = [
     {
         handle: 'twitter',
@@ -784,7 +785,10 @@ const initialVideos = [
     // Add more video data as needed
 ];
 
+
 localStorage.removeItem('allVideos'); // Optional: for fresh start
-allVideos = [...initialVideos];       // Make sure initialVideos is already defined
-//saveUserData();                       // Store properly
-//renderVideoCards();                   // Then render
+allVideos = [...initialVideos]; // Make sure initialVideos is already defined
+//saveUserData(); // Store properly
+//renderVideoCards(); // Then render
+//allVideos = [...initialVideos];
+
