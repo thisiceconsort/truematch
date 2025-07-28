@@ -1,3 +1,5 @@
+localStorage.removeItem('allVideos'); 
+
 //imulatedUserDatabase = [...hardcodedUsers];
 
 //allVideos = [...initialVideos]; // Populate allVideos array
@@ -789,6 +791,6 @@ const initialVideos = [
 //localStorage.removeItem('allVideos'); // Optional: for fresh start
 allVideos = [...initialVideos]; // Make sure initialVideos is already defined
 //saveUserData(); // Store properly
-renderVideoCards(); // Then render
+//renderVideoCards(); // Then render
 //allVideos = [...initialVideos];
 
