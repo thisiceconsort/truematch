@@ -54,7 +54,7 @@ const RENEWAL_PAYMENT_NGN = 1100;
 //console.warn("DEVELOPMENT MODE: Clearing localStorage for a fresh start. Remember to comment this out!");
 //localStorage.removeItem('currentUserData');
 //localStorage.removeItem('simulatedUserDatabase');
-//localStorage.removeItem('allVideos');
+//.removeItem('allVideos');
 //localStorage.removeItem('allProfiles');
 // You might also want to clear the splash screen cooldown if testing that
 //localStorage.removeItem('splashVideoLastPlayed');
