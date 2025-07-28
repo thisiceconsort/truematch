@@ -1,4 +1,4 @@
-localStorage.removeItem('allVideos'); 
+//localStorage.removeItem('allVideos'); 
 
 //imulatedUserDatabase = [...hardcodedUsers];
 
