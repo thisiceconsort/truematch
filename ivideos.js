@@ -1,4 +1,4 @@
-//simulatedUserDatabase = [...hardcodedUsers];
+//imulatedUserDatabase = [...hardcodedUsers];
 
 //allVideos = [...initialVideos]; // Populate allVideos array
 
