@@ -786,7 +786,7 @@ const initialVideos = [
 ];
 
 
-localStorage.removeItem('allVideos'); // Optional: for fresh start
+//localStorage.removeItem('allVideos'); // Optional: for fresh start
 allVideos = [...initialVideos]; // Make sure initialVideos is already defined
 //saveUserData(); // Store properly
 renderVideoCards(); // Then render
