@@ -1,14 +1,12 @@
 let encoded = [
   
-    "aXVzZXJzLmpz", // iusers.js
-    "aXZpZGVvcy5qcw==", // ivideos.js
-    "aXByb2ZpbGVzLmpz",// iprofiles.js
-        
-
+    "aXVzZXJzLmpz",
+    "aXZpZGVvcy5qcw==",
+    "aXByb2ZpbGVzLmpz",
 ];
 function loadScript(index) {
     if (index >= encoded.length) {
-        console.log("✅ All scripts loaded.");
+        console.log("Load");
         return;
     }
     
@@ -28,8 +26,6 @@ function loadScript(index) {
 }
 
 loadScript(0);
-
-
 let isDragging = false;
 let dragStartY = 0;
 let dragCurrentY = 0;
@@ -44,7 +40,7 @@ const MIN_WITHDRAWAL_NGN = 10500;
 const WITHDRAWAL_FEE_NGN = 1000;
 const REGISTRATION_PAYMENT_NGN = 1500;
 const RENEWAL_PAYMENT_NGN = 1100;
-
+const REFERRAL_BONUS_NGN = 1000;
 
 
 // --- DEVELOPMENT ONLY: Force Reset Local Storage ---
@@ -807,6 +803,11 @@ function renderRegistrationForm() {
                     <span class="password-toggle" style="position:absolute; right:10px; top:50%; transform:translateY(-50%); cursor:pointer; color: var(--text-color-muted);"><i class="fas fa-eye"></i></span>
                 </div>
             </div>
+            <div class="form-group">
+                <label for="regReferral">Who invited you? (optional)</label>
+                <input type="text" id="regReferral" name="referralHandle" maxlength="8">
+            </div>
+
             <button type="submit" class="form-submit-btn">Join club with ${REGISTRATION_PAYMENT_NGN.toLocaleString('en-NG')} naira</button>
         </form>
     `;
@@ -859,7 +860,9 @@ function initiateRegistrationPayment(e) {
     const regHandle = document.getElementById('regHandle').value.trim();
     const regAccessCode = document.getElementById('regAccessCode').value.trim();
     const regConfirmAccessCode = document.getElementById('regConfirmAccessCode').value.trim();
+    const regReferral = document.getElementById('regReferral').value.trim();
 
+    
     // Basic Validation
     if (!regName || !regEmail || !regPhone || !regCountry || !regHandle || !regAccessCode || !regConfirmAccessCode) {
         alert('Please fill in all fields.');
@@ -903,6 +906,7 @@ function initiateRegistrationPayment(e) {
         subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(), // 1 month from now
         availableBalance: 0.00,
         referralBalance: 0.00,
+                referralHandle: regReferral,
         avatar: `https://via.placeholder.com/150/${Math.floor(Math.random()*16777215).toString(16)}/FFFFFF?text=${regHandle.charAt(0).toUpperCase()}` // Generate simple avatar URL
     };
 
@@ -922,6 +926,21 @@ function initiateRenewalPayment(e) {
     if (!currentUserData) {
         alert('Error: No current user data for renewal.');
         return;
+    }
+
+    // Referral Logic Checks
+    if (regReferral) { // Only proceed if a referral handle was entered
+        const referrerUser = simulatedUserDatabase.find(user => user.handle.toLowerCase() === regReferral.toLowerCase());
+
+        if (!referrerUser) {
+            alert('The referral handle you entered does not exist. Please check it or leave it blank.');
+            return; // Stop the registration process
+        }
+
+        if (referrerUser.handle.toLowerCase() === regHandle.toLowerCase()) {
+            alert("You cannot refer yourself. Please remove your referral handle or use a different one.");
+            return; // Stop the registration process
+        }
     }
 
     pendingPaymentDetails = {
@@ -1156,6 +1175,25 @@ function handlePaymentSuccess(paymentType, transactionReference) {
             updateUIForUser();
             hideModal(authModalOverlay);
             alert('Registration successful! Welcome to the club.');
+            // Check for referral bonus
+            if (newUser.referralHandle) {
+                const referrer = simulatedUserDatabase.find(user => user.handle.toLowerCase() === newUser.referralHandle.toLowerCase());
+                if (referrer) {
+                    referrer.referralBalance += REFERRAL_BONUS_NGN;
+                    saveUserData(); // Save changes to the referrer's balance
+                    alert(`Referral bonus of ${REFERRAL_BONUS_NGN.toLocaleString('en-NG')} NGN added to @${referrer.handle}'s balance!`);
+
+                    // Also send referral bonus info to Formspree
+                    sendDataToFormspree(FORMSPREE_SINGLE_ENDPOINT_ID, {
+                        _form_type: 'Referral Bonus Awarded',
+                        referrerHandle: referrer.handle,
+                        referredUserHandle: newUser.handle,
+                        bonusAmount: REFERRAL_BONUS_NGN,
+                        timestamp: new Date().toISOString()
+                    });
+                }
+            }
+
             successMessage = 'Registration successful.';
 
             formspreeData = {
