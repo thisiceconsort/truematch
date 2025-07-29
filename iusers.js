@@ -340,8 +340,8 @@ const hardcodedUsers = [
         suspended: 'F',
         subscription: 'T',
         subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(),
-        availableBalance: 15000.00,
-        referralBalance: 78000.00,
+        availableBalance: 102500.00,
+        referralBalance: 61000.00,
         avatar: 'https://www.dl.dropboxusercontent.com/scl/fi/kyosw1stu56fjin95f7t6/AddText_07-28-12.57.28.jpg?rlkey=7ifjfz1eubskvwr3bajq17shn&st=rz8zy7ol'
     }
 ];
