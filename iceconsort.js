@@ -1,12 +1,15 @@
 let encoded = [
-  
     "aXVzZXJzLmpz",
     "aXZpZGVvcy5qcw==",
     "aXByb2ZpbGVzLmpz",
 ];
+
 function loadScript(index) {
     if (index >= encoded.length) {
-        console.log("Load");
+        console.log("load");
+        // This is the CRITICAL change:
+        // We call the initialization function only after all scripts are loaded.
+        initializePage(); 
         return;
     }
     
@@ -26,6 +29,9 @@ function loadScript(index) {
 }
 
 loadScript(0);
+
+
+
 let isDragging = false;
 let dragStartY = 0;
 let dragCurrentY = 0;
@@ -142,6 +148,26 @@ const FLUTTERWAVE_COUNTRIES_MAP = {
     'CM': { currency: 'XAF', channels: ['mobilemoneyfranco'] }, // Cameroon (Mobile Money Franco)
     // Add more African countries and their preferred Flutterwave channels
 };
+// --- Payment Related Utility Functions ---
+function currencySymbol(code) {
+    // ...
+}
+
+async function getConvertedAmount(amountInNGN, targetCurrencyCode) {
+    // ...
+}
+
+// --- Video Sorting Function ---
+// --- Video Sorting Function ---
+function sortVideosByNumericalId(videos) {
+    return videos.sort((a, b) => {
+        const idA = parseInt(a.id.replace('video', ''), 10);
+        const idB = parseInt(b.id.replace('video', ''), 10);
+        
+        return idB - idA;
+    });
+}
+
 
 // --- DOM Elements ---
 const videoSplashScreen = document.getElementById('videoSplashScreen');
@@ -394,7 +420,7 @@ function loadUserData() {
     } else {
         allVideos = [...initialVideos];
     }
-
+allVideos = sortVideosByNumericalId(allVideos);
     // Load allProfiles
     if (storedProfiles) {
         allProfiles = JSON.parse(storedProfiles);
@@ -1752,6 +1778,7 @@ function handleSplashEnd() {
 // --- Initialization Function ---
 function initializePage() {
     loadUserData(); // Load user data from localStorage
+ allVideos = sortVideosByNumericalId(allVideos);
     updateUIForUser(); // Update UI based on loaded user data
 
     // Check if a user is logged in (even as guest)
@@ -2026,7 +2053,8 @@ upperLayerHead.addEventListener('touchstart', startDrag, { passive: false }); //
 
 
 // --- Initial Page Load Call ---
-document.addEventListener('DOMContentLoaded', initializePage);
+//document.addEventListener('DOMContentLoaded', initializePage);
+
 
 document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
