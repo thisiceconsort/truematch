@@ -833,8 +833,14 @@ function renderRegistrationForm() {
                 <label for="regReferral">Who invited you? (optional)</label>
                 <input type="text" id="regReferral" name="referralHandle" maxlength="8">
             </div>
-
-            <button type="submit" class="form-submit-btn">Join club with ${REGISTRATION_PAYMENT_NGN.toLocaleString('en-NG')} naira</button>
+             <div class="Reminder">
+             <p>
+             *By Joining you agree that you are 18 years or above. 
+             <br>
+*Choose <b>flutterwave</b> to pay with mobile money, ivoucher & Card. Choose <b>Paystack</b> to pay with Opay.
+        
+             </div>
+            <button type="submit" class="form-submit-btn">Join Now </button>
         </form>
     `;
 
