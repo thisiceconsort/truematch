@@ -99,7 +99,12 @@ a {
 a:hover {
     color: var(--accent-cyan-green);
 }
-
+/*Note before payment*/
+.Reminder{
+    font-size: 10px;
+    margin: 10px 0;
+    color:#ccc;
+}
 /* Video Splash Screen */
 .video-splash-screen {
     position: fixed;
