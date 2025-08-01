@@ -1,5 +1,20 @@
 const hardcodedUsers = [
 {
+        name: 'Paul Vick',
+        handle: 'paulvick',
+        email: 'paulvick@milaaje.org',
+        phone: '+234123456789',
+        country: 'NG', 
+        accessCode: '4321PAV',
+        unlockedVideos: [],
+        suspended: 'F', 
+        subscription: 'T', 
+        subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(), 
+        availableBalance: 0.00,
+        referralBalance: 0.00,
+        avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=AA'
+    },
+        {
         name: 'Abdallah Afaridjan',
         handle: 'Abdallah',
         email: 'abdallahafaridjan@gmail.com',
