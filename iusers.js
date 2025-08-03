@@ -1,6 +1,6 @@
 const hardcodedUsers = [
 {
-        name: 'Paul Vick',
+        name: 'Team(Joint Acc)',
         handle: 'paulvick',
         email: 'paulvick@milaaje.org',
         phone: '+234123456789',
@@ -10,7 +10,7 @@ const hardcodedUsers = [
         suspended: 'F', 
         subscription: 'T', 
         subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(), 
-        availableBalance: 0.00,
+        availableBalance: 1500.00,
         referralBalance: 0.00,
         avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=AA'
     },
