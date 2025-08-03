@@ -2,7 +2,7 @@ const hardcodedUsers = [
 {
         name: 'Jarota',
         handle: 'heyhey',
-        email: 'paulvick@milaaje.org',
+        email: 'jarota303@gmail.com',
         phone: '+2348167977962',
         country: 'NG', 
         accessCode: '3033OZI',
