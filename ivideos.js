@@ -11,7 +11,43 @@
 
 const initialVideos = [
     
-  {
+ {
+        handle: 'twitter',
+        description: "Black African Boys, Content marathon🍌🔥. | Open source.",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/a289b89c-8a86-4431-812b-b92f4af9ee92/thumbnail.jpg',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/a289b89c-8a86-4431-812b-b92f4af9ee92/playlist.m3u8',
+        locked: false,
+        price: 0,
+        id: 'video129'
+    },
+{
+        handle: 'twitter',
+        description: "Black African Boys, Content marathon🍌🔥. | Open source.",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/ce0cb05b-fc59-4780-bbf7-86daf8f7db4b/thumbnail.jpg',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/ce0cb05b-fc59-4780-bbf7-86daf8f7db4b/playlist.m3u8',
+        locked: false,
+        price: 0,
+        id: 'video128'
+    },
+{
+        handle: 'twitter',
+        description: "Black African Boys, Content marathon🍌🔥. | Open source.",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/b87cf935-e89a-456a-ac71-a10860d13e2c/thumbnail.jpg',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/fa1e9977-31c7-4e2c-af69-caf5cf6b4ee9/playlist.m3u8',
+        locked: false,
+        price: 0,
+        id: 'video127'
+    },
+{
+        handle: 'twitter',
+        description: "Black African Boys, Content marathon🍌🔥. | Open source.",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/dbaaa06b-d286-43d1-8727-75db350dbed0/thumbnail.jpg',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/dbaaa06b-d286-43d1-8727-75db350dbed0/playlist.m3u8',
+        locked: false,
+        price: 0,
+        id: 'video126'
+    },
+    {
         handle: 'twitter',
         description: "Black African Boys, Content marathon🍌🔥. | Open source.",
         thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/ad59c064-0247-46cc-a0d3-1aecba01c390/thumbnail.jpg',
