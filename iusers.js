@@ -1,5 +1,20 @@
 const hardcodedUsers = [
 {
+        name: 'Saheed',
+        handle: 'Saheed22',
+        email: 'omoceleb222@gmail.com',
+        phone: '+2348065837534',
+        country: 'NG',
+        accessCode: '1736SSS',
+        unlockedVideos: [],
+        suspended: 'F',
+        subscription: 'T',
+        subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(),
+        availableBalance: 0.00,
+        referralBalance: 0.00,
+        avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=JC'
+    },
+        {
         name: 'Jarota',
         handle: 'heyhey',
         email: 'jarota303@gmail.com',
