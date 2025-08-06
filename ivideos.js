@@ -14,7 +14,7 @@ const initialVideos = [
     {
         handle: 'twitter',
         description: "Black African Boys, Content marathon🍌🔥. | Open source.",
-        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/a289b89c-8a86-4431-812b-b92f4af9ee92/thumbnail.jpg',
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/a668a066-82c2-4b1b-b294-1d193619b482/thumbnail.jpg',
         videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/a668a066-82c2-4b1b-b294-1d193619b482/playlist.m3u8',
         locked: false,
         price: 0,
