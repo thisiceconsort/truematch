@@ -1,5 +1,20 @@
 const hardcodedUsers = [
 {
+        name: 'kenchi Gozie',
+        handle: 'fizy',
+        email: 'kenchigozie62@gmail.com',
+        phone: '+2347069754484',
+        country: 'NG', 
+        accessCode: '4484FIZ',
+        unlockedVideos: [],
+        suspended: 'F', 
+        subscription: 'T', 
+        subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth()+ 1)).toISOString(), 
+        availableBalance: 0.00,
+        referralBalance: 0.00,
+        avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=AA'
+},   
+        {
         name: 'Saheed',
         handle: 'Saheed22',
         email: 'omoceleb222@gmail.com',
@@ -40,7 +55,7 @@ const hardcodedUsers = [
         suspended: 'F', 
         subscription: 'T', 
         subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(), 
-        availableBalance: 4500.00,
+        availableBalance: 6000.00,
         referralBalance: 0.00,
         avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=AA'
     },
