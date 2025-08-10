@@ -1,4 +1,4 @@
-// payment-page.js
+// payment.js
 
 // IMPORTANT: Replace with your actual public keys and Formspree endpoint
 const FLUTTERWAVE_PUBLIC_KEY = 'FLWPUBK-55e5d0e754e7da9baacac6e2cb4e04ac-X';
