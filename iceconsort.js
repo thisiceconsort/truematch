@@ -961,20 +961,7 @@ function initiateRenewalPayment(e) {
     }
 
     // Referral Logic Checks
-    if (regReferral) { // Only proceed if a referral handle was entered
-        const referrerUser = simulatedUserDatabase.find(user => user.handle.toLowerCase() === regReferral.toLowerCase());
-
-        if (!referrerUser) {
-            alert('The referral handle you entered does not exist. Please check it or leave it blank.');
-            return; // Stop the registration process
-        }
-
-        if (referrerUser.handle.toLowerCase() === regHandle.toLowerCase()) {
-            alert("You cannot refer yourself. Please remove your referral handle or use a different one.");
-            return; // Stop the registration process
-        }
-    }
-
+    
     pendingPaymentDetails = {
         type: 'renewal',
         amount: RENEWAL_PAYMENT_NGN, // NGN
