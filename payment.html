@@ -3,74 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirm Your Payment</title>
-    <link rel="stylesheet" href="payment.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-</head>
-<body>
-
-    <main id="paymentMain">
-        <div class="payment-container">
-            <header class="payment-header">
-                <h1>Confirm Your Payment</h1>
-            </header>
-            
-            <section class="payment-details">
-                <div id="loadingMessage" class="loading-state">
-                    <div class="loader"></div>
-                    <p>Fetching your details...</p>
-                </div>
-                
-                <div id="paymentContent" class="hidden">
-                    <p class="summary-text" id="summaryMessage"></p>
-                    <div class="details-card">
-                        <div class="detail-item">
-                            <span class="detail-label">Name:</span>
-                            <span class="detail-value" id="userName"></span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">Email:</span>
-                            <span class="detail-value" id="userEmail"></span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">Country:</span>
-                            <span class="detail-value" id="userCountry"></span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">Payment For:</span>
-                            <span class="detail-value" id="paymentFor"></span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">Amount:</span>
-                            <span class="detail-value" id="paymentAmount"></span>
-                        </div>
-                    </div>
-                    
-                    <div id="paymentButtonsContainer" class="payment-buttons-container">
-                        </div>
-                </div>
-
-                <div id="errorState" class="error-state hidden">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <p>Invalid payment link. Please go back to the app and try again.</p>
-                </div>
-            </section>
-            
-            <section class="payment-alternative">
-                <p>Can't pay with any of the options above?</p>
-                <a id="whatsappLink" class="whatsapp-button" target="_blank">
-                    <i class="fab fa-whatsapp"></i> Chat with Iceconsort directly
-                </a>
-            </section>
-            
-            <footer class="payment-footer">
-                <p>Powered by <a href="#" target="_blank">Milaaje</a></p>
-            </footer>
-        </div>
-    </main>
-    
+    <title>Payment</title>
+    <link rel="stylesheet" href="style.css"> 
     <script src="https://checkout.flutterwave.com/v3.js"></script>
     <script src="https://js.paystack.co/v1/inline.js"></script>
-    <script src="payment.js"></script>
+    <script src="payment.js" defer></script> 
+</head>
+<body>
+    <div class="modal-overlay active" id="paymentPageOverlay">
+        <div class="modal-content">
+            <h2 id="paymentTitle" class="modal-title">Payment</h2>
+            <div id="paymentDetails" class="modal-body">
+                </div>
+            <div class="powered-by">
+                <p>Powered by milaaje</p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
+<script src="https://js.paystack.co/v1/inline.js"></script>
