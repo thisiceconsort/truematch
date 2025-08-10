@@ -1,3 +1,4 @@
+
 let encoded = [
     "aXVzZXJzLmpz",
     "aXZpZGVvcy5qcw==",
@@ -63,6 +64,26 @@ const REFERRAL_BONUS_NGN = 1500;
 
 // --- END DEVELOPMENT ONLY BLOCK ---
 
+// main.js
+
+// main.js
+
+function redirectToPaymentPage(details) {
+    const params = new URLSearchParams();
+    for (const key in details) {
+        if (details.hasOwnProperty(key) && details[key] !== null) {
+            params.append(key, details[key]);
+        }
+    }
+    // Add the current page's URL so the payment page knows where to redirect back to
+    params.append('returnUrl', window.location.href);
+
+    const paymentPageUrl = `payment.html?${params.toString()}`;
+    window.location.href = paymentPageUrl;
+}
+
+
+
 
 fetch('/version.txt')
   .then(response => response.text())
@@ -105,8 +126,9 @@ function playHLS(videoElement, videoUrl) {
     }
 }
 // Paystack and Flutterwave Public Keys (REPLACE WITH YOUR ACTUAL KEYS)
-
+const PAYSTACK_PUBLIC_KEY = 'pk_live_6b671064b6a716c1ceffe82bf20a28c317a69584'; // Replace with your actual LIVE key!
 // Replace with your Paystack Public Key
+const FLUTTERWAVE_PUBLIC_KEY = 'FLWPUBK-55e5d0e754e7da9baacac6e2cb4e04ac-X'; // Replace with your Flutterwave Public Key
 
 // Formspree Endpoint IDs (REPLACE WITH YOUR ACTUAL ENDPOINT IDs)
 // You might want different endpoints for different form submissions
@@ -312,7 +334,7 @@ let isUpperLayerExpanded = false; // Tracks if upper layer is fully expanded
 let startY; // For drag functionality
 let initialTop; // For drag functionality
 
-let pendingPaymentDetails = null; // Stores details for a payment about to be made
+
 
 // --- Payment Related Utility Functions ---
 
@@ -599,8 +621,7 @@ function renderDepositModal() {
     showModal(genericModalOverlay);
 
     const depositForm = document.getElementById('depositForm');
-    // (Inside renderDepositModal)
-    depositForm.addEventListener('submit', (e) => {
+    depositForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const amount = parseFloat(document.getElementById('depositAmount').value);
         if (isNaN(amount) || amount <= 0) {
@@ -608,20 +629,33 @@ function renderDepositModal() {
             return;
         }
 
-        // Create the URL to the payment page and redirect
-        const paymentUrl = new URL('payment.html', window.location.origin);
-        paymentUrl.searchParams.append('name', encodeURIComponent(currentUserData.name));
-        paymentUrl.searchParams.append('email', encodeURIComponent(currentUserData.email));
-        paymentUrl.searchParams.append('phone', encodeURIComponent(currentUserData.phone));
-        paymentUrl.searchParams.append('country', encodeURIComponent(currentUserData.country));
-        paymentUrl.searchParams.append('type', 'deposit');
-        paymentUrl.searchParams.append('amount', amount);
-        paymentUrl.searchParams.append('handle', encodeURIComponent(currentUserData.handle));
+        PaymentDetails = {
+            type: 'deposit',
+            amount: amount, // NGN
+            email: currentUserData.email,
+            name: currentUserData.name,
+            phone: currentUserData.phone,
+            country: currentUserData.country,
+            handle: currentUserData.handle
+        };
 
         hideModal(genericModalOverlay);
-        window.location.href = paymentUrl.toString();
+        // main.js
+// ... inside renderDepositModal
+// Instead of showing a payment modal, redirect to the new page
+const depositDetails = {
+    type: 'deposit',
+    amount: amount,
+    email: currentUserData.email,
+    name: currentUserData.name,
+    phone: currentUserData.phone,
+    country: currentUserData.country,
+    handle: currentUserData.handle,
+};
+redirectToPaymentPage(depositDetails);
     });
 }
+
 
 function renderReferralModal() {
     if (isGuestMode) { showAuthRequiredModal(); return; }
@@ -922,7 +956,7 @@ function initiateRegistrationPayment(e) {
         return;
     }
 
-    pendingPaymentDetails = {
+PaymentDetails = {
         type: 'registration',
         amount: REGISTRATION_PAYMENT_NGN, // NGN
         email: regEmail,
@@ -942,14 +976,23 @@ function initiateRegistrationPayment(e) {
     };
 
     hideModal(authModalOverlay);
-    showPaymentOptionsOrDirect(
-        REGISTRATION_PAYMENT_NGN,
-        regEmail,
-        regPhone,
-        regName,
-        regCountry,
-        'registration'
-    );
+    // main.js
+// ... inside initiateRegistrationPayment
+// Instead of showing a payment modal, redirect to the new page
+// You still need to prepare the details, but you'll pass them to the new function
+const regDetails = {
+    type: 'registration',
+    amount: REGISTRATION_PAYMENT_NGN,
+    email: regEmail,
+    name: regName,
+    phone: regPhone,
+    country: regCountry,
+    handle: regHandle,
+    accessCode: regAccessCode,
+    referralHandle: regReferral,
+};
+redirectToPaymentPage(regDetails);
+
 }
 
 function initiateRenewalPayment(e) {
@@ -960,197 +1003,132 @@ function initiateRenewalPayment(e) {
     }
 
     // Referral Logic Checks
-    if (regReferral) { // Only proceed if a referral handle was entered
-        const referrerUser = simulatedUserDatabase.find(user => user.handle.toLowerCase() === regReferral.toLowerCase());
-
-        if (!referrerUser) {
-            alert('The referral handle you entered does not exist. Please check it or leave it blank.');
-            return; // Stop the registration process
-        }
-
-        if (referrerUser.handle.toLowerCase() === regHandle.toLowerCase()) {
-            alert("You cannot refer yourself. Please remove your referral handle or use a different one.");
-            return; // Stop the registration process
-        }
-    }
-
-        // (Inside initiateRegistrationPayment, after all validation checks)
-
-    // Build the URL to the new payment page
-    const paymentUrl = new URL('payment-page.html', window.location.origin);
-    paymentUrl.searchParams.append('name', encodeURIComponent(regName));
-    paymentUrl.searchParams.append('email', encodeURIComponent(regEmail));
-    paymentUrl.searchParams.append('phone', encodeURIComponent(regPhone));
-    paymentUrl.searchParams.append('country', encodeURIComponent(regCountry));
-    paymentUrl.searchParams.append('type', 'registration');
-    paymentUrl.searchParams.append('amount', REGISTRATION_PAYMENT_NGN);
-    paymentUrl.searchParams.append('handle', encodeURIComponent(regHandle));
-    paymentUrl.searchParams.append('accessCode', encodeURIComponent(regAccessCode));
-    paymentUrl.searchParams.append('referralHandle', encodeURIComponent(regReferral));
-
-    // Redirect to the new payment page
-    window.location.href = paymentUrl.toString();
-}
-
-function initiateRenewalPayment(e) {
-    e.preventDefault();
-    if (!currentUserData) {
-        alert('Error: No current user data for renewal.');
-        return;
-    }
     
-    // Build the URL to the new payment page
-    const paymentUrl = new URL('payment-page.html', window.location.origin);
-    paymentUrl.searchParams.append('name', encodeURIComponent(currentUserData.name));
-    paymentUrl.searchParams.append('email', encodeURIComponent(currentUserData.email));
-    paymentUrl.searchParams.append('phone', encodeURIComponent(currentUserData.phone));
-    paymentUrl.searchParams.append('country', encodeURIComponent(currentUserData.country));
-    paymentUrl.searchParams.append('type', 'renewal');
-    paymentUrl.searchParams.append('amount', RENEWAL_PAYMENT_NGN);
-    paymentUrl.searchParams.append('handle', encodeURIComponent(currentUserData.handle));
-    paymentUrl.searchParams.append('accessCode', encodeURIComponent(currentUserData.accessCode));
-    
-    // Redirect to the new payment page
-    window.location.href = paymentUrl.toString();
-}
+    PaymentDetails = {
+        type: 'renewal',
+        amount: RENEWAL_PAYMENT_NGN, // NGN
+        email: currentUserData.email,
+        name: currentUserData.name,
+        phone: currentUserData.phone,
+        country: currentUserData.country,
+        accessCode: currentUserData.accessCode,
+        oldExpiry: currentUserData.subscriptionExpiry
+    };
 
-function initiateDepositPayment(e) {
-    e.preventDefault();
-    const amount = parseFloat(document.getElementById('depositAmount').value);
-    if (isNaN(amount) || amount <= 0) {
-        alert('Please enter a valid deposit amount.');
-        return;
-    }
-
-    // Build the URL to the new payment page
-    const paymentUrl = new URL('payment-page.html', window.location.origin);
-    paymentUrl.searchParams.append('name', encodeURIComponent(currentUserData.name));
-    paymentUrl.searchParams.append('email', encodeURIComponent(currentUserData.email));
-    paymentUrl.searchParams.append('phone', encodeURIComponent(currentUserData.phone));
-    paymentUrl.searchParams.append('country', encodeURIComponent(currentUserData.country));
-    paymentUrl.searchParams.append('type', 'deposit');
-    paymentUrl.searchParams.append('amount', amount);
-    paymentUrl.searchParams.append('handle', encodeURIComponent(currentUserData.handle));
-
-    // Redirect to the new payment page
-    window.location.href = paymentUrl.toString();
-
+    hideModal(authModalOverlay);
+    // main.js
+// ... inside initiateRenewalPayment
+// Instead of showing a payment modal, redirect to the new page
+const renewalDetails = {
+    type: 'renewal',
+    amount: RENEWAL_PAYMENT_NGN,
+    email: currentUserData.email,
+    name: currentUserData.name,
+    phone: currentUserData.phone,
+    country: currentUserData.country,
+    accessCode: currentUserData.accessCode,
+    oldExpiry: currentUserData.subscriptionExpiry
+};
+redirectToPaymentPage(renewalDetails);
 
 }
-
-// main.js
-
-// ... (other functions) ...
-
-function handlePaymentRedirect() {
-    const params = new URLSearchParams(window.location.search);
-    const status = params.get('payment_status');
-    const paymentType = params.get('payment_type');
-    const transactionId = params.get('transaction_id');
-
-    if (status === 'success') {
-        const urlParams = new URLSearchParams(window.location.search);
-        const data = {};
-        for (const [key, value] of urlParams.entries()) {
-            data[key] = value;
-        }
-        
-        // This simulates your old `handlePaymentSuccess` logic
-        switch (paymentType) {
-            case 'registration':
-                // Registration logic (create new user, update UI)
-                // You will need to store the data sent to the payment page.
-                // A better approach is to store it in a temporary local storage key.
-                const newUser = {
-                    name: data.name,
-                    email: data.email,
-                    phone: data.phone,
-                    country: data.country,
-                    handle: data.handle,
-                    accessCode: data.accessCode,
-                    unlockedVideos: [],
-                    suspended: 'F',
-                    subscription: 'T',
-                    subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(),
-                    availableBalance: 0.00,
-                    referralBalance: 0.00,
-                    referralHandle: data.referralHandle,
-                    avatar: `https://via.placeholder.com/150/${Math.floor(Math.random()*16777215).toString(16)}/FFFFFF?text=${data.handle.charAt(0).toUpperCase()}`
-                };
-
-                simulatedUserDatabase.push(newUser);
-                currentUserData = newUser;
-                isGuestMode = false;
-                saveUserData();
-                updateUIForUser();
-                alert('Registration successful! Welcome to the club.');
-
-                if (newUser.referralHandle) {
-                    const referrer = simulatedUserDatabase.find(user => user.handle.toLowerCase() === newUser.referralHandle.toLowerCase());
-                    if (referrer) {
-                        referrer.referralBalance += REFERRAL_BONUS_NGN;
-                        saveUserData();
-                        alert(`Referral bonus of ${REFERRAL_BONUS_NGN.toLocaleString('en-NG')} NGN added to @${referrer.handle}'s balance!`);
-                    }
-                }
-                break;
-            case 'renewal':
-                // Renewal logic (update user subscription)
-                if (currentUserData) {
-                    let newExpiryDate = new Date();
-                    if (new Date(currentUserData.subscriptionExpiry) > newExpiryDate) {
-                        newExpiryDate = new Date(currentUserData.subscriptionExpiry);
-                    }
-                    newExpiryDate.setMonth(newExpiryDate.getMonth() + 1);
-    
-                    currentUserData.subscription = 'T';
-                    currentUserData.subscriptionExpiry = newExpiryDate.toISOString();
-                    saveUserData();
-                    updateUserSubscription(currentUserData.accessCode, true, newExpiryDate.toISOString());
-                    checkAccessCode(currentUserData.accessCode);
-                    alert(`Subscription renewed successfully! New expiry: ${new Date(currentUserData.subscriptionExpiry).toLocaleDateString()}.`);
-                }
-                break;
-            case 'deposit':
-                // Deposit logic (add to user balance)
-                if (currentUserData) {
-                    currentUserData.availableBalance += parseFloat(data.amount);
-                    saveUserData();
-                    updateUIForUser();
-                    alert(`Deposit of ${parseFloat(data.amount).toLocaleString('en-NG')} NGN successful! Your balance has been updated.`);
-                }
-                break;
-            case 'video':
-                // Video unlock logic (add video to user's unlocked list)
-                const videoId = data.videoId;
-                const videoPrice = parseFloat(data.amount);
-                const videoToUnlock = allVideos.find(v => v.id === videoId);
-
-                if (currentUserData && videoToUnlock) {
-                    if (!currentUserData.unlockedVideos) {
-                        currentUserData.unlockedVideos = [];
-                    }
-                    currentUserData.unlockedVideos.push({ videoId: videoId, timestamp: new Date() });
-                    saveUserData();
-                    alert(`Video "${videoToUnlock.description.substring(0, 30)}..." unlocked for ${VIDEO_UNLOCK_DURATION_DAYS} days!`);
-                }
-                break;
-        }
-
-        // Clean up URL to remove payment parameters
-        window.history.replaceState({}, document.title, window.location.pathname);
-    }
-}
-
 
 // --- Payment Gateway Selection Modal ---
+function showPaymentOptionsModal(paymentType, amountInNGN) {
+    const paymentOptionsModal = document.getElementById('genericModalOverlay'); // Reusing generic modal
+    modalTitle.textContent = `Choose Payment Method for ${paymentType.charAt(0).toUpperCase() + paymentType.slice(1)}`;
+    modalBody.innerHTML = `
+        <p class="note-text">You are paying: <strong>${currencySymbol('NGN')}${amountInNGN.toLocaleString('en-NG')}</strong></p>
+        <div class="action-buttons" style="flex-direction:column; gap:15px; margin-top:20px;">
+            <button class="form-submit-btn" id="payWithPaystackBtn" style="background: linear-gradient(90deg, #1A1A2E, #25D366);">
+                <img src="https://i.imgur.com/Us974zg.jpeg" alt="Paystack" style="height:24px; margin-right:10px;"> Pay with Paystack
+            </button>
+            <button class="form-submit-btn" id="payWithFlutterwaveBtn" style="background: linear-gradient(90deg, #FFD700, #FFA500); color: #333;">
+                <img src="https://i.imgur.com/ElPGTna.jpeg" alt="Flutterwave" style="height:24px; margin-right:10px;"> Pay with Flutterwave
+            </button>
+        </div>
+    `;
+    showModal(paymentOptionsModal);
 
+    // IMPORTANT: Re-attach event listeners to prevent multiple triggers
+    const payWithPaystackBtn = document.getElementById('payWithPaystackBtn');
+    const newPaystackBtn = payWithPaystackBtn.cloneNode(true);
+    payWithPaystackBtn.parentNode.replaceChild(newPaystackBtn, payWithPaystackBtn);
+
+    const payWithFlutterwaveBtn = document.getElementById('payWithFlutterwaveBtn');
+    const newFlutterwaveBtn = payWithFlutterwaveBtn.cloneNode(true);
+    payWithFlutterwaveBtn.parentNode.replaceChild(newFlutterwaveBtn, payWithFlutterwaveBtn);
+
+    newPaystackBtn.onclick = () => {
+        hideModal(paymentOptionsModal);
+        const { amount, email, name, phone, country } = PaymentDetails;
+        handlePaystackPayment(amount, email, name, phone, country, paymentType);
+    };
+
+    newFlutterwaveBtn.onclick = async () => {
+        hideModal(paymentOptionsModal);
+        const { amount, email, name, phone, country } = PaymentDetails;
+        const countryInfo = FLUTTERWAVE_COUNTRIES_MAP[country] || { currency: 'NGN' };
+        const targetCurrencyCode = countryInfo.currency;
+        const convertedAmount = await getConvertedAmount(amount, targetCurrencyCode);
+        handleFlutterwavePayment(convertedAmount, email, phone, name, country, paymentType, targetCurrencyCode);
+    };
+}
+
+async function showPaymentOptionsOrDirect(amount, email, phone, name, country, paymentType) {
+    const countryCode = country.toUpperCase();
+    const countryInfo = FLUTTERWAVE_COUNTRIES_MAP[countryCode];
+
+    // For Nigeria and South Africa, offer choice
+    if (countryCode === "NG" || countryCode === "ZA") {
+        showPaymentOptionsModal(paymentType, amount);
+    }
+    // For specific Flutterwave mobile money channels, go direct to Flutterwave
+    else if (countryInfo && countryInfo.channels.some(channel => ['mobilemoneyghana', 'mpesa', 'mobilemoneyuganda', 'mobilemoneytzpesa', 'mobilemoneyzambia', 'mobilemoneyrwanda', 'mobilemoneyfranco'].includes(channel))) {
+        const targetCurrencyCode = countryInfo.currency || 'NGN';
+        const convertedAmount = await getConvertedAmount(amount, targetCurrencyCode);
+        handleFlutterwavePayment(convertedAmount, email, phone, name, countryCode, paymentType, targetCurrencyCode);
+    }
+    // Default to Paystack for other countries or general cases
+    else {
+        handlePaystackPayment(amount, email, name, phone, countryCode, paymentType);
+    }
+}
 
 
 // --- Payment Gateway Handlers ---
 
 
+
 // --- Post-Payment Success Handling ---
+// payment.js
+function handlePaymentSuccess(paymentType, transactionReference, paymentDetails, paymentGatewayUsed) {
+    // Start with the return URL provided by the main page
+    const redirectUrl = new URL(paymentDetails.returnUrl);
+
+    // Add the new success parameters
+    redirectUrl.searchParams.set('paymentStatus', 'success');
+    redirectUrl.searchParams.set('paymentType', paymentType);
+    redirectUrl.searchParams.set('transactionRef', transactionReference);
+
+    // Stringify the whole payment details object and encode it
+    paymentDetails.paymentGatewayUsed = paymentGatewayUsed;
+    redirectUrl.searchParams.set('paymentData', JSON.stringify(paymentDetails));
+
+    // Perform the redirect
+    window.location.href = redirectUrl.toString();
+
+    // ... rest of your Formspree logic remains the same
+    const formspreeData = {
+        _form_type: 'Payment Success',
+        ...paymentDetails,
+        paymentGateway: paymentGatewayUsed,
+        transactionReference: transactionReference,
+        timestamp: new Date().toISOString()
+    };
+    sendDataToFormspree(FORMSPREE_SINGLE_ENDPOINT_ID, formspreeData);
+}
+
 
 
 async function sendDataToFormspree(endpointId, data) {
@@ -1566,6 +1544,36 @@ function handleSplashEnd() {
     }, 1000); // Allow 1 second for fade-out transition
 }
 
+// main.js
+
+function handleSuccessfulPaymentRedirect() {
+    const params = new URLSearchParams(window.location.search);
+    const status = params.get('paymentStatus');
+    const type = params.get('paymentType');
+    const transactionRef = params.get('transactionRef');
+    const paymentData = params.get('paymentData');
+
+    if (status === 'success' && type && transactionRef && paymentData) {
+        // Re-construct the payment details from the URL
+        const details = JSON.parse(decodeURIComponent(paymentData));
+
+        // Use the handlePaymentSuccess function with the re-constructed data
+        // This function will handle creating the user, updating balance, etc.
+        handlePaymentSuccess(type, transactionRef, details);
+
+        // Clean up the URL to remove the query parameters
+        window.history.replaceState({}, document.title, window.location.pathname);
+    }
+}
+
+// Call this function right after `initializePage()`
+// or at the beginning of the `DOMContentLoaded` listener.
+document.addEventListener('DOMContentLoaded', () => {
+    // ... existing code
+    handleSuccessfulPaymentRedirect();
+    initializePage();
+    // ... existing code
+});
 
 // --- Initialization Function ---
 function initializePage() {
@@ -1586,8 +1594,6 @@ function initializePage() {
 
     // Initial content load for 'For you'
     renderVideos(forYouVideoGrid, allVideos.slice(0, videosPerPage));
-
-    handlePaymentRedirect();
 }
 
 // --- Access Code / Login Check ---
