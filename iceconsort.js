@@ -923,34 +923,49 @@ function initiateRegistrationPayment(e) {
         return;
     }
 
-    pendingPaymentDetails = {
-        type: 'registration',
-        amount: REGISTRATION_PAYMENT_NGN, // NGN
-        email: regEmail,
-        name: regName,
-        phone: regPhone,
-        country: regCountry,
-        handle: regHandle,
-        accessCode: regAccessCode,
-        unlockedVideos: [],
-        suspended: 'F',
-        subscription: 'T',
-        subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(), // 1 month from now
-        availableBalance: 0.00,
-        referralBalance: 0.00,
-                referralHandle: regReferral,
-        avatar: `https://via.placeholder.com/150/${Math.floor(Math.random()*16777215).toString(16)}/FFFFFF?text=${regHandle.charAt(0).toUpperCase()}` // Generate simple avatar URL
-    };
+    let foundCountryCode = null;
+const lowerCaseRegCountry = regCountry.toLowerCase();
 
-    hideModal(authModalOverlay);
-    showPaymentOptionsOrDirect(
-        REGISTRATION_PAYMENT_NGN,
-        regEmail,
-        regPhone,
-        regName,
-        regCountry,
-        'registration'
-    );
+// Loop through our map to find the correct 2-letter code
+for (const code in FLUTTERWAVE_COUNTRIES_MAP) {
+    if (FLUTTERWAVE_COUNTRIES_MAP[code].name.toLowerCase() === lowerCaseRegCountry) {
+        foundCountryCode = code;
+        break;
+    }
+}
+
+// Fallback: If no match is found, assume the user entered the 2-letter code
+const finalCountryCode = foundCountryCode || regCountry.toUpperCase();
+
+pendingPaymentDetails = {
+    type: 'registration',
+    amount: REGISTRATION_PAYMENT_NGN,
+    email: regEmail,
+    name: regName,
+    phone: regPhone,
+    // Use the standardized country code
+    country: finalCountryCode,
+    handle: regHandle,
+    accessCode: regAccessCode,
+    unlockedVideos: [],
+    suspended: 'F',
+    subscription: 'T',
+    subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(),
+    availableBalance: 0.00,
+    referralBalance: 0.00,
+    referralHandle: regReferral,
+    avatar: `https://via.placeholder.com/150/${Math.floor(Math.random()*16777215).toString(16)}/FFFFFF?text=${regHandle.charAt(0).toUpperCase()}`
+};
+
+hideModal(authModalOverlay);
+showPaymentOptionsOrDirect(
+    REGISTRATION_PAYMENT_NGN,
+    regEmail,
+    regPhone,
+    regName,
+    finalCountryCode, // Pass the standardized country code here
+    'registration'
+);
 }
 
 function initiateRenewalPayment(e) {
