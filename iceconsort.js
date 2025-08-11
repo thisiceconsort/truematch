@@ -135,19 +135,23 @@ const currencySymbols = {
 // Flutterwave Country-Channel Mapping for direct payment routing
 // This map helps determine which Flutterwave channels are preferred for a given country
 const FLUTTERWAVE_COUNTRIES_MAP = {
-    'NG': { currency: 'NGN', channels: ['card', 'banktransfer', 'ussd', 'qr'] },
-    'GH': { currency: 'GHS', channels: ['mobilemoneyghana'] },
-    'KE': { currency: 'KES', channels: ['mpesa'] },
-    'UG': { currency: 'UGX', channels: ['mobilemoneyuganda'] },
-    'TZ': { currency: 'TZS', channels: ['mobilemoneytzpesa'] },
-    'ZM': { currency: 'ZMW', channels: ['mobilemoneyzambia'] },
-    'RW': { currency: 'RWF', channels: ['mobilemoneyrwanda'] },
-    'ZA': { currency: 'ZAR', channels: ['card', 'eft'] }, // South Africa might still offer card choice with Paystack
-    'CI': { currency: 'XOF', channels: ['mobilemoneyfranco'] }, // Ivory Coast (Mobile Money Franco)
-    'SN': { currency: 'XOF', channels: ['mobilemoneyfranco'] }, // Senegal (Mobile Money Franco)
-    'CM': { currency: 'XAF', channels: ['mobilemoneyfranco'] }, // Cameroon (Mobile Money Franco)
-    // Add more African countries and their preferred Flutterwave channels
+    'NG': { name: 'Nigeria', currency: 'NGN', channels: ['card', 'banktransfer', 'ussd', 'qr', 'opay', 'googlepay', 'applepay'] },
+    'GH': { name: 'Ghana', currency: 'GHS', channels: ['card', 'mobilemoneyghana'] },
+    'KE': { name: 'Kenya', currency: 'KES', channels: ['card', 'mpesa'] },
+    'UG': { name: 'Uganda', currency: 'UGX', channels: ['card', 'mobilemoneyuganda'] },
+    'TZ': { name: 'Tanzania', currency: 'TZS', channels: ['card', 'mobilemoneytzpesa'] },
+    'ZM': { name: 'Zambia', currency: 'ZMW', channels: ['card', 'mobilemoneyzambia'] },
+    'RW': { name: 'Rwanda', currency: 'RWF', channels: ['card', 'mobilemoneyrwanda'] },
+    'ZA': { name: 'South Africa', currency: 'ZAR', channels: ['card', 'eft', '1voucher', 'googlepay', 'applepay'] },
+    'CI': { name: 'Ivory Coast', currency: 'XOF', channels: ['card', 'mobilemoneyfranco'] },
+    'SN': { name: 'Senegal', currency: 'XOF', channels: ['card', 'mobilemoneyfranco'] },
+    'CM': { name: 'Cameroon', currency: 'XAF', channels: ['card', 'mobilemoneyfranco'] },
+    // You can add the United States, UK, and EU if you plan to support them
+    'US': { name: 'United States', currency: 'USD', channels: ['card', 'account', 'googlepay', 'applepay'] },
+    'GB': { name: 'United Kingdom', currency: 'GBP', channels: ['card', 'account', 'googlepay', 'applepay'] }
+    // ... all other countries
 };
+
 // --- Payment Related Utility Functions ---
 function currencySymbol(code) {
     // ...
