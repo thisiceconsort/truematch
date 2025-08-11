@@ -44,9 +44,9 @@ const SPLASH_VIDEO_COOLDOWN_MS = 30 * 60 * 1000; // 30 minutes in milliseconds
 const VIDEO_UNLOCK_DURATION_DAYS = 30; // Videos unlock for 30 days
 const MIN_WITHDRAWAL_NGN = 10500;
 const WITHDRAWAL_FEE_NGN = 1000;
-const REGISTRATION_PAYMENT_NGN = 1500;
-const RENEWAL_PAYMENT_NGN = 1500;
-const REFERRAL_BONUS_NGN = 1500;
+const REGISTRATION_PAYMENT_NGN = 550;
+const RENEWAL_PAYMENT_NGN = 550;
+const REFERRAL_BONUS_NGN = 500;
 
 
 // --- DEVELOPMENT ONLY: Force Reset Local Storage ---
@@ -1026,25 +1026,12 @@ function showPaymentOptionsModal(paymentType, amountInNGN) {
     };
 }
 
+// This is the correct, simplified function
 async function showPaymentOptionsOrDirect(amount, email, phone, name, country, paymentType) {
-    const countryCode = country.toUpperCase();
-    const countryInfo = FLUTTERWAVE_COUNTRIES_MAP[countryCode];
-
-    // For Nigeria and South Africa, offer choice
-    if (countryCode === "NG" || countryCode === "ZA") {
-        showPaymentOptionsModal(paymentType, amount);
-    }
-    // For specific Flutterwave mobile money channels, go direct to Flutterwave
-    else if (countryInfo && countryInfo.channels.some(channel => ['mobilemoneyghana', 'mpesa', 'mobilemoneyuganda', 'mobilemoneytzpesa', 'mobilemoneyzambia', 'mobilemoneyrwanda', 'mobilemoneyfranco'].includes(channel))) {
-        const targetCurrencyCode = countryInfo.currency || 'NGN';
-        const convertedAmount = await getConvertedAmount(amount, targetCurrencyCode);
-        handleFlutterwavePayment(convertedAmount, email, phone, name, countryCode, paymentType, targetCurrencyCode);
-    }
-    // Default to Paystack for other countries or general cases
-    else {
-        handlePaystackPayment(amount, email, name, phone, countryCode, paymentType);
-    }
+    // This line will now ALWAYS be executed, regardless of the user's country.
+    showPaymentOptionsModal(paymentType, amount);
 }
+
 
 
 // --- Payment Gateway Handlers ---
