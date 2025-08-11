@@ -129,8 +129,8 @@ const hardcodedUsers = [
         accessCode: '2559SOM',
         unlockedVideos: [],
         suspended: 'F',
-        subscription: 'F',
-        subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() - 1)).toISOString(),
+        subscription: 'T',
+        subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(),
         availableBalance: 0.00,
         referralBalance: 0.00,
         avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=SE'
