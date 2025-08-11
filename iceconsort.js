@@ -44,7 +44,7 @@ const SPLASH_VIDEO_COOLDOWN_MS = 30 * 60 * 1000; // 30 minutes in milliseconds
 const VIDEO_UNLOCK_DURATION_DAYS = 30; // Videos unlock for 30 days
 const MIN_WITHDRAWAL_NGN = 10500;
 const WITHDRAWAL_FEE_NGN = 1000;
-const REGISTRATION_PAYMENT_NGN = 550;
+const REGISTRATION_PAYMENT_NGN = 590;
 const RENEWAL_PAYMENT_NGN = 550;
 const REFERRAL_BONUS_NGN = 500;
 
@@ -1223,17 +1223,19 @@ function handlePaymentSuccess(paymentType, transactionReference) {
             successMessage = 'Registration successful.';
 
             formspreeData = {
-                _form_type: 'Registration',
-                userHandle: newUser.handle,
-                userEmail: newUser.email,
-                userPhone: newUser.phone,
-                userCountry: newUser.country,
-                accessCode: newUser.accessCode,
-                paymentAmount: pendingPaymentDetails.amount,
-                paymentGateway: pendingPaymentDetails.paymentGatewayUsed,
-                transactionReference: transactionReference,
-                timestamp: new Date().toISOString()
-            };
+        _form_type: 'Registration',
+        userName: newUser.name, 
+        userHandle: newUser.handle,
+        userEmail: newUser.email,
+        userPhone: newUser.phone,
+        userCountry: newUser.country,
+        referralHandle: newUser.referralHandle || 'None',
+        accessCode: newUser.accessCode,
+        paymentAmount: pendingPaymentDetails.amount,
+        paymentGateway: pendingPaymentDetails.paymentGatewayUsed,
+        transactionReference: transactionReference,
+        timestamp: new Date().toISOString()
+    };
             break;
 
         case 'deposit':
