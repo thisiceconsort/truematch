@@ -1,28 +1,38 @@
 /* General Body and HTML Styling */
 :root {
-    --primary-gradient-start: #ff007f; /* Pink-Purple */
-    --primary-gradient-middle: #b300ff; /* Purple */
-    --primary-gradient-end: #007bff;   /* Blue */
-    --secondary-gradient-start: #00c7ff; /* Light Blue */
-    --secondary-gradient-end: #ff007f;   /* Pink-Purple */
+    /* Retained for the lower layer's premium rainbow gradient */
+    --primary-gradient-start: #ff007f;
+    --primary-gradient-middle: #b300ff;
+    --primary-gradient-end: #007bff;
+    --secondary-gradient-start: #00c7ff;
+    --secondary-gradient-end: #ff007f;
 
-    --dark-bg-color: #1a1a2e; /* Deep dark blue-purple */
-    --dark-translucent-bg: rgba(20, 20, 40, 0.95); /* For frosted glass effect */
-    --dark-translucent-lighter: rgba(30, 30, 50, 0.95); /* For modals/cards */
+    /* Base Colors for a Darker, more Vibrant Aesthetic */
+    --dark-bg-color: #000000; /* Solid Black */
+    --dark-translucent-bg: rgba(0, 0, 0, 0.95);
+    --dark-translucent-lighter: rgba(10, 10, 20, 0.95);
     --text-color-light: #f0f0f0;
     --text-color-muted: #aaaaaa;
     --border-color-light: rgba(255, 255, 255, 0.05);
+
+    /* Enhanced Electric Blue Aesthetic */
+    --accent-electric-blue: #00e0ff; /* Bright Cyan-Blue */
+    --accent-dark-blue: #004dff;   /* Deeper, more saturated blue */
     --accent-cyan-green: #00ffbf;
-    --accent-blue: #007bff;
-    --accent-pink-purple: #ff007f;
-    --danger-color: #ff4d4d; /* For error/suspended messages */
+    --danger-color: #ff4d4d;
 
     --modal-border-radius: 20px;
     --button-border-radius: 10px;
     --card-border-radius: 5px;
+    
+    --upper-layer-initial-height: 70vh;
+    --lower-layer-height: 30vh;
+}
 
-    --upper-layer-initial-height: 70vh; /* 70% of viewport height */
-    --lower-layer-height: 30vh; /* 30% of viewport height */
+/* Modal Transition Keyframes */
+@keyframes modal-glow-transition {
+    0% { background: rgba(0, 0, 0, 0.7); }
+    100% { background: rgba(0, 77, 255, 0.1); }
 }
 
 * {
@@ -35,16 +45,19 @@ html, body {
     height: 100%;
     font-family: 'Poppins', sans-serif;
     color: var(--text-color-light);
-    overflow: hidden; /* Hide scrollbars initially for splash/layered effect */
-    background: var(--dark-bg-color); /* Use your consistent dark background */
+    overflow: hidden;
+    background: var(--dark-bg-color);
     background-size: 400% 400%;
-    animation: rainbowGradientBody 15s ease infinite; /* Slower animation for body *
+    animation: none;
     user-select: none;
-    -webkit-user-select: none; /* Safari */
-       /* IE10+/Edge */
-
+    -webkit-user-select: none;
 }
 
+.Reminder{
+    font-size: 10px;
+    margin: 10px 0;
+    color:#ccc;
+}
  .user-handle{
     user-select: text;
     -webkit-user-select: text;
@@ -55,6 +68,7 @@ img {
     -webkit-user-drag: none;
     user-drag: none;
 }
+
 @keyframes rainbowGradientBody {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
@@ -86,25 +100,20 @@ input::placeholder {
 }
 
 input:focus {
-    border-color: var(--accent-cyan-green);
-    box-shadow: 0 0 8px rgba(0, 255, 191, 0.3);
+    border-color: var(--accent-electric-blue);
+    box-shadow: 0 0 8px rgba(0, 224, 255, 0.3);
 }
 
 a {
-    color: var(--accent-blue);
+    color: var(--accent-dark-blue);
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 a:hover {
-    color: var(--accent-cyan-green);
+    color: var(--accent-electric-blue);
 }
-/*Note before payment*/
-.Reminder{
-    font-size: 10px;
-    margin: 10px 0;
-    color:#ccc;
-}
+
 /* Video Splash Screen */
 .video-splash-screen {
     position: fixed;
@@ -129,7 +138,7 @@ a:hover {
 
 .video-splash-screen video {
     width: 100%;
-    height: auto; /* Maintain original aspect ratio */
+    height: auto;
     display: block;
 }
 
@@ -138,9 +147,9 @@ a:hover {
     position: relative;
     width: 100%;
     height: 100%;
-    overflow: hidden; /* Ensure layers stay within bounds */
-    background-color: var(--dark-bg-color); /* Fallback/base for layers */
-    display: none; /* Hidden until splash screen fades */
+    overflow: hidden;
+    background-color: var(--dark-bg-color);
+    display: none;
 }
 
 .main-content.active {
@@ -153,18 +162,19 @@ a:hover {
     top: 0;
     left: 0;
     width: 100%;
-    height: var(--lower-layer-height); /* 30% of viewport height */
+    height: var(--lower-layer-height);
     z-index: 1;
     background: linear-gradient(45deg, var(--primary-gradient-start), var(--primary-gradient-middle), var(--primary-gradient-end), var(--secondary-gradient-start), var(--secondary-gradient-end));
     background-size: 200% 300%;
-    animation: rainbowGradientLower 12s ease infinite; /* Slightly faster animation */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    animation: rainbowGradientLower 12s ease infinite;
+    /* Added premium subtle glow */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 25px rgba(0, 123, 255, 0.3); 
     border-bottom-left-radius: var(--card-border-radius);
     border-bottom-right-radius: var(--card-border-radius);
     padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Align content to top */
+    justify-content: flex-start;
     align-items: center;
     gap: 15px;
 }
@@ -181,16 +191,15 @@ a:hover {
     flex-direction: column;
     align-items: flex-start;
     padding-bottom: 10px;
-    /* This section takes the top half of the lower layer */
-    flex: 1; /* Allows it to take available space */
-    justify-content: center; /* Vertically center within its flex space */
+    flex: 1;
+    justify-content: center;
 }
 
 .lower-layer .user-line {
     display: flex;
     align-items: center;
     width: 100%;
-    position: relative; /* For dots positioning */
+    position: relative;
     margin-bottom:5px;
 }
 
@@ -199,9 +208,11 @@ a:hover {
     height: 60px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid var(--accent-cyan-green);
+    border: 2px solid var(--accent-electric-blue);
     margin-right: 15px;
     flex-shrink: 0;
+    /* Add a subtle glow effect */
+    box-shadow: 0 0 15px rgba(0, 224, 255, 0.7), 0 0 5px rgba(0, 224, 255, 0.5) inset;
 }
 
 .user-name {
@@ -223,36 +234,41 @@ a:hover {
     color: var(--text-color-light);
     cursor: pointer;
     padding: 5px;
-    margin-left: auto; /* Push to the right */
+    margin-left: auto;
 }
 
 .user-email, .user-phone {
     font-size: 0.9em;
-font-weight: 600;
+    font-weight: 600;
     color: var(--dark-bg-color);
-    margin-left: calc(60px + 15px); /* Align with text next to avatar */
-
-    
+    margin-left: calc(60px + 15px);
 }
 
 .balance-card {
-background-color: var(--dark-translucent-lighter);
-backdrop-filter: blur(10px);   
-border: 1px solid var(--border-color-light);
-border-radius: var(--card-border-radius);
-padding: 15px 20px;
-width: calc(100% - 10px);
-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-display: flex;
-flex-direction: column;
-justify-content: space-around; 
+    background-color: var(--dark-translucent-lighter);
+    backdrop-filter: blur(10px);   
+    border: 1px solid var(--border-color-light);
+    border-radius: var(--card-border-radius);
+    padding: 15px 20px;
+    width: calc(100% - 10px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around; 
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
+
+.balance-card:hover {
+    transform: translateY(-5px); /* Moves the card up by 5px */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5); /* Increases the shadow for a more "lifted" look */
+}
+
 .balance-text {
     font-size: 1.0em;
     font-weight: 600;
     text-align: center;
     margin-bottom: 5px;
-    color: var(--accent-cyan-green);
+    color: var(--accent-electric-blue);
 }
 
 .balance-text span {
@@ -264,7 +280,7 @@ justify-content: space-around;
 .action-buttons {
     display: flex;
     justify-content: space-around;
-    align-items: flex-end; /* Align buttons to the bottom of the card */
+    align-items: flex-end;
     gap: 10px;
 }
 
@@ -277,30 +293,30 @@ justify-content: space-around;
     padding: 5px 5px;
     border-radius: var(--button-border-radius);
     background: rgba(255, 255, 255, 0.05);
-    flex: 1; /* Distribute space evenly */
-    min-width: 50px; /* Ensure buttons don't get too small */
+    flex: 1;
+    min-width: 50px;
 }
 
 .action-btn i {
     font-size: 1.5em;
     margin-bottom: 5px;
-    color: var(--accent-blue);
+    color: var(--accent-dark-blue);
 }
 
 .action-btn:hover {
-    background: linear-gradient(45deg, var(--accent-blue), var(--accent-cyan-green));
+    background: linear-gradient(45deg, var(--accent-dark-blue), var(--accent-electric-blue));
     color: var(--dark-bg-color);
-    box-shadow: 0 0 15px rgba(0, 123, 255, 0.5);
+    box-shadow: 0 0 15px rgba(0, 77, 255, 0.5); /* Updated for deeper blue */
     transform: translateY(-2px);
 }
 
 /* Upper Layer */
 .upper-layer {
     position: absolute;
-    top: var(--lower-layer-height); /* Starts below the lower layer */
+    top: var(--lower-layer-height);
     left: 0;
     width: 100%;
-    height: calc(100% - var(--lower-layer-height)); /* Initially takes remaining 70% */
+    height: calc(100% - var(--lower-layer-height));
     background: var(--dark-translucent-bg);
     backdrop-filter: blur(15px);
     border-top-left-radius: var(--card-border-radius);
@@ -309,14 +325,14 @@ justify-content: space-around;
     z-index: 2;
     display: flex;
     flex-direction: column;
-    overflow: hidden; /* Hide scrollbar for the layer itself */
-    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth slide up/down */
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .upper-layer.expanded {
-    height: 100%; /* Expands to full screen height */
-    top: 0; /* Slides to the top */
-    border-top-left-radius: 0; /* Remove radius when expanded */
+    height: 100%;
+    top: 0;
+    border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
 
@@ -325,13 +341,12 @@ justify-content: space-around;
     justify-content: space-around;
     align-items: center;
     padding: 15px 20px;
-    background: rgba(20, 20, 40, 0.98); /* Slightly less translucent for head */
+    background: rgba(10, 10, 20, 0.98);
     border-bottom: 1px solid var(--border-color-light);
-    position: sticky; /* Sticky header within upper layer */
+    position: sticky;
     top: 0;
     z-index: 10;
     width: 100%;
-    /* This element itself is draggable to move the whole layer */
     cursor: grab;
 }
 
@@ -340,9 +355,9 @@ justify-content: space-around;
 }
 
 .upper-layer-head .tag {
-    flex: 0 0 auto; /* Do not grow or shrink, size to content */
+    flex: 0 0 auto;
     text-align: center;
-    padding: 10px 15px; /* add side padding for clickable area */
+    padding: 10px 15px;
     font-weight: 500;
     font-size: 1.05em;
     color: var(--text-color-muted);
@@ -356,41 +371,39 @@ justify-content: space-around;
 }
 
 .upper-layer-head .tag.active {
-    color: var(--accent-cyan-green);
-    border-bottom-color: var(--accent-cyan-green);
+    color: var(--accent-electric-blue);
+    border-bottom-color: var(--accent-electric-blue);
     font-weight: 600;
 }
 
 .upper-layer-head .search-icon {
-    flex: 0 0 auto; /* Don't grow/shrink */
+    flex: 0 0 auto;
     padding: 10px 15px;
     font-size: 1.1em;
 }
 
 /* Content Sections */
 .content-section {
-    flex-grow: 1; /* Takes remaining space */
-    overflow-y: auto; /* Scrollable content within upper layer */
+    flex-grow: 1;
+    overflow-y: auto;
     padding: 20px;
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 .content-section::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
+    display: none;
 }
 
 .content-section.hidden {
     display: none;
 }
 
-
-
 .video-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* 2 columns, flexible width */
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 15px;
-    padding-bottom: 30px; /* Space before load more button */
+    padding-bottom: 30px;
 }
 
 /* Video Card */
@@ -407,19 +420,19 @@ justify-content: space-around;
 
 .video-card:hover, .profile-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 255, 191, 0.2);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 224, 255, 0.2);
 }
 
 .video-card-thumbnail {
     width: 100%;
-    height: 120px; /* Fixed height for thumbnails */
+    height: 120px;
     object-fit: cover;
     display: block;
 }
 
 .video-card-info {
     padding: 10px;
-    flex-grow: 1; /* Ensure info takes remaining space */
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
 }
@@ -429,7 +442,7 @@ justify-content: space-around;
     line-height: 1.3;
     margin-bottom: 5px;
     display: -webkit-box;
-    -webkit-line-clamp: 2; /* Limit to 2 lines */
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     color: var(--text-color-light);
@@ -440,7 +453,7 @@ justify-content: space-around;
     font-size: 0.8em;
     color: var(--text-color-muted);
     font-weight: 400;
-    margin-top: auto; /* Push handle to the bottom */
+    margin-top: auto;
 }
 
 /* Profile Card */
@@ -451,11 +464,11 @@ justify-content: space-around;
 
 .profile-card-images {
     display: flex;
-    height: 150px; /* Fixed height for profile image container */
+    height: 150px;
 }
 
 .profile-card-images img {
-    width: 50%; /* Two images side-by-side */
+    width: 50%;
     height: 100%;
     object-fit: cover;
 }
@@ -469,7 +482,7 @@ justify-content: space-around;
     border-radius: 5px;
     font-weight: 600;
     font-size: 0.9em;
-    color: var(--accent-cyan-green);
+    color: var(--accent-electric-blue);
 }
 
 /* Load More Button */
@@ -478,16 +491,16 @@ justify-content: space-around;
     width: fit-content;
     margin: 20px auto;
     padding: 12px 25px;
-    background: linear-gradient(90deg, var(--accent-cyan-green), var(--accent-blue));
+    background: linear-gradient(90deg, var(--accent-electric-blue), var(--accent-dark-blue));
     border-radius: var(--button-border-radius);
     font-size: 1em;
     font-weight: 600;
     color: var(--dark-bg-color);
-    box-shadow: 0 4px 15px rgba(0, 255, 191, 0.3);
+    box-shadow: 0 4px 15px rgba(0, 224, 255, 0.3);
 }
 
 .load-more-btn:hover {
-    box-shadow: 0 6px 20px rgba(0, 255, 191, 0.5), 0 0 20px rgba(0, 255, 191, 0.4);
+    box-shadow: 0 6px 20px rgba(0, 224, 255, 0.5), 0 0 20px rgba(0, 224, 255, 0.4);
     transform: translateY(-2px);
 }
 
@@ -499,13 +512,13 @@ justify-content: space-around;
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent-pink-purple), var(--accent-blue));
+    background: linear-gradient(135deg, var(--accent-dark-blue), var(--accent-electric-blue));
     color: var(--text-color-light);
     font-size: 1.8em;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 5px 20px rgba(255, 0, 127, 0.4), 0 0 20px rgba(255, 0, 127, 0.3);
+    box-shadow: 0 5px 20px rgba(0, 77, 255, 0.4), 0 0 20px rgba(0, 77, 255, 0.3);
     z-index: 100;
     opacity: 0.9;
     transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
@@ -514,7 +527,7 @@ justify-content: space-around;
 .floating-plus-btn:hover {
     transform: scale(1.05);
     opacity: 1;
-    box-shadow: 0 8px 25px rgba(255, 0, 127, 0.6), 0 0 25px rgba(255, 0, 127, 0.5);
+    box-shadow: 0 8px 25px rgba(0, 77, 255, 0.6), 0 0 25px rgba(0, 77, 255, 0.5);
 }
 
 /* Modals - General Styling */
@@ -524,30 +537,33 @@ justify-content: space-around;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7); /* Darker overlay */
+    background: rgba(0, 0, 0, 0.7);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1001; /* Above everything else */
+    z-index: 1001;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
+/* Modal Glow Transition */
 .modal-overlay.active {
     opacity: 1;
     visibility: visible;
+    background: linear-gradient(to bottom, transparent, var(--accent-dark-blue));
+    animation: modal-glow-transition 0.5s ease-in-out forwards;
 }
 
 .modal-content {
     background: var(--dark-translucent-lighter);
-    backdrop-filter: blur(20px); /* Stronger blur for modals */
+    backdrop-filter: blur(20px);
     border: 1px solid var(--border-color-light);
     border-radius: var(--modal-border-radius);
     width: 90%;
     max-width: 500px;
-    max-height: 90vh; /* Limit modal height */
-    overflow-y: auto; /* Enable scrolling for modal content */
+    max-height: 90vh;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     transform: translateY(20px);
@@ -566,8 +582,8 @@ justify-content: space-around;
     align-items: center;
     padding: 15px 20px;
     border-bottom: 1px solid var(--border-color-light);
-    background: rgba(20, 20, 40, 0.9); /* Slightly darker header */
-    flex-shrink: 0; /* Prevent header from shrinking */
+    background: rgba(10, 10, 20, 0.9);
+    flex-shrink: 0;
     position: sticky;
     top: 0;
     z-index: 1;
@@ -578,7 +594,7 @@ justify-content: space-around;
 .modal-title {
     font-size: 1.4em;
     font-weight: 700;
-    color: var(--accent-cyan-green);
+    color: var(--accent-electric-blue);
 }
 
 .modal-back-btn {
@@ -597,8 +613,8 @@ justify-content: space-around;
     font-size: 0.95em;
     line-height: 1.6;
     color: var(--text-color-light);
-    flex-grow: 1; /* Allows body to take remaining height */
-    overflow-y: auto; /* Scrollable if content overflows */
+    flex-grow: 1;
+    overflow-y: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
@@ -629,12 +645,12 @@ justify-content: space-around;
 .modal-option-btn i {
     margin-right: 15px;
     font-size: 1.2em;
-    color: var(--accent-blue);
+    color: var(--accent-dark-blue);
 }
 
 .modal-option-btn:hover {
-    background: rgba(0, 255, 191, 0.1);
-    color: var(--accent-cyan-green);
+    background: rgba(0, 224, 255, 0.1);
+    color: var(--accent-electric-blue);
     transform: translateX(5px);
 }
 
@@ -671,18 +687,18 @@ justify-content: space-around;
 .form-submit-btn {
     width: 100%;
     padding: 15px 20px;
-    background: linear-gradient(90deg, var(--accent-pink-purple), var(--accent-blue));
+    background: linear-gradient(90deg, var(--accent-electric-blue), var(--accent-dark-blue));
     border-radius: var(--button-border-radius);
     font-size: 1.1em;
     font-weight: 700;
     color: var(--text-color-light);
     margin-top: 20px;
-    box-shadow: 0 5px 20px rgba(255, 0, 127, 0.3);
+    box-shadow: 0 5px 20px rgba(0, 224, 255, 0.3);
 }
 
 .form-submit-btn:hover {
-    background: linear-gradient(90deg, var(--accent-pink-purple), var(--secondary-gradient-start));
-    box-shadow: 0 8px 25px rgba(255, 0, 127, 0.5);
+    background: linear-gradient(90deg, var(--accent-electric-blue), var(--accent-dark-blue));
+    box-shadow: 0 8px 25px rgba(0, 224, 255, 0.5);
     transform: translateY(-2px);
 }
 
@@ -694,13 +710,13 @@ justify-content: space-around;
 }
 
 .form-text-link span {
-    color: var(--accent-blue);
+    color: var(--accent-dark-blue);
     cursor: pointer;
     font-weight: 600;
 }
 
 .form-text-link span:hover {
-    color: var(--accent-cyan-green);
+    color: var(--accent-electric-blue);
     text-decoration: underline;
 }
 
@@ -721,7 +737,7 @@ justify-content: space-around;
 .video-player-container {
     width: 100%;
     position: relative;
-    padding-bottom: 56.25%; /* 16:9 Aspect Ratio (9/16 = 0.5625) */
+    padding-bottom: 56.25%;
     background-color: #000;
     border-radius: var(--card-border-radius);
     overflow: hidden;
@@ -747,40 +763,34 @@ justify-content: space-around;
 .tip-creator-btn {
     width: 50%;
     padding: 12px 20px;
-    background: linear-gradient(90deg, #FFD700, #FFA500); /* Gold/Orange gradient for tip */
-    
+    background: linear-gradient(90deg, var(--accent-electric-blue), var(--accent-dark-blue));
+    color: var(--dark-bg-color);
     border-radius: var(--button-border-radius);
     font-size: 1em;
     font-weight: 600;
-    color: #333; /* Dark text for contrast on bright button */
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 10px;
-    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
-}
-
-.tip-creator-btn i {
-    margin-right: 10px;
-    font-size: 1.2em;
+    box-shadow: 0 4px 15px rgba(0, 224, 255, 0.4);
 }
 
 .tip-creator-btn:hover {
-    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
+    box-shadow: 0 6px 20px rgba(0, 224, 255, 0.6);
     transform: translateY(-2px);
 }
 
 .more-videos-heading {
     font-size: 1.3em;
     font-weight: 600;
-    color: var(--accent-cyan-green);
+    color: var(--accent-electric-blue);
     margin-top: 30px;
     margin-bottom: 15px;
     text-align: center;
 }
 
 .more-videos-grid {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Smaller cards in related section */
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
 }
 
 /* Profile Detail Modal */
@@ -808,7 +818,7 @@ justify-content: space-around;
 }
 
 .profile-detail-body strong {
-    color: var(--accent-cyan-green);
+    color: var(--accent-electric-blue);
     font-weight: 600;
     margin-right: 5px;
 }
@@ -816,7 +826,7 @@ justify-content: space-around;
 .chat-btn {
     width: 100%;
     padding: 14px 20px;
-    background: linear-gradient(90deg, #25D366, #128C7E); /* WhatsApp Green */
+    background: linear-gradient(90deg, #25D366, #128C7E);
     border-radius: var(--button-border-radius);
     font-size: 1.1em;
     font-weight: 700;
@@ -832,17 +842,17 @@ justify-content: space-around;
 
 /* Search Overlay */
 .search-overlay {
-    z-index: 1002; /* Higher than other modals */
-    align-items: flex-start; /* Align search container to top */
-    background: var(--dark-translucent-bg); /* Full screen frosted effect */
+    z-index: 1002;
+    align-items: flex-start;
+    background: var(--dark-translucent-bg);
     backdrop-filter: blur(25px);
 }
 
 .search-container {
     width: 100%;
-    height: 100%; /* Take full height of overlay */
-    background: rgba(20, 20, 40, 0.9); /* Darker background for content area */
-    border-radius: 0; /* No radius for full screen */
+    height: 100%;
+    background: rgba(10, 10, 20, 0.9);
+    border-radius: 0;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -864,18 +874,18 @@ justify-content: space-around;
 }
 
 #searchBar {
-    flex: 1 1 auto;    /* grow and shrink as needed, with auto basis */
-    min-width: 0;      /* allow shrinking inside flexbox */
+    flex: 1 1 auto;
+    min-width: 0;
     padding: 12px 15px;
     font-size: 1.1em;
-    box-sizing: border-box; /* ensure padding does not cause overflow */
+    box-sizing: border-box;
 }
 
 .cancel-search-btn {
-    flex-shrink: 0;     /* prevent shrinking to zero */
+    flex-shrink: 0;
     padding: 10px 15px;
     font-size: 1em;
-    color: var(--accent-pink-purple);
+    color: var(--accent-electric-blue);
     font-weight: 600;
     border-radius: var(--button-border-radius);
     background: none;
@@ -883,13 +893,13 @@ justify-content: space-around;
     cursor: pointer;
 }
 .cancel-search-btn:hover {
-    background-color: rgba(255, 0, 127, 0.1);
+    background-color: rgba(0, 224, 255, 0.1);
 }
 
 .search-results {
     flex-grow: 1;
     overflow-y: auto;
-    padding-right: 5px; /* For scrollbar */
+    padding-right: 5px;
 }
 
 .search-section {
@@ -899,7 +909,7 @@ justify-content: space-around;
 .search-section h3 {
     font-size: 1.2em;
     font-weight: 700;
-    color: var(--accent-blue);
+    color: var(--accent-dark-blue);
     margin-bottom: 15px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     padding-bottom: 5px;
@@ -907,7 +917,7 @@ justify-content: space-around;
 
 .search-section .video-grid,
 .search-section .profile-grid {
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Slightly smaller cards */
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 }
 
 .no-results-text {
@@ -924,18 +934,13 @@ justify-content: space-around;
     align-items: center;
     width: 100%;
     padding: 15px 20px;
-    background: linear-gradient(90deg, #25D366, #128C7E); /* WhatsApp Green */
+    background: linear-gradient(90deg, #25D366, #128C7E);
     border-radius: var(--button-border-radius);
     font-size: 1.1em;
     font-weight: 700;
     color: var(--text-color-light);
     margin-top: 30px;
     box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
-}
-
-.whatsapp-send-btn i {
-    margin-right: 10px;
-    font-size: 1.3em;
 }
 
 .whatsapp-send-btn:hover {
@@ -969,7 +974,7 @@ justify-content: space-around;
 /* Responsive Adjustments */
 @media (max-width: 768px) {
     .lower-layer {
-        height: 35vh; /* Adjust for smaller screens */
+        height: 35vh;
     }
     .upper-layer {
         height: calc(100% - 35vh);
@@ -1009,7 +1014,7 @@ justify-content: space-around;
     }
 
     .video-grid, .profile-grid, .more-videos-grid {
-        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); /* Slightly smaller for mobile */
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
         gap: 10px;
     }
 
@@ -1063,7 +1068,7 @@ justify-content: space-around;
 .cancel-search-btn {
     padding: 10px 15px;
     font-size: 1em;
-    color: var(--accent-pink-purple);
+    color: var(--accent-electric-blue);
     font-weight: 600;
     border-radius: var(--button-border-radius);
 }    
