@@ -694,68 +694,68 @@ function renderContactUsModal() {
         <p><strong>Email:</strong> team.milaaje.org, iceconsort@gmail.com</p>
         <p><strong>Phone:</strong> +2348027350284</p>
         <p>Welcome to <strong>Ice Consort Privilege (ICP)</strong>. This is not just a platform; it is a sacred space, a living archive of truth, and a refuge built by us, for us. To maintain the integrity and sanctity of this community, we operate on a foundation of unyielding principles and non-negotiable rules. By accessing or using ICP, you acknowledge and agree to abide by these terms in their entirety.</p>
-<hr>
-<h3>Guiding Principles & Non-Negotiable Rules</h3>
-<p>Our community thrives on trust, authenticity, and respect. To protect this environment, there are two primary commandments. Violating either of these will result in immediate, permanent, and irreversible removal from the platform, without warning, explanation, or recourse.</p>
-<ol>
-<li>
-<p><strong>Zero-Tolerance Policy on Underage Content:</strong> We have a strict, absolute zero-tolerance policy for any and all content involving individuals under the age of 18. This includes, but is not limited to, visual content, audio, implied content, or even anecdotal references. The presence of a minor in any form—a voice in the background, a fleeting image, or a childhood memory—constitutes a direct and unforgivable violation. It is your sole responsibility to ensure all content you upload is compliant with this rule.</p>
-</li>
-<li>
-<p><strong>Authenticity and Ownership of Content:</strong> This platform is for your unique and authentic truth. You are prohibited from posting content created by others or using another person's profile for any reason. This includes using content for reaction videos, parodies, tributes, or even with explicit permission. We believe in the power of individual expression; therefore, all content must be your own original creation.</p>
-</li>
-</ol>
-<hr>
-<h3>Strict Prohibitions</h3>
-<p>In addition to our primary commandments, the following prohibitions are strictly enforced to preserve the unique nature of our community:</p>
-<ul>
-<li>
-<p><strong>Exclusivity of Content:</strong> ICP is an exclusively gay space. Any content that is straight or bisexual is strictly prohibited. This is a deliberate and fundamental choice to ensure our platform remains a focused sanctuary for gay individuals.</p>
-</li>
-<li>
-<p><strong>Consent is Paramount:</strong> All content must be explicitly consensual. Any form of coercion, non-consensual acts, fake scenarios, or content with blurred lines of consent is a severe violation. Our community is built on mutual respect and clear, enthusiastic consent.</p>
-</li>
-<li>
-<p><strong>Protection of Our Community:</strong> Do not invite, link, or share ICP with non-gay individuals or communities. This space is not for "curiosity" or for outsiders to observe. It is a private refuge. Protecting this boundary is critical to our shared safety and purpose.</p>
-</li>
-</ul>
-<hr>
-<h3>Membership & Account Access</h3>
-<p>Access to ICP is granted through a monthly membership subscription. A recurring fee of <strong>₦550</strong> is charged at the end of each month. All users will be automatically logged out at the end of the month, and you will need to renew your subscription to regain access. We recommend renewing at the beginning of the month to ensure uninterrupted access to the platform. We reserve the right to suspend or terminate accounts that violate our terms of service.</p>
-<p>If you believe your account has been suspended by mistake, you can file an appeal. Details and instructions for how to appeal will be provided on the login page should you ever find yourself in this situation.</p>
-<hr>
-<h3>Your Content, Your Ownership</h3>
-<p>We recognize and respect the immense value of your creative work. Every video, picture, and word you upload belongs entirely to you. ICP does not claim any ownership, rights, or intellectual property over your content. You maintain full and perpetual control and may delete or remove your content at any time, for any reason, with no questions asked or explanations needed. Your creative autonomy is our priority.</p>
-<hr>
-<h3>Referral Program: Building Our Sanctuary Together</h3>
-<p>Your involvement is the key to our growth and the foundation of a vibrant, authentic community. As a valued member, you have a unique opportunity to help expand our sanctuary while being rewarded for your efforts.</p>
-<ol>
-<li>
-<p><strong>Get Your Unique Handle:</strong> Upon completing your registration, you will be assigned a unique referral handle. This handle is your personal key to inviting new members and building your network within the ICP community.</p>
-</li>
-<li>
-<p><strong>Share the Vision:</strong> Share your unique handle and the ICP registration link with others who align with our community's core values. Invite them to join a space where their truth is protected and celebrated, far from the noise of the outside world.</p>
-</li>
-<li>
-<p><strong>Earn Rewards:</strong> For every new member who successfully signs up using your unique referral handle, you will be instantly credited with a reward of <strong>₦500</strong> (or the equivalent in your local currency). This reward will be deposited directly into your dashboard balance, where you can track it along with your other earnings.</p>
-</li>
-</ol>
-<hr>
-<h3>Financial Policies & Earning Opportunities</h3>
-<p>Your earnings on ICP are generated through various avenues, all designed to empower our creators. Your balance is always visible and transparent on your dashboard.</p>
-<ul>
-<li>
-<p><strong>Platform Commission:</strong> ICP collects a 35% commission on all earnings from tips, locked videos, and ad revenue. This commission is essential for covering operational costs, payment processing fees, and maintaining a secure platform.</p>
-</li>
-<li>
-<p><strong>Withdrawal Process:</strong> You may request a withdrawal of your earnings at any time. Each withdrawal request incurs a <strong>₦{WITHDRAWAL\_FEE\_NGN}\</strong\> processing fee. The minimum withdrawal amount is \<strong\>₦{MIN_WITHDRAWAL_NGN}</strong>. All withdrawal requests are meticulously processed and dispatched within 48 hours to ensure prompt access to your funds.</p>
-</li>
-</ul>
-<hr>
-<h3>Liability and Platform Integrity</h3>
-<p>While we strive to provide a stable and secure environment, we do not guarantee uninterrupted or undisrupted access to the platform. We are not liable for any content posted by users, and by using this platform, you agree to indemnify and hold harmless ICP and its affiliates from any claims arising from your use or content.</p>
-<p>We are not trying to be everything for everyone. We are building something sacred, for us—and only us.</p>
-<p><strong>Ice Consort Privilege (ICP) | Our 3 Million Year Old Solera</strong></p>
+              <hr>
+           <h3>Guiding Principles & Non-Negotiable Rules</h3>
+           <p>Our community thrives on trust, authenticity, and respect. To protect this environment, there are two primary commandments. Violating either of these will result in immediate, permanent, and irreversible removal from the platform, without warning, explanation, or recourse.</p>
+             <ol>
+              <li>
+               <p><strong>Zero-Tolerance Policy on Underage Content:</strong> We have a strict, absolute zero-tolerance policy for any and all content involving individuals under the age of 18. This includes, but is not limited to, visual content, audio, implied content, or even anecdotal references. The presence of a minor in any form—a voice in the background, a fleeting image, or a childhood memory—constitutes a direct and unforgivable violation. It is your sole responsibility to ensure all content you upload is compliant with this rule.</p>
+              </li>
+              <li>
+               <p><strong>Authenticity and Ownership of Content:</strong> This platform is for your unique and authentic truth. You are prohibited from posting content created by others or using another person's profile for any reason. This includes using content for reaction videos, parodies, tributes, or even with explicit permission. We believe in the power of individual expression; therefore, all content must be your own original creation.</p>
+              </li>
+                 </ol>
+                 <hr>
+                <h3>Strict Prohibitions</h3>
+              <p>In addition to our primary commandments, the following prohibitions are strictly enforced to preserve the unique nature of our community:</p>
+               <ul>
+              <li>
+             <p><strong>Exclusivity of Content:</strong> ICP is an exclusively gay space. Any content that is straight or bisexual is strictly prohibited. This is a deliberate and fundamental choice to ensure our platform remains a focused sanctuary for gay individuals.</p>
+               </li>
+             <li>
+              <p><strong>Consent is Paramount:</strong> All content must be explicitly consensual. Any form of coercion, non-consensual acts, fake scenarios, or content with blurred lines of consent is a severe violation. Our community is built on mutual respect and clear, enthusiastic consent.</p>
+            </li>
+            <li>
+                <p><strong>Protection of Our Community:</strong> Do not invite, link, or share ICP with non-gay individuals or communities. This space is not for "curiosity" or for outsiders to observe. It is a private refuge. Protecting this boundary is critical to our shared safety and purpose.</p>
+              </li>
+               </ul>
+              <hr>
+                <h3>Membership & Account Access</h3>
+             <p>Access to ICP is granted through a monthly membership subscription. A recurring fee of <strong>₦550</strong> is charged at the end of each month. All users will be automatically logged out at the end of the month, and you will need to renew your subscription to regain access. We recommend renewing at the beginning of the month to ensure uninterrupted access to the platform. We reserve the right to suspend or terminate accounts that violate our terms of service.</p>
+               <p>If you believe your account has been suspended by mistake, you can file an appeal. Details and instructions for how to appeal will be provided on the login page should you ever find yourself in this situation.</p>
+              <hr>
+                 <h3>Your Content, Your Ownership</h3>
+                   <p>We recognize and respect the immense value of your creative work. Every video, picture, and word you upload belongs entirely to you. ICP does not claim any ownership, rights, or intellectual property over your content. You maintain full and perpetual control and may delete or remove your content at any time, for any reason, with no questions asked or explanations needed. Your creative autonomy is our priority.</p>
+              <hr>
+                <h3>Referral Program: Building Our Sanctuary Together</h3>
+                   <p>Your involvement is the key to our growth and the foundation of a vibrant, authentic community. As a valued member, you have a unique opportunity to help expand our sanctuary while being rewarded for your efforts.</p>
+               <ol>
+               <li>
+                <p><strong>Get Your Unique Handle:</strong> Upon completing your registration, you will be assigned a unique referral handle. This handle is your personal key to inviting new members and building your network within the ICP community.</p>
+              </li>
+                <li>
+                 <p><strong>Share the Vision:</strong> Share your unique handle and the ICP registration link with others who align with our community's core values. Invite them to join a space where their truth is protected and celebrated, far from the noise of the outside world.</p>
+             </li>
+              <li>
+               <p><strong>Earn Rewards:</strong> For every new member who successfully signs up using your unique referral handle, you will be instantly credited with a reward of <strong>₦500</strong> (or the equivalent in your local currency). This reward will be deposited directly into your dashboard balance, where you can track it along with your other earnings.</p>
+           </li>
+               </ol>
+              <hr>
+                <h3>Financial Policies & Earning Opportunities</h3>
+               <p>Your earnings on ICP are generated through various avenues, all designed to empower our creators. Your balance is always visible and transparent on your dashboard.</p>
+              <ul>
+            <li>
+              <p><strong>Platform Commission:</strong> ICP collects a 35% commission on all earnings from tips, locked videos, and ad revenue. This commission is essential for covering operational costs, payment processing fees, and maintaining a secure platform.</p>
+             </li>
+              <li>
+               <p><strong>Withdrawal Process:</strong> You may request a withdrawal of your earnings at any time. Each withdrawal request incurs a <strong>₦{WITHDRAWAL\_FEE\_NGN}\</strong\> processing fee. The minimum withdrawal amount is \<strong\>₦{MIN_WITHDRAWAL_NGN}</strong>. All withdrawal requests are meticulously processed and dispatched within 48 hours to ensure prompt access to your funds.</p>
+              </li>
+             </ul>
+             <hr>
+                <h3>Liability and Platform Integrity</h3>
+              <p>While we strive to provide a stable and secure environment, we do not guarantee uninterrupted or undisrupted access to the platform. We are not liable for any content posted by users, and by using this platform, you agree to indemnify and hold harmless ICP and its affiliates from any claims arising from your use or content.</p>
+             <p>We are not trying to be everything for everyone. We are building something sacred, for us—and only us.</p>
+           <p><strong>Ice Consort Privilege (ICP) | Our 3 Million Year Old Solera</strong></p>
     `;
     showModal(genericModalOverlay);
 }
