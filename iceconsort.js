@@ -146,6 +146,7 @@ const FLUTTERWAVE_COUNTRIES_MAP = {
     'CI': { name: 'Ivory Coast', currency: 'XOF', channels: ['card', 'mobilemoneyfranco'] },
     'SN': { name: 'Senegal', currency: 'XOF', channels: ['card', 'mobilemoneyfranco'] },
     'CM': { name: 'Cameroon', currency: 'XAF', channels: ['card', 'mobilemoneyfranco'] },
+    'MW': { name: 'Malawi' , currency: 'MWK' ,  channels: ['card' , 'mobilemoney'] },
     // You can add the United States, UK, and EU if you plan to support them
     'US': { name: 'United States', currency: 'USD', channels: ['card', 'account', 'googlepay', 'applepay'] },
     'GB': { name: 'United Kingdom', currency: 'GBP', channels: ['card', 'account', 'googlepay', 'applepay'] }
