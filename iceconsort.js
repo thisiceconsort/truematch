@@ -634,7 +634,7 @@ function renderReferralModal() {
 
     modalTitle.textContent = 'Referral Program';
     modalBody.innerHTML = `
-        <p class="note-text">Start referring today and start earning! Let people use your referral code during registration and you will earn ${1000} naira immediately for each successful referral.</p>
+        <p class="note-text">Start referring today and start earning! Let people use your referral code during registration and you will earn ${500} naira immediately after every successful referral.</p>
         <p class="note-text">Your referral code is your handle: <strong>${currentUserData.handle}</strong></p>
         <p class="note-text">You will see when you have a successful referral in your Referral Balance.</p>
     `;
@@ -842,7 +842,7 @@ function renderRegistrationForm() {
              <p>
              *By Joining you agree that you are 18 years or above. 
              <br>
-*Choose <b>flutterwave</b> to pay with mobile money, ivoucher & Card. Choose <b>Paystack</b> to pay with Opay.
+*Choose <b>flutterwave</b> to pay fast with mobile money, ivoucher & Visa/MasterCard. Choose <b>Paystack</b> to pay fast with Opay.
         
              </div>
             <button type="submit" class="form-submit-btn">Join Now </button>
