@@ -1,6 +1,23 @@
 const hardcodedUsers = [
         
-             {
+
+            
+       {
+        name: 'Akuezuilo',
+        handle: 'Akuezuio',
+        email: 'abalugodson202020@gmail.com',
+        phone: '+2348081458694',
+        country: 'NG', 
+        accessCode: '1234AKU',
+        unlockedVideos: [],
+        suspended: 'F', 
+        subscription: 'T', 
+        subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(), 
+        availableBalance: 0.00,
+        referralBalance: 0.00,
+        avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=AA'
+}, 
+        {
         name: 'Adongo Michael',
         handle: 'Rockguys',
         email: 'adongomichael547@gmail.com',
