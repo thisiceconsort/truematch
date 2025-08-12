@@ -1,5 +1,21 @@
 const hardcodedUsers = [
         
+             {
+        name: 'Adongo Michael',
+        handle: 'Rockguys',
+        email: 'adongomichael547@gmail.com',
+        phone: '0534702833',
+        country: 'GH', 
+        accessCode: '1234XXX',
+        unlockedVideos: [],
+        suspended: 'F', 
+        subscription: 'T', 
+        subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(), 
+        availableBalance: 0.00,
+        referralBalance: 0.00,
+        avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=AA'
+},
+        
         {
         name: 'Checalob',
         handle: 'Scalet',
@@ -86,7 +102,7 @@ const hardcodedUsers = [
         suspended: 'F', 
         subscription: 'T', 
         subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(), 
-        availableBalance: 8500.00,
+        availableBalance: 9000.00,
         referralBalance: 0.00,
         avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=AA'
     },
