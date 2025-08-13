@@ -684,16 +684,7 @@ function renderTermsModal() {
         <h3>Terms of Use</h3>
         <p>Last updated: ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
                 <p>Ice Consort Privilege (ICP) | Our 3 Million Year Old Solera</p>
-    `;
-    showModal(genericModalOverlay);
-}
-
-function renderContactUsModal() {
-    modalTitle.textContent = 'Contact Us';
-    modalBody.innerHTML = `
-        <p><strong>Email:</strong> team.milaaje.org, iceconsort@gmail.com</p>
-        <p><strong>Phone:</strong> +2348027350284</p>
-        <p>Welcome to <strong>Ice Consort Privilege (ICP)</strong>. This is not just a platform; it is a sacred space, a living archive of truth, and a refuge built by us, for us. To maintain the integrity and sanctity of this community, we operate on a foundation of unyielding principles and non-negotiable rules. By accessing or using ICP, you acknowledge and agree to abide by these terms in their entirety.</p>
+    <p>Welcome to <strong>Ice Consort Privilege (ICP)</strong>. This is not just a platform; it is a sacred space, a living archive of truth, and a refuge built by us, for us. To maintain the integrity and sanctity of this community, we operate on a foundation of unyielding principles and non-negotiable rules. By accessing or using ICP, you acknowledge and agree to abide by these terms in their entirety.</p>
               <hr>
            <h3>Guiding Principles & Non-Negotiable Rules</h3>
            <p>Our community thrives on trust, authenticity, and respect. To protect this environment, there are two primary commandments. Violating either of these will result in immediate, permanent, and irreversible removal from the platform, without warning, explanation, or recourse.</p>
@@ -758,6 +749,15 @@ function renderContactUsModal() {
            <p><strong>Ice Consort Privilege (ICP) | Our 3 Million Year Old Solera</strong></p>
     `;
     showModal(genericModalOverlay);
+}
+
+function renderContactUsModal() {
+    modalTitle.textContent = 'Contact Us';
+    modalBody.innerHTML = `
+        <p><strong>Email:</strong> team.milaaje.org, iceconsort@gmail.com</p>
+        <p><strong>Phone:</strong> +2348027350284</p>
+           `;
+    showModal(genericModalOverlay)    
 }
 
 
