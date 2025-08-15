@@ -55,7 +55,7 @@ const initialVideos = [
         price: 0,
         id: 'video168'
     },
-        
+    
    
     {
         handle: 'twitter',
