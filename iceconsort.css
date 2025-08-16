@@ -1,26 +1,25 @@
 /* General Body and HTML Styling */
 :root {
-    /* Retained for the lower layer's premium rainbow gradient */
-    --primary-gradient-start: #ff007f;
-    --primary-gradient-middle: #b300ff;
-    --primary-gradient-end: #007bff;
-    --secondary-gradient-start: #00c7ff;
-    --secondary-gradient-end: #ff007f;
+    /* Main Color Palette - Luxury Dark Aesthetic */
+    --black-bg: #0A0A0A;
+    --dark-chocolate-brown: #1C0F0A;
+    --mocha-brown: #3B2F2F;
 
-    /* Base Colors for a Darker, more Vibrant Aesthetic */
-    --dark-bg-color: #000000; /* Solid Black */
+    /* Text Colors */
+    --off-white: #F5F5F5;
+    --light-gray: #B0B0B0;
+
+    /* Accent & Highlight Colors */
+    --gold-accent: #FFD700;
+    --bronze-accent: #B87333;
+    --copper-accent: #A0522D; /* For subtle highlights */
+    --danger-color: #ff4d4d; /* Retained for error states */
+
+    /* Translucent Overlays */
     --dark-translucent-bg: rgba(0, 0, 0, 0.95);
-    --dark-translucent-lighter: rgba(10, 10, 20, 0.95);
-    --text-color-light: #f0f0f0;
-    --text-color-muted: #aaaaaa;
-    --border-color-light: rgba(255, 255, 255, 0.05);
+    --dark-translucent-lighter: rgba(10, 10, 10, 0.95);
 
-    /* Enhanced Electric Blue Aesthetic */
-    --accent-electric-blue: #00e0ff; /* Bright Cyan-Blue */
-    --accent-dark-blue: #004dff;   /* Deeper, more saturated blue */
-    --accent-cyan-green: #00ffbf;
-    --danger-color: #ff4d4d;
-
+    /* General Styling Values */
     --modal-border-radius: 20px;
     --button-border-radius: 10px;
     --card-border-radius: 5px;
@@ -32,7 +31,7 @@
 /* Modal Transition Keyframes */
 @keyframes modal-glow-transition {
     0% { background: rgba(0, 0, 0, 0.7); }
-    100% { background: rgba(0, 77, 255, 0.1); }
+    100% { background: rgba(28, 15, 10, 0.5); }
 }
 
 * {
@@ -44,9 +43,9 @@
 html, body {
     height: 100%;
     font-family: 'Poppins', sans-serif;
-    color: var(--text-color-light);
+    color: var(--off-white);
     overflow: hidden;
-    background: var(--dark-bg-color);
+    background: var(--black-bg);
     background-size: 400% 400%;
     animation: none;
     user-select: none;
@@ -56,7 +55,7 @@ html, body {
 .Reminder{
     font-size: 10px;
     margin: 10px 0;
-    color:#ccc;
+    color:var(--light-gray);
 }
  .user-handle{
     user-select: text;
@@ -80,7 +79,7 @@ button {
     cursor: pointer;
     border: none;
     background: none;
-    color: var(--text-color-light);
+    color: var(--off-white);
     transition: all 0.3s ease;
 }
 
@@ -90,28 +89,28 @@ input {
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: var(--button-border-radius);
     padding: 12px 15px;
-    color: var(--text-color-light);
+    color: var(--off-white);
     outline: none;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 input::placeholder {
-    color: var(--text-color-muted);
+    color: var(--light-gray);
 }
 
 input:focus {
-    border-color: var(--accent-electric-blue);
-    box-shadow: 0 0 8px rgba(0, 224, 255, 0.3);
+    border-color: var(--gold-accent);
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
 }
 
 a {
-    color: var(--accent-dark-blue);
+    color: var(--gold-accent);
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 a:hover {
-    color: var(--accent-electric-blue);
+    color: var(--bronze-accent);
 }
 
 /* Video Splash Screen */
@@ -124,7 +123,7 @@ a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color:#000000;
+    background-color: var(--black-bg);
     z-index: 1000;
     opacity: 1;
     visibility: visible;
@@ -148,7 +147,7 @@ a:hover {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background-color: var(--dark-bg-color);
+    background-color: var(--black-bg);
     display: none;
 }
 
@@ -164,11 +163,10 @@ a:hover {
     width: 100%;
     height: var(--lower-layer-height);
     z-index: 1;
-    background: linear-gradient(45deg, var(--primary-gradient-start), var(--primary-gradient-middle), var(--primary-gradient-end), var(--secondary-gradient-start), var(--secondary-gradient-end));
+    background: linear-gradient(45deg, var(--black-bg), var(--dark-chocolate-brown), var(--bronze-accent));
     background-size: 200% 300%;
-    animation: rainbowGradientLower 12s ease infinite;
-    /* Added premium subtle glow */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 25px rgba(0, 123, 255, 0.3); 
+    animation: luxuriousGradient 12s ease infinite;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 25px rgba(184, 115, 51, 0.3); 
     border-bottom-left-radius: var(--card-border-radius);
     border-bottom-right-radius: var(--card-border-radius);
     padding: 20px;
@@ -179,7 +177,7 @@ a:hover {
     gap: 15px;
 }
 
-@keyframes rainbowGradientLower {
+@keyframes luxuriousGradient {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
@@ -208,11 +206,10 @@ a:hover {
     height: 60px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid var(--accent-electric-blue);
+    border: 2px solid var(--bronze-accent);
     margin-right: 15px;
     flex-shrink: 0;
-    /* Add a subtle glow effect */
-    box-shadow: 0 0 15px rgba(0, 224, 255, 0.7), 0 0 5px rgba(0, 224, 255, 0.5) inset;
+    box-shadow: 0 0 15px rgba(184, 115, 51, 0.7), 0 0 5px rgba(184, 115, 51, 0.5) inset;
 }
 
 .user-name {
@@ -223,7 +220,7 @@ a:hover {
 
 .user-handle {
     font-size: 0.50em;
-    color: var(--dark-bg-color);
+    color: var(--black-bg);
     font-weight: 500;
 }
 
@@ -231,7 +228,7 @@ a:hover {
     position: absolute;
     right: 0;
     font-size: 1.2em;
-    color: var(--text-color-light);
+    color: var(--off-white);
     cursor: pointer;
     padding: 5px;
     margin-left: auto;
@@ -240,14 +237,13 @@ a:hover {
 .user-email, .user-phone {
     font-size: 0.9em;
     font-weight: 600;
-    color: var(--dark-bg-color);
+    color: var(--black-bg);
     margin-left: calc(60px + 15px);
 }
 
 .balance-card {
-    background-color: var(--dark-translucent-lighter);
-    backdrop-filter: blur(10px);   
-    border: 1px solid var(--border-color-light);
+    background-color: var(--mocha-brown);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: var(--card-border-radius);
     padding: 15px 20px;
     width: calc(100% - 10px);
@@ -259,8 +255,8 @@ a:hover {
 }
 
 .balance-card:hover {
-    transform: translateY(-5px); /* Moves the card up by 5px */
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5); /* Increases the shadow for a more "lifted" look */
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
 }
 
 .balance-text {
@@ -268,7 +264,7 @@ a:hover {
     font-weight: 600;
     text-align: center;
     margin-bottom: 5px;
-    color: var(--accent-electric-blue);
+    color: var(--gold-accent);
 }
 
 .balance-text span {
@@ -289,7 +285,7 @@ a:hover {
     flex-direction: column;
     align-items: center;
     font-size: 0.5em;
-    color: var(--text-color-light);
+    color: var(--off-white);
     padding: 5px 5px;
     border-radius: var(--button-border-radius);
     background: rgba(255, 255, 255, 0.05);
@@ -300,13 +296,13 @@ a:hover {
 .action-btn i {
     font-size: 1.5em;
     margin-bottom: 5px;
-    color: var(--accent-dark-blue);
+    color: var(--bronze-accent);
 }
 
 .action-btn:hover {
-    background: linear-gradient(45deg, var(--accent-dark-blue), var(--accent-electric-blue));
-    color: var(--dark-bg-color);
-    box-shadow: 0 0 15px rgba(0, 77, 255, 0.5); /* Updated for deeper blue */
+    background: linear-gradient(45deg, var(--mocha-brown), var(--bronze-accent));
+    color: var(--off-white);
+    box-shadow: 0 0 15px rgba(184, 115, 51, 0.5);
     transform: translateY(-2px);
 }
 
@@ -341,8 +337,8 @@ a:hover {
     justify-content: space-around;
     align-items: center;
     padding: 15px 20px;
-    background: rgba(10, 10, 20, 0.98);
-    border-bottom: 1px solid var(--border-color-light);
+    background: rgba(0, 0, 0, 0.98);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     position: sticky;
     top: 0;
     z-index: 10;
@@ -360,19 +356,19 @@ a:hover {
     padding: 10px 15px;
     font-weight: 500;
     font-size: 1.05em;
-    color: var(--text-color-muted);
+    color: var(--light-gray);
     border-bottom: 2px solid transparent;
     transition: all 0.3s ease;
     cursor: pointer;
 }
 
 .upper-layer-head .tag:hover:not(.active) {
-    color: var(--text-color-light);
+    color: var(--off-white);
 }
 
 .upper-layer-head .tag.active {
-    color: var(--accent-electric-blue);
-    border-bottom-color: var(--accent-electric-blue);
+    color: var(--gold-accent);
+    border-bottom-color: var(--gold-accent);
     font-weight: 600;
 }
 
@@ -408,8 +404,8 @@ a:hover {
 
 /* Video Card */
 .video-card, .profile-card {
-    background-color: var(--dark-translucent-lighter);
-    border: 1px solid var(--border-color-light);
+    background-color: var(--mocha-brown);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: var(--card-border-radius);
     overflow: hidden;
     cursor: pointer;
@@ -420,7 +416,7 @@ a:hover {
 
 .video-card:hover, .profile-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 224, 255, 0.2);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
 }
 
 .video-card-thumbnail {
@@ -445,13 +441,13 @@ a:hover {
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    color: var(--text-color-light);
+    color: var(--off-white);
     font-weight: 500;
 }
 
 .video-card-handle {
     font-size: 0.8em;
-    color: var(--text-color-muted);
+    color: var(--light-gray);
     font-weight: 400;
     margin-top: auto;
 }
@@ -482,7 +478,7 @@ a:hover {
     border-radius: 5px;
     font-weight: 600;
     font-size: 0.9em;
-    color: var(--accent-electric-blue);
+    color: var(--gold-accent);
 }
 
 /* Load More Button */
@@ -491,16 +487,16 @@ a:hover {
     width: fit-content;
     margin: 20px auto;
     padding: 12px 25px;
-    background: linear-gradient(90deg, var(--accent-electric-blue), var(--accent-dark-blue));
+    background: linear-gradient(90deg, var(--gold-accent), var(--bronze-accent));
     border-radius: var(--button-border-radius);
     font-size: 1em;
     font-weight: 600;
-    color: var(--dark-bg-color);
-    box-shadow: 0 4px 15px rgba(0, 224, 255, 0.3);
+    color: var(--black-bg);
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
 }
 
 .load-more-btn:hover {
-    box-shadow: 0 6px 20px rgba(0, 224, 255, 0.5), 0 0 20px rgba(0, 224, 255, 0.4);
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.5);
     transform: translateY(-2px);
 }
 
@@ -512,13 +508,13 @@ a:hover {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent-dark-blue), var(--accent-electric-blue));
-    color: var(--text-color-light);
+    background: linear-gradient(135deg, var(--gold-accent), var(--bronze-accent));
+    color: var(--black-bg);
     font-size: 1.8em;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 5px 20px rgba(0, 77, 255, 0.4), 0 0 20px rgba(0, 77, 255, 0.3);
+    box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
     z-index: 100;
     opacity: 0.9;
     transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
@@ -527,7 +523,7 @@ a:hover {
 .floating-plus-btn:hover {
     transform: scale(1.05);
     opacity: 1;
-    box-shadow: 0 8px 25px rgba(0, 77, 255, 0.6), 0 0 25px rgba(0, 77, 255, 0.5);
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6);
 }
 
 /* Modals - General Styling */
@@ -551,14 +547,14 @@ a:hover {
 .modal-overlay.active {
     opacity: 1;
     visibility: visible;
-    background: linear-gradient(to bottom, transparent, var(--accent-dark-blue));
+    background: linear-gradient(to bottom, transparent, var(--dark-chocolate-brown));
     animation: modal-glow-transition 0.5s ease-in-out forwards;
 }
 
 .modal-content {
     background: var(--dark-translucent-lighter);
     backdrop-filter: blur(20px);
-    border: 1px solid var(--border-color-light);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: var(--modal-border-radius);
     width: 90%;
     max-width: 500px;
@@ -581,8 +577,8 @@ a:hover {
     justify-content: space-between;
     align-items: center;
     padding: 15px 20px;
-    border-bottom: 1px solid var(--border-color-light);
-    background: rgba(10, 10, 20, 0.9);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.9);
     flex-shrink: 0;
     position: sticky;
     top: 0;
@@ -594,12 +590,12 @@ a:hover {
 .modal-title {
     font-size: 1.4em;
     font-weight: 700;
-    color: var(--accent-electric-blue);
+    color: var(--gold-accent);
 }
 
 .modal-back-btn {
     font-size: 1.5em;
-    color: var(--text-color-light);
+    color: var(--off-white);
     padding: 5px;
     border-radius: 5px;
 }
@@ -612,7 +608,7 @@ a:hover {
     padding: 20px;
     font-size: 0.95em;
     line-height: 1.6;
-    color: var(--text-color-light);
+    color: var(--off-white);
     flex-grow: 1;
     overflow-y: auto;
     -ms-overflow-style: none;
@@ -645,12 +641,12 @@ a:hover {
 .modal-option-btn i {
     margin-right: 15px;
     font-size: 1.2em;
-    color: var(--accent-dark-blue);
+    color: var(--bronze-accent);
 }
 
 .modal-option-btn:hover {
-    background: rgba(0, 224, 255, 0.1);
-    color: var(--accent-electric-blue);
+    background: rgba(184, 115, 51, 0.1);
+    color: var(--gold-accent);
     transform: translateX(5px);
 }
 
@@ -664,7 +660,7 @@ a:hover {
 .form-group label {
     font-size: 0.9em;
     margin-bottom: 8px;
-    color: var(--text-color-muted);
+    color: var(--light-gray);
 }
 
 .form-group input,
@@ -687,18 +683,18 @@ a:hover {
 .form-submit-btn {
     width: 100%;
     padding: 15px 20px;
-    background: linear-gradient(90deg, var(--accent-electric-blue), var(--accent-dark-blue));
+    background: linear-gradient(90deg, var(--gold-accent), var(--bronze-accent));
     border-radius: var(--button-border-radius);
     font-size: 1.1em;
     font-weight: 700;
-    color: var(--text-color-light);
+    color: var(--black-bg);
     margin-top: 20px;
-    box-shadow: 0 5px 20px rgba(0, 224, 255, 0.3);
+    box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
 }
 
 .form-submit-btn:hover {
-    background: linear-gradient(90deg, var(--accent-electric-blue), var(--accent-dark-blue));
-    box-shadow: 0 8px 25px rgba(0, 224, 255, 0.5);
+    background: linear-gradient(90deg, var(--gold-accent), var(--bronze-accent));
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
     transform: translateY(-2px);
 }
 
@@ -706,23 +702,23 @@ a:hover {
     text-align: center;
     margin-top: 15px;
     font-size: 0.9em;
-    color: var(--text-color-muted);
+    color: var(--light-gray);
 }
 
 .form-text-link span {
-    color: var(--accent-dark-blue);
+    color: var(--gold-accent);
     cursor: pointer;
     font-weight: 600;
 }
 
 .form-text-link span:hover {
-    color: var(--accent-electric-blue);
+    color: var(--bronze-accent);
     text-decoration: underline;
 }
 
 .note-text {
     font-size: 0.85em;
-    color: var(--text-color-muted);
+    color: var(--light-gray);
     margin-top: 10px;
     padding: 10px;
     background: rgba(255, 255, 255, 0.05);
@@ -738,7 +734,7 @@ a:hover {
     width: 100%;
     position: relative;
     padding-bottom: 56.25%;
-    background-color: #000;
+    background-color: var(--black-bg);
     border-radius: var(--card-border-radius);
     overflow: hidden;
     margin-bottom: 15px;
@@ -757,14 +753,14 @@ a:hover {
     font-size: 1em;
     line-height: 1.5;
     margin-bottom: 15px;
-    color: var(--text-color-light);
+    color: var(--off-white);
 }
 
 .tip-creator-btn {
     width: 50%;
     padding: 12px 20px;
-    background: linear-gradient(90deg, var(--accent-electric-blue), var(--accent-dark-blue));
-    color: var(--dark-bg-color);
+    background: linear-gradient(90deg, var(--gold-accent), var(--bronze-accent));
+    color: var(--black-bg);
     border-radius: var(--button-border-radius);
     font-size: 1em;
     font-weight: 600;
@@ -772,18 +768,18 @@ a:hover {
     justify-content: center;
     align-items: center;
     margin-top: 10px;
-    box-shadow: 0 4px 15px rgba(0, 224, 255, 0.4);
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
 }
 
 .tip-creator-btn:hover {
-    box-shadow: 0 6px 20px rgba(0, 224, 255, 0.6);
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
     transform: translateY(-2px);
 }
 
 .more-videos-heading {
     font-size: 1.3em;
     font-weight: 600;
-    color: var(--accent-electric-blue);
+    color: var(--gold-accent);
     margin-top: 30px;
     margin-bottom: 15px;
     text-align: center;
@@ -809,7 +805,7 @@ a:hover {
     height: 180px;
     object-fit: cover;
     border-radius: var(--card-border-radius);
-    border: 1px solid var(--border-color-light);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .profile-detail-body p {
@@ -818,7 +814,7 @@ a:hover {
 }
 
 .profile-detail-body strong {
-    color: var(--accent-electric-blue);
+    color: var(--gold-accent);
     font-weight: 600;
     margin-right: 5px;
 }
@@ -830,7 +826,7 @@ a:hover {
     border-radius: var(--button-border-radius);
     font-size: 1.1em;
     font-weight: 700;
-    color: var(--text-color-light);
+    color: var(--off-white);
     margin-top: 20px;
     box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
 }
@@ -851,7 +847,7 @@ a:hover {
 .search-container {
     width: 100%;
     height: 100%;
-    background: rgba(10, 10, 20, 0.9);
+    background: rgba(0, 0, 0, 0.9);
     border-radius: 0;
     padding: 20px;
     display: flex;
@@ -885,7 +881,7 @@ a:hover {
     flex-shrink: 0;
     padding: 10px 15px;
     font-size: 1em;
-    color: var(--accent-electric-blue);
+    color: var(--gold-accent);
     font-weight: 600;
     border-radius: var(--button-border-radius);
     background: none;
@@ -893,7 +889,7 @@ a:hover {
     cursor: pointer;
 }
 .cancel-search-btn:hover {
-    background-color: rgba(0, 224, 255, 0.1);
+    background-color: rgba(255, 215, 0, 0.1);
 }
 
 .search-results {
@@ -909,7 +905,7 @@ a:hover {
 .search-section h3 {
     font-size: 1.2em;
     font-weight: 700;
-    color: var(--accent-dark-blue);
+    color: var(--bronze-accent);
     margin-bottom: 15px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     padding-bottom: 5px;
@@ -922,7 +918,7 @@ a:hover {
 
 .no-results-text {
     text-align: center;
-    color: var(--text-color-muted);
+    color: var(--light-gray);
     font-size: 1.1em;
     margin-top: 50px;
 }
@@ -938,7 +934,7 @@ a:hover {
     border-radius: var(--button-border-radius);
     font-size: 1.1em;
     font-weight: 700;
-    color: var(--text-color-light);
+    color: var(--off-white);
     margin-top: 30px;
     box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
 }
@@ -1068,7 +1064,7 @@ a:hover {
 .cancel-search-btn {
     padding: 10px 15px;
     font-size: 1em;
-    color: var(--accent-electric-blue);
+    color: var(--gold-accent);
     font-weight: 600;
     border-radius: var(--button-border-radius);
 }    
