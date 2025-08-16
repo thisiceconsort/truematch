@@ -123,7 +123,7 @@ a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--black-bg);
+    background-color:#000000;
     z-index: 1000;
     opacity: 1;
     visibility: visible;
@@ -214,13 +214,14 @@ a:hover {
 
 .user-name {
     font-weight: 600;
-    font-size: 1.2em;
+    font-size: 1.3em;
     margin-right: 5px;
+    color:var(--gold-accent);
 }
 
 .user-handle {
     font-size: 0.50em;
-    color: var(--black-bg);
+    color:#A0522D;
     font-weight: 500;
 }
 
@@ -228,16 +229,16 @@ a:hover {
     position: absolute;
     right: 0;
     font-size: 1.2em;
-    color: var(--off-white);
+    color: gray;
     cursor: pointer;
     padding: 5px;
     margin-left: auto;
 }
 
 .user-email, .user-phone {
-    font-size: 0.9em;
+    font-size: 1.1em;
     font-weight: 600;
-    color: var(--black-bg);
+    color: var(--bronze-accent);
     margin-left: calc(60px + 15px);
 }
 
@@ -787,23 +788,6 @@ a:hover {
   letter-spacing: 0.5px; /* Subtle spacing for elegance */
 }
 
-/* Example styling tweaks */
-.user-name {
-  font-size: 1.2rem;
-  font-weight: 400; /* Slightly bolder than light for readability */
-  color:(--gold-accent); /* Royal blue (matches your brand) */
-}
-
-.user-handle {
-  font-size: 1rem;
-  color: (--light-gray); /* Softer tone for secondary detail */
-}
-
-.user-email,
-.user-phone {
-  font-size: 0.95rem;
-  color: (--light-gray); /* Balanced elegance */
-}
 
 .more-videos-heading {
     font-size: 1.3em;
