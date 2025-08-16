@@ -206,7 +206,7 @@ a:hover {
     height: 60px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid var(--bronze-accent);
+    border: 2px solid var(--gold-accent);
     margin-right: 15px;
     flex-shrink: 0;
     box-shadow: 0 0 15px rgba(184, 115, 51, 0.7), 0 0 5px rgba(184, 115, 51, 0.5) inset;
@@ -216,7 +216,7 @@ a:hover {
     font-weight: 600;
     font-size: 1.3em;
     margin-right: 5px;
-    color:var(--gold-accent);
+    color:#3B2F2F;
 }
 
 .user-handle {
@@ -229,7 +229,7 @@ a:hover {
     position: absolute;
     right: 0;
     font-size: 1.2em;
-    color: gray;
+    color: #A0522D;
     cursor: pointer;
     padding: 5px;
     margin-left: auto;
@@ -238,7 +238,7 @@ a:hover {
 .user-email, .user-phone {
     font-size: 1.1em;
     font-weight: 600;
-    color: var(--bronze-accent);
+    color:#3B2F2F;
     margin-left: calc(60px + 15px);
 }
 
