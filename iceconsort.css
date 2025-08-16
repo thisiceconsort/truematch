@@ -216,12 +216,14 @@ a:hover {
     font-weight: 600;
     font-size: 1.3em;
     margin-right: 5px;
-    color:var(--gold-accent);
+    color:var(--bronze-accent);
+    font-family: "Avenir Light", "Avenir", "Helvetica Neue", "Lato", "Open Sans", sans-serif;
+    
 }
 
 .user-handle {
     font-size: 0.50em;
-    color:#A0522D;
+    color:#B0B0B0;
     font-weight: 500;
 }
 
@@ -229,7 +231,7 @@ a:hover {
     position: absolute;
     right: 0;
     font-size: 1.2em;
-    color: #A0522D;
+    color: #B0B0B0;
     cursor: pointer;
     padding: 5px;
     margin-left: auto;
@@ -238,7 +240,7 @@ a:hover {
 .user-email, .user-phone {
     font-size: 1.1em;
     font-weight: 600;
-    color:#3B2F2F;
+    color:#B0B0B0;
     margin-left: calc(60px + 15px);
 }
 
