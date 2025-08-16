@@ -206,7 +206,7 @@ a:hover {
     height: 60px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid var(--gold-accent);
+    border: 2px solid var(--bronze-accent);
     margin-right: 15px;
     flex-shrink: 0;
     box-shadow: 0 0 15px rgba(184, 115, 51, 0.7), 0 0 5px rgba(184, 115, 51, 0.5) inset;
@@ -216,7 +216,7 @@ a:hover {
     font-weight: 600;
     font-size: 1.3em;
     margin-right: 5px;
-    color:#3B2F2F;
+    color:var(--gold-accent);
 }
 
 .user-handle {
