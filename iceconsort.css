@@ -776,6 +776,35 @@ a:hover {
     transform: translateY(-2px);
 }
 
+
+.user-name,
+.user-handle,
+.user-email,
+.user-phone {
+  font-family: "Avenir Light", "Avenir", "Helvetica Neue", "Lato", "Open Sans", sans-serif;
+ /* font-weight: 300; /* Light weight */
+  color:(--gold-accent); /* Elegant dark color (adjust as needed) */
+  letter-spacing: 0.5px; /* Subtle spacing for elegance */
+}
+
+/* Example styling tweaks */
+.user-name {
+  font-size: 1.2rem;
+  font-weight: 400; /* Slightly bolder than light for readability */
+  color:(--gold-accent); /* Royal blue (matches your brand) */
+}
+
+.user-handle {
+  font-size: 1rem;
+  color: (--light-gray); /* Softer tone for secondary detail */
+}
+
+.user-email,
+.user-phone {
+  font-size: 0.95rem;
+  color: (--light-gray); /* Balanced elegance */
+}
+
 .more-videos-heading {
     font-size: 1.3em;
     font-weight: 600;
