@@ -157,7 +157,11 @@ const FLUTTERWAVE_COUNTRIES_MAP = {
 function currencySymbol(code) {
     // ...
 }
-
+// NEW FUNCTION: Get the currency code from the country code
+function getCurrencyForCountry(countryCode) {
+    const countryInfo = FLUTTERWAVE_COUNTRIES_MAP[countryCode.toUpperCase()];
+    return countryInfo ? countryInfo.currency : 'NGN'; // Default to NGN if not found
+}
 async function getConvertedAmount(amountInNGN, targetCurrencyCode) {
     // ...
 }
@@ -605,27 +609,32 @@ function renderDepositModal() {
     showModal(genericModalOverlay);
 
     const depositForm = document.getElementById('depositForm');
-    depositForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const amount = parseFloat(document.getElementById('depositAmount').value);
-        if (isNaN(amount) || amount <= 0) {
-            alert('Please enter a valid deposit amount.');
-            return;
-        }
-
-        pendingPaymentDetails = {
-            type: 'deposit',
-            amount: amount, // NGN
-            email: currentUserData.email,
-            name: currentUserData.name,
-            phone: currentUserData.phone,
-            country: currentUserData.country,
-            handle: currentUserData.handle
-        };
-
-        hideModal(genericModalOverlay);
-        showPaymentOptionsOrDirect(amount, currentUserData.email, currentUserData.phone, currentUserData.name, currentUserData.country, 'deposit');
-    });
+    // Inside renderDepositModal, find this block and replace it
+depositForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const amount = parseFloat(document.getElementById('depositAmount').value);
+    if (isNaN(amount) || amount <= 0) {
+        alert('Please enter a valid deposit amount.');
+        return;
+    }
+    
+    const targetCurrencyCode = getCurrencyForCountry(currentUserData.country);
+    
+    // Now, save the payment details, including the target currency
+    pendingPaymentDetails = {
+        type: 'deposit',
+        amount: amount, // NGN
+        email: currentUserData.email,
+        name: currentUserData.name,
+        phone: currentUserData.phone,
+        country: currentUserData.country,
+        targetCurrencyCode: targetCurrencyCode, // <<-- ADD THIS LINE
+        handle: currentUserData.handle
+    };
+    
+    hideModal(genericModalOverlay);
+    showPaymentOptionsOrDirect(amount, currentUserData.email, currentUserData.phone, currentUserData.name, currentUserData.country, 'deposit');
+});
 }
 
 
@@ -966,7 +975,9 @@ for (const code in FLUTTERWAVE_COUNTRIES_MAP) {
 }
 
 // Fallback: If no match is found, assume the user entered the 2-letter code
+// Get the country code and corresponding currency code
 const finalCountryCode = foundCountryCode || regCountry.toUpperCase();
+const targetCurrencyCode = getCurrencyForCountry(finalCountryCode);
 
 pendingPaymentDetails = {
     type: 'registration',
@@ -976,6 +987,7 @@ pendingPaymentDetails = {
     phone: regPhone,
     // Use the standardized country code
     country: finalCountryCode,
+    targetCurrencyCode,
     handle: regHandle,
     accessCode: regAccessCode,
     unlockedVideos: [],
@@ -1015,6 +1027,7 @@ function initiateRenewalPayment(e) {
         name: currentUserData.name,
         phone: currentUserData.phone,
         country: currentUserData.country,
+        targetCurrencyCode: getCurrencyForCountry(currentUserData.country), // <<-- ADD THIS LINE
         accessCode: currentUserData.accessCode,
         oldExpiry: currentUserData.subscriptionExpiry
     };
@@ -1031,11 +1044,27 @@ function initiateRenewalPayment(e) {
 }
 
 // --- Payment Gateway Selection Modal ---
-function showPaymentOptionsModal(paymentType, amountInNGN) {
+async function showPaymentOptionsModal(paymentType, amountInNGN) {
     const paymentOptionsModal = document.getElementById('genericModalOverlay'); // Reusing generic modal
+    
+    // Get the target currency from the pending details
+    const targetCurrencyCode = pendingPaymentDetails?.targetCurrencyCode || 'NGN';
+    let convertedAmount = amountInNGN;
+    let convertedText = ``;
+    
+    if (targetCurrencyCode !== 'NGN') {
+        try {
+            convertedAmount = await getConvertedAmount(amountInNGN, targetCurrencyCode);
+            convertedText = `(approx. ${currencySymbol(targetCurrencyCode)}${convertedAmount.toLocaleString()})`;
+        } catch (error) {
+            console.error('Error getting converted amount:', error);
+            // Fallback to not showing converted amount if API fails
+        }
+    }
+    
     modalTitle.textContent = `Choose Payment Method for ${paymentType.charAt(0).toUpperCase() + paymentType.slice(1)}`;
     modalBody.innerHTML = `
-        <p class="note-text">You are paying as little as: <strong>${currencySymbol('NGN')}${amountInNGN.toLocaleString('en-NG')}</strong> <b>only!</b></p>
+        <p class="note-text">You are paying: <strong>${currencySymbol('NGN')}${amountInNGN.toLocaleString('en-NG')}</strong> ${convertedText} <b>only!</b></p>
         <div class="action-buttons" style="flex-direction:column; gap:15px; margin-top:20px;">
             <button class="form-submit-btn" id="payWithPaystackBtn" style="background: linear-gradient(90deg, #1A1A2E, #25D366);">
                 <img src="https://i.imgur.com/Us974zg.jpeg" alt="Paystack" style="height:24px; margin-right:10px;"> Pay with Paystack
@@ -1043,42 +1072,39 @@ function showPaymentOptionsModal(paymentType, amountInNGN) {
             <button class="form-submit-btn" id="payWithFlutterwaveBtn" style="background: linear-gradient(90deg, #FFD700, #FFA500); color: #333;">
                 <img src="https://i.imgur.com/ElPGTna.jpeg" alt="Flutterwave" style="height:24px; margin-right:10px;"> Pay with Flutterwave
             </button>
-       <div class="Reminder">
-             <p>
-             *Payment for <b>in-app purchases</b> are non-refundable.
-             <br>
-*Choose <b>flutterwave</b> to unlock raw pleasure fast with mobile money, mpasa, ivoucher, EFT, direct bank transfer, Google pay, Apple pay & Visa/MasterCard. Choose <b>Paystack</b> to pay directly with Opay.
-        
-             </div>
+            <div class="Reminder">
+                <p>
+                *Payment for <b>in-app purchases</b> are non-refundable.
+                <br>
+                *Choose <b>flutterwave</b> to unlock raw pleasure fast with mobile money, mpasa, ivoucher, EFT, direct bank transfer, Google pay, Apple pay & Visa/MasterCard. Choose <b>Paystack</b> to pay directly with Opay.
+                </p>
+            </div>
         </div>
     `;
     showModal(paymentOptionsModal);
-
+    
     // IMPORTANT: Re-attach event listeners to prevent multiple triggers
     const payWithPaystackBtn = document.getElementById('payWithPaystackBtn');
     const newPaystackBtn = payWithPaystackBtn.cloneNode(true);
     payWithPaystackBtn.parentNode.replaceChild(newPaystackBtn, payWithPaystackBtn);
-
+    
     const payWithFlutterwaveBtn = document.getElementById('payWithFlutterwaveBtn');
     const newFlutterwaveBtn = payWithFlutterwaveBtn.cloneNode(true);
     payWithFlutterwaveBtn.parentNode.replaceChild(newFlutterwaveBtn, payWithFlutterwaveBtn);
-
+    
     newPaystackBtn.onclick = () => {
         hideModal(paymentOptionsModal);
         const { amount, email, name, phone, country } = pendingPaymentDetails;
         handlePaystackPayment(amount, email, name, phone, country, paymentType);
     };
-
+    
     newFlutterwaveBtn.onclick = async () => {
-        hideModal(paymentOptionsModal);
-        const { amount, email, name, phone, country } = pendingPaymentDetails;
-        const countryInfo = FLUTTERWAVE_COUNTRIES_MAP[country] || { currency: 'NGN' };
-        const targetCurrencyCode = countryInfo.currency;
-        const convertedAmount = await getConvertedAmount(amount, targetCurrencyCode);
-        handleFlutterwavePayment(convertedAmount, email, phone, name, country, paymentType, targetCurrencyCode);
-    };
+    hideModal(paymentOptionsModal);
+    const { amount, email, name, phone, country, targetCurrencyCode } = pendingPaymentDetails;
+    const convertedAmount = await getConvertedAmount(amount, targetCurrencyCode);
+    handleFlutterwavePayment(convertedAmount, email, phone, name, country, paymentType, targetCurrencyCode);
+};
 }
-
 // This is the correct, simplified function
 async function showPaymentOptionsOrDirect(amount, email, phone, name, country, paymentType) {
     // This line will now ALWAYS be executed, regardless of the user's country.
