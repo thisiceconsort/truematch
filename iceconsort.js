@@ -43,10 +43,10 @@ const SPLASH_VIDEO_DURATION_MS = 6000; // 6 seconds
 const SPLASH_VIDEO_COOLDOWN_MS = 30 * 60 * 1000; // 30 minutes in milliseconds
 const VIDEO_UNLOCK_DURATION_DAYS = 30; // Videos unlock for 30 days
 const MIN_WITHDRAWAL_NGN = 10500;
-const WITHDRAWAL_FEE_NGN = 1000;
-const REGISTRATION_PAYMENT_NGN = 950;
-const RENEWAL_PAYMENT_NGN = 550;
-const REFERRAL_BONUS_NGN = 900;
+const WITHDRAWAL_FEE_NGN = 500;
+const REGISTRATION_PAYMENT_NGN = 3500;
+const RENEWAL_PAYMENT_NGN = 1500;
+const REFERRAL_BONUS_NGN = 1500;
 
 
 // --- DEVELOPMENT ONLY: Force Reset Local Storage ---
@@ -867,12 +867,11 @@ function renderRegistrationForm() {
             </div>
              <div class="Reminder">
              <p>
-             *By Joining you agree that you are 18 years or above. 
-             <br>
-*Choose <b>flutterwave</b> to pay fast with mobile money, ivoucher & Visa/MasterCard. Choose <b>Paystack</b> to pay fast with Opay.
+             *Step inside only if you’re <b>18+</b> and ready for what’s waiting.
+             
         
              </div>
-            <button type="submit" class="form-submit-btn">Join Now </button>
+            <button type="submit" class="form-submit-btn">Experience Pleasure!</button>
         </form>
     `;
 
@@ -1036,7 +1035,7 @@ function showPaymentOptionsModal(paymentType, amountInNGN) {
     const paymentOptionsModal = document.getElementById('genericModalOverlay'); // Reusing generic modal
     modalTitle.textContent = `Choose Payment Method for ${paymentType.charAt(0).toUpperCase() + paymentType.slice(1)}`;
     modalBody.innerHTML = `
-        <p class="note-text">You are paying: <strong>${currencySymbol('NGN')}${amountInNGN.toLocaleString('en-NG')}</strong></p>
+        <p class="note-text">You are paying as little as: <strong>${currencySymbol('NGN')}${amountInNGN.toLocaleString('en-NG')}</strong> <b>only!</b></p>
         <div class="action-buttons" style="flex-direction:column; gap:15px; margin-top:20px;">
             <button class="form-submit-btn" id="payWithPaystackBtn" style="background: linear-gradient(90deg, #1A1A2E, #25D366);">
                 <img src="https://i.imgur.com/Us974zg.jpeg" alt="Paystack" style="height:24px; margin-right:10px;"> Pay with Paystack
@@ -1044,6 +1043,13 @@ function showPaymentOptionsModal(paymentType, amountInNGN) {
             <button class="form-submit-btn" id="payWithFlutterwaveBtn" style="background: linear-gradient(90deg, #FFD700, #FFA500); color: #333;">
                 <img src="https://i.imgur.com/ElPGTna.jpeg" alt="Flutterwave" style="height:24px; margin-right:10px;"> Pay with Flutterwave
             </button>
+       <div class="Reminder">
+             <p>
+             *Payment for <b>in-app purchases</b> are non-refundable.
+             <br>
+*Choose <b>flutterwave</b> to unlock raw pleasure fast with mobile money, mpasa, ivoucher, EFT, direct bank transfer, Google pay, Apple pay & Visa/MasterCard. Choose <b>Paystack</b> to pay directly with Opay.
+        
+             </div>
         </div>
     `;
     showModal(paymentOptionsModal);
