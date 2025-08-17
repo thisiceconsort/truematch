@@ -722,7 +722,7 @@ function renderTermsModal() {
                </ul>
               <hr>
                 <h3>Membership & Account Access</h3>
-             <p>Access to ICP is granted through a monthly membership subscription. A recurring fee of <strong>₦550</strong> is charged at the end of each month. All users will be automatically logged out at the end of the month, and you will need to renew your subscription to regain access. We recommend renewing at the beginning of the month to ensure uninterrupted access to the platform. We reserve the right to suspend or terminate accounts that violate our terms of service.</p>
+             <p>Access to ICP is granted through a monthly membership subscription. A recurring fee of <strong>$1</strong> is charged at the end of each month. All users will be automatically logged out at the end of the month, and you will need to renew your subscription to regain access. We recommend renewing at the beginning of the month to ensure uninterrupted access to the platform. We reserve the right to suspend or terminate accounts that violate our terms of service.</p>
                <p>If you believe your account has been suspended by mistake, you can file an appeal. Details and instructions for how to appeal will be provided on the login page should you ever find yourself in this situation.</p>
               <hr>
                  <h3>Your Content, Your Ownership</h3>
@@ -749,7 +749,7 @@ function renderTermsModal() {
               <p><strong>Platform Commission:</strong> ICP collects a 35% commission on all earnings from tips, locked videos, and ad revenue. This commission is essential for covering operational costs, payment processing fees, and maintaining a secure platform.</p>
              </li>
               <li>
-               <p><strong>Withdrawal Process:</strong> You may request a withdrawal of your earnings at any time. Each withdrawal request incurs a <strong>₦{WITHDRAWAL\_FEE\_NGN}\</strong\> processing fee. The minimum withdrawal amount is \<strong\>₦{MIN_WITHDRAWAL_NGN}</strong>. All withdrawal requests are meticulously processed and dispatched within 48 hours to ensure prompt access to your funds.</p>
+               <p><strong>Withdrawal Process:</strong> You may request a withdrawal of your earnings at any time. Each withdrawal request incurs a <strong>₦500</strong\> processing fee. The minimum withdrawal amount is \<strong\>$10</strong>. All withdrawal requests are meticulously processed and dispatched within 48 hours to ensure prompt access to your funds.</p>
               </li>
              </ul>
              <hr>
