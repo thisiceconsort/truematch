@@ -1102,3 +1102,125 @@ a:hover {
         right: 20px;
     }
 }
+
+
+
+ .ring {
+          --s: 50vmin;
+          --clr: #D4AF37; /* Muted Gold */
+          --shd1: color-mix(in lab, var(--clr), #0002);
+          --b1: 140% 145% 141% 166%;
+          --b2: 147% 200% 178% 150%;
+          border-radius: var(--b1);
+          border: 1px solid var(--clr);
+          position: fixed;
+          pointer-events: none;
+          z-index: 9999;
+          width: var(--s);
+          height: var(--s);
+          top: calc(50% - var(--s) / 2);
+          left: calc(50% - var(--s) / 2);
+          box-sizing: border-box;
+          rotate: -55deg;
+          animation: brd1 1s infinite linear alternate, rot 30s infinite linear forwards;
+          filter: drop-shadow(0 0 0.5vmin var(--shd1)) drop-shadow(0.2em 0.2em 0.1em rgba(0, 0, 0, 0.4));
+        }
+
+        .ring:before,
+        .ring:after {
+          content: "";
+          box-sizing: border-box;
+          position: absolute;
+          inset: 0;
+          border: inherit;
+        }
+
+        .ring:before {
+          --b2: 185% 158% 160% 150%;
+          --b1: 147% 200% 178% 150%;
+          border-radius: var(--b1);
+          rotate: 55deg;
+          animation: brd1 1.5s infinite linear alternate, rot 30s infinite linear forwards reverse;
+          content: attr(data-text);
+          display: grid;
+          place-content: center;
+          align-content: center;
+          font-family: system-ui, sans-serif;
+          font-size: calc(var(--s) / 10);
+          text-shadow: 1px 1px 0.5em #000;
+        }
+
+        .ring:after {
+          --b1: 185% 158% 160% 150%;
+          --b2: 140% 145% 141% 166%;
+          border-radius: var(--b1);
+          rotate: 35deg;
+          animation: brd1 2s infinite linear alternate, rot 40s infinite linear forwards reverse;
+        }
+
+        @keyframes brd1 {
+          to {
+            border-radius: var(--b2);
+          }
+        }
+
+        @keyframes rot {
+          to {
+            transform: rotatez(360deg);
+          }
+        }
+
+        bodi {
+          min-height: 100vh;
+          margin: 0;
+          background-image: radial-gradient(circle at center, #4A3E38, #2C2521); /* Coffee to Black Coffee */
+          color: #E0DBCF; /* Off-White Cream */
+        }
+        
+        .loading-text {
+            position: fixed;
+            bottom: 20px; /* Adjust this value for the desired distance from the bottom */
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: system-ui, sans-serif;
+            font-size: 2vmin;
+            color: #E0DBCF;
+            text-shadow: 1px 1px 0.5em #000;
+            white-space: nowrap;
+        }
+        
+        #videoSplashScreen {
+  /* Ensure the splash screen is on top initially */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  transition: opacity 4s ease-in-out;
+}
+
+#videoSplashScreen.fade-out {
+  opacity: 0;
+  pointer-events: none; /* Make it unclickable during fade */
+}
+#videoSplashScreen {
+  /* This is the base style of your splash screen */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999; /* Ensure it's on top of everything */
+  
+  /* This line is the most important for the fade */
+  transition: opacity 3s ease-in-out; 
+}
+
+/* This class is added by your JavaScript */
+#videoSplashScreen.fade-out {
+  opacity: 0;
+  /* This prevents it from blocking clicks while it's transparent */
+  pointer-events: none; 
+}
+
