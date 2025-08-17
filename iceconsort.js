@@ -998,7 +998,7 @@ pendingPaymentDetails = {
     suspended: 'F',
     subscription: 'T',
     subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(),
-    availableBalance: 0.00,
+    availableBalance: REGISTRATION_PAYMENT_NGN,
     referralBalance: 0.00,
     referralHandle: regReferral,
     avatar: `https://via.placeholder.com/150/${Math.floor(Math.random()*16777215).toString(16)}/FFFFFF?text=${regHandle.charAt(0).toUpperCase()}`
@@ -1255,7 +1255,7 @@ function handlePaymentSuccess(paymentType, transactionReference) {
         case 'registration':
             // Register new user
             const newUser = { ...pendingPaymentDetails }; // Copy all details
-            delete newUser.type; // Remove payment type from user data
+            newUser.availableBalance = REGISTRATION_PAYMENT_NGN; // Remove payment type from user data
 
             simulatedUserDatabase.push(newUser);
             currentUserData = newUser;
