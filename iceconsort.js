@@ -44,9 +44,9 @@ const SPLASH_VIDEO_COOLDOWN_MS = 30 * 60 * 1000; // 30 minutes in milliseconds
 const VIDEO_UNLOCK_DURATION_DAYS = 30; // Videos unlock for 30 days
 const MIN_WITHDRAWAL_NGN = 10500;
 const WITHDRAWAL_FEE_NGN = 500;
-const REGISTRATION_PAYMENT_NGN = 3500;
-const RENEWAL_PAYMENT_NGN = 1500;
-const REFERRAL_BONUS_NGN = 1500;
+const REGISTRATION_PAYMENT_NGN = 250;
+const RENEWAL_PAYMENT_NGN = 250;
+const REFERRAL_BONUS_NGN = 0;
 
 
 // --- DEVELOPMENT ONLY: Force Reset Local Storage ---
