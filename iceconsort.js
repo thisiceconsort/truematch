@@ -84,7 +84,7 @@ fetch('/version.txt')
   if (window.innerWidth > 430) {
     document.body.innerHTML = ""; // blank
     // or show a message:
-     document.body.innerHTML = "<h1>Screen too large</h1>";
+     document.body.innerHTML = "<h1>App Is Not Yet Available On Tablets, Laptops & Tv. Make Sure You Are Using A Phone!</h1>";
   }
 function closeSearchOverlayIfOpen() {
     const searchOverlay = document.getElementById('searchOverlay');
@@ -128,7 +128,8 @@ const currencySymbols = {
     TZS: 'TSh',
     RWF: 'RF',
     XOF: 'CFA', // West African CFA franc
-    XAF: 'FCFA' // Central African CFA franc
+    XAF: 'FCFA',
+    USD: '$'// Central African CFA franc
     // Add more African currencies as needed
 };
 
@@ -322,15 +323,15 @@ let isUpperLayerExpanded = false; // Tracks if upper layer is fully expanded
 let startY; // For drag functionality
 let initialTop; // For drag functionality
 
-let pendingPaymentDetails = null; // Stores details for a payment about to be made
+let pendingPaymentDetails = null; 
 
-// --- Payment Related Utility Functions ---
+
 
 function currencySymbol(code) {
     return currencySymbols[code] || code;
 }
 
-// Function to convert amount using ExchangeRate-API.com
+
 async function getConvertedAmount(amountInNGN, targetCurrencyCode) {
     if (targetCurrencyCode === 'NGN') {
         return amountInNGN;
@@ -437,9 +438,6 @@ allVideos = sortVideosByNumericalId(allVideos);
         allProfiles = [...initialProfiles];
     }
 }
-
-
-// --- UI Update Functions ---
 
 function updateUIForUser() {
     if (currentUserData && !isGuestMode) {
@@ -643,7 +641,7 @@ function renderReferralModal() {
 
     modalTitle.textContent = 'Referral Program';
     modalBody.innerHTML = `
-        <p class="note-text">Start referring today and start earning! Let people use your referral code during registration and you will earn ${500} naira immediately after every successful referral.</p>
+        <p class="note-text">Start referring today and start earning! Let people use your referral code during registration and you will earn ${1} USD immediately after every successful referral.</p>
         <p class="note-text">Your referral code is your handle: <strong>${currentUserData.handle}</strong></p>
         <p class="note-text">You will see when you have a successful referral in your Referral Balance.</p>
     `;
@@ -657,7 +655,7 @@ function renderNotificationModal() {
     // Assuming 'notif' is a field in currentUserData, e.g., currentUserData.notif = "Welcome to ICP!";
     const notificationText = currentUserData.notif && currentUserData.notif.trim() !== ''
         ? currentUserData.notif
-        : 'You have no new notifications.';
+        : 'Submit a video and start earning from ad revenue!!.';
     modalBody.innerHTML = `<p class="note-text">${notificationText}</p>`;
     showModal(genericModalOverlay);
 }
@@ -665,6 +663,7 @@ function renderNotificationModal() {
 function renderAboutUsModal() {
     modalTitle.textContent = 'About Us';
     modalBody.innerHTML = `
+       <div class="atcl">
         <p><strong>Ice Consort Privilege (ICP) | Our 3 Million Year Old Solera</strong></p>
         <p>Ice Consort Privilege is not a trend. It is a solera system of spirit and survival. A vessel that is never emptied—only enriched. Every profile, every truth, every flame poured in adds another layer to its complexity. We do not erase. We age. We deepen. We honour.</p>
         <p>The system that inspired us isn't just borrowed—it is born of a name:</p>
@@ -683,6 +682,7 @@ function renderAboutUsModal() {
             <li>The velvet complexity of unfiltered truth</li>
         </ul>
         <p>This is not just a platform. It is a legacy, carried in names like Maro. It is the solera of queerness. And it will never, ever run dry.</p>
+   </div>
     `;
     showModal(genericModalOverlay);
 }
@@ -690,6 +690,7 @@ function renderAboutUsModal() {
 function renderTermsModal() {
     modalTitle.textContent = 'Terms and Legals';
     modalBody.innerHTML = `
+        <div class="atcl">
         <h3>Terms of Use</h3>
         <p>Last updated: ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
                 <p>Ice Consort Privilege (ICP) | Our 3 Million Year Old Solera</p>
@@ -756,6 +757,7 @@ function renderTermsModal() {
               <p>While we strive to provide a stable and secure environment, we do not guarantee uninterrupted or undisrupted access to the platform. We are not liable for any content posted by users, and by using this platform, you agree to indemnify and hold harmless ICP and its affiliates from any claims arising from your use or content.</p>
              <p>We are not trying to be everything for everyone. We are building something sacred, for us—and only us.</p>
            <p><strong>Ice Consort Privilege (ICP) | Our 3 Million Year Old Solera</strong></p>
+   </div>
     `;
     showModal(genericModalOverlay);
 }
@@ -763,8 +765,10 @@ function renderTermsModal() {
 function renderContactUsModal() {
     modalTitle.textContent = 'Contact Us';
     modalBody.innerHTML = `
-        <p><strong>Email:</strong> team.milaaje.org, iceconsort@gmail.com</p>
+        <div class="atcl">
+        <p><strong>Email:</strong> team.milaaje@gmail.com, iceconsort@gmail.com</p>
         <p><strong>Phone:</strong> +2348027350284</p>
+        </div>
            `;
     showModal(genericModalOverlay)    
 }
