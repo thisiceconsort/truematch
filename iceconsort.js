@@ -1811,19 +1811,23 @@ function stopDrag() {
 function showSplashScreen() {
     const lastPlayed = localStorage.getItem('splashVideoLastPlayed');
     const now = Date.now();
+    const videoSplashScreen = document.getElementById('videoSplashScreen');
 
     if (lastPlayed && (now - parseInt(lastPlayed, 10)) < SPLASH_VIDEO_COOLDOWN_MS) {
         // Cooldown period not over, skip splash
-        videoSplashScreen.style.display = 'none';
+        if (videoSplashScreen) {
+          videoSplashScreen.style.display = 'none';
+        }
         mainContent.classList.add('active');
         document.body.style.overflow = ''; // Allow body scroll if needed
     } else {
-        splashVideo.style.display = 'block';
-        splashVideo.play();
-        splashVideo.addEventListener('ended', handleSplashEnd);
-        setTimeout(handleSplashEnd, SPLASH_VIDEO_DURATION_MS); // Fallback timeout
+        // This is the CRUCIAL change:
+        // You only need to set a timeout to handle the fade-out
+        // because there's no video to wait for.
+        setTimeout(handleSplashEnd, SPLASH_VIDEO_DURATION_MS); // Use your configured duration
     }
 }
+
 
 function handleSplashEnd() {
     if (videoSplashScreen.classList.contains('fade-out')) {
