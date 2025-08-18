@@ -664,25 +664,45 @@ function renderAboutUsModal() {
     modalTitle.textContent = 'About Us';
     modalBody.innerHTML = `
        <div class="atcl">
-        <p><strong>Ice Consort Privilege (ICP) | Our 3 Million Year Old Solera</strong></p>
-        <p>Ice Consort Privilege is not a trend. It is a solera system of spirit and survival. A vessel that is never emptied—only enriched. Every profile, every truth, every flame poured in adds another layer to its complexity. We do not erase. We age. We deepen. We honour.</p>
-        <p>The system that inspired us isn't just borrowed—it is born of a name:</p>
-        <p><strong>Maro Akpovwovwo Erubasa.</strong></p>
-        <p>Maro — A season’s diamond. A rare spark, glinting through Time.<br>
-        Akpovwovwo — The golden hour. The sweetness earned.<br>
-        Erubasa — Where we have reached, yet the distance remains. The striving. The longing. The eternal becoming.</p>
-        <p>This name is not a label. It is a solera system in itself: one that contains beauty, patience, and a refusal to stop at enough.</p>
-        <p>And so, Ice Consort Privilege was born. From ancient breath to modern roar. From men who loved in silence to those who speak in light. From the caves, to the courts, to this screen.</p>
-        <p>We are a sacred cask. Aged in rebellion. Bottled in truth. Poured with grace.</p>
-        <p>In our blend, you’ll taste:</p>
-        <ul>
-            <li>The spice of courage</li>
-            <li>The sweetness of authenticity</li>
-            <li>The strength of survival</li>
-            <li>The velvet complexity of unfiltered truth</li>
-        </ul>
-        <p>This is not just a platform. It is a legacy, carried in names like Maro. It is the solera of queerness. And it will never, ever run dry.</p>
-   </div>
+        <br>
+<h1>About Us</h1>
+<p>Welcome to <strong>Ice Consort Privilege (ICP)</strong>, a unique digital solera system for gay adult content. Like a carefully aged cask, our platform is not a trend—it's a living system of spirit and survival, constantly enriched by every member who joins.</p>
+
+<br>
+<h2>The Maro Akpovwovwo Erubasa Philosophy</h2>
+<p>Our platform is built on a name that is more than a label; it's a philosophy: <strong>Maro Akpovwovwo Erubasa</strong>.</p>
+<ul>
+  <li><strong>Maro</strong>: A season's diamond, a rare spark. This is the moment a user finds our platform and decides to join our community.</li>
+  <li><strong>Akpovwovwo</strong>: The golden hour, the sweetness earned. This represents the rewarding experience of exploring and connecting with the content and creators on our platform.</li>
+  <li><strong>Erubasa</strong>: Where we have reached, yet the distance remains. The eternal becoming. This is the ongoing journey of growth, community, and connection that defines us.</li>
+</ul>
+<p>This is the solera of queerness. It will never, ever run dry.</p>
+
+<br>
+<h2>Our Service</h2>
+<p>Our main goal is simple: to connect gay adult content creators with viewers who love watching them. We are a sacred cask, aged in rebellion, and bottled with truth. In our blend, you'll find:</p>
+<ul>
+  <li>The spice of courage</li>
+  <li>The sweetness of authenticity</li>
+  <li>The strength of survival</li>
+  <li>The velvet complexity of unfiltered truth</li>
+</ul>
+<p>We are not just a platform; we are a community. We also have a growing community where users can mingle and connect with like-minded individuals.</p>
+
+<br>
+<h2>Getting Started</h2>
+<ol>
+  <li><strong>Join Us</strong>: When you visit, you'll be prompted to create a free account.</li>
+  <li><strong>Starter Deposit</strong>: To get started, a small, mandatory deposit is required during registration. This deposit is immediately available on your dashboard.</li>
+  <li><strong>Unlock & Explore</strong>: Use your starter deposit to unlock videos, tip your favorite creators, and purchase other features on the platform.</li>
+</ol>
+
+<br>
+<h2>Our Referral Logic</h2>
+<p>We believe in rewarding our community. When you invite a new user, you will receive 5% of every purchase they make for the first 30 days. It's our way of thanking you for helping our solera system grow.</p>
+<p>From men who loved in silence to those who speak in light—from the caves, to the courts, to this screen—Ice Consort Privilege was born.</p>
+
+</div>
     `;
     showModal(genericModalOverlay);
 }
