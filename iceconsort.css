@@ -61,7 +61,7 @@ html, body {
 .atcl{
   padding: 20px;          /* space around text inside container */     /* keeps lines from being too wide */
   margin: 0 auto;  
-    color: var(--off-white);
+    color: var(--light-gray);
     font-family: "Avenir Light", "Avenir", "Helvetica Neue", "Lato", "Open Sans", sans-serif;
 
     /* centers the container */
