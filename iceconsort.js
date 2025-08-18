@@ -1480,9 +1480,7 @@ function createVideoCard(video) {
         <div class="video-card-info">
             <p class="video-card-description">${video.description}</p>
             <p class="video-card-handle">${video.handle}</p>
-            ${displayPrice ? `<span class="video-price">${currencySymbol('NGN')}${video.price.toLocaleString('en-NG')}</span>` : ''}
-            ${video.locked && !isUnlocked ? '<div class="locked-overlay"><i class="fas fa-lock"></i></div>' : ''}
-        </div>
+                    </div>
     `;
 
     card.addEventListener('click', () => {
