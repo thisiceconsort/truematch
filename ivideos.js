@@ -11,6 +11,110 @@
 
 const initialVideos = [
 
+         
+{
+        handle: 'twitter',
+        description: "white teenager was feed by two farmers after he told them he was hungry. | Open source.",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/ce269c93-dffa-44f3-8ae1-9a41ff141bec/thumbnail.jpg',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/ce269c93-dffa-44f3-8ae1-9a41ff141bec/playlist.m3u8',
+        locked: true,
+        price: 120,
+        id: 'video201'
+    },
+{
+        handle: 'twitter',
+        description: "Boy went to visit his friend when his parents were not at home. | Open source.",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/58fd3d32-df36-40ee-a6cc-350513185d78/preview.webp?v=1755593536',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/58fd3d32-df36-40ee-a6cc-350513185d78/playlist.m3u8',
+        locked: true,
+        price: 25,
+        id: 'video200'
+    },
+{
+        handle: 'twitter',
+        description: "Step father showing love to his stepson when mom goes to the market . | Open source.",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/01bc2e27-5c02-4f27-81eb-7e5f6a6c76ee/thumbnail.jpg',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/01bc2e27-5c02-4f27-81eb-7e5f6a6c76ee/playlist.m3u8',
+        locked: true,
+        price: 75,
+        id: 'video199'
+    },
+{
+        handle: 'twitter',
+        description: "Chocolate Lollipop is the best lollipop | Open source.",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/00f1a289-4eb8-4bb6-b824-47898cf743f6/thumbnail.jpg',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/00f1a289-4eb8-4bb6-b824-47898cf743f6/playlist.m3u8',
+        locked: true,
+        price: 35,
+        id: 'video198'
+    },
+    {
+        handle: 'twitter',
+        description: "A man that knows how to handle whatever comes his way. | Open source.",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/f2ab86ca-4786-43ba-a3ec-f6b4982221ae/thumbnail.jpg',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/f2ab86ca-4786-43ba-a3ec-f6b4982221ae/playlist.m3u8',
+        locked: true,
+        price: 25,
+        id: 'video197'
+    },
+    
+   
+    {
+        handle: 'twitter',
+        description: "Came to the studio to drop some sound, but ended up dropping milk instead.. | Open source.",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/be605def-7a76-4152-9cf3-d97891480116/thumbnail.jpg',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/be605def-7a76-4152-9cf3-d97891480116/playlist.m3u8',
+        locked: true,
+        price: 50,
+        id: 'video196'
+    },
+         {
+        handle: 'twitter',
+        description: "hiking with milk inside his stomach along the way. | Open source.",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/47b6d245-967f-4880-bbd6-878c8c4dc778/thumbnail.jpg',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/47b6d245-967f-4880-bbd6-878c8c4dc778/playlist.m3u8',
+        locked: true,
+        price: 75,
+        id: 'video195'
+    },
+{
+        handle: 'twitter',
+        description: "The view, breath taking. | Open source.",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/816b0eab-1d95-4a52-a2db-eb7d4f2f9fac/preview.webp?v=1755594242',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/776b4a60-fc89-4913-8daa-408129e00170/playlist.m3u8',
+        locked: true,
+        price: 25,
+        id: 'video194'
+    },
+{
+        handle: 'twitter',
+        description: " three boys studying for theur exams in the room . | Open source.",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/52b0c005-e8f6-4903-8875-6fb423c0db6b/thumbnail.jpg',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/52b0c005-e8f6-4903-8875-6fb423c0db6b/playlist.m3u8',
+        locked: true,
+        price: 107,
+        id: 'video193'
+    },
+{
+        handle: 'twitter',
+        description: "me, you, us, alone. that's all that matters. | Open source.",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/776b4a60-fc89-4913-8daa-408129e00170/thumbnail.jpg',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/776b4a60-fc89-4913-8daa-408129e00170/playlist.m3u8',
+        locked: true,
+        price: 35,
+        id: 'video192'
+    },
+    {
+        handle: 'twitter',
+        description: "called the construction worker to fix his table and they ended up having fun. | Open source.",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/a291078c-c760-4721-9d9a-b14c9f85f400/thumbnail.jpg',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/a291078c-c760-4721-9d9a-b14c9f85f400/playlist.m3u8',
+        locked: true,
+        price: 60,
+        id: 'video191'
+    },
+    
+         
          {
         handle: 'twitter',
         description: "Black African Boys, Content marathon🍌🔥. | Open source.",
