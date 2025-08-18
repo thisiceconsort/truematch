@@ -804,7 +804,7 @@ function showAuthRequiredModal() {
     modalTitle.textContent = 'Login Required';
     modalBody.innerHTML = `
         <p class="suspended-message">
-            <i class="fas fa-lock"></i> please Login or Create an account to proceed.
+         please Login or Create an account to proceed.
         </p>
         <button class="form-submit-btn" id="goToLoginFromAuthRequired">Log In / Join</button>
     `;
@@ -1593,7 +1593,7 @@ function renderLockedVideoModal(video) {
     modalTitle.textContent = 'Exclusive Video';
     modalBody.innerHTML = `
         <p class="suspended-message">
-            <i class="fas fa-lock"></i> For Just <strong>${currencySymbol('NGN')}${video.price.toLocaleString('en-NG')}</strong> Only to unlock.
+         <strong>${currencySymbol('NGN')}${video.price.toLocaleString('en-NG')}</strong> Only to play this video.
         </p>
     
         <button class="form-submit-btn" id="unlockVideoBtn">Watch</button>
