@@ -599,7 +599,7 @@ function renderDepositModal() {
             </div>
             <div class="form-group">
                 <label for="depositAmount">How much do you want to deposit (NGN)?</label>
-                <input type="number" id="depositAmount" name="depositAmount" min="500" required>
+                <input type="number" id="depositAmount" name="depositAmount" min="1800" required>
             </div>
             <button type="submit" class="form-submit-btn">Deposit</button>
         </form>
