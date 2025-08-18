@@ -979,16 +979,16 @@ a:hover {
     text-align: center;
     padding: 20px;
     font-size: 1.1em;
-    color: var(--danger-color);
-    background-color: rgba(255, 0, 0, 0.1);
-    border: 1px solid var(--danger-color);
+    color: var(--light-gray);
+    background-color: var(--mocha-brown) ;
+    border: 1px solid var(--bronze-accent);
     border-radius: var(--card-border-radius);
     margin-top: 20px;
     font-weight: 500;
 }
 
 .suspended-message strong, .expired-subscription-message strong {
-    color: var(--danger-color);
+    color: var(--bronze-accent);
     font-weight: 700;
 }
 
