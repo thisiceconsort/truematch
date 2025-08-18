@@ -591,7 +591,7 @@ function renderDepositModal() {
 
     modalTitle.textContent = 'Deposit';
     modalBody.innerHTML = `
-        <p class="note-text">By depositing you will be able to watch unlimited locked videos, tip creators and ask for their contact directly.</p>
+        <p class="note-text"> Don't let anything stop you from watching your favourite boys! <br> Remember the funds is yours, do whatever you want with it.</p>
         <form id="depositForm">
             <div class="form-group">
                 <label for="depositHandle">Your Handle</label>
