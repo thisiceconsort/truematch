@@ -1596,11 +1596,10 @@ function renderLockedVideoModal(video) {
     modalTitle.textContent = 'Exclusive Video';
     modalBody.innerHTML = `
         <p class="suspended-message">
-            <i class="fas fa-lock"></i> This video is exclusive.
-            Pay <strong>${currencySymbol('NGN')}${video.price.toLocaleString('en-NG')}</strong> to unlock and watch.
+            <i class="fas fa-lock"></i> This video is <strong>${currencySymbol('NGN')}${video.price.toLocaleString('en-NG')}</strong> to unlock.
         </p>
-        <p class="note-text">Note: This is a pay-as-you-go video with single-use access. </p>
-        <button class="form-submit-btn" id="unlockVideoBtn">Pay ${currencySymbol('NGN')}${video.price.toLocaleString('en-NG')}</button>
+    
+        <button class="form-submit-btn" id="unlockVideoBtn">Watch</button>
     `;
     showModal(genericModalOverlay);
 
@@ -1610,7 +1609,7 @@ function renderLockedVideoModal(video) {
             return;
         }
         if (currentUserData.availableBalance < video.price) {
-            alert(`Insufficient balance. You need ${currencySymbol('NGN')}${video.price.toLocaleString('en-NG')} to unlock this video. Your current balance is ${currencySymbol('NGN')}${currentUserData.availableBalance.toFixed(2)}.`);
+            alert(`Insufficient balance. You need ${currencySymbol('NGN')}${video.price.toLocaleString('en-NG')} to unlock this video. Your current balance is ${currencySymbol('NGN')}${currentUserData.availableBalance.toFixed(2)}. please go and deposit to continue watching.);
             // Optionally, prompt for deposit
             return;
         }
