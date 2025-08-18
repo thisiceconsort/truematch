@@ -1346,9 +1346,9 @@ function handlePaymentSuccess(paymentType, transactionReference) {
                 hideModal(genericModalOverlay);
                 // Re-render the video modal to show it as unlocked
                 renderVideoPlaybackModal(videoToUnlock);
-                alert(`Video "${videoToUnlock.description.substring(0, 30)}..." unlocked for ${VIDEO_UNLOCK_DURATION_DAYS} days!`);
-                alert('Note: This is a pay-as-you-go video with single-use access. No refunds.');
-                successMessage = `Video unlock successful for video ID: ${videoId}.`;
+               // alert(`Video "${videoToUnlock.description.substring(0, 30)}..." unlocked for ${VIDEO_UNLOCK_DURATION_DAYS} days!`);
+               // alert('Video Will Relock After View.');
+                //successMessage = `Video unlock successful for video ID: ${videoId}.`;
             } else {
                 console.error('Error unlocking video: user or video not found.');
                 alert('Video unlock successful, but an internal error occurred. Please contact support.');
