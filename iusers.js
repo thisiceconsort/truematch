@@ -1,7 +1,19 @@
-const hardcodedUsers = [
-        
-
-            
+const hardcodedUsers = [                  
+       {
+        name: 'Ayomide',
+        handle: 'Oluwatob',
+        email: 'oolutife@gmail.com',
+        phone: '+2349161136742',
+        country: 'NG', 
+        accessCode: '1717sss',
+        unlockedVideos: [],
+        suspended: 'F', 
+        subscription: 'T', 
+        subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(), 
+        availableBalance: 240.00,
+        referralBalance: 0.00,
+        avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=AA'
+},     
        {
         name: 'Akuezuilo',
         handle: 'Akuezuio',
