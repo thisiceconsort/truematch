@@ -1667,10 +1667,11 @@ function renderVideoPlaybackModal(video) {
 
 function loadRelatedVideos(currentHandle, currentVideoId) {
     const relatedVideos = allVideos
-        .filter(v => v.handle === currentHandle && v.id !== currentVideoId); // Only same handle, exclude current video
+        .filter(v => v.handle === currentHandle && v.id !== currentVideoId) // Same handle, exclude current video
+        .concat(allVideos.filter(v => v.handle !== currentHandle && v.id !== currentVideoId)); // Other videos
 
     const startIndex = currentRelatedVideoPage * relatedVideosPerPage;
-    const endIndex = startIndex + relatedRelatedVideosPerPage;
+    const endIndex = startIndex + relatedVideosPerPage;
     const videosToDisplay = relatedVideos.slice(startIndex, endIndex);
 
     renderVideos(moreVideosGrid, videosToDisplay, currentRelatedVideoPage > 0);
@@ -1682,6 +1683,7 @@ function loadRelatedVideos(currentHandle, currentVideoId) {
         loadMoreRelatedVideosBtn.classList.remove('hidden');
     }
 }
+
 
 
 
