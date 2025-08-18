@@ -804,8 +804,7 @@ function showAuthRequiredModal() {
     modalTitle.textContent = 'Login Required';
     modalBody.innerHTML = `
         <p class="suspended-message">
-            <i class="fas fa-lock"></i> This feature requires you to be logged in.
-            Please log in or create an account to proceed.
+            <i class="fas fa-lock"></i> please Login or Create an account to proceed.
         </p>
         <button class="form-submit-btn" id="goToLoginFromAuthRequired">Log In / Join</button>
     `;
@@ -1077,8 +1076,8 @@ async function showPaymentOptionsModal(paymentType, amountInNGN) {
                 <img src="https://i.imgur.com/ElPGTna.jpeg" alt="Flutterwave" style="height:24px; margin-right:10px;"> Pay with Flutterwave
             </button>
             <div class="Reminder">
-                <p>
-                *Payment for <b>in-app purchases</b> are non-refundable.
+                
+            <p>
                 <br>
                 *Choose <b>flutterwave</b> to unlock raw pleasure fast with mobile money, mpasa, ivoucher, EFT, direct bank transfer, Google pay, Apple pay & Visa/MasterCard. Choose <b>Paystack</b> to pay directly with Opay.
                 </p>
@@ -1594,7 +1593,7 @@ function renderLockedVideoModal(video) {
     modalTitle.textContent = 'Exclusive Video';
     modalBody.innerHTML = `
         <p class="suspended-message">
-            <i class="fas fa-lock"></i> This video is <strong>${currencySymbol('NGN')}${video.price.toLocaleString('en-NG')}</strong> to unlock.
+            <i class="fas fa-lock"></i> For Just <strong>${currencySymbol('NGN')}${video.price.toLocaleString('en-NG')}</strong> Only to unlock.
         </p>
     
         <button class="form-submit-btn" id="unlockVideoBtn">Watch</button>
@@ -1607,7 +1606,7 @@ function renderLockedVideoModal(video) {
             return;
         }
         if (currentUserData.availableBalance < video.price) {
-            alert(`Insufficient balance. You need ${currencySymbol('NGN')}${video.price.toLocaleString('en-NG')} to unlock this video. Your current balance is ${currencySymbol('NGN')}${currentUserData.availableBalance.toFixed(2)}. please go and deposit to continue watching.`);
+            alert(`Low balance. You need ${currencySymbol('NGN')}${video.price.toLocaleString('en-NG')} to unlock this video. Your current balance is ${currencySymbol('NGN')}${currentUserData.availableBalance.toFixed(2)}. Please go and deposit to continue watching.`);
             // Optionally, prompt for deposit
             return;
         }
@@ -1883,7 +1882,7 @@ function checkAccessCode(accessCode) {
         modalBody.innerHTML = `
             <p class="suspended-message">
                 <i class="fas fa-exclamation-triangle"></i> Your account has been suspended.
-                If you believe this was a mistake, kindly send a message to team.milaaje.com.
+                If you believe this was a mistake, kindly send a message to team.milaaje.org |
                 You will be told why your account was suspended and what you can do to remove this ban.
             </p>
         `;
@@ -1963,7 +1962,7 @@ enterClubBtn.addEventListener('click', () => {
     if (enteredCode) {
         checkAccessCode(enteredCode);
     } else {
-        alert('Please enter an Access Code.');
+        alert('Please enter your Access Code.');
     }
 });
 
@@ -2065,7 +2064,7 @@ tipCreatorBtn.addEventListener('click', () => {
             return;
         }
         if (currentUserData.availableBalance < tipAmount) {
-            alert(`Insufficient balance. You need ${tipAmount} NGN to tip. Your current balance is ${currentUserData.availableBalance.toFixed(2)} NGN.`);
+            alert(`Low balance. You need Just ${tipAmount} NGN Only to tip. Your current balance is ${currentUserData.availableBalance.toFixed(2)} NGN.`);
             return;
         }
 
