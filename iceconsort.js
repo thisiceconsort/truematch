@@ -1609,7 +1609,7 @@ function renderLockedVideoModal(video) {
             return;
         }
         if (currentUserData.availableBalance < video.price) {
-            alert(`Insufficient balance. You need ${currencySymbol('NGN')}${video.price.toLocaleString('en-NG')} to unlock this video. Your current balance is ${currencySymbol('NGN')}${currentUserData.availableBalance.toFixed(2)}. please go and deposit to continue watching.);
+            alert(`Insufficient balance. You need ${currencySymbol('NGN')}${video.price.toLocaleString('en-NG')} to unlock this video. Your current balance is ${currencySymbol('NGN')}${currentUserData.availableBalance.toFixed(2)}. please go and deposit to continue watching.`);
             // Optionally, prompt for deposit
             return;
         }
