@@ -1959,7 +1959,7 @@ authBtn.addEventListener('click', () => {
         localStorage.removeItem('activeAccessCodeSession'); // Remove this session indicator
         updateUIForUser();
         hideModal(moreOptionsModalOverlay);
-        alert('You have been logged out.');
+        //alert('You have been logged out.');
     }
 });
 
