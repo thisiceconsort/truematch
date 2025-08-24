@@ -1,37 +1,3 @@
-let encoded = [
-    "aXVzZXJzLmpz",
-    "aXZpZGVvcy5qcw==",
-    "aXByb2ZpbGVzLmpz",
-];
-
-function loadScript(index) {
-    if (index >= encoded.length) {
-        console.log("load");
-        // This is the CRITICAL change:
-        // We call the initialization function only after all scripts are loaded.
-        initializePage(); 
-        return;
-    }
-    
-    const scriptName = atob(encoded[index]);
-    
-    const s = document.createElement("script");
-    s.src = scriptName;
-    s.onload = () => {
-        console.log(`✅ Loaded: ${scriptName}`);
-        loadScript(index + 1);
-    };
-    s.onerror = () => {
-        console.error(`❌ Failed to load: ${scriptName}`);
-    };
-    
-    document.head.appendChild(s);
-}
-
-loadScript(0);
-
-
-
 let isDragging = false;
 let dragStartY = 0;
 let dragCurrentY = 0;
@@ -47,21 +13,6 @@ const WITHDRAWAL_FEE_NGN = 500;
 const REGISTRATION_PAYMENT_NGN = 250;
 const RENEWAL_PAYMENT_NGN = 250;
 const REFERRAL_BONUS_NGN = 0;
-
-
-// --- DEVELOPMENT ONLY: Force Reset Local Storage ---
-// Uncomment this block and refresh your page once to apply hardcoded changes.
-// Then comment it out again to allow normal persistence.
-
-//console.warn("DEVELOPMENT MODE: Clearing localStorage for a fresh start. Remember to comment this out!");
-//localStorage.removeItem('currentUserData');
-//localStorage.removeItem('simulatedUserDatabase');
-//.removeItem('allVideos');
-//localStorage.removeItem('allProfiles');
-// You might also want to clear the splash screen cooldown if testing that
-//localStorage.removeItem('splashVideoLastPlayed');
-
-// --- END DEVELOPMENT ONLY BLOCK ---
 
 
 fetch('/version.txt')
@@ -1120,10 +1071,37 @@ async function showPaymentOptionsOrDirect(amount, email, phone, name, country, p
     // This line will now ALWAYS be executed, regardless of the user's country.
     showPaymentOptionsModal(paymentType, amount);
 }
+let encoded = [
+    "aXVzZXJzLmpz",
+    "aXZpZGVvcy5qcw==",
+    "aXByb2ZpbGVzLmpz",
+];
 
+function loadScript(index) {
+    if (index >= encoded.length) {
+        console.log("load");
+        // This is the CRITICAL change:
+        // We call the initialization function only after all scripts are loaded.
+        initializePage(); 
+        return;
+    }
+    
+    const scriptName = atob(encoded[index]);
+    
+    const s = document.createElement("script");
+    s.src = scriptName;
+    s.onload = () => {
+        console.log(`✅ Loaded: ${scriptName}`);
+        loadScript(index + 1);
+    };
+    s.onerror = () => {
+        console.error(`❌ Failed to load: ${scriptName}`);
+    };
+    
+    document.head.appendChild(s);
+}
 
-
-// --- Payment Gateway Handlers ---
+loadScript(0);
 
 function handlePaystackPayment(amount, email, name, phone, country, paymentType) {
     const paystackAmount = amount * 100; // Paystack requires amount in kobo (lowest denomination)
