@@ -1,6 +1,22 @@
 const hardcodedUsers = [                  
     
-       {
+      
+    {
+        name: 'John',
+        handle: 'Freaks7',
+        email: 'georgenotfound065@gmail.com',
+        phone: '0798592881',
+        country: 'KE', 
+        accessCode: '2556FRE',
+        unlockedVideos: [],
+        suspended: 'F', 
+        subscription: 'T', 
+        subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(), 
+        availableBalance: 40.00,
+        referralBalance: 0.00,
+        avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=AA'
+},  
+    {
         name: 'Ahoy',
         handle: 'Ahoy1989',
         email: 'giftedsadeemoh@gmail.com',
