@@ -1,11 +1,43 @@
 const hardcodedUsers = [                  
+    
+       {
+        name: 'Ahoy',
+        handle: 'Ahoy1989',
+        email: 'giftedsadeemoh@gmail.com',
+        phone: '+2348082825428',
+        country: 'NG', 
+        accessCode: '1986SAD',
+        unlockedVideos: [],
+        suspended: 'F', 
+        subscription: 'T', 
+        subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(), 
+        availableBalance: 146.00,
+        referralBalance: 0.00,
+        avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=AA'
+},  
+
+       {
+        name: 'Victor Bernard',
+        handle: 'Viccy',
+        email: 'bernardvictor48@gmail.com',
+        phone: '+2347042050548',
+        country: 'NG', 
+        accessCode: '6063QWE',
+        unlockedVideos: [],
+        suspended: 'F', 
+        subscription: 'T', 
+        subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(), 
+        availableBalance: 43.00,
+        referralBalance: 0.00,
+        avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=AA'
+},     
        {
         name: 'Ayomide',
         handle: 'Oluwatob',
         email: 'oolutife@gmail.com',
         phone: '+2349161136742',
         country: 'NG', 
-        accessCode: '1717sss',
+        accessCode: '1717SSS',
         unlockedVideos: [],
         suspended: 'F', 
         subscription: 'T', 
