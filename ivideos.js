@@ -18,7 +18,7 @@ const initialVideos = [
         videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/26197935-f7f7-4946-afb9-cc33e1df537f/playlist.m3u8',
         locked: true,
         price: 80,
-        id: 'video128'
+        id: 'video228'
     },
                
     {
@@ -28,7 +28,7 @@ const initialVideos = [
         videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/047a4424-75c4-4ef1-9d3d-10ff9c4705f4/playlist.m3u8',
         locked: true,
         price: 110,
-        id: 'video127'
+        id: 'video227'
     },
     
    
@@ -39,7 +39,7 @@ const initialVideos = [
         videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/954a73b9-92ed-4d4b-8d0e-e766a8ade876/playlist.m3u8',
         locked: true,
         price: 90,
-        id: 'video126'
+        id: 'video226'
     },
          {
         handle: 'twitter',
@@ -164,7 +164,7 @@ const initialVideos = [
 {
         handle: 'twitter',
         description: "Straight boy saw heaven for the first in his life. | Open source.",
-        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/edad4683-a72c-473a-abfc-e6cdbfdedf99/thumbnail.jpg',
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/91903d79-7744-46d9-a028-cb4c0a55d22e/preview.webp?v=1756214781',
         videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/edad4683-a72c-473a-abfc-e6cdbfdedf99/playlist.m3u8',
         locked: true,
         price: 59,
