@@ -1,6 +1,21 @@
 const hardcodedUsers = [                  
     
-      
+    {
+        name: 'Mustapha Adebisi',
+        handle: 'Derianxx',
+        email: 'adebisiajike@yahoo.com',
+        phone: '+2348064942276',
+        country: 'NG', 
+        accessCode: '2852BIS',
+        unlockedVideos: [],
+        suspended: 'F', 
+        subscription: 'T', 
+        subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(), 
+        availableBalance: 900.00,
+        referralBalance: 0.00,
+        avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=AA'
+},  
+    
     {
         name: 'John',
         handle: 'Freaks7',
@@ -179,7 +194,7 @@ const hardcodedUsers = [
         suspended: 'F', 
         subscription: 'T', 
         subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(), 
-        availableBalance: 9500.00,
+        availableBalance: 9750.00,
         referralBalance: 0.00,
         avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=AA'
     },
