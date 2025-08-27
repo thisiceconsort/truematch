@@ -1,6 +1,37 @@
 const hardcodedUsers = [                  
     
     {
+        name: 'Wycliffe Morgan',
+        handle: '2013moro',
+        email: 'wycliffemororo6@gmail.com',
+        phone: '+254114365920',
+        country: 'GH', 
+        accessCode: '9783BAB',
+        unlockedVideos: [],
+        suspended: 'F', 
+        subscription: 'T', 
+        subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(), 
+        availableBalance: 82.00,
+        referralBalance: 0.00,
+        avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=AA'
+},  
+    {
+        name: 'Hudson toppers',
+        handle: 'Hudson26',
+        email: 'andrewsokai47@gmail.com',
+        phone: '+233591288796',
+        country: 'GH', 
+        accessCode: '1999AAQ',
+        unlockedVideos: [],
+        suspended: 'F', 
+        subscription: 'T', 
+        subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(), 
+        availableBalance: 250.00,
+        referralBalance: 0.00,
+        avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=AA'
+},  
+
+    {
         name: 'Mustapha Adebisi',
         handle: 'Derianxx',
         email: 'adebisiajike@yahoo.com',
@@ -11,7 +42,7 @@ const hardcodedUsers = [
         suspended: 'F', 
         subscription: 'T', 
         subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(), 
-        availableBalance: 900.00,
+        availableBalance: 840.00,
         referralBalance: 0.00,
         avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=AA'
 },  
@@ -194,7 +225,7 @@ const hardcodedUsers = [
         suspended: 'F', 
         subscription: 'T', 
         subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(), 
-        availableBalance: 9750.00,
+        availableBalance: 10000.00,
         referralBalance: 0.00,
         avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=AA'
     },
