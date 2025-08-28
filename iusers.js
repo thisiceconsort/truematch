@@ -11,7 +11,7 @@ const hardcodedUsers = [
         suspended: 'F', 
         subscription: 'T', 
         subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(), 
-        availableBalance: 82.00,
+        availableBalance: 78.00,
         referralBalance: 0.00,
         avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=AA'
 },  
@@ -42,7 +42,7 @@ const hardcodedUsers = [
         suspended: 'F', 
         subscription: 'T', 
         subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(), 
-        availableBalance: 840.00,
+        availableBalance: 810.00,
         referralBalance: 0.00,
         avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=AA'
 },  
@@ -214,11 +214,15 @@ const hardcodedUsers = [
         referralBalance: 0.00,
         avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=AA'
     },
+
+    
+
+
         {
-        name: 'paul',
+        name: 'Ekemezie Stephen',
         handle: 'paulvick',
-        email: 'paulvick@milaaje.org',
-        phone: '+234123456789',
+        email: 'lafwitimi@gmail.com',
+        phone: '+2347063960155',
         country: 'NG', 
         accessCode: '4321PAV',
         unlockedVideos: [],
@@ -227,7 +231,7 @@ const hardcodedUsers = [
         subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(), 
         availableBalance: 10000.00,
         referralBalance: 0.00,
-        avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=AA'
+        avatar: 'https://dl.dropboxusercontent.com/scl/fi/ucb2qkebfqw1xn1tdi7qm/Screenshot_2025-08-28-11-40-53-486_org.telegram.messenger-2.jp'
     },
         {
         name: 'Abdallah Afaridjan',
