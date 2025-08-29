@@ -1,5 +1,53 @@
 const hardcodedUsers = [                  
     
+        {
+        name: 'Raven',
+        handle: 'Raven',
+        email: 'oluwapelumimarvellous028@gmail.com',
+        phone: '+2349063254521',
+        country: 'USA', 
+        accessCode: '0123RAV',
+        unlockedVideos: [],
+        suspended: 'F', 
+        subscription: 'T', 
+        subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(), 
+        availableBalance: 1218.00,
+        referralBalance: 0.00,
+        avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=AA'
+},  
+    
+    {
+        name: 'M M',
+        handle: 'SexyGuy9',
+        email: 'daring2756@gmail.com',
+        phone: '0588854805',
+        country: 'USA', 
+        accessCode: '1234MKK',
+        unlockedVideos: [],
+        suspended: 'F', 
+        subscription: 'T', 
+        subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(), 
+        availableBalance: 173.00,
+        referralBalance: 0.00,
+        avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=AA'
+},  
+    
+        {
+        name: 'Jerry',
+        handle: 'Jere',
+        email: 'kingwonders084@gmail.com',
+        phone: '+2349027247752',
+        country: 'NG', 
+        accessCode: '6043ABC',
+        unlockedVideos: [],
+        suspended: 'F', 
+        subscription: 'T', 
+        subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(), 
+        availableBalance: 133.00,
+        referralBalance: 0.00,
+        avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=AA'
+},  
+    
     {
         name: 'Wycliffe Morgan',
         handle: '2013moro',
@@ -229,7 +277,7 @@ const hardcodedUsers = [
         suspended: 'F', 
         subscription: 'T', 
         subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(), 
-        availableBalance: 10000.00,
+        availableBalance: 10250.00,
         referralBalance: 0.00,
         avatar: 'https://dl.dropboxusercontent.com/scl/fi/ucb2qkebfqw1xn1tdi7qm/Screenshot_2025-08-28-11-40-53-486_org.telegram.messenger-2.jp'
     },
