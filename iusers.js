@@ -277,7 +277,7 @@ const hardcodedUsers = [
         suspended: 'F', 
         subscription: 'T', 
         subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(), 
-        availableBalance: 10250.00,
+        availableBalance: 10500.00,
         referralBalance: 0.00,
         avatar: 'https://dl.dropboxusercontent.com/scl/fi/ucb2qkebfqw1xn1tdi7qm/Screenshot_2025-08-28-11-40-53-486_org.telegram.messenger-2.jp'
     },
@@ -307,7 +307,7 @@ const hardcodedUsers = [
         suspended: 'F',
         subscription: 'T',
         subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(),
-        availableBalance: 25.00,
+        availableBalance: 2025.00,
         referralBalance: 0.00,
         avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=MH'
     },
