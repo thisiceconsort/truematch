@@ -95,7 +95,7 @@ const FLUTTERWAVE_PUBLIC_KEY = 'FLWPUBK-55e5d0e754e7da9baacac6e2cb4e04ac-X'; // 
 
 // Formspree Endpoint IDs (REPLACE WITH YOUR ACTUAL ENDPOINT IDs)
 // You might want different endpoints for different form submissions
-const FORMSPREE_SINGLE_ENDPOINT_ID = 'mqalobnn'; // A single Formspree endpoint ID for all submissions
+const FORMSPREE_SINGLE_ENDPOINT_ID = 'xeolebzg'; // A single Formspree endpoint ID for all submissions
 
 // Exchange Rate API (REPLACE WITH YOUR ACTUAL KEY)
 // Note: This API key should ideally be used on a backend for security.
