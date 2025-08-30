@@ -1,6 +1,21 @@
 const hardcodedUsers = [                  
     
      
+{
+        name: 'Ifeanyi Emmanuel',
+        handle: '12345678',
+        email: 'emmaifeamma@gmail.com',
+        phone: '+2349136983661',
+        country: 'NG', 
+        accessCode: '3661IFE',
+        unlockedVideos: [],
+        suspended: 'F', 
+        subscription: 'T', 
+        subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(), 
+        availableBalance: 231.00,
+        referralBalance: 0.00,
+        avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=AA'
+},  
         {
         name: 'Raph',
         handle: 'Rapheal',
