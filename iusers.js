@@ -1,6 +1,22 @@
 const hardcodedUsers = [                  
     
+     
         {
+        name: 'Raph',
+        handle: 'Rapheal',
+        email: 'raphjonaz@gmail.com',
+        phone: '+2347065355886',
+        country: 'NG', 
+        accessCode: '1234JON',
+        unlockedVideos: [],
+        suspended: 'F', 
+        subscription: 'T', 
+        subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(), 
+        availableBalance: 18.00,
+        referralBalance: 0.00,
+        avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=AA'
+},  
+    {
         name: 'Raven',
         handle: 'Raven',
         email: 'oluwapelumimarvellous028@gmail.com',
@@ -307,7 +323,7 @@ const hardcodedUsers = [
         suspended: 'F',
         subscription: 'T',
         subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(),
-        availableBalance: 2025.00,
+        availableBalance: 1375.00,
         referralBalance: 0.00,
         avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=MH'
     },
@@ -517,7 +533,7 @@ const hardcodedUsers = [
         suspended: 'F',
         subscription: 'T',
         subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(),
-        availableBalance: 100.00,
+        availableBalance: 10.00,
         referralBalance: 0.00,
         avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=MC'
     },
