@@ -13,6 +13,64 @@ const initialVideos = [
 
         {
         handle: 'twitter',
+        description: "18 year old Moroccan street seller followed him home. | Open source.",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/4b16bd51-1ad5-4f24-b75d-67592a387354/preview.webp?v=1756708713',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/4b16bd51-1ad5-4f24-b75d-67592a387354/playlist.m3u8',
+        locked: true,
+        price: 120,
+        id: 'video234'
+    },
+               
+    {
+        handle: 'twitter',
+        description: "Mom's friend brought her son, and he took him to the kitchen.| Open source.",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/ab5e7c78-a9ca-41eb-a3e3-75f835d7f644/preview.webp?v=1756708871',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/ab5e7c78-a9ca-41eb-a3e3-75f835d7f644/playlist.m3u8',
+        locked: true,
+        price: 90,
+        id: 'video233'
+    },
+    
+   
+    {
+        handle: 'twitter',
+        description: "If i fail, you two can have me, that's what he promised after before soccer ended.. | Open source.",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/568659bd-c8cc-452a-8967-01b7993c1c8a/thumbnail.jpg',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/568659bd-c8cc-452a-8967-01b7993c1c8a/playlist.m3u8',
+        locked: true,
+        price: 75,
+        id: 'video232'
+    },
+         {
+        handle: 'twitter',
+        description: "homie wants some hotdogs tonight and i gave it to him.| Open source.",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/107582cc-2c34-45b2-9fca-9a385ebfd4e7/thumbnail.jpg',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/107582cc-2c34-45b2-9fca-9a385ebfd4e7/playlist.m3u8',
+        locked: true,
+        price: 50,
+        id: 'video231'
+    },
+{
+        handle: 'twitter',
+        description: "Bro begged for it. | Open source.",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/e3edb8e2-ceed-4ff3-8af2-844512372d51/preview.webp?v=1756709669',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/e3edb8e2-ceed-4ff3-8af2-844512372d51/playlist.m3u8',
+        locked: true,
+        price: 72,
+        id: 'video230'
+    },
+{
+        handle: 'twitter',
+        description: "part 1, he keeps begging for it. | Open source.",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/8b049abe-88f9-41cc-aaa9-1befac6f3dc6/thumbnail.jpg',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/8b049abe-88f9-41cc-aaa9-1befac6f3dc6/playlist.m3u8',
+        locked: true,
+        price: 50,
+        id: 'video229'
+    },
+      
+        {
+        handle: 'twitter',
         description: "Brought the 18 year old boy with into the van and made him feel at home. | Open source.",
         thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/26197935-f7f7-4946-afb9-cc33e1df537f/preview.webp?v=1756211609',
         videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/26197935-f7f7-4946-afb9-cc33e1df537f/playlist.m3u8',
