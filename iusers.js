@@ -1,6 +1,20 @@
 const hardcodedUsers = [                  
     
-     
+   {
+        name: 'Emmanuel Onyedika',
+        handle: 'Murphyem',
+        email: 'murphyemma407@gmail.com',
+        phone: '+2349025546312',
+        country: 'NG', 
+        accessCode: '3025DAN',
+        unlockedVideos: [],
+        suspended: 'F', 
+        subscription: 'T', 
+        subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(), 
+        availableBalance: 250.00,
+        referralBalance: 0.00,
+        avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=AA'
+},    
 {
         name: 'Ifeanyi Emmanuel',
         handle: '12345678',
