@@ -1060,17 +1060,14 @@ async function showPaymentOptionsModal(paymentType, amountInNGN) {
     modalBody.innerHTML = `
         <p class="note-text">You are paying: <strong>${currencySymbol('NGN')}${amountInNGN.toLocaleString('en-NG')}</strong> ${convertedText} <b>only!</b></p>
         <div class="action-buttons" style="flex-direction:column; gap:15px; margin-top:20px;">
-            <button class="form-submit-btn" id="payWithPaystackBtn" style="background: linear-gradient(90deg, #1A1A2E, #25D366);">
-                <img src="https://i.imgur.com/Us974zg.jpeg" alt="Paystack" style="height:24px; margin-right:10px;"> Pay with Paystack
-            </button>
-            <button class="form-submit-btn" id="payWithFlutterwaveBtn" style="background: linear-gradient(90deg, #FFD700, #FFA500); color: #333;">
+                        <button class="form-submit-btn" id="payWithFlutterwaveBtn" style="background: linear-gradient(90deg, #FFD700, #FFA500); color: #333;">
                 <img src="https://i.imgur.com/ElPGTna.jpeg" alt="Flutterwave" style="height:24px; margin-right:10px;"> Pay with Flutterwave
             </button>
             <div class="Reminder">
                 
             <p>
-                <br>
-                *Choose <b>flutterwave</b> to unlock raw pleasure fast with mobile money, mpasa, ivoucher, EFT, direct bank transfer, Google pay, Apple pay & Visa/MasterCard. Choose <b>Paystack</b> to pay directly with Opay.
+                
+                 Unlock raw pleasure fast with Mobile money, Mpasa, Ivoucher, EFT, Bank transfer, Google pay, Apple pay & Visa/MasterCard.
                 </p>
             </div>
         </div>
