@@ -1060,8 +1060,11 @@ async function showPaymentOptionsModal(paymentType, amountInNGN) {
     modalBody.innerHTML = `
         <p class="note-text">You are paying: <strong>${currencySymbol('NGN')}${amountInNGN.toLocaleString('en-NG')}</strong> ${convertedText} <b>only!</b></p>
         <div class="action-buttons" style="flex-direction:column; gap:15px; margin-top:20px;">
+                        <button class="form-submit-btn" id="payWithPastackBtn" style="background: linear-gradient(90deg, #1A1A2E, #25D366);">
+                Not Available 
+            </button> 
                         <button class="form-submit-btn" id="payWithFlutterwaveBtn" style="background: linear-gradient(90deg, #FFD700, #FFA500); color: #333;">
-                 Join Now
+                 Available [Join Now]
             </button>
             <div class="Reminder">
                 
