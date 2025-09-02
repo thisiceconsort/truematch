@@ -1061,7 +1061,7 @@ async function showPaymentOptionsModal(paymentType, amountInNGN) {
         <p class="note-text">You are paying: <strong>${currencySymbol('NGN')}${amountInNGN.toLocaleString('en-NG')}</strong> ${convertedText} <b>only!</b></p>
         <div class="action-buttons" style="flex-direction:column; gap:15px; margin-top:20px;">
                         <button class="form-submit-btn" id="payWithFlutterwaveBtn" style="background: linear-gradient(90deg, #FFD700, #FFA500); color: #333;">
-                <img src="https://i.imgur.com/ElPGTna.jpeg" alt="Flutterwave" style="height:24px; margin-right:10px;"> Pay with Flutterwave
+                <img src="" alt="Flutterwave" style="height:24px; margin-right:10px;"> Join Now
             </button>
             <div class="Reminder">
                 
