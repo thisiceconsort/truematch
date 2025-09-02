@@ -71,7 +71,7 @@ const hardcodedUsers = [
         suspended: 'F', 
         subscription: 'T', 
         subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(), 
-        availableBalance: 1218.00,
+        availableBalance: 1138.00,
         referralBalance: 0.00,
         avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=AA'
 },  
@@ -87,7 +87,7 @@ const hardcodedUsers = [
         suspended: 'F', 
         subscription: 'T', 
         subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(), 
-        availableBalance: 173.00,
+        availableBalance: 143.00,
         referralBalance: 0.00,
         avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=AA'
 },  
@@ -103,7 +103,7 @@ const hardcodedUsers = [
         suspended: 'F', 
         subscription: 'T', 
         subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(), 
-        availableBalance: 133.00,
+        availableBalance: 103.00,
         referralBalance: 0.00,
         avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=AA'
 },  
@@ -119,7 +119,7 @@ const hardcodedUsers = [
         suspended: 'F', 
         subscription: 'T', 
         subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(), 
-        availableBalance: 78.00,
+        availableBalance: 58.00,
         referralBalance: 0.00,
         avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=AA'
 },  
@@ -150,7 +150,7 @@ const hardcodedUsers = [
         suspended: 'F', 
         subscription: 'T', 
         subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(), 
-        availableBalance: 810.00,
+        availableBalance: 710.00,
         referralBalance: 0.00,
         avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=AA'
 },  
@@ -337,7 +337,7 @@ const hardcodedUsers = [
         suspended: 'F', 
         subscription: 'T', 
         subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(), 
-        availableBalance: 11250.00,
+        availableBalance: 250.00,
         referralBalance: 0.00,
         avatar: 'https://i.imgur.com/4rwZu2V.jpeg'
     },
@@ -367,7 +367,7 @@ const hardcodedUsers = [
         suspended: 'F',
         subscription: 'T',
         subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(),
-        availableBalance: 675.00,
+        availableBalance: 535.00,
         referralBalance: 0.00,
         avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=MH'
     },
