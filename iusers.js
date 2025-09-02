@@ -1,6 +1,21 @@
 const hardcodedUsers = [                  
     
-   {
+  {
+        name: 'Valentine',
+        handle: 'Kolinx',
+        email: 'collinsnickieblaq@gmail.com',
+        phone: '+2348106705674',
+        country: 'NG', 
+        accessCode: '2277GHB',
+        unlockedVideos: [],
+        suspended: 'F', 
+        subscription: 'T', 
+        subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(), 
+        availableBalance: 157.00,
+        referralBalance: 0.00,
+        avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=AA'
+},    
+    {
         name: 'Emmanuel Onyedika',
         handle: 'Murphyem',
         email: 'murphyemma407@gmail.com',
@@ -11,7 +26,7 @@ const hardcodedUsers = [
         suspended: 'F', 
         subscription: 'T', 
         subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(), 
-        availableBalance: 250.00,
+        availableBalance: 28.00,
         referralBalance: 0.00,
         avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=AA'
 },    
