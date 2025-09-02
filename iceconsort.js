@@ -1059,12 +1059,12 @@ async function showPaymentOptionsModal(paymentType, amountInNGN) {
     modalTitle.textContent = `Choose Payment Method for ${paymentType.charAt(0).toUpperCase() + paymentType.slice(1)}`;
     modalBody.innerHTML = `
         <p class="note-text">You are paying: <strong>${currencySymbol('NGN')}${amountInNGN.toLocaleString('en-NG')}</strong> ${convertedText} <b>only!</b></p>
-        <div class="action-buttons" style="flex-direction:column; gap:15px; margin-top:20px;">
-                        <button class="form-submit-btn" id="payWithPastackBtn" style="background: linear-gradient(90deg, #1A1A2E, #25D366);">
-                Not Available 
-            </button> 
-                        <button class="form-submit-btn" id="payWithFlutterwaveBtn" style="background: linear-gradient(90deg, #FFD700, #FFA500); color: #333;">
-                 Available [Join Now]
+         <div class="action-buttons" style="flex-direction:column; gap:15px; margin-top:20px;">
+            <button class="form-submit-btn" id="payWithPaystackBtn" style="background: linear-gradient(90deg, #FFD700, #FFA500); color: #333;">
+                <img src="" alt="" style="height:24px; margin-right:10px;"> Not Available[Down]
+            </button>
+            <button class="form-submit-btn" id="payWithFlutterwaveBtn" style="background: linear-gradient(90deg, #1A1A2E, #25D366);">
+                <img src="" alt="" style="height:24px; margin-right:10px;"> Available [Join Now]
             </button>
             <div class="Reminder">
                 
