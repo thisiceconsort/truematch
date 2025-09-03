@@ -40,9 +40,9 @@ const CURRENT_SCRIPT_VERSION = "v1.0.3";  // Change this when you update the fil
 const SPLASH_VIDEO_DURATION_MS = 6000; // 6 seconds
 const SPLASH_VIDEO_COOLDOWN_MS = 30 * 60 * 1000; // 30 minutes in milliseconds
 const VIDEO_UNLOCK_DURATION_DAYS =0; // Videos unlock for 30 days
-const MIN_WITHDRAWAL_NGN = 10500;
+const MIN_WITHDRAWAL_NGN = 1000;
 const WITHDRAWAL_FEE_NGN = 500;
-const REGISTRATION_PAYMENT_NGN = 500;
+const REGISTRATION_PAYMENT_NGN = 750;
 const RENEWAL_PAYMENT_NGN = 250;
 const REFERRAL_BONUS_NGN = 0;
 
