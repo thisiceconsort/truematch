@@ -1,147 +1,199 @@
-// payment.js
+document.addEventListener('DOMContentLoaded', () => {
 
-// IMPORTANT: Replace with your actual public keys and Formspree endpoint
+// --- Payment Related Constants and Functions ---
+// These are duplicated from main.js to allow this file to work independently.
+const PAYSTACK_PUBLIC_KEY = 'pk_live_6b671064b6a716c1ceffe82bf20a28c317a69584'; // Replace with your actual LIVE key!
 const FLUTTERWAVE_PUBLIC_KEY = 'FLWPUBK-55e5d0e754e7da9baacac6e2cb4e04ac-X';
-const PAYSTACK_PUBLIC_KEY = 'pk_live_6b671064b6a716c1ceffe82bf20a28c317a69584';
-const FORMSPREE_SINGLE_ENDPOINT_ID = 'xovdrlby';
-const EXCHANGERATE_API_KEY = 'd852fe1a5c2d4ef9a40400ed'; // Should be on a backend for production
-const DEFAULT_AMOUNT_NGN = 1500; // Registration/Renewal base price
-const WHATSAPP_NUMBER = '2348027350284'; // without the '+'
-
-// Currency Symbols for display
-const currencySymbols = {
-    NGN: '₦',
-    GHS: '₵',
-    KES: 'KSh',
-    ZAR: 'R',
-    UGX: 'USh',
-    TZS: 'TSh',
-    RWF: 'RF',
-    XOF: 'CFA', // West African CFA franc
-    XAF: 'FCFA', // Central African CFA franc
-    USD: '$'
-};
-
-// Flutterwave Country-Channel Mapping for direct payment routing
+const FORMSPREE_SINGLE_ENDPOINT_ID = 'xpwjdjld';
+const EXCHANGERATE_API_KEY = 'd852fe1a5c2d4ef9a40400ed';
+const REGISTRATION_PAYMENT_NGN = 750;
+const RENEWAL_PAYMENT_NGN = 250;
+const REFERRAL_BONUS_NGN = 0;
 const FLUTTERWAVE_COUNTRIES_MAP = {
-    'NG': { currency: 'NGN', channels: ['card', 'banktransfer', 'ussd', 'qr'] },
-    'GH': { currency: 'GHS', channels: ['mobilemoneyghana'] },
-    'KE': { currency: 'KES', channels: ['mpesa'] },
-    'UG': { currency: 'UGX', channels: ['mobilemoneyuganda'] },
-    'TZ': { currency: 'TZS', channels: ['mobilemoneytzpesa'] },
-    'ZM': { currency: 'ZMW', channels: ['mobilemoneyzambia'] },
-    'RW': { currency: 'RWF', channels: ['mobilemoneyrwanda'] },
-    'ZA': { currency: 'ZAR', channels: ['card', 'eft'] },
-    'CI': { currency: 'XOF', channels: ['mobilemoneyfranco'] },
-    'SN': { currency: 'XOF', channels: ['mobilemoneyfranco'] },
-    'CM': { currency: 'XAF', channels: ['mobilemoneyfranco'] },
-    'BF': { currency: 'XOF', channels: ['mobilemoneyfranco'] },
-    'TG': { currency: 'XOF', channels: ['mobilemoneyfranco'] },
-    'BJ': { currency: 'XOF', channels: ['mobilemoneyfranco'] },
-    'GA': { currency: 'XAF', channels: ['mobilemoneyfranco'] },
-    'GQ': { currency: 'XAF', channels: ['mobilemoneyfranco'] },
-    'AO': { currency: 'AOA', channels: ['card'] },
-    'MZ': { currency: 'MZN', channels: ['card'] },
-    'GM': { currency: 'GMD', channels: ['card'] },
-    'SL': { currency: 'SLL', channels: ['card'] },
-    'ET': { currency: 'ETB', channels: ['card'] },
-    // A fallback for countries not explicitly listed
-    'default': { currency: 'USD', channels: ['card', 'banktransfer', 'ussd', 'qr', 'mobilemoney'] }
+    'NG': { name: 'Nigeria', currency: 'NGN', channels: ['card', 'banktransfer', 'ussd', 'qr', 'opay', 'googlepay', 'applepay'] },
+    'GH': { name: 'Ghana', currency: 'GHS', channels: ['card', 'mobilemoneyghana'] },
+    'KE': { name: 'Kenya', currency: 'KES', channels: ['card', 'mpesa'] },
+    'UG': { name: 'Uganda', currency: 'UGX', channels: ['card', 'mobilemoneyuganda'] },
+    'TZ': { name: 'Tanzania', currency: 'TZS', channels: ['card', 'mobilemoneytzpesa'] },
+    'ZM': { name: 'Zambia', currency: 'ZMW', channels: ['card', 'mobilemoneyzambia'] },
+    'RW': { name: 'Rwanda', currency: 'RWF', channels: ['card', 'mobilemoneyrwanda'] },
+    'ZA': { name: 'South Africa', currency: 'ZAR', channels: ['card', 'eft', '1voucher', 'googlepay', 'applepay'] },
+    'CI': { name: 'Ivory Coast', currency: 'XOF', channels: ['card', 'mobilemoneyfranco'] },
+    'SN': { name: 'Senegal', currency: 'XOF', channels: ['card', 'mobilemoneyfranco'] },
+    'CM': { name: 'Cameroon', currency: 'XAF', channels: ['card', 'mobilemoneyfranco'] },
+    'MW': { name: 'Malawi', currency: 'MWK', channels: ['card', 'mobilemoney'] },
+    'US': { name: 'United States', currency: 'USD', channels: ['card', 'account', 'googlepay', 'applepay'] },
+    'GB': { name: 'United Kingdom', currency: 'GBP', channels: ['card', 'account', 'googlepay', 'applepay'] }
 };
-
-// --- DOM Elements ---
-const loadingMessage = document.getElementById('loadingMessage');
-const paymentContent = document.getElementById('paymentContent');
-const errorState = document.getElementById('errorState');
-const summaryMessage = document.getElementById('summaryMessage');
-const userNameEl = document.getElementById('userName');
-const userEmailEl = document.getElementById('userEmail');
-const userCountryEl = document.getElementById('userCountry');
-const paymentForEl = document.getElementById('paymentFor');
-const paymentAmountEl = document.getElementById('paymentAmount');
-const paymentButtonsContainer = document.getElementById('paymentButtonsContainer');
-const whatsappLink = document.getElementById('whatsappLink');
-
-// --- Global Data Store ---
-let paymentDetails = {};
-
-// --- Utility Functions ---
-function getUrlParams() {
-    const params = new URLSearchParams(window.location.search);
-    const data = {};
-    for (const [key, value] of params.entries()) {
-        data[key] = value;
-    }
-    return data;
-}
+const currencySymbols = {
+    NGN: '₦', GHS: '₵', KES: 'KSh', ZAR: 'R', UGX: 'USh', TZS: 'TSh', RWF: 'RF', XOF: 'CFA', XAF: 'FCFA', USD: '$'
+};
 
 function currencySymbol(code) {
     return currencySymbols[code] || code;
 }
 
-async function getConvertedAmount(amountInNGN, targetCurrencyCode) {
-    if (targetCurrencyCode === 'NGN') return amountInNGN;
+function getCurrencyForCountry(countryCode) {
+    const countryInfo = FLUTTERWAVE_COUNTRIES_MAP[countryCode.toUpperCase()];
+    return countryInfo ? countryInfo.currency : 'NGN';
+}
 
+async function getConvertedAmount(amountInNGN, targetCurrencyCode) {
+    if (targetCurrencyCode === 'NGN') {
+        return amountInNGN;
+    }
     const apiUrl = `https://v6.exchangerate-api.com/v6/${EXCHANGERATE_API_KEY}/latest/NGN`;
     try {
         const response = await fetch(apiUrl);
-        if (!response.ok) throw new Error(`API error! Status: ${response.status}`);
+        if (!response.ok) throw new Error('Failed to fetch exchange rates from API.');
         const data = await response.json();
-        if (data.result !== 'success' || !data.conversion_rates[targetCurrencyCode]) {
-            throw new Error('Invalid API response or currency not supported.');
+        if (data.result === 'success' && data.conversion_rates && data.conversion_rates[targetCurrencyCode]) {
+            const rateNGNToTarget = data.conversion_rates[targetCurrencyCode];
+            return Math.round(amountInNGN * rateNGNToTarget);
+        } else {
+            throw new Error('Invalid API response or currency not supported by API.');
         }
-        const rate = data.conversion_rates[targetCurrencyCode];
-        return Math.round(amountInNGN * rate);
     } catch (error) {
-        console.error('Currency conversion failed:', error);
-        alert(`Failed to convert currency. Proceeding with NGN payment. Error: ${error.message}`);
+        console.error('Error fetching conversion rate:', error);
+        alert(`Failed to convert currency to ${targetCurrencyCode}. Proceeding with NGN payment as fallback. Error: ${error.message}`);
         return amountInNGN;
     }
 }
 
-function displayPaymentError() {
-    loadingMessage.classList.add('hidden');
-    errorState.classList.remove('hidden');
-    console.error('Invalid URL parameters.');
-}
+// --- Payment Logic ---
+let pendingPaymentDetails = null;
 
-// --- Payment Handlers ---
-async function initiateFlutterwavePayment() {
-    if (typeof FlutterwaveCheckout === 'undefined') {
-        alert('Flutterwave SDK not loaded. Please check your internet connection.');
-        return;
+async function showPaymentOptionsModal(paymentDetails) {
+    pendingPaymentDetails = paymentDetails;
+    const { type, amount, targetCurrencyCode } = pendingPaymentDetails;
+    
+    let convertedAmount = amount;
+    let convertedText = ``;
+
+    if (targetCurrencyCode && targetCurrencyCode !== 'NGN') {
+        try {
+            convertedAmount = await getConvertedAmount(amount, targetCurrencyCode);
+            convertedText = `(approx. ${currencySymbol(targetCurrencyCode)}${convertedAmount.toLocaleString()})`;
+        } catch (error) {
+            console.error('Error getting converted amount:', error);
+        }
     }
 
-    const countryCode = paymentDetails.country || 'NG';
-    const countryInfo = FLUTTERWAVE_COUNTRIES_MAP[countryCode.toUpperCase()] || FLUTTERWAVE_COUNTRIES_MAP['default'];
-    const targetCurrencyCode = countryInfo.currency;
+    const modalTitle = document.getElementById('modalTitle');
+    const modalBody = document.getElementById('modalBody');
+    const paymentOptionsContainer = document.getElementById('paymentOptionsContainer');
 
-    const convertedAmount = await getConvertedAmount(paymentDetails.amount, targetCurrencyCode);
+    modalTitle.textContent = `Choose Payment Method for ${type.charAt(0).toUpperCase() + type.slice(1)}`;
+    modalBody.innerHTML = `
+        <p class="note-text">You are paying: <strong>${currencySymbol('NGN')}${amount.toLocaleString('en-NG')}</strong> ${convertedText} <b>only!</b></p>
+         <div class="action-buttons" style="flex-direction:column; gap:15px; margin-top:20px;">
+            <button class="form-submit-btn" id="payWithPaystackBtn" style="background: linear-gradient(90deg, #FFD700, #FFA500); color: #333;">
+                <img src="" alt="" style="height:24px; margin-right:10px;"> Not Available [Down]
+            </button>
+            <button class="form-submit-btn" id="payWithFlutterwaveBtn" style="background: linear-gradient(90deg, #1A1A2E, #25D366);">
+                <img src="" alt="" style="height:24px; margin-right:10px;"> Available [Join Now]
+            </button>
+            <div class="Reminder">
+                <p>
+                 Unlock raw pleasure fast with Mobile money, Mpasa, Ivoucher, EFT, Bank transfer, Google pay, Apple pay & Visa/MasterCard.
+                </p>
+            </div>
+        </div>
+    `;
 
+    document.getElementById('payWithPaystackBtn').onclick = () => {
+        handlePaystackPayment(amount, paymentDetails.email, paymentDetails.name, paymentDetails.phone, paymentDetails.country, type);
+    };
+
+    document.getElementById('payWithFlutterwaveBtn').onclick = async () => {
+        const converted = await getConvertedAmount(amount, targetCurrencyCode);
+        handleFlutterwavePayment(converted, paymentDetails.email, paymentDetails.phone, paymentDetails.name, paymentDetails.country, type, targetCurrencyCode);
+    };
+}
+
+function handlePaystackPayment(amount, email, name, phone, country, paymentType) {
+    const paystackAmount = amount * 100;
+    const chargeCurrency = 'NGN';
+    let reference = `${paymentType.toUpperCase()}_${new Date().getTime()}`;
+    if (pendingPaymentDetails?.accessCode) reference += `_${pendingPaymentDetails.accessCode}`;
+    if (pendingPaymentDetails?.videoId) reference += `_${pendingPaymentDetails.videoId}`;
+    pendingPaymentDetails.paymentGatewayUsed = 'Paystack';
+    if (typeof PaystackPop === 'undefined') {
+        alert('Paystack SDK not loaded. Please try again.');
+        return;
+    }
+    const handler = PaystackPop.setup({
+        key: PAYSTACK_PUBLIC_KEY,
+        email: email, amount: paystackAmount, ref: reference, currency: chargeCurrency,
+        metadata: { customer_name: name, customer_phone: phone, payment_type: paymentType, country: country, access_code: pendingPaymentDetails?.accessCode || 'N/A', video_id: pendingPaymentDetails?.videoId || 'N/A' },
+        callback: function(response) {
+            if (response.status === 'success') {
+                window.location.href = `icp.html?payment=success&type=${paymentType}&ref=${response.reference}&details=${btoa(JSON.stringify(pendingPaymentDetails))}`;
+            } else {
+                alert('Payment not completed or failed.');
+                window.location.href = 'icp.html?payment=failed';
+            }
+        },
+        onClose: function() {
+            alert('Payment window closed.');
+            window.location.href = 'icp.html?payment=closed';
+        }
+    });
+    handler.openIframe();
+}
+
+function handleFlutterwavePayment(amount, email, phone, name, country, paymentType, targetCurrencyCode = 'NGN') {
+    if (typeof FlutterwaveCheckout === 'undefined') {
+        alert('Flutterwave SDK not loaded. Please try again.');
+        return;
+    }
+    const countryInfo = FLUTTERWAVE_COUNTRIES_MAP[country];
+    if (!countryInfo) {
+        alert('Payment via Flutterwave not supported for your country yet.');
+        window.location.href = 'icp.html?payment=failed';
+        return;
+    }
+    let txRef = `${paymentType.toUpperCase()}_FLW_${new Date().getTime()}`;
+    if (pendingPaymentDetails?.accessCode) txRef += `_${pendingPaymentDetails.accessCode}`;
+    if (pendingPaymentDetails?.videoId) txRef += `_${pendingPaymentDetails.videoId}`;
+    pendingPaymentDetails.paymentGatewayUsed = 'Flutterwave';
     FlutterwaveCheckout({
-        public_key: FLUTTERWAVE_PUBLIC_KEY,
-        tx_ref: `FLW_${paymentDetails.type}_${Date.now()}`,
-        amount: convertedAmount,
-        currency: targetCurrencyCode,
-        country: countryCode,
-        payment_options: countryInfo.channels.join(','),
-        customer: {
-            email: paymentDetails.email,
-            phone_number: paymentDetails.phone,
-            name: paymentDetails.name,
+        public_key: FLUTTERWAVE_PUBLIC_KEY, tx_ref: txRef, amount: amount, currency: targetCurrencyCode, country: country, payment_options: countryInfo.channels.join(','),
+        customer: { email: email, phone_number: phone, name: name },
+        meta: { payment_type: paymentType, customer_country: country, customer_uniqueness: pendingPaymentDetails?.accessCode || 'N/A', video_id: pendingPaymentDetails?.videoId || 'N/A' },
+        customizations: { title: 'Ice Consort Privilege Payment', description: `Payment for ${paymentType}`, logo: 'https://via.placeholder.com/100/1a1a2e/00ffbf?text=ICP' },
+        callback: function(data) {
+            if (data.status === 'successful' || data.status === 'completed') {
+                window.location.href = `icp.html?payment=success&type=${paymentType}&ref=${data.transaction_id || data.flw_ref}&details=${btoa(JSON.stringify(pendingPaymentDetails))}`;
+            } else {
+                alert('Payment not completed or failed.');
+                window.location.href = 'icp.html?payment=failed';
+            }
         },
-        meta: {
-            ...paymentDetails
-        },
-        customizations: {
-            title: 'Ice Consort Privilege Payment',
-            description: `Payment for ${paymentDetails.paymentFor}`,
-            logo: 'https://i.imgur.com/ba9qC0y.jpeg',
-        },
-        callback: (data) => handlePaymentSuccess(data, 'Flutterwave'),
-        onclose: () => {
-            alert('Payment window closed. Please try again if payment was not completed.');
+        onclose: function() {
+            alert('Payment window closed.');
+            window.location.href = 'icp.html?payment=closed';
         },
     });
 }
 
+// --- Initialization on Payment Page Load ---
+const urlParams = new URLSearchParams(window.location.search);
+const encodedData = urlParams.get('data');
+
+if (!encodedData) {
+    alert('No payment details found. Redirecting to home page.');
+    window.location.href = 'icp.html';
+    return;
+}
+
+try {
+    const paymentDetails = JSON.parse(atob(encodedData));
+    showPaymentOptionsModal(paymentDetails);
+} catch (e) {
+    console.error('Failed to decode payment details:', e);
+    alert('Invalid payment details. Redirecting to home page.');
+    window.location.href = 'icp.html';
+}
+
+});
