@@ -1,62 +1,217 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta
+    charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to Our New Site!</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background-color: #f4f4f4;
-            color: #333;
-            text-align: center;
-        }
+    <title>Ice Consort Privilege</title>
+    <link rel="stylesheet" href="iceconsort.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-        .container {
-            background-color: #ffffff;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 500px;
-            width: 90%;
-        }
-
-        h1 {
-            color: #0056b3;
-            margin-bottom: 20px;
-        }
-
-        p {
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-
-        .button {
-            display: inline-block;
-            background-color: #007bff;
-            color: white;
-            padding: 12px 25px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-        }
-
-        .button:hover {
-            background-color: #0056b3;
-        }
-    </style>
-</head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<!-- Font Awesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+   
+    </head>
 <body>
-    <div class="container">
-        <h1>Outdated!</h1>
-        <p>Click the button below to visit our newer version.</p>
-        <a href="https://milaaje.org/iceconsort" class="button">Go to New Site</a>
+    <div class="video-splash-screen" id="videoSplashScreen">
+  <div class="ring" data-text="Ice Consort"></div>
+  <div class="loading-text">Almost there, just a moment...</div>
     </div>
-</body>
+    <div class="main-content" id="mainContent">
+
+        <div class="lower-layer" id="lowerLayer">
+            <div class="user-info">
+                <div class="user-line">
+                    <img src="https://i.imgur.com/feYRupi.jpeg" class="user-avatar" id="userAvatar">
+                    <span class="user-name" id="userName">Guest User</span>
+                    <span class="user-handle" id="userHandle">@guest</span>
+                    <span class="more-options-dots" id="moreOptionsDots"><i class="fas fa-ellipsis-v"></i></span>
+                </div>
+                <p class="user-email" id="userEmail">guest@example.com</p>
+                <p class="user-phone" id="userPhone">+2348000000000</p>
+            </div>
+
+            <div class="balance-card">
+                <p class="balance-text">Ava Bal:<span id="availableBalance">0.00</span> Ref Bal:<span id="referralBalance">0.00</span></p>
+                <div class="action-buttons">
+                    <button class="action-btn" id="withdrawBtn">
+                    <i class="fas fa-money-bill"></i>
+                        <span>Withdraw</span>
+                    </button>
+                    <button class="action-btn" id="depositBtn">
+                        <i class="fas fa-wallet"></i>
+                        <span>Deposit</span>
+                    </button>
+                    <button class="action-btn" id="referralBtn">
+<i class="fas fa-user-friends"></i>
+                        <span>Ref</span>
+                    </button>
+                    <button class="action-btn" id="notificationBtn">
+                        <i class="fas fa-bell"></i>
+                        <span>Notif.</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="upper-layer" id="upperLayer">
+            <div class="upper-layer-head" id="upperLayerHead">
+                <span class="tag active" id="forYouTag">For you</span>
+                <span class="tag" id="profilesTag">Profiles</span>
+                <span class="tag search-icon" id="searchIcon"><i class="fas fa-search"></i></span>
+            </div>
+
+            <div class="content-section" id="forYouContent">
+                <div class="video-grid" id="forYouVideoGrid">
+                    </div>
+                <button class="load-more-btn" id="loadMoreVideosBtn">Load More</button>
+            </div>
+            <div class="content-section hidden" id="profilesContent">
+                <div class="profile-grid" id="profileGrid">
+                    </div>
+                <button class="load-more-btn" id="loadMoreProfilesBtn">Load More</button>
+            </div>
+        </div>
+
+        <button class="floating-plus-btn" id="floatingPlusBtn">
+            <i class="fas fa-plus"></i>
+        </button>
+
+    </div>
+
+    <div class="modal-overlay" id="genericModalOverlay">
+        <div class="modal-content" id="genericModalContent">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <button class="modal-back-btn" id="modalBackBtn"><i class="fas fa-arrow-left"></i></button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="moreOptionsModalOverlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">More Options</h2>
+                <button class="modal-back-btn" id="moreOptionsBackBtn"><i class="fas fa-arrow-left"></i></button>
+            </div>
+            <div class="modal-body">
+                <button class="modal-option-btn" id="aboutUsBtn"><i class="fas fa-info-circle"></i> About Us</button>
+                <button class="modal-option-btn" id="termsBtn"><i class="fas fa-file-contract"></i> Terms</button>
+                <button class="modal-option-btn" id="contactUsBtn"><i class="fas fa-phone"></i> Contact Us</button>
+                <button class="modal-option-btn" id="authBtn"><i class="fas fa-sign-in-alt"></i> Log In</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="authModalOverlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="authModalTitle">Enter Access Code to enter club</h2>
+                <button class="modal-back-btn" id="authBackBtn"><i class="fas fa-arrow-left"></i></button>
+            </div>
+            <div class="modal-body" id="authModalBody">
+                <div id="loginForm">
+                    <div class="form-group">
+                        <label for="accessCodeInput">Access Code</label>
+                        <input type="text" id="accessCodeInput" placeholder="e.g., 1234ABC" maxlength="7">
+                    </div>
+                    <button class="form-submit-btn" id="enterClubBtn">Enter</button>
+                    <p class="form-text-link">Don't have an access code? <span id="createAccountLink">Create one</span></p>
+                </div>
+                <div id="registrationForm" class="hidden"></div>
+                 <div id="subscriptionRenewalForm" class="hidden"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="videoPlaybackModalOverlay">
+        <div class="modal-content video-modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="videoPlaybackHandle"></h2>
+                <button class="modal-back-btn" id="videoPlaybackBackBtn"><i class="fas fa-arrow-left"></i></button>
+            </div>
+            <div class="modal-body video-playback-body">
+                <div class="video-player-container">
+                    <video id="hlsVideoPlayer" class="video-js vjs-default-skin" controls preload="auto"></video>
+                </div>
+                <p class="video-details" id="videoPlaybackDetails"></p>
+                <button class="tip-creator-btn" id="tipCreatorBtn">
+                    <i class="fas fa-coins"></i> Tip Creator
+                </button>
+                <h3 class="more-videos-heading">More from this handle and others</h3>
+                <div class="video-grid more-videos-grid" id="moreVideosGrid">
+                    </div>
+                <button class="load-more-btn" id="loadMoreRelatedVideosBtn">Load More</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="profileDetailModalOverlay">
+        <div class="modal-content profile-modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="profileDetailHandle"></h2>
+                <button class="modal-back-btn" id="profileDetailBackBtn"><i class="fas fa-arrow-left"></i></button>
+            </div>
+            <div class="modal-body profile-detail-body">
+                <div class="profile-images">
+                    <img src="placeholder-profile-img1.jpg" alt="Profile Image 1" class="profile-img" id="profileImg1">
+                    <img src="placeholder-profile-img2.jpg" alt="Profile Image 2" class="profile-img" id="profileImg2">
+                </div>
+                <p><strong>Name:</strong> <span id="profileName"></span></p>
+                <p><strong>Handle:</strong> <span id="profileHandleDetail"></span></p>
+                <p><strong>Age:</strong> <span id="profileAge"></span></p>
+                <p><strong>Country:</strong> <span id="profileCountry"></span></p>
+                <p><strong>Role:</strong> <span id="profileCity"></span></p>
+                <p><strong>What I like:</strong> <span id="profileLikes"></span></p>
+                <button class="chat-btn" id="chatWithMeBtn">Chat with me now</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay search-overlay" id="searchOverlay">
+        <div class="search-container">
+            <div class="search-header">
+                <input type="text" id="searchBar" placeholder="Search handles, descriptions...">
+                <button class="cancel-search-btn" id="cancelSearchBtn">Cancel</button>
+            </div>
+            <div class="search-results" id="searchResults">
+                <div class="search-section" id="searchVideoResults">
+                    <h3>Videos</h3>
+                    <div class="video-grid">
+                        </div>
+                </div>
+                <div class="search-section" id="searchProfileResults">
+                    <h3>Profiles</h3>
+                    <div class="profile-grid">
+                        </div>
+                </div>
+                <p class="no-results-text hidden" id="noSearchResults">No results found.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="plusBtnModalOverlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="plusBtnModalTitle"></h2>
+                <button class="modal-back-btn" id="plusBtnBackBtn"><i class="fas fa-arrow-left"></i></button>
+            </div>
+            <div class="modal-body">
+                <p id="plusBtnModalRules"></p>
+                <a href="https://wa.me/2348027350284" target="_blank" class="whatsapp-send-btn">
+                    <i class="fab fa-whatsapp"></i> Send them now on WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="icp.js"></script>
 </html>
