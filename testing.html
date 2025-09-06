@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apps Script Connection Test</title>
+</head>
+<body>
+    <h1>Apps Script Connection Test</h1>
+    <p>Please open the browser console (F12) to see the results of the test.</p>
+
+    <script>
+        // Replace this URL with your actual Google Apps Script deployment URL
+        const APPS_SCRIPT_URL = '1i-q_Ir63B0hUMbRxRcjErKVPs7M2AAICHHm3M5NnaHg';
+
+        async function runTest() {
+            // This message should always appear in the console.
+            console.log("--- Starting fetch test ---");
+            console.log("Attempting to connect to:", APPS_SCRIPT_URL + '?action=loadAll');
+
+            try {
+                // Use a basic GET request to test the connection.
+                const response = await fetch(APPS_SCRIPT_URL + '?action=loadAll');
+
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log("✅ Success! Connection to Apps Script established.");
+                    console.log("Received data:", data);
+
+                    // If you see this message, the issue is with your main website's JS files.
+                } else {
+                    console.error("❌ Failed to connect. Status:", response.status);
+                    console.error("Response text:", await response.text());
+                    console.log("--- End of test ---");
+
+                    // If you see this, the problem is with your URL or deployment permissions.
+                }
+            } catch (error) {
+                console.error("❌ An error occurred during the fetch operation:", error);
+                console.log("--- End of test ---");
+
+                // If you see this, a browser extension or firewall is likely blocking the request.
+            }
+        }
+
+        // Run the test when the page loads
+        document.addEventListener('DOMContentLoaded', runTest);
+    </script>
+</body>
+</html>
