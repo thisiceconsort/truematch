@@ -1,6 +1,38 @@
 const hardcodedUsers = [                  
 
     {
+        name: 'Musa',
+        handle: 'Musa5215',
+        email: 'munayawo@gmail.com',
+        phone: '+2349019712323',
+        country: 'NG', 
+        accessCode: '5215MUS',
+        unlockedVideos: [],
+        suspended: 'F', 
+        subscription: 'T', 
+        subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(), 
+        availableBalance: 0.00,
+        referralBalance: 0.00,
+        avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=AA'
+},    
+
+{
+        name: 'Adebiyi Peter',
+        handle: 'peter132',
+        email: 'adebiyipeter687@gmail.com',
+        phone: '+2347065827918',
+        country: 'NG', 
+        accessCode: '2008PET',
+        unlockedVideos: [],
+        suspended: 'F', 
+        subscription: 'T', 
+        subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(), 
+        availableBalance: 250.00,
+        referralBalance: 0.00,
+        avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=AA'
+},    
+    
+    {
         name: 'Marv',
         handle: 'Marv23',
         email: 'ewobohmarvelous@gmail.com',
@@ -369,7 +401,7 @@ const hardcodedUsers = [
         suspended: 'F', 
         subscription: 'T', 
         subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(), 
-        availableBalance: 320.00,
+        availableBalance: 620.00,
         referralBalance: 0.00,
         avatar: 'https://i.imgur.com/4rwZu2V.jpeg'
     },
