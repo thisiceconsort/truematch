@@ -1,5 +1,20 @@
 const hardcodedUsers = [                  
 
+              {
+        name: 'Fine Country',
+        handle: 'Fineco',
+        email: 'salafbiz@gmail.com',
+        phone: '07066864269',
+        country: 'NG', 
+        accessCode: '7700ALI',
+        unlockedVideos: [],
+        suspended: 'F', 
+        subscription: 'T', 
+        subscriptionExpiry: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(), 
+        availableBalance: 10.00,
+        referralBalance: 0.00,
+        avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=AA'
+},    
     {
         name: 'Musa',
         handle: 'Musa5215',
