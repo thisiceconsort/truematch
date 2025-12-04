@@ -10,7 +10,54 @@
 
 
 const initialVideos = [
-
+        {
+        handle: 'Red',
+        description: "18 years old came into my house to clean and this happened. | Open source.",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/70466b46-af99-4473-b9fa-2e0e5845bb98/preview.webp?v=1764954311',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/70466b46-af99-4473-b9fa-2e0e5845bb98/playlist.m3u8',
+        locked: true,
+        price: 160,
+        id: 'video239'
+    },
+               
+    {
+        handle: 'Red',
+        description: "My long distance boy friend finally visited my office.| Open source.",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/3c1d277a-bbb5-4f30-80c4-610aa65405c1/thumbnail.jpg',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/3c1d277a-bbb5-4f30-80c4-610aa65405c1/playlist.m3u8',
+        locked: true,
+        price: 90,
+        id: 'video238'
+    },
+    
+   
+    {
+        handle: 'Red',
+        description: "Two kenya school boys cares about each other. | Open source.",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/15a2d875-894f-488c-89ac-0251e6f81365/thumbnail.jpg',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/15a2d875-894f-488c-89ac-0251e6f81365/playlist.m3u8',
+        locked: true,
+        price: 75,
+        id: 'video237'
+    },
+         {
+        handle: 'Red',
+        description: "we caught a theft and we entertained him.| Open source.",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/6233f773-6e9b-4ee6-8f16-3d280f9698d3/thumbnail.jpg',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/6233f773-6e9b-4ee6-8f16-3d280f9698d3/playlist.m3u8',
+        locked: true,
+        price: 80,
+        id: 'video236'
+    },
+        {
+        handle: 'Red',
+        description: "Dj chicken is being pumped by a student. | Open source.",
+        thumbnail: 'https://vz-28eb4f33-914.b-cdn.net/3117aa1a-afbb-4cc4-921a-222d5ac78419/thumbnail.jpg',
+        videoUrl: 'https://vz-28eb4f33-914.b-cdn.net/3117aa1a-afbb-4cc4-921a-222d5ac78419/playlist.m3u8',
+        locked: true,
+        price: 100,
+        id: 'video235'
+    },
         {
         handle: 'twitter',
         description: "18 year old Moroccan street seller followed him home. | Open source.",
