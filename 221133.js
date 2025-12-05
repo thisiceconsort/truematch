@@ -176,8 +176,8 @@ async function donate(amountUSD) {
       : "card",
 
     customer: {
-      email: "donor@example.com",
-      name: "Anonymous Donor"
+      email: "Mìlàájé",
+      name: "A Helping Hand"
     },
 
     customizations: {
