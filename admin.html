@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Admin Dashboard</title>
+
+    <style>
+        /* --- 1. CSS STYLES --- */
+        
+        /* --- Global Styles --- */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f9;
+            color: #333;
+        }
+
+        .screen {
+            display: none;
+            min-height: 100vh;
+        }
+
+        .screen.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- Login Screen --- */
+        #admin-login-screen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #3f51b5; /* Primary color */
+        }
+
+        .login-container {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            text-align: center;
+        }
+
+        .login-container h2 {
+            margin-bottom: 20px;
+            color: #3f51b5;
+        }
+
+        .login-container input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            background-color: #ffffff;
+            padding: 15px 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .profile-img {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            margin-right: 10px;
+            object-fit: cover;
+        }
+
+        #admin-name-display {
+            font-weight: bold;
+            margin-right: 20px;
+        }
+
+        .dashboard-content {
+            display: flex;
+            flex-grow: 1;
+        }
+
+        .sidebar {
+            width: 200px;
+            background-color: #2c3e50; /* Dark sidebar */
+            padding-top: 20px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-button {
+            background: none;
+            border: none;
+            color: #ecf0f1;
+            text-align: left;
+            padding: 15px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .nav-button:hover {
+            background-color: #34495e;
+        }
+
+        .nav-button.active {
+            background-color: #3f51b5;
+            font-weight: bold;
+        }
+
+        /* --- Content Area --- */
+        #content-area {
+            flex-grow: 1;
+            padding: 30px;
+            overflow-y: auto;
+        }
+
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        /* --- Stats Grid --- */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            font-size: 1.1em;
+            font-weight: 500;
+        }
+
+        .stat-card span {
+            display: block;
+            font-size: 2em;
+            font-weight: bold;
+            color: #3f51b5;
+            margin-top: 5px;
+        }
+
+        /* --- Forms & Inputs --- */
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"], input[type="email"], input[type="password"], textarea {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        /* --- Buttons --- */
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.2s;
+        }
+
+        .btn-primary {
+            background-color: #3f51b5;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #303f9f;
+        }
+
+        .btn-secondary {
+            background-color: #ccc;
+            color: #333;
+            margin-right: 10px;
+        }
+
+        .btn-secondary:hover {
+            background-color: #bbb;
+        }
+        
+        .status-published { color: green; font-weight: bold; }
+        .status-draft { color: orange; font-weight: bold; }
+
+
+        /* --- Table Styles --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background-color: #e0e0e0;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9em;
+        }
+
+        td button {
+            margin-right: 5px;
+        }
+
+        /* --- Post Content Builder --- */
+        .content-builder-ui {
+            border: 1px solid #ccc;
+            padding: 15px;
+            min-height: 200px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+        }
+
+        .content-block {
+            background: white;
+            border: 1px solid #e0e0e0;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .content-block label {
+            margin-top: 0;
+            margin-bottom: 0;
+            font-weight: normal;
+        }
+
+        .block-input {
+            flex-grow: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .content-controls {
+            margin-top: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .content-controls button {
+            margin-right: 10px;
+            background-color: #4caf50;
+            color: white;
+        }
+        .content-controls button:hover {
+            background-color: #45a049;
+        }
+
+        .form-actions {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxZBS6r5r88Wcp0perxnPP36MDr1RFooGIkyE6qOhNW1-A_Ngis_-QPdmkrRHFWu0EqPA/exec";
+    </script>
+
+    <div id="admin-login-screen" class="screen active">
+        <form id="admin-login-form" class="login-container">
+            <h2>Admin Login</h2>
+            <input type="email" id="login-email" placeholder="Email" required>
+            <input type="password" id="login-password" placeholder="Password" required>
+            <button type="submit" id="admin-login-submit">Login</button>
+            <p id="login-message" class="error-message"></p>
+        </form>
+    </div>
+
+    <div id="admin-dashboard-screen" class="screen">
+        <header>
+            <div class="header-left">
+                <h1>Blog Admin Panel</h1>
+            </div>
+            <div class="header-right">
+                <img id="admin-profile-img" src="placeholder.png" alt="Profile" class="profile-img">
+                <span id="admin-name-display"></span>
+                <button id="admin-logout-button">Logout</button>
+            </div>
+        </header>
+
+        <main class="dashboard-content">
+
+            <nav class="sidebar">
+                <button data-section="stats" class="nav-button active">📊 Stats & Overview</button>
+                <button data-section="posts" class="nav-button">✍️ Manage Posts</button>
+                <button data-section="create-post" class="nav-button">➕ Create New Post</button>
+                <button data-section="comments" class="nav-button">💬 Comments</button>
+                <button data-section="settings" class="nav-button">⚙️ Settings & Ads</button>
+            </nav>
+            
+            <section id="content-area">
+                
+                <div id="stats-section" class="content-section active">
+                    <h2>Site Statistics</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">Total Visits: <span id="admin-total-visits">0</span></div>
+                        <div class="stat-card">Total Likes: <span id="admin-total-likes">0</span></div>
+                        <div class="stat-card">Pending Comments: <span id="admin-pending-comments-count">0</span></div>
+                        <div class="stat-card">Total Posts: <span id="admin-total-posts">0</span></div>
+                    </div>
+                </div>
+
+                <div id="posts-section" class="content-section">
+                    <h2>Published & Draft Posts</h2>
+                    <table id="admin-post-status-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Status</th>
+                                <th>Visits</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            </tbody>
+                    </table>
+                </div>
+
+                <div id="create-post-section" class="content-section">
+                    <h2>Create/Edit Post</h2>
+                    <form id="admin-post-form">
+                        <input type="hidden" id="admin-post-id" value="0">
+                        
+                        <label for="admin-post-title">Title</label>
+                        <input type="text" id="admin-post-title" required>
+
+                        <label for="admin-post-header">Header/Short Description</label>
+                        <textarea id="admin-post-header" rows="2" required></textarea>
+
+                        <label for="admin-post-keywords">Keywords (Comma Separated)</label>
+                        <input type="text" id="admin-post-keywords">
+                        
+                        <label for="admin-post-image-url">Image URL (Google Drive ID)</label>
+                        <input type="text" id="admin-post-image-url" required>
+                        
+                        <label for="admin-post-readtime">Estimated Read Time (e.g., 5 min read)</label>
+                        <input type="text" id="admin-post-readtime" required>
+
+                        <label>Post Content Blocks</label>
+                        <div id="admin-content-builder" class="content-builder-ui">
+                            </div>
+
+                        <div class="content-controls">
+                            <button type="button" id="add-paragraph-btn">Add Paragraph</button>
+                            <button type="button" id="add-image-btn">Add Image</button>
+                            <button type="button" id="add-video-btn">Add YouTube Video</button>
+                            <button type="button" id="add-ad-btn">Insert Ad Slot</button>
+                        </div>
+                        
+                        <textarea id="admin-post-content-json" style="display:none;"></textarea>
+
+                        <div class="form-actions">
+                            <button type="button" id="admin-post-serialize" class="btn-secondary">Preview/Serialize Content</button>
+                            <button type="submit" id="admin-post-publish-submit" class="btn-primary">Publish Post</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="comments-section" class="content-section">
+                    <h2>Pending Comments</h2>
+                    <table id="admin-pending-comments-table">
+                        <thead>
+                            <tr>
+                                <th>Post ID</th>
+                                <th>Commenter</th>
+                                <th>Comment</th>
+                                <th>Date</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            </tbody>
+                    </table>
+                </div>
+
+                <div id="settings-section" class="content-section">
+                    <h2>Global Site Settings</h2>
+                    <form id="admin-settings-form">
+                        
+                        <h3>Static Content (About/Contact)</h3>
+                        <label for="admin-static-about-json">About Us JSON Content</label>
+                        <textarea id="admin-static-about-json" rows="8"></textarea>
+                        
+                        <label for="admin-static-contact-json">Contact Us JSON Content</label>
+                        <textarea id="admin-static-contact-json" rows="8"></textarea>
+                        
+                        <button type="button" id="admin-update-static-content" class="btn-primary">Update Static Content</button>
+                        
+                        <hr>
+
+                        <h3>Ad Slots Management</h3>
+                        <p>Paste the raw HTML/JS code for your ad slots here.</p>
+                        <div id="admin-ad-code-list" class="ad-list">
+                            </div>
+                        
+                        <button type="submit" id="admin-update-ads" class="btn-primary">Update Ad Codes</button>
+                    </form>
+                </div>
+
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // --- CONFIGURATION ---
+        const APPS_SCRIPT_BASE_URL = APPS_SCRIPT_URL; 
+        const AUTH_TOKEN_KEY = 'adminAuthToken';
+        const POST_CONTENT_TYPES = ['paragraph', 'image', 'video', 'ad'];
+
+
+        // --- DOM ELEMENTS ---
+        const loginScreen = document.getElementById('admin-login-screen');
+        const dashboardScreen = document.getElementById('admin-dashboard-screen');
+        const loginForm = document.getElementById('admin-login-form');
+        const logoutButton = document.getElementById('admin-logout-button');
+        const contentArea = document.getElementById('content-area');
+
+        // Post Form Elements
+        const postForm = document.getElementById('admin-post-form');
+        const contentBuilder = document.getElementById('admin-content-builder');
+        const jsonStorage = document.getElementById('admin-post-content-json');
+        const serializeBtn = document.getElementById('admin-post-serialize');
+
+
+        // =================================================================
+        // 1. UTILITIES: API CALL & AUTH
+        // =================================================================
+
+        /**
+         * Calls the Google Apps Script Web App URL with appropriate parameters.
+         */
+        async function callAppScript(action, data = {}, method = 'POST') {
+            const token = localStorage.getItem(AUTH_TOKEN_KEY);
+            const url = new URL(APPS_SCRIPT_BASE_URL);
+            
+            // Add action and token to the URL parameters
+            url.searchParams.append('action', action);
+            if (token) {
+                url.searchParams.append('token', token);
+            }
+            
+            const options = {
+                method: method,
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            };
+
+            if (method === 'POST') {
+                options.body = JSON.stringify(data);
+            } else if (method === 'GET' && Object.keys(data).length > 0) {
+                // For GET requests, append data as query parameters
+                Object.keys(data).forEach(key => url.searchParams.append(key, data[key]));
+            }
+
+            try {
+                const response = await fetch(url.toString(), options);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const result = await response.json();
+                
+                if (result.status === 'error') {
+                    console.error(`Apps Script Error (${action}):`, result.message);
+                }
+                return result;
+
+            } catch (error) {
+                console.error('API call failed:', error);
+                return { status: 'error', message: 'Network or API failure.' };
+            }
+        }
+
+
+        // =================================================================
+        // 2. AUTHENTICATION & INITIALIZATION
+        // =================================================================
+
+        /**
+         * Checks for a valid token and switches the view.
+         */
+        function init() {
+            const token = localStorage.getItem(AUTH_TOKEN_KEY);
+            if (token) {
+                showDashboard();
+                fetchDashboardData();
+            } else {
+                showLogin();
+            }
+        }
+
+        /**
+         * Switches the screen to the login form.
+         */
+        function showLogin() {
+            loginScreen.classList.add('active');
+            dashboardScreen.classList.remove('active');
+        }
+
+        /**
+         * Switches the screen to the main dashboard.
+         */
+        function showDashboard() {
+            loginScreen.classList.remove('active');
+            dashboardScreen.classList.add('active');
+        }
+
+        /**
+         * Handles the login form submission.
+         */
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            const messageDisplay = document.getElementById('login-message');
+            
+            messageDisplay.textContent = 'Logging in...';
+
+            const result = await callAppScript('adminLogin', { email, password }, 'POST');
+
+            if (result.status === 'success' && result.data && result.data.token) {
+                localStorage.setItem(AUTH_TOKEN_KEY, result.data.token);
+                localStorage.setItem('adminName', result.data.admin.adminName);
+                localStorage.setItem('adminProfileImg', result.data.admin.adminProfileImg || 'placeholder.png');
+
+                messageDisplay.textContent = 'Login successful!';
+                setTimeout(() => {
+                    init(); 
+                }, 500);
+            } else {
+                messageDisplay.textContent = result.message || 'Invalid credentials.';
+            }
+        });
+
+        /**
+         * Handles the logout action.
+         */
+        logoutButton.addEventListener('click', () => {
+            localStorage.removeItem(AUTH_TOKEN_KEY);
+            localStorage.removeItem('adminName');
+            localStorage.removeItem('adminProfileImg');
+            alert('Logged out successfully.');
+            init(); 
+        });
+
+        // =================================================================
+        // 3. DASHBOARD DATA FETCHING
+        // =================================================================
+
+        /**
+         * Fetches all necessary data to populate the dashboard.
+         */
+        async function fetchDashboardData() {
+            // Update header info
+            document.getElementById('admin-name-display').textContent = localStorage.getItem('adminName');
+            document.getElementById('admin-profile-img').src = localStorage.getItem('adminProfileImg');
+
+            const result = await callAppScript('getAdminDashboardData', {}, 'GET'); 
+
+            if (result.status === 'success' && result.data) {
+                const { stats, posts, comments, settings, ads } = result.data;
+                
+                // Populate Stats
+                document.getElementById('admin-total-visits').textContent = stats.totalVisits || 0;
+                document.getElementById('admin-total-likes').textContent = stats.totalLikes || 0;
+                document.getElementById('admin-pending-comments-count').textContent = comments.filter(c => c.status === 'PENDING').length;
+                document.getElementById('admin-total-posts').textContent = posts.length;
+
+                // Populate Posts Table
+                renderPostsTable(posts);
+
+                // Populate Comments Table
+                renderCommentsTable(comments);
+
+                // Populate Settings
+                renderSettings(settings, ads);
+
+            } else {
+                console.error('Failed to fetch dashboard data:', result.message);
+            }
+        }
+
+        // =================================================================
+        // 4. RENDERING FUNCTIONS
+        // =================================================================
+
+        /**
+         * Renders the list of posts for the 'Manage Posts' section.
+         */
+        function renderPostsTable(posts) {
+            const tableBody = document.querySelector('#admin-post-status-table tbody');
+            tableBody.innerHTML = '';
+
+            posts.forEach(post => {
+                const row = tableBody.insertRow();
+                // Ensure post.active is treated as 'YES' or 'NO'
+                const status = post.active === 'YES' ? 'YES' : 'NO';
+                
+                row.innerHTML = `
+                    <td>${post.id}</td>
+                    <td>${post.title}</td>
+                    <td><span class="${status === 'YES' ? 'status-published' : 'status-draft'}">${status}</span></td>
+                    <td>${post.visits || 0}</td>
+                    <td>
+                        <button class="action-btn edit-post" data-id="${post.id}">Edit</button>
+                        <button class="action-btn toggle-post" data-id="${post.id}" data-status="${status}">
+                            ${status === 'YES' ? 'Unpublish' : 'Publish'}
+                        </button>
+                        <button class="action-btn delete-post" data-id="${post.id}">Delete</button>
+                    </td>
+                `;
+            });
+        }
+
+        /**
+         * Renders pending comments for the 'Comments' section.
+         */
+        function renderCommentsTable(comments) {
+            const tableBody = document.querySelector('#admin-pending-comments-table tbody');
+            tableBody.innerHTML = '';
+            
+            // Filter to only show PENDING comments
+            const pendingComments = comments.filter(c => c.status === 'PENDING');
+
+            pendingComments.forEach(comment => {
+                const row = tableBody.insertRow();
+                row.innerHTML = `
+                    <td>${comment.postId}</td>
+                    <td>${comment.name || 'Anonymous'}</td>
+                    <td>${comment.commentText ? comment.commentText.substring(0, 50) + '...' : ''}</td>
+                    <td>${new Date(comment.commentDate).toLocaleDateString()}</td>
+                    <td>
+                        <button class="action-btn approve-comment" data-id="${comment.commentId}">Approve</button>
+                        <button class="action-btn delete-comment" data-id="${comment.commentId}">Delete</button>
+                    </td>
+                `;
+            });
+        }
+
+        /**
+         * Renders global settings and ad codes.
+         */
+        function renderSettings(settings, ads) {
+            document.getElementById('admin-static-about-json').value = settings.aboutContentJSON || '';
+            document.getElementById('admin-static-contact-json').value = settings.contactContentJSON || '';
+
+            const adList = document.getElementById('admin-ad-code-list');
+            adList.innerHTML = '';
+
+            ads.forEach(ad => {
+                // Ensure ad.code is defined before placing in textarea
+                const adCode = ad.code || ''; 
+                adList.innerHTML += `
+                    <label for="ad-code-${ad.adId}">${ad.name} (${ad.adId})</label>
+                    <textarea id="ad-code-${ad.adId}" data-ad-id="${ad.adId}" rows="8">${adCode}</textarea>
+                `;
+            });
+        }
+
+
+        // =================================================================
+        // 5. POST CONTENT BUILDER LOGIC
+        // =================================================================
+
+        /**
+         * Adds a new content block (paragraph, image, video, ad) to the UI.
+         */
+        function addContentBlock(type, data = {}) {
+            const blockContainer = document.createElement('div');
+            blockContainer.classList.add('content-block');
+            blockContainer.setAttribute('data-type', type);
+
+            let inputHtml = '';
+
+            switch (type) {
+                case 'paragraph':
+                    inputHtml = `<label>Paragraph:</label><textarea class="block-input" data-key="text" rows="3">${data.text || ''}</textarea>`;
+                    break;
+                case 'image':
+                    inputHtml = `<label>Image URL (Drive ID):</label><input type="text" class="block-input" data-key="url" value="${data.url || ''}" placeholder="Google Drive ID or URL">`;
+                    break;
+                case 'video':
+                    inputHtml = `<label>YouTube Video ID:</label><input type="text" class="block-input" data-key="url" value="${data.url || ''}" placeholder="e.g. dQw4w9WgXcQ">`;
+                    break;
+                case 'ad':
+                    inputHtml = `<label>Ad Slot ID:</label><input type="text" class="block-input" data-key="adId" value="${data.adId || 'AD-SLOT-1'}" placeholder="e.g. AD-SLOT-1">`;
+                    break;
+                default:
+                    return;
+            }
+
+            blockContainer.innerHTML = `
+                <span class="block-type-label">[${type.toUpperCase()}]</span>
+                ${inputHtml}
+                <button type="button" class="remove-block-btn">X</button>
+            `;
+
+            contentBuilder.appendChild(blockContainer);
+
+            // Add remove listener
+            blockContainer.querySelector('.remove-block-btn').addEventListener('click', () => {
+                blockContainer.remove();
+                serializePostContent();
+            });
+            
+            // Re-serialize content when an input changes inside the block
+            blockContainer.querySelector('.block-input')?.addEventListener('input', serializePostContent);
+
+            serializePostContent(); 
+        }
+
+        /**
+         * Converts all content blocks in the UI into a single JSON string.
+         */
+        function serializePostContent() {
+            const blocks = [];
+            document.querySelectorAll('#admin-content-builder .content-block').forEach(block => {
+                const type = block.getAttribute('data-type');
+                const blockObject = { type: type };
+                
+                block.querySelectorAll('.block-input').forEach(input => {
+                    const key = input.getAttribute('data-key');
+                    blockObject[key] = input.value;
+                });
+
+                blocks.push(blockObject);
+            });
+
+            // Store the final JSON array in the hidden textarea
+            jsonStorage.value = JSON.stringify(blocks, null, 2);
+        }
+
+        /**
+         * Populates the content builder UI from a JSON string (used for editing).
+         */
+        function deserializePostContent(jsonString) {
+            contentBuilder.innerHTML = '';
+            // Reset form fields first
+            postForm.reset();
+            document.getElementById('admin-post-id').value = '0';
+            jsonStorage.value = '';
+
+            if (!jsonString) return;
+            
+            try {
+                const blocks = JSON.parse(jsonString);
+                blocks.forEach(block => {
+                    addContentBlock(block.type, block);
+                });
+            } catch (e) {
+                console.error("Error parsing post content JSON:", e);
+                alert("Error loading post content: Invalid JSON format.");
+            }
+        }
+
+
+        // --- Event Listeners for Content Builder Buttons ---
+        document.getElementById('add-paragraph-btn').addEventListener('click', () => addContentBlock('paragraph'));
+        document.getElementById('add-image-btn').addEventListener('click', () => addContentBlock('image'));
+        document.getElementById('add-video-btn').addEventListener('click', () => addContentBlock('video'));
+        document.getElementById('add-ad-btn').addEventListener('click', () => addContentBlock('ad'));
+
+        serializeBtn.addEventListener('click', serializePostContent); 
+
+
+        // =================================================================
+        // 6. FORM SUBMISSION & ACTIONS
+        // =================================================================
+
+        /**
+         * Handles the main Post Form submission (Create or Edit).
+         */
+        postForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            serializePostContent();
+
+            const postId = document.getElementById('admin-post-id').value;
+            const isNew = postId === '0';
+
+            const postData = {
+                id: isNew ? null : parseInt(postId),
+                title: document.getElementById('admin-post-title').value,
+                header: document.getElementById('admin-post-header').value,
+                keywords: document.getElementById('admin-post-keywords').value,
+                imageURL: document.getElementById('admin-post-image-url').value,
+                readTime: document.getElementById('admin-post-readtime').value,
+                content: jsonStorage.value,
+                active: 'YES' // Default to publishing on submit
+            };
+            
+            // Basic validation for content
+            if (!postData.content || postData.content === '[]') {
+                alert("Post content cannot be empty.");
+                return;
+            }
+
+            const action = isNew ? 'adminCreatePost' : 'adminUpdatePost';
+            const result = await callAppScript(action, postData, 'POST');
+
+            if (result.status === 'success') {
+                alert(`${isNew ? 'Post created' : 'Post updated'} successfully!`);
+                // Clear and reset form
+                postForm.reset();
+                contentBuilder.innerHTML = '';
+                document.getElementById('admin-post-id').value = '0';
+                jsonStorage.value = '';
+
+                fetchDashboardData();
+                showSection('posts');
+            } else {
+                alert(result.message || 'Failed to process post.');
+            }
+        });
+
+
+        // --- Other Action Handlers (Edit, Publish, Delete, Comments) ---
+
+        contentArea.addEventListener('click', async (e) => {
+            const target = e.target;
+            const postId = target.getAttribute('data-id');
+            const commentId = target.getAttribute('data-id');
+
+            if (target.classList.contains('edit-post')) {
+                const result = await callAppScript('getPostDetail', { postId }, 'GET');
+                if (result.status === 'success' && result.data) {
+                    const post = result.data;
+                    
+                    document.getElementById('admin-post-id').value = post.id;
+                    document.getElementById('admin-post-title').value = post.title;
+                    document.getElementById('admin-post-header').value = post.header;
+                    document.getElementById('admin-post-keywords').value = post.keywords;
+                    document.getElementById('admin-post-image-url').value = post.imageURL;
+                    document.getElementById('admin-post-readtime').value = post.readTime;
+                    
+                    deserializePostContent(post.content);
+
+                    showSection('create-post');
+                } else {
+                    alert('Failed to fetch post for editing.');
+                }
+
+            } else if (target.classList.contains('toggle-post')) {
+                const currentStatus = target.getAttribute('data-status');
+                const newStatus = currentStatus === 'YES' ? 'NO' : 'YES';
+                const action = newStatus === 'YES' ? 'adminPublishPost' : 'adminUnpublishPost';
+                
+                if (confirm(`Are you sure you want to ${newStatus === 'YES' ? 'publish' : 'unpublish'} post ID ${postId}?`)) {
+                    const result = await callAppScript(action, { postId: parseInt(postId) }, 'POST');
+                    if (result.status === 'success') {
+                        alert(`Post ID ${postId} status updated to ${newStatus}.`);
+                        fetchDashboardData();
+                    } else {
+                        alert(result.message);
+                    }
+                }
+            } else if (target.classList.contains('delete-post')) {
+                if (confirm(`Are you sure you want to PERMANENTLY delete post ID ${postId}?`)) {
+                    const result = await callAppScript('adminDeletePost', { postId: parseInt(postId) }, 'POST');
+                    if (result.status === 'success') {
+                        alert(`Post ID ${postId} deleted.`);
+                        fetchDashboardData();
+                    } else {
+                        alert(result.message);
+                    }
+                }
+            } else if (target.classList.contains('approve-comment')) {
+                 if (confirm(`Approve comment ID ${commentId}?`)) {
+                    const result = await callAppScript('adminApproveComment', { commentId: parseInt(commentId) }, 'POST');
+                    if (result.status === 'success') {
+                        alert(`Comment approved.`);
+                        fetchDashboardData();
+                    } else {
+                        alert(result.message);
+                    }
+                }
+            } else if (target.classList.contains('delete-comment')) {
+                 if (confirm(`Delete comment ID ${commentId}?`)) {
+                    const result = await callAppScript('adminDeleteComment', { commentId: parseInt(commentId) }, 'POST');
+                    if (result.status === 'success') {
+                        alert(`Comment deleted.`);
+                        fetchDashboardData();
+                    } else {
+                        alert(result.message);
+                    }
+                }
+            }
+        });
+
+
+        // --- Settings Form Submission (Static Content) ---
+        document.getElementById('admin-update-static-content').addEventListener('click', async () => {
+            const aboutJson = document.getElementById('admin-static-about-json').value;
+            const contactJson = document.getElementById('admin-static-contact-json').value;
+            
+            const data = {
+                aboutContentJSON: aboutJson,
+                contactContentJSON: contactJson
+            };
+
+            const result = await callAppScript('adminUpdateSettings', data, 'POST');
+
+            if (result.status === 'success') {
+                alert('Static content updated successfully!');
+            } else {
+                alert(result.message || 'Failed to update static content.');
+            }
+        });
+
+
+        // --- Settings Form Submission (Ad Codes) ---
+        document.getElementById('admin-settings-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const adsToUpdate = [];
+            document.querySelectorAll('#admin-ad-code-list textarea').forEach(textarea => {
+                adsToUpdate.push({
+                    adId: textarea.getAttribute('data-ad-id'),
+                    code: textarea.value
+                });
+            });
+
+            const result = await callAppScript('adminUpdateAds', { ads: adsToUpdate }, 'POST');
+
+            if (result.status === 'success') {
+                alert('Ad codes updated successfully!');
+            } else {
+                alert(result.message || 'Failed to update ad codes.');
+            }
+        });
+
+
+        // =================================================================
+        // 7. DASHBOARD NAVIGATION
+        // =================================================================
+
+        /**
+         * Manages the sidebar navigation clicks.
+         */
+        document.querySelectorAll('.sidebar .nav-button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const sectionId = e.target.getAttribute('data-section');
+                showSection(sectionId);
+            });
+        });
+
+        /**
+         * Switches the displayed content section.
+         */
+        function showSection(sectionId) {
+            // Update active button state
+            document.querySelectorAll('.sidebar .nav-button').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-section') === sectionId) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Show/hide content sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            const targetSection = document.getElementById(`${sectionId}-section`);
+            if (targetSection) {
+                targetSection.classList.add('active');
+                // If navigating to create post, ensure form is clear for a new post
+                if (sectionId === 'create-post' && document.getElementById('admin-post-id').value !== '0') {
+                    // Reset form fields if already editing
+                    postForm.reset();
+                    contentBuilder.innerHTML = '';
+                    document.getElementById('admin-post-id').value = '0';
+                    jsonStorage.value = '';
+                }
+            }
+        }
+
+
+        // --- INITIALIZATION CALL ---
+        document.addEventListener('DOMContentLoaded', () => {
+            init();
+            // Default to showing the stats section if logged in
+            showSection('stats'); 
+        });
+    </script>
+</body>
+</html>
